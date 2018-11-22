@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//后台的首页
+Route::get('/admin', 'Admin\IndexController@index');
