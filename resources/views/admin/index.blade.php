@@ -1,7 +1,10 @@
 @extends('layout.admins')
 
+
+@section('title',$title)
+
 @section('content')
-  1111111
+
   
 
 

@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Purple Admin</title>
+  <title>@yield('title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/admins/vendors/css/vendor.bundle.base.css">
@@ -215,7 +215,22 @@
               </ul>
             </div>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">友情链接</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-access-point-network"></i>
+            </a>
+            <div class="collapse" id="ui-asd">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/firend/create">添加链接</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/firend">链接列表</a></li>
+              </ul>
+            </div>
+          </li>
+
+         
+        
           <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">
               <span class="menu-title">Forms</span>
@@ -226,6 +241,20 @@
       </nav>
       <!-- partial -->
       <div class="main-panel">
+
+      @if(session('success'))
+                <div class="mws-form-message success">
+                    <li style='list-style:none;font-size:14px'>{{session('success')}}</li>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mws-form-message error">
+                    <li style='list-style:none;font-size:14px'>{{session('error')}}</li>
+                </div>
+            @endif
+
+            
       @section('content')
 
 
@@ -265,6 +294,12 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="/admins/js/dashboard.js"></script>
+  <script src="/admins/js/file-upload.js"></script>
+
+  @section('js')
+
+  @show
+
   <!-- End custom js for this page-->
 </body>
 

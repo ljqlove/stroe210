@@ -18,3 +18,5 @@ Route::get('/', function () {
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
+//后台友情链接管理
+Route::resource('admin/firend', "Admin\FriendController");
