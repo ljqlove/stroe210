@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 //后台登录
 
 
@@ -24,4 +25,7 @@ Route::group([],function(){
 
 	//后台用户管理
 	Route::resource('/admin/user','Admin\UserController');
+
+	//后台评论管理
+	Route::get('/admin/comment','Admin\CommentController@index');
 });
