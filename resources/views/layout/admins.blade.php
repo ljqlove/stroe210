@@ -25,14 +25,7 @@
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <div class="search-field d-none d-md-block">
-          <form class="d-flex align-items-center h-100" action="#">
-            <div class="input-group">
-              <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>                
-              </div>
-              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
-            </div>
-          </form>
+
         </div>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
@@ -228,6 +221,19 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-abs" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">客户信息</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-card-details""></i>
+            </a>
+            <div class="collapse" id="ui-abs">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/message">客户详情</a></li>
+              </ul>
+            </div>
+          </li>
 
          
         
@@ -243,13 +249,13 @@
       <div class="main-panel">
 
       @if(session('success'))
-                <div class="mws-form-message success">
+                <div class="btn btn-block btn-lg btn-gradient-primary mt-4 error">
                     <li style='list-style:none;font-size:14px'>{{session('success')}}</li>
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="mws-form-message error">
+                <div class="btn btn-block btn-lg btn-gradient-primary mt-4 error">
                     <li style='list-style:none;font-size:14px'>{{session('error')}}</li>
                 </div>
             @endif
@@ -300,7 +306,6 @@
 
   @show
 
-  <!-- End custom js for this page-->
 </body>
 
 </html>

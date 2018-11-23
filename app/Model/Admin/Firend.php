@@ -11,9 +11,9 @@ class Firend extends Model
      *
      * @var string
      */
-    protected $table = 'firend';
+    protected $table = 'friends';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'fid';
 
     /**
      * 该模型是否被自动维护时间戳

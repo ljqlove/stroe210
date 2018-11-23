@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/admin', 'Admin\IndexController@index');
 //后台友情链接管理
 Route::resource('admin/firend', "Admin\FriendController");
+// 后台客人信息管理
+Route::resource('admin/message', "Admin\MessageController");
