@@ -18,3 +18,6 @@ Route::get('/', function () {
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
+
+// 分类管理
+Route::resource('admin/category','Admin\CategoryController');
