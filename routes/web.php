@@ -18,3 +18,11 @@ Route::get('/', function () {
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
+
+Route::resource('/admin/order','Admin\OrderController');
+Route::get('/admin/uajax','Admin\OrderController@unameAjax');
+Route::get('/admin/oajax','Admin\OrderController@onameAjax');
+Route::get('/admin/adajax','Admin\OrderController@addressAjax');
+Route::get('/admin/phajax','Admin\OrderController@phAjax');
+Route::get('/admin/numajax','Admin\OrderController@numAjax');
+Route::post('/admin/sta','Admin\OrderController@status');

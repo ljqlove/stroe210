@@ -6,6 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Purple Admin</title>
+
+  <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
+  <script src='/bs/js/jquery.min.js'></script>
+  <script src='/bs/js/bootstrap.min.js'></script>
+
   <!-- plugins:css -->
   <link rel="stylesheet" href="/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/admins/vendors/css/vendor.bundle.base.css">
@@ -14,6 +19,7 @@
   <link rel="stylesheet" href="/admins/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/admins/images/favicon.png" />
+
 </head>
 <body>
   <div class="container-scroller">
@@ -28,7 +34,7 @@
           <form class="d-flex align-items-center h-100" action="#">
             <div class="input-group">
               <div class="input-group-prepend bg-transparent">
-                  <i class="input-group-text border-0 mdi mdi-magnify"></i>                
+                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
               </div>
               <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
             </div>
@@ -39,21 +45,21 @@
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <div class="nav-profile-img">
                 <img src="/admins/images/faces/face1.jpg" alt="image">
-                <span class="availability-status online"></span>             
+                <span class="availability-status online"></span>
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black">管理员</p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="/admin/order">
                 <i class="mdi mdi-cached mr-2 text-success"></i>
-                Activity Log
+                活动日志
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
-                Signout
+                退出
               </a>
             </div>
           </li>
@@ -187,7 +193,7 @@
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
                 <img src="/admins/images/faces/face1.jpg" alt="profile">
-                <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+                <span class="login-status online"></span> <!--change to offline or busy as needed-->
               </div>
               <div class="nav-profile-text d-flex flex-column">
                 <span class="font-weight-bold mb-2">超级管理员</span>
@@ -215,17 +221,34 @@
               </ul>
             </div>
           </li>
-          
+
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">Forms</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-order">
+              <span class="menu-title">订单管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-order">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/order">
+              <span class="menu-title">订单管理</span>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
           </li>
         </ul>
       </nav>
       <!-- partial -->
+
       <div class="main-panel">
+
+
       @section('content')
 
 
