@@ -23,7 +23,7 @@ class FriendController extends Controller
             if(!empty($rs)) {
                 $query->where('fname','like','%'.$rs.'%');
             }
-        
+
         })->paginate(10);
         // dd($friend);
         return view('admin.firend.index',[
@@ -31,7 +31,6 @@ class FriendController extends Controller
             'friend'=>$friend,
             'request'=>$request
         ]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -42,6 +41,7 @@ class FriendController extends Controller
     {
         //
         return view('admin.firend.add',['title'=>'添加链接']);
+
     }
 
     /**
@@ -86,7 +86,7 @@ class FriendController extends Controller
         try{
 
             $data = Firend::create($res);
-            
+
             if($data){
                 return redirect('/admin/firend')->with('success','添加成功');
             }
@@ -99,6 +99,8 @@ class FriendController extends Controller
     }
 
 
+
+    }
 
     /**
      * Display the specified resource.
@@ -126,8 +128,8 @@ class FriendController extends Controller
         return view('admin.firend.edit',[
             'title'=>'友情链接的修改页面',
             'res'=>$res
-        ]);    
-    }
+        ]);
+
 
     /**
      * Update the specified resource in storage.
@@ -138,7 +140,6 @@ class FriendController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         // echo 1;die;
         // $this->validate($request, [
         //     'fname' => 'required',
@@ -171,7 +172,7 @@ class FriendController extends Controller
 
             $data = Firend::where('fid', $id)->update($res);
             // dd($data);
-            
+
             if($data){
                 return redirect('/admin/firend')->with('success','修改成功');
             }
@@ -185,13 +186,16 @@ class FriendController extends Controller
 
     /**
      *  删除链接
+    }
+
+    /**
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
         // echo 1;die;
         try {
             $res = Firend::destroy($id);
@@ -201,5 +205,6 @@ class FriendController extends Controller
         } catch (\Exception $e) {
             return back()->with('error','删除失败');
         }
+
     }
 }

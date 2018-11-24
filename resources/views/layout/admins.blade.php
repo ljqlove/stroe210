@@ -221,7 +221,6 @@
               </ul>
             </div>
           </li>
-<<<<<<< HEAD
 
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-order">
@@ -233,7 +232,6 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-=======
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">友情链接</span>
@@ -257,16 +255,10 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/message">客户详情</a></li>
->>>>>>> aa
               </ul>
             </div>
           </li>
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> aa
           <li class="nav-item">
             <a class="nav-link" href="/order">
               <span class="menu-title">订单管理</span>
@@ -279,23 +271,6 @@
 
       <div class="main-panel">
 
-<<<<<<< HEAD
-
-=======
-      @if(session('success'))
-                <div class="btn btn-block btn-lg btn-gradient-primary mt-4 error">
-                    <li style='list-style:none;font-size:14px'>{{session('success')}}</li>
-                </div>
-            @endif
-
-            @if(session('error'))
-                <div class="btn btn-block btn-lg btn-gradient-primary mt-4 error">
-                    <li style='list-style:none;font-size:14px'>{{session('error')}}</li>
-                </div>
-            @endif
-
-
->>>>>>> aa
       @section('content')
 
 
