@@ -32,3 +32,10 @@ Route::resource('admin/firend', "Admin\FriendController");
 
 // 后台客人信息管理
 Route::resource('admin/message', "Admin\MessageController");
+// 分类管理
+Route::resource('admin/category','Admin\CategoryController');
+
+//后台用户管理
+Route::resource('/admin/user','Admin\UserController');
+//后台评论管理
+Route::get('/admin/comment','Admin\CommentController@index');

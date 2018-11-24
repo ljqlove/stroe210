@@ -210,14 +210,14 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">UI Elements</span>
+              <span class="menu-title">分类管理</span>
               <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              <i class="mdi mdi-file-document-box"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/category/create">添加类别</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/category">浏览类别</a></li>
               </ul>
             </div>
           </li>
@@ -314,8 +314,13 @@
 
   @section('js')
 
-  @show
 
+  <!-- End custom js for this page-->
+<script>
+  $('#mr-2').delay(2000).fadeOut(2000);
+  $('#mt-4').delay(2000).fadeOut(2000);
+</script>
+@shop
 </body>
 
 </html>
