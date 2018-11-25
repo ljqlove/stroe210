@@ -202,6 +202,7 @@
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">分类管理</span>
@@ -212,6 +213,20 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/category/create">添加类别</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/category">浏览类别</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-abc" aria-expanded="false" aria-controls="ui-abc">
+              <span class="menu-title">商品管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-cart-outline"></i>
+            </a>
+            <div class="collapse" id="ui-abc">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/goods/create">添加商品</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/goods">浏览商品</a></li>
               </ul>
             </div>
           </li>

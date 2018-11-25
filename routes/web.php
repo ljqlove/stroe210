@@ -21,3 +21,5 @@ Route::get('/admin', 'Admin\IndexController@index');
 
 // 分类管理
 Route::resource('admin/category','Admin\CategoryController');
+// 商品管理
+Route::resource('admin/goods','Admin\GoodsController');
