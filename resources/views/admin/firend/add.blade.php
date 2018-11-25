@@ -23,7 +23,7 @@
         			</div>
        		 	@endif
        		 	<br><br>
-				
+
                   <form action="/admin/firend" method="post" class="mws-form" enctype='multipart/form-data'>
                     <div class="form-group">
                       <label for="exampleInputName1">链接名称</label>
@@ -52,7 +52,7 @@
 
 
 
-  
+
 @stop
 
 @section('js')
@@ -61,4 +61,4 @@
 	$('.btn-block').delay(2000).fadeOut(2000);
 </script>
 @stop
-        
+

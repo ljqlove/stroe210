@@ -4,18 +4,41 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Model\Admin\Message;
+use App\Model\Admin\Users;
 
 class MessageController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 客户的详情页
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        // echo 1;die;
+        // 条件搜索  分页
+        $user = DB::table('users')->get();
+        // dd($user);
+        $message = Message::orderBy('mid','asc')
+                ->where(function($query) use($request){
+            $rs = $request->input('uname');
+            if(!empty($rs)) {
+                $query->where('uname','like','%'.$rs.'%');
+            }
+        })->paginate(10);
+        // dd($message);
+        return view('admin.message.index',[
+            'title'=>'客户的信息界面',
+            'message'=>$message,
+            'request'=>$request,
+            'user'=>$user
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +49,7 @@ class MessageController extends Controller
     {
         //
         // echo 1;die;
-        return view('admin.message.add',['title'=>'添加客人信息']);
+        // return view('admin.message.add',['title'=>'添加客人信息']);
 
     }
 
@@ -39,6 +62,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**

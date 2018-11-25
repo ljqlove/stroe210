@@ -9,6 +9,8 @@
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>                
+                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
+
                     </div>
                     <input type="text" value="{{$request->fname}}" class="form-control bg-transparent border-0" placeholder="链接名称" name="fname">
                     <button class='btn btn-info'>搜索</button>
@@ -44,13 +46,13 @@
                     <tbody>
                     @foreach($friend as $k=>$v)
                       
+
                       <tr class="">
                         <td>
                           {{$v->fid}}
                         </td>
                         <td>
                           {{$v->fname}}
-                        
                         <td>
                           {{$v->url}}
                         </td>
@@ -80,7 +82,7 @@
                   </table>
                 </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-        
+
             {{$friend->appends($request->all())->links()}}
 
             </div>
