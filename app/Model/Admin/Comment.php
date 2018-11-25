@@ -28,4 +28,12 @@ class Comment extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+
+    /**
+     * 用户正向关联用户信息。
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 }

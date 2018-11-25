@@ -13,16 +13,10 @@
                           #
                         </th>
                         <th>
-                          用户编号
+                          链接地址
                         </th>
                         <th>
-                          评论内容
-                        </th>
-                        <th>
-                          评价
-                        </th>
-                        <th>
-                          时间
+                          图片
                         </th>
                         <th>
                           操作
@@ -31,39 +25,19 @@
                     </thead>
                     <tbody>
                       
-                      @foreach($comment as $k=>$v)
                       <tr class="table-info">
                         <td>
-                        {{$v->cid}}
+
                         </td>
                         <td>
-                        @foreach($ucomm as $kk=>$vv)
-                          @if($v->uid==$vv->uid)
-                            {{$vv->uid}}
-                          @endif  
-                        @endforeach
+                        
                         </td>
                         <td>
-                        {{$v->content}}
+
                         </td>
                         <td>
-                        @if($v->star==1)
-                          ★
-                        @elseif($v->star==2)
-                          ★★
-                        @elseif($v->star==3)
-                          ★★★
-                        @elseif($v->star==4)
-                          ★★★★
-                        @else($v->star==5)
-                          ★★★★★
-                        @endif
-                        </td>
-                        <td>
-                        {{$v->inputtime}}
-                        </td>
-                        <td>
-                            <form action="/admin/comment/{{$v->cid}}" method='post' style='display:inline'>
+                          <a href="/admin/lunbo/" class='btn btn-info'>修改</a>
+                            <form action="/admin/lunbo/" method='post' style='display:inline'>
                               {{csrf_field()}}
 
                               {{method_field("DELETE")}}
@@ -72,7 +46,7 @@
                             </form>
                         </td>
                       </tr>
-                      @endforeach
+                      
                     </tbody>
                   </table>
                 </div>

@@ -28,4 +28,8 @@ Route::group([],function(){
 
 	//后台评论管理
 	Route::get('/admin/comment','Admin\CommentController@index');
+	Route::resource('/admin/comment','Admin\CommentController');
+
+	//后台轮播图管理
+	Route::resource('/admin/lunbo','Admin\LunboController');
 });

@@ -218,6 +218,20 @@
               </ul>
             </div>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-asd">
+              <span class="menu-title">轮播图管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-book-open-page-variant"></i>
+            </a>
+            <div class="collapse" id="ui-asd">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/lunbo/create">添加轮播图</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/lunbo">浏览轮播图</a></li>
+              </ul>
+            </div>
+          </li>
           
           <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">

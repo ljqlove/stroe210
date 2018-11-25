@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Hash;
 use App\Model\Admin\User;
+use App\Model\Admin\Comment;
 use DB;
 
 class UserController extends Controller
@@ -19,12 +20,12 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //条件搜索 分页
-        $users = User::orderBy('uid','asc')->where(function($query) use($request){
+        $users = Comment::orderBy('uid','asc')->where(function($query) use($request){
             $rs = $request->input('phone');
             if(!empty($rs)) {
                 $query->where('phone','like','%'.$rs.'%');
             }
-        })->paginate(5); 
+        })->paginate(5);
 
         return view('admin.user.index',[
             'title'=>'用户列表',
@@ -59,7 +60,7 @@ class UserController extends Controller
         $res['inputtime'] = date('Y-m-d H:i:s',time());
 
 
-            $data = User::create($res);
+            $data = Comment::create($res);
             
             if ($data) {
                 return redirect('/admin/user')->with('success','添加成功');
@@ -87,7 +88,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //根据id获取数据
-        $res=User::find($id);
+        $res=Comment::find($id);
 
         return view('admin.user.edit',[
             'title'=>'用户修改',
@@ -109,7 +110,7 @@ class UserController extends Controller
         //数据表修改数据
         try{
 
-            $data = User::where('uid', $id)->update($res);
+            $data = Comment::where('uid', $id)->update($res);
             
             if($data){
                 return redirect('/admin/user')->with('success','修改成功');
@@ -131,7 +132,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
-            $res = User::destroy($id);
+            $res = Comment::destroy($id);
             
             if($res){
                 return redirect('/admin/user')->with('success','删除成功');
