@@ -5,6 +5,11 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
+  <script src='/bs/js/jquery.min.js'></script>
+  <script src='/bs/js/bootstrap.min.js'></script>
+
   <title>@yield('title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/admins/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -14,6 +19,7 @@
   <link rel="stylesheet" href="/admins/css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/admins/images/favicon.png" />
+
 </head>
 <body>
   <div class="container-scroller">
@@ -24,26 +30,36 @@
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/admins/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <div class="search-field d-none d-md-block">
+          <form class="d-flex align-items-center h-100" action="#">
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
+              </div>
+              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+            </div>
+          </form>
+        </div>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <div class="nav-profile-img">
                 <img src="/admins/images/faces/face1.jpg" alt="image">
-                <span class="availability-status online"></span>             
+                <span class="availability-status online"></span>
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black">管理员</p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="/admin/order">
                 <i class="mdi mdi-cached mr-2 text-success"></i>
-                Activity Log
+                活动日志
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
-                Signout
+                退出
               </a>
             </div>
           </li>
@@ -177,7 +193,7 @@
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
                 <img src="/admins/images/faces/face1.jpg" alt="profile">
-                <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+                <span class="login-status online"></span> <!--change to offline or busy as needed-->
               </div>
               <div class="nav-profile-text d-flex flex-column">
                 <span class="font-weight-bold mb-2">超级管理员</span>
@@ -193,28 +209,39 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-bcs" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">会员信息管理</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">分类管理</span>
               <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-settings-variant"></i>
+              <i class="mdi mdi-file-document-box"></i>
             </a>
-            <div class="collapse" id="ui-bcs">
+            <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/category/create">添加类别</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/category">浏览类别</a></li>
               </ul>
             </div>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-qwe" aria-expanded="false" aria-controls="ui-qwe">
-              <span class="menu-title">用户评论管理</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-order">
+              <span class="menu-title">订单管理</span>
               <i class="menu-arrow"></i>
-              <i class="mdi mdi-book-open-page-variant"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-qwe">
+            <div class="collapse" id="ui-order">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/comment">浏览评论</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">友情链接</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-access-point-network"></i>
+            </a>
+            <div class="collapse" id="ui-asd">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/firend/create">添加链接</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/firend">链接列表</a></li>
               </ul>
             </div>
           </li>
@@ -232,30 +259,32 @@
               </ul>
             </div>
           </li>
-          
+
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">Forms</span>
+            <a class="nav-link" data-toggle="collapse" href="#ui-abs" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">客户信息</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-card-details""></i>
+            </a>
+            <div class="collapse" id="ui-abs">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/message">客户详情</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/order">
+              <span class="menu-title">订单管理</span>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
           </li>
         </ul>
       </nav>
       <!-- partial -->
+
       <div class="main-panel">
-
-            @if(session('success'))
-                <div class="btn btn-block btn-lg btn-gradient-primary mt-4" id="xserror">
-                    <li style='list-style:none;font-size:14px'>{{session('success')}}</li>
-                </div>
-            @endif
-
-
-            @if(session('error'))
-                <div class="btn btn-block btn-lg btn-gradient-primary mt-4" id="xserror">
-                    <li style='list-style:none;font-size:14px'>{{session('error')}}</li>
-                </div>
-            @endif
 
       @section('content')
 
@@ -296,12 +325,17 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="/admins/js/dashboard.js"></script>
-  <!-- End custom js for this page-->
+  <script src="/admins/js/file-upload.js"></script>
+
   @section('js')
-  <script>
-  $('#xserror').delay(2000).fadeOut(2000);
-  </script>
-  @stop
+
+
+  <!-- End custom js for this page-->
+<script>
+  $('#mr-2').delay(2000).fadeOut(2000);
+  $('#mt-4').delay(2000).fadeOut(2000);
+</script>
+@shop
 </body>
 
 </html>
