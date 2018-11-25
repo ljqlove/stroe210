@@ -19,14 +19,14 @@
                   @endif
                   <br>
 
-                 <form action="/admin/user" method="post" class="mws-form" enctype='multipart/form-data'>
+                 <form action="/admin/lunbo" method="post" class="mws-form" enctype='multipart/form-data'>
                     <div class="form-group">
                       <label for="exampleInputUsername1">链接地址</label>
-                      <input type="text" class="form-control" name="phone" placeholder="请输入链接地址">
+                      <input type="text" class="form-control" name="url" placeholder="请输入链接地址">
                     </div>
                     <div class="form-group">
                       <label>图片</label>
-                      <input type="file" name="img[]" class="file-upload-default">
+                      <input type="file" name="pic" class="file-upload-default">
                       <div class="input-group col-xs-12">
                         <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
                         <span class="input-group-append">

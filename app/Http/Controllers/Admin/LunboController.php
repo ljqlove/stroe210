@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Model\Admin\Lunbo;
+use App\Http\Requests\LunboRequest;
+
 
 class LunboController extends Controller
 {
@@ -13,7 +16,7 @@ class LunboController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $lunbo=DB::table('lunbo')->paginate(5);
         return view('admin.lunbo.index',[
@@ -37,9 +40,28 @@ class LunboController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LunboRequest $request)
     {
-        //
+        $res = $request->except('_token');
+
+        if($request->hasFile('pic')){
+            //自定义名字
+            $name = rand(111,999).time();
+
+            //获取后缀
+            $suffix = $request->file('pic')->getClientOriginalExtension();
+
+            $request->file('pic')->move('./images/lunbo',$name.'.'.$suffix);
+
+            $res['pic'] = '/images/lunbo'.$name.'.'.$suffix;
+
+        }
+            $data = Lunbo::create($res);
+            
+            if ($data) {
+                return redirect('/admin/lunbo')->with('success','添加成功');
+            }
+                return back()->with('error','添加失败');
     }
 
     /**
