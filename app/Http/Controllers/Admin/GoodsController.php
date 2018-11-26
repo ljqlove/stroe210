@@ -225,18 +225,20 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $this->validate($request,[
-            'gimgs' => 'required',
-        ],[
-            'gimgs.required' => '商品图片不能为空',
-        ]);
+
+        // dd($request->except('_token','_method'));
+        //  $this->validate($request,[
+        //     'gimgs' => 'required',
+        // ],[
+        //     'gimgs.required' => '商品图片不能为空',
+        // ]);
         // 表单验证
         $rs = Goodsimg::where('gid',$id)->get(); // 通过父表id  查询出子表信息
 
         // dd($rs);
 
         // 关联删除 gimgs
-        // if ($_FILES['gimgs']['error']!=4) {
+        if ($request->file('gimgs')) {
         $grr = []; // 定义一个数组
         foreach($rs as $v){
             $gr = $v->gimgs;  // 获取图片名
@@ -250,7 +252,7 @@ class GoodsController extends Controller
                 Goodsimg::destroy($grr); // 删除图片id
             }
         }
-        // }
+        }
         // dd($grr);
 
          $res = $request->except('_token','_method','gimgs');
@@ -302,19 +304,20 @@ class GoodsController extends Controller
 
                     $arr[] = $ar;
                 }
+                $rs = Goodsimg::where('gid',$id)->insert($arr);
             }
       }
 
 
-        $rs = Goodsimg::where('gid',$id)->insert($arr);
+        
 
 
-        if($rs){
+        // if($rs){
 
             return redirect('/admin/goods')->with('success','修改成功');
-        }// else {
+        // } else {
             // return redirect('/admin/goods')->with('success','修改成功');
-        //}
+        // }
 
 
 
@@ -329,8 +332,43 @@ class GoodsController extends Controller
      */
     public function destroy($id)
     {
-        echo '商品删除';
-    }
+        // echo '商品删除';
+
+        $rs = Goodsimg::where('gid',$id)->get(); // 查询商品图片gid
+
+        // dd($gimgs);
+
+        $grr = []; // 定义一个数组
+        foreach($rs as $v){
+            $gr = $v->gimgs;  // 获取图片名
+            // $grr[] = $gr;
+            unlink('.'.$v->gimgs); // 删除文件夹中的图片名文件
+            $gs = Goodsimg::where('gimgs',$gr)->get(); // 通过图片名获取图片所有信息
+            
+            foreach ($gs as $v) { // 遍历图片信息
+                $gid = $v->id; // 获取图片id
+                $grr[] = $gid; // 写入数组
+                Goodsimg::destroy($grr); // 删除图片id
+            }
+        }
+
+
+            // $goods = Goods::where('gid',$id)->get();   // 查询商品信息ID
+        
+
+         // dd($goods);
+
+         $res = Goods::destroy($id);
+         // $res = Goodsimg::destroy();
+
+        // // 进行判断是否成功
+        if ($res || $gdel) {
+            return redirect('/admin/goods')->with('success','删除成功');
+        }
+        return back()->with('error','删除失败');
+
+        }
+    
 
     public function gsize($id)
     {
