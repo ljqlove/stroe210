@@ -18,10 +18,18 @@ Route::get('/', function () {
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
+//后头管理员管理
+Route::resource('admin/blog_user', "Admin\Blog_userController");
+
+//后头角色管理
+Route::resource('admin/blog_roles', "Admin\Blog_rolesController");
+
+//后头权限管理
+Route::resource('admin/blog_permissions', "Admin\Blog_permissionsController");
+
+
 //后台友情链接管理
 Route::resource('admin/firend', "Admin\FriendController");
-// 后台客人信息管理
-Route::resource('admin/message', "Admin\MessageController");
 
 //后台登录
 Route::any('/admin/login','Admin\LoginController@login');
@@ -62,4 +70,4 @@ Route::resource('admin/goods','Admin\GoodsController');
 
 
 //前台
-Route::
+// Route::

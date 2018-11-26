@@ -58,8 +58,9 @@
                           {{$v->mid}}
                         </td>
                         <td>
-	                    @foreach($user as $key=>$val)                  	  @if($val->uid == $v->uid)
-							{{($val->phone)}}
+	                    @foreach($user as $key=>$val)                  	  
+                        @if($val->uid == $v->uid)
+						            	{{($val->phone)}}
 	                   		@endif
 	                   	@endforeach
                    		</td>

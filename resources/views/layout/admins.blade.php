@@ -210,6 +210,49 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-guan" aria-expanded="false" aria-controls="ui-guan">
+              <span class="menu-title">管理员管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-key menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-guan">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_user">添加管理员</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_user">管理员列表</a></li>
+                </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-jues" aria-expanded="false" aria-controls="ui-jues">
+              <span class="menu-title">角色管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-card-details"></i>
+            </a>
+            <div class="collapse" id="ui-jues">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_roles">添加角色</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_roles">角色列表</a></li>
+                </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-quan" aria-expanded="false" aria-controls="ui-quan">
+              <span class="menu-title">权限管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi  mdi-account-settings-variant"></i>
+            </a>
+            <div class="collapse" id="ui-quan">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_permissions">添加权限</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_permissions">权限列表</a></li>
+                </ul>
+            </div>
+          </li>
+          
+
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
               <span class="menu-title">会员信息管理</span>
               <i class="menu-arrow"></i>
@@ -219,6 +262,19 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
+                </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-keh" aria-expanded="false" aria-controls="ui-keh">
+              <span class="menu-title">客户信息</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-keh">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/message"">客户信息详情</a></li>
                 </ul>
             </div>
           </li>
@@ -299,19 +355,7 @@
             </div>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-abs" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">客户信息</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-card-details""></i>
-            </a>
-            <div class="collapse" id="ui-abs">
-              <ul class="nav flex-column sub-menu">
-                <!-- <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li> -->
-                <li class="nav-item"> <a class="nav-link" href="/admin/message">客户详情</a></li>
-              </ul>
-            </div>
-          </li>
+
 
           <li class="nav-item">
             <a class="nav-link" href="/order">
