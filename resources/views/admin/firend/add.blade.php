@@ -61,3 +61,4 @@
 	$('.btn-block').delay(2000).fadeOut(2000);
 </script>
 @stop
+

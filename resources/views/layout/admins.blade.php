@@ -270,7 +270,7 @@
             </a>
             <div class="collapse" id="ui-abs">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li> -->
                 <li class="nav-item"> <a class="nav-link" href="/admin/message">客户详情</a></li>
               </ul>
             </div>

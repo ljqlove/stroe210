@@ -18,6 +18,10 @@ Route::get('/', function () {
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
+//后台友情链接管理
+Route::resource('admin/firend', "Admin\FriendController");
+// 后台客人信息管理
+Route::resource('admin/message', "Admin\MessageController");
 
 // 后台订单管理
 Route::resource('/admin/order','Admin\OrderController');
@@ -43,3 +47,4 @@ Route::resource('/admin/user','Admin\UserController');
 Route::get('/admin/comment','Admin\CommentController@index');
 // 商品管理
 Route::resource('admin/goods','Admin\GoodsController');
+
