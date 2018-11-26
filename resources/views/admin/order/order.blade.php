@@ -17,6 +17,14 @@
     </style>
 
     <div class="content-wrapper">
+          <div class="alert alert-success alert-dismissible success suc" role="alert" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>success!</strong> {{session('success')}}
+          </div>
+          <div class="alert alert-error alert-dismissible error err" role="alert" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>error!</strong> {{session('error')}}
+          </div>
         @if(session('success'))
           <div class="alert alert-success alert-dismissible success" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -50,6 +58,7 @@
                         <th>总价</th>
                         <th>用户留言</th>
                         <th>订单状态</th>
+                        <th>操作</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -57,6 +66,7 @@
                         <tr>
                             <td class="oid">{{$v->oid}}</td>
                             <td class="uid" style="display: none;">{{$v->uid}}</td>
+                            <td class="price" style="display: none;">{{$v->price}}</td>
                             <td class="oname">{{$v->oname}}</td>
                             <td class="uname">{{$v->uname}}</td>
                             <td class="address">{{$v->address}}</td>
@@ -73,6 +83,7 @@
                             @elseif($v->status == 3)
                             <td class="status" val="3"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm">已收货</button></td>
                             @endif
+                            <td class="del"><button type="button" class="btn btn-gradient-danger btn-rounded "><i class="mdi mdi-delete"></i>删除</button></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -126,7 +137,19 @@
       </div>
     </div>
     <script>
-
+    $('.del').click(function(){
+      var oid = $(this).parents('tr').find('.oid').text().trim();
+      var tr = $(this).parents('tr');
+      $.get('/admin/delajax',{oid:oid},function(data){
+        if (data) {
+          tr.css('display','none');
+          $('.suc').slideToggle(500);
+        } else {
+          $('.err').slideToggle(500);
+        }
+      })
+    })
+    // 点击弹出状态栏
     $('.status').click(function(){
         var tr = $(this).parents('tr');
         var oid = tr.find('.oid').text();
@@ -176,15 +199,18 @@
 
             //获取用户id
             var ids = $(this).parents('tr').find(id).eq(0).text().trim();
-            var dan = $(this).parents('tr').find('.total').eq(0).text().trim();
+            var dan = $(this).parents('tr').find('.price').eq(0).text().trim();
             // console.log(ids);
+            // console.log(uv);
+            var total = $(this).parents('tr').find('.total').eq(0);
             $.get(url,{uv:uv,ids:ids},function(data){
 
                 if(data == 1){
 
                     if (cl == 'num') {
-                        var total = dan*uv;
-                        $(this).parents('tr').find('.total').eq(0).text(total);
+                        var tal = dan*uv;
+                        console.log(tal);
+                        total.text(tal);
                     }
                     //让输入框消失  但是输入框里面的值留下
                     tds.text(uv);

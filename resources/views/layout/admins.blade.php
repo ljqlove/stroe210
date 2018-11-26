@@ -232,6 +232,9 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                </ul>
+            </div>
+          </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">友情链接</span>
