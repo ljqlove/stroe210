@@ -41,3 +41,5 @@ Route::resource('admin/category','Admin\CategoryController');
 Route::resource('/admin/user','Admin\UserController');
 //后台评论管理
 Route::get('/admin/comment','Admin\CommentController@index');
+// 商品管理
+Route::resource('admin/goods','Admin\GoodsController');

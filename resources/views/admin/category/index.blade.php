@@ -54,9 +54,20 @@
                           {{$v->tname}}
                         </td>
                         
+                        
                         <td>
-                          {{($v->pid)}}
+                          
+                          @if($v->pid == 0)
+                          顶级分类
+                          @endif
+                          @foreach($pids as $k1 => $v1)
+                          @if($v->pid == $v1->tid)
+                          {{$v1->tname}}
+                          @endif
+                          @endforeach
                         </td>
+                        
+
                         <td>
                           {{$v->path}}
                         </td>

@@ -21,6 +21,8 @@ class CategoryController extends Controller
         orderBy('paths')->
         paginate($request->input('num',10));
 
+        $pids = DB::select('select tid,tname from type');
+
         foreach ($res as $v) {
             $ps = substr_count($v->path, ',')-1;
 
@@ -31,7 +33,8 @@ class CategoryController extends Controller
         return view('admin.category.index',[
             'title'=>'分类列表',
             'request'=>$request,
-            'res'=>$res
+            'res'=>$res,
+            'pids'=>$pids
 
         ]);
         
