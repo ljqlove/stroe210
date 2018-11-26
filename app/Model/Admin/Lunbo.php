@@ -4,16 +4,16 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Lunbo extends Model
 {
      /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'comment';
+    protected $table = 'lunbo';
 
-    protected $primaryKey = 'cid';
+    protected $primaryKey = 'lid';
 
     /**
      * 该模型是否被自动维护时间戳
@@ -28,12 +28,4 @@ class User extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
-
-    /**
-     * 用户正向关联用户信息。
-     */
-    public function comment()
-    {
-        return $this->hasOne('App\Comment');
-    }
 }

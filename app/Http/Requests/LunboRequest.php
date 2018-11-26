@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class LunboRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,6 @@ class UserRequest extends FormRequest
     public function rules()
     {
          return [
-            'password' => 'required|regex:/^\S{5,12}$/',
-            'repass'=>'same:password',
-            'phone'=>'regex:/^1[3456789]\d{9}$/',
             'url' =>'required',
             'pic' =>'required'
 
@@ -41,10 +38,6 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.required'  => '密码不能为空',
-            'password.regex'  => '密码格式不正确',
-            'repass.same'=>'两次密码不一致',
-            'phone.regex'=>'手机号码格式不正确',
             'url.required'=>'链接地址不能为空',
             'pic.required'=>'图片不能为空'
         ];

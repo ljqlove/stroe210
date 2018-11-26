@@ -210,6 +210,32 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
+              <span class="menu-title">会员信息管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-qaz">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
+                </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-wsx" aria-expanded="false" aria-controls="ui-wsx">
+              <span class="menu-title">商品评价管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-wsx">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/comment">浏览评价</a></li>
+                </ul>
+            </div>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">分类管理</span>
               <i class="menu-arrow"></i>
@@ -258,6 +284,17 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods/create">添加商品</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods">浏览商品</a></li>
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-azx" aria-expanded="false" aria-controls="ui-azx">
+              <span class="menu-title">轮播图管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-book-open-page-variant"></i>
+            </a>
+            <div class="collapse" id="ui-azx">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/lunbo/create">添加轮播图</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/lunbo">浏览轮播图</a></li>
               </ul>
             </div>
           </li>
@@ -337,7 +374,7 @@
   $('#mr-2').delay(2000).fadeOut(2000);
   $('#mt-4').delay(2000).fadeOut(2000);
 </script>
-@shop
+@stop
 </body>
 
 </html>

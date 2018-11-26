@@ -23,6 +23,9 @@ Route::resource('admin/firend', "Admin\FriendController");
 // 后台客人信息管理
 Route::resource('admin/message', "Admin\MessageController");
 
+//后台登录
+Route::any('/admin/login','Admin\LoginController@login');
+
 // 后台订单管理
 Route::resource('/admin/order','Admin\OrderController');
 Route::get('/admin/uajax','Admin\OrderController@unameAjax');
@@ -36,6 +39,13 @@ Route::get('/admin/delajax','Admin\OrderController@delAjax');
 //后台友情链接管理
 Route::resource('admin/firend', "Admin\FriendController");
 
+//后台评论管理
+Route::get('/admin/comment','Admin\CommentController@index');
+Route::resource('/admin/comment','Admin\CommentController');
+
+//后台轮播图管理
+Route::resource('/admin/lunbo','Admin\LunboController');
+
 // 后台客人信息管理
 Route::resource('admin/message', "Admin\MessageController");
 // 分类管理
@@ -48,3 +58,8 @@ Route::get('/admin/comment','Admin\CommentController@index');
 // 商品管理
 Route::resource('admin/goods','Admin\GoodsController');
 
+
+
+
+//前台
+Route::

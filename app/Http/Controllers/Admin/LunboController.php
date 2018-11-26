@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
-use Hash;
-use App\Model\Admin\User;
-use App\Model\Admin\Comment;
 use DB;
+use App\Model\Admin\Lunbo;
+use App\Http\Requests\LunboRequest;
 
-class UserController extends Controller
+
+class LunboController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,20 +18,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //条件搜索 分页
-        $users = Comment::orderBy('uid','asc')->where(function($query) use($request){
-            $rs = $request->input('phone');
-            if(!empty($rs)) {
-                $query->where('phone','like','%'.$rs.'%');
-            }
-        })->paginate(5);
-
-        return view('admin.user.index',[
-            'title'=>'用户列表',
-            'users'=>$users
-
+        $lunbo=DB::table('lunbo')->paginate(5);
+        return view('admin.lunbo.index',[
+            'title'=>'轮播图列表',
+            'lunbo'=>$lunbo
         ]);
-
     }
 
     /**
@@ -42,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.add',['title'=>'添加会员']);
+        return view('admin.lunbo.add',['title'=>'添加轮播图']);
     }
 
     /**
@@ -51,19 +41,26 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
-    {   
-        $res = $request->except('_token','repass');
+    public function store(LunboRequest $request)
+    {
+        $res = $request->except('_token');
 
-        //往数据表里面添加数据
-        $res['password'] = Hash::make($request->password);
-        $res['inputtime'] = date('Y-m-d H:i:s',time());
+        if($request->hasFile('pic')){
+            //自定义名字
+            $name = rand(111,999).time();
 
+            //获取后缀
+            $suffix = $request->file('pic')->getClientOriginalExtension();
 
-            $data = Comment::create($res);
+            $request->file('pic')->move('./images/lunbo/',$name.'.'.$suffix);
+
+            $res['pic'] = '/images/lunbo/'.$name.'.'.$suffix;
+
+        }
+            $data = Lunbo::create($res);
             
             if ($data) {
-                return redirect('/admin/user')->with('success','添加成功');
+                return redirect('/admin/lunbo')->with('success','添加成功');
             }
                 return back()->with('error','添加失败');
     }
@@ -88,10 +85,10 @@ class UserController extends Controller
     public function edit($id)
     {
         //根据id获取数据
-        $res=Comment::find($id);
+        $res=Lunbo::find($id);
 
-        return view('admin.user.edit',[
-            'title'=>'用户修改',
+        return view('admin.lunbo.edit',[
+            'title'=>'轮播图修改',
             'res'=>$res
         ]);
     }
@@ -105,15 +102,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $res = $request->except('_token','_method');;
+        $res = $request->except('_token','_method');
+
+        if($request->hasFile('pic')){
+            //自定义名字
+            $name = rand(111,999).time();
+
+            //获取后缀
+            $suffix = $request->file('pic')->getClientOriginalExtension();
+
+            $request->file('pic')->move('./images/lunbo/',$name.'.'.$suffix);
+
+            $res['pic'] = '/images/lunbo/'.$name.'.'.$suffix;
+
+        }
 
         //数据表修改数据
         try{
 
-            $data = Comment::where('uid', $id)->update($res);
+            $data = Lunbo::where('lid', $id)->update($res);
             
             if($data){
-                return redirect('/admin/user')->with('success','修改成功');
+                return redirect('/admin/lunbo')->with('success','修改成功');
             }
 
         }catch(\Exception $e){
@@ -132,10 +142,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
-            $res = Comment::destroy($id);
+
+            $res = Lunbo::destroy($id);
             
             if($res){
-                return redirect('/admin/user')->with('success','删除成功');
+                return redirect('/admin/lunbo')->with('success','删除成功');
             }
 
         }catch(\Exception $e){
