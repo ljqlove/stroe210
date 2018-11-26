@@ -19,6 +19,9 @@ Route::get('/', function () {
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
 
+//后台登录
+Route::any('/admin/login','Admin\LoginController@login');
+
 // 后台订单管理
 Route::resource('/admin/order','Admin\OrderController');
 Route::get('/admin/uajax','Admin\OrderController@unameAjax');
@@ -46,3 +49,8 @@ Route::resource('admin/category','Admin\CategoryController');
 Route::resource('/admin/user','Admin\UserController');
 //后台评论管理
 Route::get('/admin/comment','Admin\CommentController@index');
+
+
+
+//前台
+Route::

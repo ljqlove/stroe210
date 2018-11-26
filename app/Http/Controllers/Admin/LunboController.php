@@ -20,7 +20,8 @@ class LunboController extends Controller
     {
         $lunbo=DB::table('lunbo')->paginate(5);
         return view('admin.lunbo.index',[
-            'title'=>'轮播图列表'
+            'title'=>'轮播图列表',
+            'lunbo'=>$lunbo
         ]);
     }
 
@@ -51,9 +52,9 @@ class LunboController extends Controller
             //获取后缀
             $suffix = $request->file('pic')->getClientOriginalExtension();
 
-            $request->file('pic')->move('./images/lunbo',$name.'.'.$suffix);
+            $request->file('pic')->move('./images/lunbo/',$name.'.'.$suffix);
 
-            $res['pic'] = '/images/lunbo'.$name.'.'.$suffix;
+            $res['pic'] = '/images/lunbo/'.$name.'.'.$suffix;
 
         }
             $data = Lunbo::create($res);
@@ -83,7 +84,13 @@ class LunboController extends Controller
      */
     public function edit($id)
     {
-        //
+        //根据id获取数据
+        $res=Lunbo::find($id);
+
+        return view('admin.lunbo.edit',[
+            'title'=>'轮播图修改',
+            'res'=>$res
+        ]);
     }
 
     /**
@@ -95,7 +102,35 @@ class LunboController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $res = $request->except('_token','_method');
+
+        if($request->hasFile('pic')){
+            //自定义名字
+            $name = rand(111,999).time();
+
+            //获取后缀
+            $suffix = $request->file('pic')->getClientOriginalExtension();
+
+            $request->file('pic')->move('./images/lunbo/',$name.'.'.$suffix);
+
+            $res['pic'] = '/images/lunbo/'.$name.'.'.$suffix;
+
+        }
+
+        //数据表修改数据
+        try{
+
+            $data = Lunbo::where('lid', $id)->update($res);
+            
+            if($data){
+                return redirect('/admin/lunbo')->with('success','修改成功');
+            }
+
+        }catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+        }
+
     }
 
     /**
@@ -106,6 +141,17 @@ class LunboController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+
+            $res = Lunbo::destroy($id);
+            
+            if($res){
+                return redirect('/admin/lunbo')->with('success','删除成功');
+            }
+
+        }catch(\Exception $e){
+
+            return back()->with('error','删除失败');
+        }
     }
 }

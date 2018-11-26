@@ -24,20 +24,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      
+                      @foreach($lunbo as $k=>$v)
                       <tr class="table-info">
                         <td>
-
+                        {{$v->lid}}
                         </td>
                         <td>
-                        
+                        {{$v->url}}
                         </td>
                         <td>
-
+                        <img src="{{$v->pic}}" alt="">
                         </td>
                         <td>
-                          <a href="/admin/lunbo/" class='btn btn-info'>修改</a>
-                            <form action="/admin/lunbo/" method='post' style='display:inline'>
+                          <a href="/admin/lunbo/{{$v->lid}}/edit" class='btn btn-info'>修改</a>
+                            <form action="/admin/lunbo/{{$v->lid}}" method='post' style='display:inline'>
                               {{csrf_field()}}
 
                               {{method_field("DELETE")}}
@@ -46,7 +46,7 @@
                             </form>
                         </td>
                       </tr>
-                      
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

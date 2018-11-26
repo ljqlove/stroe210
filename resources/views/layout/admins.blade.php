@@ -208,6 +208,34 @@
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
+              <span class="menu-title">会员信息管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-qaz">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
+                </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-wsx" aria-expanded="false" aria-controls="ui-wsx">
+              <span class="menu-title">商品评价管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-wsx">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/comment">浏览评价</a></li>
+                </ul>
+            </div>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">分类管理</span>
@@ -339,7 +367,7 @@
   $('#mr-2').delay(2000).fadeOut(2000);
   $('#mt-4').delay(2000).fadeOut(2000);
 </script>
-@shop
+@stop
 </body>
 
 </html>
