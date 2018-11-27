@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// 前台页面
+// 无需登录
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index',['title'=>'我的购物']);
 });
-
+// 需要登录
+Route::any('/home/myCart','Home\CartController@myCart');
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');

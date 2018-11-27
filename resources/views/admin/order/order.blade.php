@@ -44,7 +44,7 @@
                     <div class="card-body">
                   <form action="/admin/order" method="get">
                     <div  class="input-group col-md-4 pull-right" style="margin-right:150px">
-                        <input type="text" class="form-control" placeholder="请输入订单号...">
+                        <input type="text" class="form-control" name="ordernum" placeholder="请输入订单号...">
                         <span class="input-group-btn">
                           {{csrf_field()}}
                           <button class="btn btn-secondary" type="submit">搜索</button>
@@ -60,6 +60,7 @@
                   <table class="table table-hover">
                     <thead>
                       <tr>
+                        <!-- <th>ID</th> -->
                         <th>订单号</th>
                         <th>商品名</th>
                         <th>购买用户</th>
@@ -75,8 +76,8 @@
                     <tbody>
                         @foreach($lists as $v)
                         <tr>
+                            <td class="oid" style="display: none;">{{$v->oid}}</td>
                             <td class="ordernum">{{$v->ordernum}}</td>
-                            <td class="oid" style="display: none;>{{$v->oid}}</td>
                             <td class="uid" style="display: none;">{{$v->uid}}</td>
                             <td class="price" style="display: none;">{{$v->price}}</td>
                             <td class="oname">{{$v->oname}}</td>
