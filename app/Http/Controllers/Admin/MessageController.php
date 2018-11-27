@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Admin\Message;
-use App\Model\Admin\Users;
+use App\Model\Admin\Comment;
 
 class MessageController extends Controller
 {
@@ -28,7 +28,7 @@ class MessageController extends Controller
             if(!empty($rs)) {
                 $query->where('uname','like','%'.$rs.'%');
             }
-        })->paginate(10);
+        })->paginate(5);
         // dd($message);
         return view('admin.message.index',[
             'title'=>'客户的信息界面',
@@ -82,9 +82,19 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($mid)
     {
-        //
+          // dd($fid);
+        $res = Message::find($mid);
+        $user = DB::table('users')->get();
+        // dd($user);
+        // dd($res);
+
+        return view('admin.message.edit',[
+            'title'=>'客户的信息修改界面',
+            'res'=>$res,
+            'user'=>$user
+        ]);    
     }
 
     /**
@@ -96,7 +106,33 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //    
+        // dd($id);
+        $res = $request->except('_token','_method');
+        // dd($res);
+
+        if($request->hasFile('headpic')){
+            //自定义名字
+            $name = rand(111,999).time();
+
+            //获取后缀
+            $suffix = $request->file('headpic')->getClientOriginalExtension();
+
+            $request->file('headpic')->move('./images/message/uploads',$name.'.'.$suffix);
+
+            $res['headpic'] = '/images/message/uploads/'.$name.'.'.$suffix;
+
+        }
+        try{
+
+            Message::where('mid', $id)->update($res);
+
+            return redirect('/admin/message')->with('success','修改成功');
+        }catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+        }
+
     }
 
     /**
@@ -108,5 +144,32 @@ class MessageController extends Controller
     public function destroy($id)
     {
         //
+        // echo "此功能还没完善";
+        $message = DB::select("select * from message where mid = '$id'");
+
+        $res = Message::where('mid',$id)->get();
+        // dd($res);
+        // 关联删除 users表
+        $users = []; //定义一个空数组
+        foreach ($res as $v){
+            $user = $v->uid;
+            $users[] = $user;
+            // $use = Comment::where('uid',$users)->get();
+            // dd($users);
+            $comment = Comment::destroy($users);
+
+        }
+        
+    
+
+        try {
+
+            $message = Message::destroy($id);
+            if ($message && $comment) {
+                return redirect('/admin/firend')->with('success','删除成功');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error','删除失败');
+        }
     }
 }

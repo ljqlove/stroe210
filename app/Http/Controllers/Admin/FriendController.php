@@ -163,7 +163,6 @@ class FriendController extends Controller
             $res['fpic'] = '/images/friends/uploads/'.$name.'.'.$suffix;
 
         }
-
         try{
 
             $data = Firend::where('fid', $id)->update($res);
