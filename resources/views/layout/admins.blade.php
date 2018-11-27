@@ -203,79 +203,39 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin">
-              <span class="menu-title">首页</span>
+            <a class="nav-link" href="index.html">
+              <span class="menu-title">Dashboard</span>
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
+            <a class="nav-link" data-toggle="collapse" href="#ui-guan" aria-expanded="false" aria-controls="ui-guan">
               <span class="menu-title">管理员管理</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-account-key menu-icon"></i>
             </a>
-            <div class="collapse in" id="ui-guan">
+            <div class="collapse" id="ui-guan">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/blog_user">添加管理员</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_roles">角色管理</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/blog_permissions">权限管理</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/blog_user">管理员列表</a></li>
                 </ul>
             </div>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-jues" aria-expanded="false" aria-controls="ui-jues">
-              <span class="menu-title">角色管理</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-card-details"></i>
-            </a>
-            <div class="collapse in" id="ui-jues">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/blog_roles">添加角色</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/blog_roles">角色列表</a></li>
-                </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-quan" aria-expanded="false" aria-controls="ui-quan">
-              <span class="menu-title">权限管理</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi  mdi-account-settings-variant"></i>
-            </a>
-            <div class="collapse in" id="ui-quan">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/blog_permissions">添加权限</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/blog_permissions">权限列表</a></li>
-                </ul>
-            </div>
-          </li>
-
-
+          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
               <span class="menu-title">会员信息管理</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
-
-            <div class="collapse in" id="ui-qaz" aria-expanded="false" style="">
+            <div class="collapse" id="ui-qaz">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
-                </ul>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-wsx" aria-expanded="false" aria-controls="ui-wsx">
-              <span class="menu-title">客户信息</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-multiple menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-keh">
-              <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/message"">客户信息详情</a></li>
+
                 </ul>
             </div>
           </li>
@@ -286,19 +246,19 @@
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
-            <div class="collapse in" id="ui-wsx" aria-expanded="false" style="">
+            <div class="collapse" id="ui-wsx">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/comment">浏览评价</a></li>
                 </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">分类管理</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-file-document-box"></i>
             </a>
-            <div class="collapse in" id="ui-basic" aria-expanded="false" style="">
+            <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/category/create">添加类别</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/category">浏览类别</a></li>
@@ -307,12 +267,12 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-order">
+            <a class="nav-link" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-order">
               <span class="menu-title">订单管理</span>
               <i class="menu-arrow"></i>
-              <i class="mdi  mdi-certificate menu-icon"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
-            <div class="collapse in" id="ui-order"  aria-expanded="false" style="">
+            <div class="collapse" id="ui-order">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
@@ -320,38 +280,34 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">友情链接</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-access-point-network"></i>
             </a>
-            <div class="collapse in" id="ui-asd"  aria-expanded="false" style="">
+            <div class="collapse" id="ui-asd">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/firend/create">添加链接</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/firend">链接列表</a></li>
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link collapsed" data-toggle="collapse" href="#ui-abc" aria-expanded="false" aria-controls="ui-abc">
+            <a class="nav-link" data-toggle="collapse" href="#ui-abc" aria-expanded="false" aria-controls="ui-abc">
               <span class="menu-title">商品管理</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-cart-outline"></i>
             </a>
-            <div class="collapse in" id="ui-abc" aria-expanded="false" style="">
+            <div class="collapse" id="ui-abc">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods/create">添加商品</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods">浏览商品</a></li>
-              </ul>
-            </div>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#ui-azx" aria-expanded="false" aria-controls="ui-azx">
               <span class="menu-title">轮播图管理</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-book-open-page-variant"></i>
             </a>
-            <div class="collapse in" id="ui-azx" aria-expanded="false" style="">
+            <div class="collapse" id="ui-azx">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/lunbo/create">添加轮播图</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/lunbo">浏览轮播图</a></li>
@@ -359,20 +315,14 @@
             </div>
           </li>
 
-          <li class="nav-item collapsed">
-            <a class="nav-link" data-toggle="collapse" href="#ui-abs" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">客户信息</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-account-card-details""></i>
-            </a>
-            <div class="collapse in" id="ui-abs" aria-expanded="false" style="">
-              <ul class="nav flex-column sub-menu">
-                <!-- <li class="nav-item"> <a class="nav-link" href="/admin/message/create">添加客户</a></li> -->
-                <li class="nav-item"> <a class="nav-link" href="/admin/message">客户详情</a></li>
-              </ul>
-            </div>
-          </li>
 
+
+          <li class="nav-item">
+            <a class="nav-link" href="/order">
+              <span class="menu-title">订单管理</span>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->

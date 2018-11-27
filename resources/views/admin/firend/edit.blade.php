@@ -4,7 +4,6 @@
 @section('title',$title)
 
 @section('content')
-	  <script src="/admins/js/file-upload.js"></script>
 
 	 <div class="card-body">
                   <h4 class="card-title">{{$title}}</h4>

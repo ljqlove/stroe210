@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Blog_permissions;
+
+
 
 class Blog_permissionsController extends Controller
 {
@@ -12,9 +15,23 @@ class Blog_permissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        // 条件搜索  分页
+        $permissions = Blog_permissions::orderBy('id','asc')
+                ->where(function($query) use($request){
+            $rs = $request->input('description');
+            if(!empty($rs)) {
+                $query->where('description','like','%'.$rs.'%');
+            }
+        })->paginate(10);
+        // dd($permissions);
+        return view('admin.blog_permissions.index',[
+            'title'=>'权限详情界面',
+            'permissions'=>$permissions,
+            'request'=>$request
+        ]);    
     }
 
     /**
@@ -25,6 +42,8 @@ class Blog_permissionsController extends Controller
     public function create()
     {
         //
+        return view('admin.blog_permissions.add',['title'=>'添加权限']);
+
     }
 
     /**
@@ -36,6 +55,31 @@ class Blog_permissionsController extends Controller
     public function store(Request $request)
     {
         //
+                // dd(1);
+        $this->validate($request, [
+            'description' => 'required',
+            'name' => 'required',
+        ],[
+            'description.required'  => '权限描述不能为空',
+            'description.regex'  => '权限描述格式不正确',
+            'name.required' => '权限路由不能为空',
+            'name.regex'=>'权限路由格式不正确',
+        ]);
+
+
+        //
+        $res = $request->except('_token');
+        // dd($res);
+
+        //往数据表里面添加数据
+        $res['created_at'] = date('Y-m-d H:i:s',time());
+
+        $data = Blog_permissions::create($res);
+
+        if ($data) {
+            return redirect('/admin/blog_permissions')->with('success','添加成功');
+        }
+            return back()->with('error','添加失败');
     }
 
     /**
@@ -81,5 +125,13 @@ class Blog_permissionsController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $res = Blog_permissions::destroy($id);
+            if ($res) {
+                return redirect('/admin/blog_permissions')->with('success','删除成功');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error','删除失败');
+        }
     }
 }

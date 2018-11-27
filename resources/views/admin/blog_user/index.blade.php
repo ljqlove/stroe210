@@ -5,18 +5,16 @@
 
 @section('content')
   <div class="card-body">
-            <form class="d-flex align-items-center h-100" action="/admin/firend" method="get">
+            <form class="d-flex align-items-center h-100" action="/admin/blog_user" method="get">
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
-                        <i class="input-group-text border-0 mdi mdi-magnify"></i>                
-
+                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
                     </div>
-                    <input type="text" value="{{$request->fname}}" class="form-control bg-transparent border-0" placeholder="链接名称" name="fname">
+                    <input type="text" value="{{$request->name}}" class="form-control bg-transparent border-0" placeholder="角色名称" name="name">
                     <button class='btn btn-info'>搜索</button>
                   </div>
                 </form>
-                  <h4 class="card-title">{{$title}}  <a href="/admin/firend/create" class="btn btn-danger radius">添加链接</a></h4>
-
+                  <h4 class="card-title">{{$title}}  <a href="/admin/blog_user/create" class="btn btn-danger radius">添加角色</a></h4>
                   <p class="card-description">
 
                   </p>
@@ -27,16 +25,16 @@
                           id
                         </th>
                         <th>
-                          链接名称
+                          管理员名称
                         </th>
                         <th>
-                          链接地址
-                        </th>
-                        <th>
-                          链接图片
+                          管理员头像
                         </th>
                         <th>
                           添加时间
+                        </th>
+                        <th>
+                          修改时间
                         </th>
                          <th>
                             操作
@@ -44,29 +42,33 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($friend as $k=>$v)
+                    @foreach($user as $k=>$v)
                       
 
                       <tr class="">
                         <td>
-                          {{$v->fid}}
+                          {{$v->user_id}}
                         </td>
                         <td>
-                          {{$v->fname}}
+                          {{$v->user_name}}
+                        </td>
+                        <td><image src="{{$v->user_pic}}" width="80" height="80"></td>
                         <td>
-                          {{$v->url}}
-                        </td>
-                        </td>
-                          <td><image src="{{$v->fpic}}" width="80" height="80"></td>
-                        </td>
-                        <td>
-                          {{$v->inputtime}}
-                        </td>
-                        <td>
-                          <a href="/admin/firend/{{$v->fid}}/edit" class='btn btn-info'>修改</a>
+                          {{$v->created_at}}
+                        </td> 
+                       <td>
+                          @if(empty($v->updated_at))
+                            您还没有修改过
+                          @else 
+                            {{$v->updated_at}}
+                          @endif
 
+                        </td>
+                        <td>
+                          <a href="/admin/blog_user/{{$v->user_id}}/edit" class='btn btn-info'>修改</a>
 
-                            <form action="/admin/firend/{{$v->fid}}" method='post' style='display:inline'>
+                          
+                            <form action="/admin/blog_user/{{$v->user_id}}" method='post' style='display:inline'>
                               {{csrf_field()}}
 
 
@@ -83,7 +85,7 @@
                 </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
 
-            {{$friend->appends($request->all())->links()}}
+            {{$user->appends($request->all())->links()}}
 
             </div>
 @stop

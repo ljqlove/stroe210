@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Admin\Firend;
+use Intervention\Image\ImageManagerStatic as Image;
+use Validator;
 
 class FriendController extends Controller
 {
@@ -51,8 +53,7 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // echo 1;die;
+
                 //表单验
                 // dd($res);
 
@@ -69,16 +70,18 @@ class FriendController extends Controller
         $time = time();
         $res['inputtime'] = ($time=(date('Y-m-d H:i:s')));
 
-        if($request->hasFile('fpic')){
+        if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
+            
+            $photo = $request->file('fpic');
             //自定义名字
-            $name = rand(111,999).time();
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-            //获取后缀
-            $suffix = $request->file('fpic')->getClientOriginalExtension();
+            $file_path =public_path('images/friends/uploads');
+            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-            $request->file('fpic')->move('./images/friends/uploads',$name.'.'.$suffix);
+            $image = Image::make($photo)->resize(200, 200)->save($thumbnail_file_path);
 
-            $res['fpic'] = '/images/friends/uploads/'.$name.'.'.$suffix;
+            $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
         }
 
@@ -151,18 +154,22 @@ class FriendController extends Controller
         $time = time();
         $res['inputtime'] = ($time=(date('Y-m-d H:i:s')));
 
-        if($request->hasFile('fpic')){
+
+        if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
+            
+            $photo = $request->file('fpic');
             //自定义名字
-            $name = rand(111,999).time();
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
+            
+            $file_path =public_path('images/friends/uploads');
+            $thumbnail_file_path = $file_path . '/friends-'.$file_name;
 
-            //获取后缀
-            $suffix = $request->file('fpic')->getClientOriginalExtension();
+            $image = Image::make($photo)->resize(200, 200)->save($thumbnail_file_path);
 
-            $request->file('fpic')->move('./images/friends/uploads',$name.'.'.$suffix);
-
-            $res['fpic'] = '/images/friends/uploads/'.$name.'.'.$suffix;
+            $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
         }
+        
         try{
 
             $data = Firend::where('fid', $id)->update($res);

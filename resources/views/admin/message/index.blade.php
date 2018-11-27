@@ -9,7 +9,6 @@
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>                
-                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
 
                     </div>
                     <input type="text" value="{{$request->uname}}" class="form-control bg-transparent border-0" placeholder="链接名称" name="uname">
