@@ -13,8 +13,9 @@ class OrderController extends Controller
      * author:李佳奇
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // dd($query);
         $list = DB::table('orders')
         ->join('message','orders.uid','=','message.uid')
         ->join('goods','goods.gname','=','orders.oname')

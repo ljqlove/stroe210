@@ -42,14 +42,25 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                  <h4 class="card-title">订单列表</h4>
-                  <p class="card-description">
-                    订单管理 >><code>订单列表</code>
-                  </p>
+                  <form action="/admin/order" method="get">
+                    <div  class="input-group col-md-4 pull-right" style="margin-right:150px">
+                        <input type="text" class="form-control" placeholder="请输入订单号...">
+                        <span class="input-group-btn">
+                          {{csrf_field()}}
+                          <button class="btn btn-secondary" type="submit">搜索</button>
+                        </span>
+                    </div>
+                  </form>
+                  <div>
+                    <h4 class="card-title">订单列表</h4>
+                    <p class="card-description">
+                      订单管理 >><code>订单列表</code>
+                    </p>
+                  </div>
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>ID</th>
+                        <th>订单号</th>
                         <th>商品名</th>
                         <th>购买用户</th>
                         <th style="width:200px">发货地址</th>
@@ -64,7 +75,8 @@
                     <tbody>
                         @foreach($lists as $v)
                         <tr>
-                            <td class="oid">{{$v->oid}}</td>
+                            <td class="ordernum">{{$v->ordernum}}</td>
+                            <td class="oid" style="display: none;>{{$v->oid}}</td>
                             <td class="uid" style="display: none;">{{$v->uid}}</td>
                             <td class="price" style="display: none;">{{$v->price}}</td>
                             <td class="oname">{{$v->oname}}</td>

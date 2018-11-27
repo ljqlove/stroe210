@@ -61,5 +61,3 @@ Route::resource('admin/goods','Admin\GoodsController');
 
 
 
-//前台
-Route::
