@@ -118,7 +118,10 @@
                     
                     <button type="submit" class="btn btn-gradient-primary mr-2">修改</button>
                     <!-- <button class="btn btn-light">重置</button> -->
+                  <button type="button" class="btn btn-gradient-dark"><a href="/admin/goods" style="text-decoration:none;color:white;">返回</a></button>
                   </form>
+
+
                 </div>
     
 </div>

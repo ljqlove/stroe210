@@ -9,6 +9,9 @@ use DB;
 
 use App\Model\Admin\Goods;
 use App\Model\Admin\Goodsimg;
+use App\Model\Admin\Gsize;
+use Intervention\Image\ImageManagerStatic as Image;
+use Validator;
 
 class GoodsController extends Controller
 {
@@ -334,6 +337,22 @@ class GoodsController extends Controller
     {
         // echo '商品删除';
 
+        // 商品参数的删除
+        $size = Gsize::where('gid',$id)->get();
+        // dd($size);
+            $arr = [];
+            foreach ($size as $k => $v) {
+                unlink('.'.$v->gimgs);
+
+                $sizeid = $v->id;
+                $arr[] = $sizeid;
+                // dd($sizeid);
+            }
+            $gsdel = Gsize::destroy($arr);
+
+
+
+        // 商品图片的删除
         $rs = Goodsimg::where('gid',$id)->get(); // 查询商品图片gid
 
         // dd($gimgs);
@@ -353,8 +372,7 @@ class GoodsController extends Controller
         }
 
 
-            // $goods = Goods::where('gid',$id)->get();   // 查询商品信息ID
-        
+
 
          // dd($goods);
 
@@ -362,16 +380,178 @@ class GoodsController extends Controller
          // $res = Goodsimg::destroy();
 
         // // 进行判断是否成功
-        if ($res || $gdel) {
+        if ($res || $gsdel) {
             return redirect('/admin/goods')->with('success','删除成功');
         }
         return back()->with('error','删除失败');
 
         }
     
+        /*
+                商品属性
+        */
 
-    public function gsize($id)
+
+    // 浏览商品属性
+    public function gsize(Request $request, $id)
     {
-        echo '商品参数';
+        // echo '商品参数';
+        // dd($request->except('_token','gimgs'));
+        
+        // dd($goods);
+        $gid = $id;
+        $res = Gsize::where('gid',$id)->get();
+        $goods = Goods::where('gid',$id)->get();
+        // $gid = $goods->gid;
+        // dd($goods);
+        return view('admin.gsize.index',[
+            'title'=>'商品属性浏览页面',
+            'res'=>$res,
+            'goods'=>$goods,
+            'gid'=>$gid
+
+        ]);
     }
+
+    // 跳转到商品属性添加页面
+    public function gsadd($id)
+    {
+        // echo '添加商品样式';
+        // dd($id);
+        $gid = $id;
+        $goods = Goods::where('gid',$id)->get();
+        return view('admin.gsize.add',[
+            'title'=>'商品属性添加页面',
+            'goods'=>$goods,
+            'gid'=>$gid
+        ]);
+    }
+
+    // 执行添加尺寸
+    public function gsave(Request $request ,$id)
+    {
+        $this->validate($request,[
+            'gcolor' => 'required',
+            'gsize' => 'required',
+            'cimgs' => 'required',
+
+
+        ],[
+            'gcolor.required' => '商品颜色名不能为空',
+            'gsize.required' => '商品尺寸不能为空',
+            'cimgs.required' => '商品图片不能为空',
+    
+
+        ]);
+
+        // dd($id);
+        $res = $request->except('_token','gname');
+        $res['gid'] = $id;
+        // dd($res);
+        if ($res['cimgs']) {
+                // $ar['gid'] = $id;
+
+                $v = $res['cimgs'];
+
+                //设置名字
+                $name = rand(1111,9999).time();
+
+                //后缀
+                $suffix = $v->getClientOriginalExtension();
+
+                //移动
+                $v->move('./uploads/cimgs', $name.'.'.$suffix);
+
+                $res['cimgs'] = '/uploads/cimgs/'.$name.'.'.$suffix;
+
+        }
+
+        // dd($res);
+
+        $rs = Gsize::create($res);
+
+
+        if ($rs) {
+            return redirect('/admin/goods')->with('success','添加成功');
+        } else {
+            return back()->with('error','添加失败');
+        } 
+
+    }
+
+    // 商品修改
+    public function gedit($id)
+    {
+        // echo '商品属性的修改页面';
+
+        // dd($id);
+        // $res = Gsize::where('id',$id)->get();
+        $res = Gsize::find($id);
+
+        // dd($res['gid']);
+        // $rs = $res['gid'];
+
+        // $goods =  Goods::where('gid',$rs)->update($res);
+
+        // dd($res->gcolor);
+
+        return view('admin.gsize.edit',[
+            'title'=>'商品属性的修改页面',
+            'res'=>$res,
+            'id'=>$id
+        ]);
+    }
+
+    public function gupdate(Request $request, $id)
+    {
+        $res = $request->except('_token');
+        // dd($res);
+        // dd($res['cimgs']);
+
+        if ($request->hasFile('cimgs')) {
+                // $ar['gid'] = $id;
+
+                $v = $res['cimgs'];
+
+                //设置名字
+                $name = rand(1111,9999).time();
+
+                //后缀
+                $suffix = $v->getClientOriginalExtension();
+
+                //移动
+                $v->move('./uploads/cimgs', $name.'.'.$suffix);
+
+                $res['cimgs'] = '/uploads/cimgs/'.$name.'.'.$suffix;
+
+        }
+        
+        $rs = Gsize::where('id',$id)->update($res);
+
+
+        if ($rs) {
+            return redirect('/admin/goods')->with('success','修改成功');
+        } else {
+            return back()->with('error','修改失败');
+        } 
+
+    }
+
+    public function gdelete($id)
+    {
+        // dd($id);
+        $rs = Gsize::find($id);
+
+        unlink('.'.$rs->cimgs);
+
+        $res = Gsize::destroy($id);
+        
+        if ($res) {
+            return redirect('/admin/goods')->with('success','删除成功');
+        } else {
+            return back()->with('error','删除失败');
+        } 
+    }
+
 }
+

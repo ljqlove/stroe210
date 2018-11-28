@@ -28,7 +28,6 @@
                         <th>
                           ID
                         </th>
-
                         <th>
                           商品名称
                         </th>
@@ -63,7 +62,7 @@
                         <td class="py-1">
                         {{$v->gid}}
                         </td>
-                       
+                        
                         <td>
                           {{$v->gname}}
                         </td>
@@ -93,7 +92,7 @@
                         </td>
 
                         <td class=" ">
-                            <a href="/admin/goods/gsize/{{$v->gid}}" class='btn btn-info'>颜色,尺寸</a>
+                            <a href="/admin/gsize/{{$v->gid}}" class='btn btn-info'>颜色,尺寸</a>
                             <a href="/admin/goods/{{$v->gid}}/edit" class='btn btn-info'>修改</a>
 
                             <form action="/admin/goods/{{$v->gid}}" method='post' style='display:inline'>
