@@ -96,23 +96,23 @@ class GoodsController extends Controller
         // dd($req);
         $res['inputtime'] = date('Y-m-d H:i:s',time());
 
-        // 文件上传
+       // 单文件上传
+        if($request->hasFile('gpic') && $request->file('gpic')->isValid()){
+            
+            $photo = $request->file('gpic');
+            //自定义名字
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-        if ($res['gpic']) {
-                // $ar['gid'] = $id;
 
-                $v = $res['gpic'];
+            $file_path =public_path('uploads/goods');
+            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-                //设置名字
-                $name = rand(1111,9999).time();
 
-                //后缀
-                $suffix = $v->getClientOriginalExtension();
+            $image = Image::make($photo)->resize(500, 500)->save($thumbnail_file_path);
 
-                //移动
-                $v->move('./uploads/goods', $name.'.'.$suffix);
 
-                $res['gpic'] = '/uploads/goods/'.$name.'.'.$suffix;
+            $res['gpic'] = '/uploads/goods/'.$image->basename;
+
 
         }
 
@@ -123,35 +123,30 @@ class GoodsController extends Controller
         $id = $rs->gid;
 
         // 模型关联 一对多
-        if($request->hasFile('gimgs')){
-
-            $file = $request->file('gimgs'); //$_FILES
-
-            $arr = [];
-            foreach($file as $k => $v){
-
+        if($request->hasFile('gimgs') ){
+            
+                $photo = $request->file('gimgs');
+                $arr = [];
+                foreach($photo as $k => $v){
                 $ar = [];
 
                 $ar['gid'] = $id;
+                //自定义名字
+                $file_name = uniqid().'.'.$v->getClientOriginalExtension();
 
-                //设置名字
-                $name = rand(1111,9999).time();
 
-                //后缀
-                $suffix = $v->getClientOriginalExtension();
+                $file_path =public_path('uploads/gimgs');
+                $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-                //移动
-                $v->move('./uploads/gimgs', $name.'.'.$suffix);
 
-                $ar['gimgs'] = '/uploads/gimgs/'.$name.'.'.$suffix;
+                $image = Image::make($v)->resize(500, 500)->save($thumbnail_file_path);
 
-                $arr[] = $ar;
 
+                $ar['gimgs'] = '/uploads/gimgs/'.$image->basename;
                 
+                $arr[] = $ar;
+            
             }
-
-            // dd($arr)
-// $imgs = Goodsimg::create($arr);
 
         }
 
@@ -260,56 +255,57 @@ class GoodsController extends Controller
 
          $res = $request->except('_token','_method','gimgs');
 
-          if ( $_FILES['gpic']['error']!=4) {
-                // $ar['gid'] = $id;
+          if($request->hasFile('gpic') && $request->file('gpic')->isValid()){
+            
+            $photo = $request->file('gpic');
+            //自定义名字
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-                $v = $res['gpic'];
 
-                //设置名字
-                $name = rand(1111,9999).time();
+            $file_path =public_path('uploads/goods');
+            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-                //后缀
-                $suffix = $v->getClientOriginalExtension();
 
-                //移动
-                $v->move('./uploads/goods', $name.'.'.$suffix);
+            $image = Image::make($photo)->resize(500, 500)->save($thumbnail_file_path);
 
-                $res['gpic'] = '/uploads/goods/'.$name.'.'.$suffix;
 
-            }
+            $res['gpic'] = '/uploads/goods/'.$image->basename;
+
+
+        }
 
          $data = Goods::where('gid',$id)->update($res);
 
         // 关联表的信息
          
-       if ($_FILES['gimgs']['error']!=4) {
-            if($request->hasFile('gimgs')){
-
-                $file = $request->file('gimgs'); //$_FILES
-
+      if($request->hasFile('gimgs') ){
+            
+                $photo = $request->file('gimgs');
                 $arr = [];
-                foreach($file as $k => $v){
-
-                    $ar = [];
+                foreach($photo as $k => $v){
+                  $ar = [];
 
                     $ar['gid'] = $id;
+                //自定义名字
+                $file_name = uniqid().'.'.$v->getClientOriginalExtension();
 
-                    //设置名字
-                    $name = rand(1111,9999).time();
 
-                    //后缀
-                    $suffix = $v->getClientOriginalExtension();
+                $file_path =public_path('uploads/gimgs');
+                $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-                    //移动
-                    $v->move('./uploads/gimgs', $name.'.'.$suffix);
 
-                    $ar['gimgs'] = '/uploads/gimgs/'.$name.'.'.$suffix;
+                $image = Image::make($v)->resize(500, 500)->save($thumbnail_file_path);
 
-                    $arr[] = $ar;
-                }
-                $rs = Goodsimg::where('gid',$id)->insert($arr);
+
+                $ar['gimgs'] = '/uploads/gimgs/'.$image->basename;
+                
+                $arr[] = $ar;
+            
             }
-      }
+
+            $rs = Goodsimg::where('gid',$id)->insert($arr);
+
+        }
 
 
         
@@ -342,7 +338,7 @@ class GoodsController extends Controller
         // dd($size);
             $arr = [];
             foreach ($size as $k => $v) {
-                unlink('.'.$v->gimgs);
+                unlink('.'.$v->cimgs);
 
                 $sizeid = $v->id;
                 $arr[] = $sizeid;
@@ -448,21 +444,22 @@ class GoodsController extends Controller
         $res = $request->except('_token','gname');
         $res['gid'] = $id;
         // dd($res);
-        if ($res['cimgs']) {
-                // $ar['gid'] = $id;
+       if($request->hasFile('cimgs') && $request->file('cimgs')->isValid()){
+            
+            $photo = $request->file('cimgs');
+            //自定义名字
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-                $v = $res['cimgs'];
 
-                //设置名字
-                $name = rand(1111,9999).time();
+            $file_path =public_path('uploads/cimgs');
+            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-                //后缀
-                $suffix = $v->getClientOriginalExtension();
 
-                //移动
-                $v->move('./uploads/cimgs', $name.'.'.$suffix);
+            $image = Image::make($photo)->resize(500, 500)->save($thumbnail_file_path);
 
-                $res['cimgs'] = '/uploads/cimgs/'.$name.'.'.$suffix;
+
+            $res['cimgs'] = '/uploads/cimgs/'.$image->basename;
+
 
         }
 
@@ -508,21 +505,22 @@ class GoodsController extends Controller
         // dd($res);
         // dd($res['cimgs']);
 
-        if ($request->hasFile('cimgs')) {
-                // $ar['gid'] = $id;
+      if($request->hasFile('cimgs') && $request->file('cimgs')->isValid()){
+            
+            $photo = $request->file('cimgs');
+            //自定义名字
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-                $v = $res['cimgs'];
 
-                //设置名字
-                $name = rand(1111,9999).time();
+            $file_path =public_path('uploads/cimgs');
+            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-                //后缀
-                $suffix = $v->getClientOriginalExtension();
 
-                //移动
-                $v->move('./uploads/cimgs', $name.'.'.$suffix);
+            $image = Image::make($photo)->resize(500, 500)->save($thumbnail_file_path);
 
-                $res['cimgs'] = '/uploads/cimgs/'.$name.'.'.$suffix;
+
+            $res['cimgs'] = '/uploads/cimgs/'.$image->basename;
+
 
         }
         
