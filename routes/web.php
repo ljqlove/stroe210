@@ -22,6 +22,10 @@ Route::any('/home/myCart','Home\CartController@myCart');
 Route::get('/admin', 'Admin\IndexController@index');
 //后头管理员管理
 Route::resource('admin/blog_user', "Admin\Blog_userController");
+//后台给管理员添加角色
+Route::any('/admin/user_role','Admin\UserController@user_role');
+Route::any('/admin/do_user_role','Admin\UserController@do_user_role');
+
 
 //后头角色管理
 Route::resource('admin/blog_roles', "Admin\Blog_rolesController");

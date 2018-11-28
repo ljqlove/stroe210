@@ -4,10 +4,10 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bolg_permissions extends Model
+class Blog_permissions extends Model
 {
     //
-	/**
+     /**
      * 与模型关联的数据表
      *
      * @var string
@@ -24,9 +24,9 @@ class Bolg_permissions extends Model
     public $timestamps = false;
 
     /**
-	 * 不可被批量赋值的属性。
-	 *
-	 * @var array
-	 */
-	protected $guarded = [];
+     * 不可被批量赋值的属性。
+     *
+     * @var array
+     */
+    protected $guarded = [];
 }
