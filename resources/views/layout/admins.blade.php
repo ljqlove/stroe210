@@ -223,20 +223,19 @@
                 </ul>
             </div>
           </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
-              <span class="menu-title">会员信息管理</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-qaz">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/message"">客户信息详情</a></li>
 
-                </ul>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">系统设置</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi mdi-wrench"></i>
+            </a>
+            <div class="collapse" id="ui-asd">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/site">站点设置</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/firend">屏蔽词</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/firend">系统日志</a></li>
+              </ul>
             </div>
           </li>
 

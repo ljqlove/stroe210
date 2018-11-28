@@ -4,6 +4,21 @@
 @section('title',$title)
 
 @section('content')
+          <style>
+            .success{
+                background:#83E31BFF;
+                width:90%;
+                text-align:center;
+                margin-left:50px;
+            }
+          </style>
+         @if(session('success')) 
+              <div class="alert alert-success alert-dismissible success" role="alert" >
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                     <li style='font-size:10px;list-style:none;' >{{session('success')}}</li>            
+                    
+             </div>
+         @endif
   <div class="card-body">
             <form class="d-flex align-items-center h-100" action="/admin/message" method="get">
                   <div class="input-group">
