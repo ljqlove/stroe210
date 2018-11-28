@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-    	return view('admin.index',['title'=>'Stroe网站后台首页']);
+    	return view('admin.index',['title'=>'Store网站后台首页']);
     }
     	
 

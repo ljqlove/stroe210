@@ -21,6 +21,9 @@ Route::get('/admin', 'Admin\IndexController@index');
 
 //后台登录
 Route::any('/admin/login','Admin\LoginController@login');
+Route::any('/admin/dologin','Admin\LoginController@dologin');
+Route::any('/admin/captcha','Admin\LoginController@captcha');
+Route::any('/admin/logout','Admin\LoginController@logout');
 
 // 后台订单管理
 Route::resource('/admin/order','Admin\OrderController');
@@ -53,4 +56,5 @@ Route::get('/admin/comment','Admin\CommentController@index');
 
 
 //前台
-Route::
+
+//前台首页
