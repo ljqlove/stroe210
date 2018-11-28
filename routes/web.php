@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 前台
+
+Route::get('/home/cate/{id}','Home\CateController@index');
+
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
@@ -38,6 +42,3 @@ Route::post('/admin/gsize/update/{id}','Admin\GoodsController@gupdate');  // 执
 Route::post('/admin/gsize/del/{id}','Admin\GoodsController@gdelete');
 
 
-// 前台
-
-Route::get('/home/cate/{id}','Home\CateController@index');

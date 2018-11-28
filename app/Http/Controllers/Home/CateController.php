@@ -9,6 +9,6 @@ class CateController extends Controller
 {
     public function index()
     {
-    	echo '前台分类';
+    	return
     }
 }
