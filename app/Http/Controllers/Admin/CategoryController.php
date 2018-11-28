@@ -183,6 +183,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         // dd($id);
+        $posts = Category::where('pid',$id)->first();
+
+
+        if ($posts) {
+            return back()->with('error','该板块下面有帖子,不能删除');
+        }
 
         //商品的删除开始
 
