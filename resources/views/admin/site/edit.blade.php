@@ -7,8 +7,6 @@
 
 	 <div class="card-body">
                   <h4 class="card-title">{{$title}}</h4>
-
-
               	@if (count($errors) > 0)
 					<!-- <div class="mws-form-message error"> -->
 						<!-- <div class="mws-form-message"></div> -->
@@ -22,16 +20,30 @@
         			</div>
        		 	@endif
        		 	<br><br>
-
-                  <form action="/admin/blog_user/{{$res->user_id}}" method="post" class="mws-form" enctype='multipart/form-data'>
+              
+                  <form action="/admin/do_site?id={{$res->id}}" method="post" class="mws-form" enctype='multipart/form-data'>
                     <div class="form-group">
-                      <label for="exampleInputName1">管理员名称</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="user_name" value="{{$res ->user_name}}" placeholder="请输入名称">
+                      <label for="exampleInputName1">网站标题</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="fname" value="{{$res->title}}" placeholder="请输入链接名称">
+                    </div> 
+                   <div class="form-group">
+                      <label for="exampleInputName1">关键词</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="fname" value="{{$res->}}" placeholder="请输入链接名称">
                     </div>
+                   <div class="form-group">
+                      <label for="exampleInputName1">链接地址</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="url" placeholder="请输入链接地址" value="">
+                    </div>		
+  		              <div class="form-group">
+                      <label for="exampleInputName1">链接地址</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="url" placeholder="请输入链接地址" value="">
+                    </div>
+
+
                     <div class="form-group">
-                      <label>管理员头像</label>
-                      <input type="file" name="user_pic" class="file-upload-default">
-                      <img src="{{$res->user_pic}}" alt="" width="80" height="80">
+                      <label>链接图片</label>
+                      <input type="file" name="fpic" class="file-upload-default">
+                      <img src="" alt="" width="80" height="80">
                       <div class="input-group col-xs-12">
                         <input type="text" class="form-control file-upload-info" disabled="" placeholder="请选择要上传的图片">
                         <span class="input-group-append">

@@ -5,10 +5,88 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Blog_roles;
+use App\Model\Admin\Blog_permissions;
+use DB;
 
 
 class Blog_rolesController extends Controller
 {
+    /**
+     *  角色添加权限名
+     *
+     *  @return \Illuminate\Http\Response
+     */
+    public function role_per(Request $request)
+    {
+        //获取角色名
+        $id = $request->id;
+        // dd($id);
+        $res = Blog_roles::find($id);
+        // dd($res->pers);
+        $info = [];
+        foreach ($res->pers as $k => $v) {
+            $info[] = $v->id;
+        }
+
+        //把所有的权限路径查询出来
+        $per = Blog_permissions::all();
+
+        return view('admin.blog_roles.role_per',[
+            'title'=>'角色添加权限的页面',
+            'res'=>$res,
+            'per'=>$per,
+            'info'=>$info
+        ]);
+    }
+
+    /**
+     *  处理角色权限的方法
+     *
+     *  @return \Illuminate\Http\Response
+     */
+    public function do_role_per(Request $request)
+    {
+        //角色id
+        $id = $request->id;
+        // dd($id);
+        DB::table('blog_permission_role')->where('role_id',$id)->delete();
+
+        // 权限路径id
+        $per_id = $request->per_id;
+        // dd($per_id);
+
+        $pers = [];
+        foreach($per_id as $k => $v){
+            $rs = [];
+            $rs['role_id'] = $id;
+            $rs['permission_id'] = $v;
+            $pers[] = $rs;
+        }
+
+        //插入数据
+        $data = DB::table('blog_permission_role')->insert($pers);
+        // dd($data);
+        if ($data) {
+            return redirect('admin/blog_roles')->with('success','更改成功');
+        }
+
+    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *

@@ -28,12 +28,15 @@ Route::get('/admin', 'Admin\IndexController@index');
 //后头管理员管理
 Route::resource('admin/blog_user', "Admin\Blog_userController");
 //后台给管理员添加角色
-Route::any('/admin/user_role','Admin\UserController@user_role');
-Route::any('/admin/do_user_role','Admin\UserController@do_user_role');
+Route::any('/admin/user_role','Admin\Blog_userController@user_role');
+Route::any('/admin/do_user_role','Admin\Blog_userController@do_user_role');
 
 
 //后头角色管理
 Route::resource('admin/blog_roles', "Admin\Blog_rolesController");
+//给后台角色添加权限
+Route::any('/admin/role_per','Admin\Blog_rolesController@role_per');
+Route::any('/admin/do_role_per','Admin\Blog_rolesController@do_role_per');
 
 //后头权限管理
 Route::resource('admin/blog_permissions', "Admin\Blog_permissionsController");
@@ -72,10 +75,9 @@ Route::resource('admin/category','Admin\CategoryController');
 
 //后台用户管理
 Route::resource('/admin/user','Admin\UserController');
-//后台评论管理
-Route::get('/admin/comment','Admin\CommentController@index');
-// 商品管理
-Route::resource('admin/goods','Admin\GoodsController');
+//后台站点
+Route::get('admin/site','Admin\SiteController@edit');
+Route::get('admin/do_site','Admin\SiteController@update');
 
 
 

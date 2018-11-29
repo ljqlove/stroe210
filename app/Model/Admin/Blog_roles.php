@@ -29,4 +29,13 @@ class Blog_roles extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+
+    /**
+     * 获得此角色的权限。
+     */
+    public function pers()
+    {
+        return $this->belongsToMany('App\Model\Admin\Blog_permissions','blog_permission_role','permission_id','role_id');
+    }
+
 }
