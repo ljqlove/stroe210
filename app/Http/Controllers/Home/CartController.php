@@ -7,9 +7,40 @@ use App\Http\Controllers\Controller;
 use DB;
 class CartController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     * 显示购物车
+     * @author ljq
+     * @return \Illuminate\Http\Response
+     */
     public function myCart()
     {
-        $cart = DB::table('cart')->get();
+
+        $cart = DB::table('cart')->where('uid','3')->get();
         return view('home.ljq.myCart',['title'=>'我的购物车','cart'=>$cart]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 购物车物品删除
+     * @author ljq
+     * @return \Illuminate\Http\Response
+     */
+    public function shopcart(Request $request)
+    {
+        $cid = $request->gid;
+
+        $res = DB::table('cart')->where('cid',$cid)->delete();
+
+        // $count = DB::table('cart')->count();
+
+        if($res){
+
+            echo 1;
+        } else {
+
+            echo 0;
+        }
+        // echo $cid;
     }
 }

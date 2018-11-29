@@ -15,8 +15,13 @@
 Route::get('/', function () {
     return view('home.index',['title'=>'我的购物']);
 });
+
 // 需要登录
-Route::any('/home/myCart','Home\CartController@myCart');
+Route::group([], function(){
+    Route::any('/home/myCart','Home\CartController@myCart');
+    Route::post('/home/shopcart','Home\CartController@shopcart');
+    Route::any('/home/order','Home\OrderController@order');
+});
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');

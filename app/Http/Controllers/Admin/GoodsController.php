@@ -10,8 +10,7 @@ use DB;
 use App\Model\Admin\Goods;
 use App\Model\Admin\Goodsimg;
 use App\Model\Admin\Gsize;
-use Intervention\Image\ImageManagerStatic as Image;
-use Validator;
+
 
 class GoodsController extends Controller
 {
@@ -26,12 +25,12 @@ class GoodsController extends Controller
             ->where(function($query) use($request){
                 //检测关键字
                 $gname = $request->input('gname');
-               
+
                 //如果用户名不为空
                 if(!empty($gname)) {
                     $query->where('gname','like','%'.$gname.'%');
                 }
-              
+
             })
         ->paginate($request->input('num', 5));
 
@@ -90,72 +89,99 @@ class GoodsController extends Controller
             'gimgs.required' => '商品图片不能为空',
         ]);
 
+
         // echo '213213211';
         $res = $request->except('_token','gimgs');
-            
+
         // dd($req);
         $res['inputtime'] = date('Y-m-d H:i:s',time());
 
+
         // 文件上传
+
 
         if ($res['gpic']) {
                 // $ar['gid'] = $id;
 
+
                 $v = $res['gpic'];
+
 
                 //设置名字
                 $name = rand(1111,9999).time();
 
+
                 //后缀
                 $suffix = $v->getClientOriginalExtension();
+
 
                 //移动
                 $v->move('./uploads/goods', $name.'.'.$suffix);
 
+
                 $res['gpic'] = '/uploads/goods/'.$name.'.'.$suffix;
+
 
         }
 
+
         $rs = Goods::create($res);
+
 
         // dd($rs);
 
+
         $id = $rs->gid;
+
 
         // 模型关联 一对多
         if($request->hasFile('gimgs')){
 
+
             $file = $request->file('gimgs'); //$_FILES
+
 
             $arr = [];
             foreach($file as $k => $v){
 
+
                 $ar = [];
 
+
                 $ar['gid'] = $id;
+
 
                 //设置名字
                 $name = rand(1111,9999).time();
 
+
                 //后缀
                 $suffix = $v->getClientOriginalExtension();
+
 
                 //移动
                 $v->move('./uploads/gimgs', $name.'.'.$suffix);
 
+
                 $ar['gimgs'] = '/uploads/gimgs/'.$name.'.'.$suffix;
+
 
                 $arr[] = $ar;
 
-                
+
+
             }
+
 
             // dd($arr)
 // $imgs = Goodsimg::create($arr);
 
+
         }
 
-        // 插入数据  
+
+        // 插入数据
+
 
         // 一对多
         $data = Goods::find($id);
@@ -167,6 +193,7 @@ class GoodsController extends Controller
                 return redirect('/admin/goods')->with('success','添加成功');
             }
         }catch(\Exception $e){
+
 
             return back()->with('error','添加失败');
         }
@@ -180,7 +207,7 @@ class GoodsController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -203,7 +230,7 @@ class GoodsController extends Controller
             $v->tname = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$ps).'|--'.$v->tname;
         }
 
-     
+
 
         $res = Goods::find($id);
 
@@ -248,7 +275,7 @@ class GoodsController extends Controller
             // $grr[] = $gr;
             unlink('.'.$v->gimgs); // 删除文件夹中的图片名文件
             $gs = Goodsimg::where('gimgs',$gr)->get(); // 通过图片名获取图片所有信息
-            
+
             foreach ($gs as $v) { // 遍历图片信息
                 $gid = $v->id; // 获取图片id
                 $grr[] = $gid; // 写入数组
@@ -281,7 +308,7 @@ class GoodsController extends Controller
          $data = Goods::where('gid',$id)->update($res);
 
         // 关联表的信息
-         
+
        if ($_FILES['gimgs']['error']!=4) {
             if($request->hasFile('gimgs')){
 
@@ -312,7 +339,7 @@ class GoodsController extends Controller
       }
 
 
-        
+
 
 
         // if($rs){
@@ -363,7 +390,7 @@ class GoodsController extends Controller
             // $grr[] = $gr;
             unlink('.'.$v->gimgs); // 删除文件夹中的图片名文件
             $gs = Goodsimg::where('gimgs',$gr)->get(); // 通过图片名获取图片所有信息
-            
+
             foreach ($gs as $v) { // 遍历图片信息
                 $gid = $v->id; // 获取图片id
                 $grr[] = $gid; // 写入数组
@@ -386,7 +413,7 @@ class GoodsController extends Controller
         return back()->with('error','删除失败');
 
         }
-    
+
         /*
                 商品属性
         */
@@ -397,7 +424,7 @@ class GoodsController extends Controller
     {
         // echo '商品参数';
         // dd($request->except('_token','gimgs'));
-        
+
         // dd($goods);
         $gid = $id;
         $res = Gsize::where('gid',$id)->get();
@@ -440,7 +467,7 @@ class GoodsController extends Controller
             'gcolor.required' => '商品颜色名不能为空',
             'gsize.required' => '商品尺寸不能为空',
             'cimgs.required' => '商品图片不能为空',
-    
+
 
         ]);
 
@@ -475,7 +502,7 @@ class GoodsController extends Controller
             return redirect('/admin/goods')->with('success','添加成功');
         } else {
             return back()->with('error','添加失败');
-        } 
+        }
 
     }
 
@@ -525,7 +552,7 @@ class GoodsController extends Controller
                 $res['cimgs'] = '/uploads/cimgs/'.$name.'.'.$suffix;
 
         }
-        
+
         $rs = Gsize::where('id',$id)->update($res);
 
 
@@ -533,7 +560,7 @@ class GoodsController extends Controller
             return redirect('/admin/goods')->with('success','修改成功');
         } else {
             return back()->with('error','修改失败');
-        } 
+        }
 
     }
 
@@ -545,12 +572,12 @@ class GoodsController extends Controller
         unlink('.'.$rs->cimgs);
 
         $res = Gsize::destroy($id);
-        
+
         if ($res) {
             return redirect('/admin/goods')->with('success','删除成功');
         } else {
             return back()->with('error','删除失败');
-        } 
+        }
     }
 
 }
