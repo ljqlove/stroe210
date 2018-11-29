@@ -40,7 +40,7 @@ class CategoryController extends Controller
             'pids'=>$pids
 
         ]);
-        
+
     }
 
     /**
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         ]);
 
         $res = $request->except('_token');
-        
+
         if ($request->pid == '0') {
             $res['path'] = '0,';
         } else {
@@ -102,7 +102,7 @@ class CategoryController extends Controller
 
             if ($data = Category::create($res)) {
                 return redirect('/admin/category')->with('success','添加成功');
-            } 
+            }
 
         // }catch(\Exception $e){
 
@@ -135,7 +135,7 @@ class CategoryController extends Controller
 
         foreach($rs as $v){
 
-            //path  
+            //path
             $ps = substr_count($v->path,',')-1;
 
             //拼接  分类名
@@ -171,7 +171,7 @@ class CategoryController extends Controller
              return redirect('/admin/category')->with('success','修改成功');
         // }
         // return back()->with('error','修改失败');
-        
+
     }
 
     /**
@@ -193,7 +193,7 @@ class CategoryController extends Controller
         //商品的删除开始
 
         $goods = Goods::where('tid',$id)->get();
-        
+
         $gid = []; // 保存类别下的商品的ID
 
         foreach ($goods as $k => $v) {
@@ -217,7 +217,7 @@ class CategoryController extends Controller
                     $sizeid = $sv->id;
                     $arr[] = $sizeid;
                 }
-                
+
                 // dd($sizeid);
             }
 
@@ -232,14 +232,14 @@ class CategoryController extends Controller
                  $imgs[] = Goodsimg::where('gid',$v)->get(); // 查询商品图片gid
             }
             // dd($imgs);
-            $grr = []; 
+            $grr = [];
             foreach ($imgs as $k => $v) {
                 foreach ($v as $ik => $iv) {
                     unlink('.'.$iv->gimgs); // 删除文件夹中的图片名文件
                     $imgsid = $iv->id;
                     $grr[] = $imgsid;
                 }
-                
+
             }
 
             $d2 = Goodsimg::destroy($grr); // 删除商品图片
