@@ -80,20 +80,23 @@
 
                         </td>
                         <td>
+                          @if($v->user_id == 1)
+                             <button  class='btn btn-warning' style="width:90.4px;height:30px; color:red">不可更改</button>
+                          @else
                           <a href="/admin/user_role?id={{$v->user_id}}" class='btn btn-warning'>更改角色</a>
-
+                          @endif
                           <a href="/admin/blog_user/{{$v->user_id}}/edit" class='btn btn-info'>修改</a>
 
-                          
+                            @if($v->user_id == 1)
+                            <button  class='btn btn-danger' style="width:90.4px;height:30px;color:red">不可删除</button>
+                            @endif
+                            @if($v->user_id !== 1)
                             <form action="/admin/blog_user/{{$v->user_id}}" method='post' style='display:inline'>
                               {{csrf_field()}}
-
-
                               {{method_field("DELETE")}}
-                              <button class='btn btn-danger'>删除</button>
-
-
+                              <button class='btn btn-danger' style="width:90.4px;height:30px">删除</button>
                             </form>
+                            @endif
                         </td>
                       </tr>
                       @endforeach

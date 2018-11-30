@@ -20,17 +20,17 @@
              </div>
          @endif
            <div class="card-body">
-            <form class="d-flex align-items-center h-100" action="/admin/firend" method="get">
+            <form class="d-flex align-items-center h-100" action="/admin/system" method="get">
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>                
 
                     </div>
-                    <input type="text" value="{{$request->fname}}" class="form-control bg-transparent border-0" placeholder="链接名称" name="fname">
+                    <input type="text" value="{{$request->title}}" class="form-control bg-transparent border-0" placeholder="登陆成功或登录失败" name="title">
                     <button class='btn btn-info'>搜索</button>
                   </div>
                 </form>
-                  <h4 class="card-title">{{$title}}  <a href="/admin/firend/create" class="btn btn-danger radius">添加链接</a></h4>
+                  <h2 class="card-title">{{$title}}</h2>
 
                   <p class="card-description">
 
@@ -42,16 +42,19 @@
                           id
                         </th>
                         <th>
-                          链接名称
+                          内容
                         </th>
                         <th>
-                          链接地址
+                        用户名
                         </th>
                         <th>
-                          链接图片
+                        头像
                         </th>
                         <th>
-                          添加时间
+                          角色
+                        </th>
+                        <th>
+                          时间
                         </th>
                          <th>
                             操作
@@ -59,28 +62,53 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($friend as $k=>$v)
+                    @foreach($system as $k=>$v)
                       
-
                       <tr class="">
                         <td>
-                          {{$v->fid}}
+                          {{$v->id}}
                         </td>
                         <td>
-                          {{$v->fname}}
+                          {{$v->title}}
+                        </td>
+                      @foreach($user as $uk=>$uv)
+                      <!-- 判断管理员表的user_id和系统日志的uid是否相等 -->
+                        @if($uv->user_id == $v->uid)
+                          <td>
+                            {{$uv->user_name}}
+                          </td>
+                          </td>
+                          <td><image src="{{$uv->user_pic}}" width="80" height="80"></td>
+                        @endif
+                        <!--  -->
+                        @foreach($role_user as $ruk => $ruv)
+                        @endforeach
+                        <!-- 判断管理员角色表的user_id与管理员表的id是否相等 -->
+                          @if($ruv->user_id == $uv->user_id)
+                            @foreach($roles as $rk => $rv)
+                            <!-- 判断角色表的id与管理员角色表是否相等 -->
+                              @if($rv->id == $ruv->role_id)
+                              
+                                @if($v->uid == '1')
+                                  <td>超级管理员</td>
+                                @else
+                                <td>
+                                  {{$rv->name}}
+                                </td>
+                                @endif
+                              @endif
+                            @endforeach
+                          @endif
+                        
+                      @endforeach
+                        <td>
+                          {{$v->created_at}}
                         </td>
                         <td>
-                          {{$v->url}}
-                        </td>
-                          <td><image src="{{$v->fpic}}" width="80" height="80"></td>
-                        <td>
-                          {{$v->inputtime}}
-                        </td>
-                        <td>
-                          <a href="/admin/firend/{{$v->fid}}/edit" class='btn btn-info'>修改</a>
+                          <a href="/admin/system/{{$v->id}}/edit" class='btn btn-info'>修改</a>
 
 
-                            <form action="/admin/firend/{{$v->fid}}" method='post' style='display:inline'>
+                            <form action="/admin/system/{{$v->id}}" method='post' style='display:inline'>
                               {{csrf_field()}}
 
 
@@ -97,7 +125,7 @@
                 </div>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
 
-            {{$friend->appends($request->all())->links()}}
+            {{$system->appends($request->all())->links()}}
 
             </div>
 @stop

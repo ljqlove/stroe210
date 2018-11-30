@@ -67,7 +67,7 @@ class Blog_userController extends Controller
             $rs['role_id'] = $v;
             $arr[] = $rs;
         }
-        // dd($arr);
+        dd($arr);
         // 向用户角色关联表里面插入数据
         $data = DB::table('blog_role_user')->insert($arr);
         if ($data) {
@@ -77,40 +77,23 @@ class Blog_userController extends Controller
     
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        //
+    {   
+        $role = DB::select('select * from blog_user order by user_id DESC limit 1');
+        $roles = [];
+        foreach($role as $k=>$v){
+            $roles['user_id'] = ($v->user_id);
+        }
+        // dd($roles);
+        $data = DB::table('blog_role_user')->insert($roles);
+        // 以上是为了给新添加的管理员赋予一个默认的角色
+
+
         // 条件搜索  分页
         $user = Blog_user::orderBy('user_id','asc')
                 ->where(function($query) use($request){
@@ -257,5 +240,14 @@ class Blog_userController extends Controller
     public function destroy($id)
     {
         //
+        // dd($id);
+        try {
+            $res = Blog_user::destroy($id);
+            if ($res) {
+                return redirect('/admin/blog_user')->with('success','删除成功');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error','删除失败');
+        }
     }
 }
