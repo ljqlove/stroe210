@@ -16,10 +16,18 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         // dd($query);
+        $res = '%%';
+        $rs = $request->input('ordernum');
+        if(!empty($rs)) {
+            $res ='%'.$rs.'%';
+        }
+
         $list = DB::table('orders')
         ->join('message','orders.uid','=','message.uid')
         ->join('goods','goods.gname','=','orders.oname')
+        ->where('ordernum','like',$res)
         ->select('orders.*','message.uname','goods.price')
+        ->orderBy('oid','desc')
         ->paginate(7);
         // dd($list);die;
         return view('admin.order.order',['lists'=>$list]);
@@ -179,8 +187,6 @@ class OrderController extends Controller
         $status = $request -> input('status');
         // dd($status,$oid);
 
-        //数据表修改数据
-        try{
 
             $data = DB::table('orders')
             ->where('oid',$oid)
@@ -188,12 +194,12 @@ class OrderController extends Controller
 
             if($data){
                 return redirect('/admin/order')->with('success','修改成功');
+            } else {
+                return redirect('/admin/order')->with('error','修改失败');
             }
 
-        }catch(\Exception $e){
 
-            return back()->with('error','修改失败');
-        }
+
     }
 
     /**

@@ -10,10 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// 前台页面
+// 无需登录
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index',['title'=>'我的购物']);
 });
+
+Route::get('/home/cate/{id}','Home\CateController@index');
+
+// 需要登录
+Route::group([], function(){
+    Route::any('/home/myCart','Home\CartController@myCart');
+    Route::post('/home/shopcart','Home\CartController@shopcart');
+    Route::any('/home/order','Home\OrderController@order');
+});
+
 
 
 //后台的首页
@@ -76,5 +87,17 @@ Route::resource('admin/system','Admin\SystemController');
 
 
 
+
+Route::get('admin/gsize/{id}','Admin\GoodsController@gsize');  // 浏览商品样式页面
+
+Route::get('admin/gsize/admin/gsadd/{id}','Admin\GoodsController@gsadd');  // 添加商品样式页面
+
+Route::post('/admin/gsize/save/{id}','Admin\GoodsController@gsave');  // 进行添加商品样式
+
+Route::get('/admin/gsize/edit/{id}','Admin\GoodsController@gedit'); // 进入到商品属性修改界面
+
+Route::post('/admin/gsize/update/{id}','Admin\GoodsController@gupdate');  // 执行商品添加方法
+
+Route::post('/admin/gsize/del/{id}','Admin\GoodsController@gdelete');
 
 
