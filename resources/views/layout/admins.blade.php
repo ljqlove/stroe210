@@ -225,16 +225,16 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-zhan" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">系统设置</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi mdi-wrench"></i>
             </a>
-            <div class="collapse" id="ui-asd">
+            <div class="collapse" id="ui-zhan">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/site">站点设置</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/firend">屏蔽词</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/firend">系统日志</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">屏蔽词</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/system">系统日志</a></li>
               </ul>
             </div>
           </li>

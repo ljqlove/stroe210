@@ -35,12 +35,13 @@
                                 @foreach($roles as $k=>$v)
                                   @if(in_array($v->id,$info))
                                      <li  style='float:left;padding:0 10px;  list-style:none'>
-                                        <label><input type="checkbox" name='role_id[]' value='{{$v->id}}' checked> {{$v->name}}</label>
+                                        <label><input type="radio" name='role_id[]' value='{{$v->id}}' checked> {{$v->name}}</label>
                                     </li>
                                     @else
                                       <li style='float:left;padding:0 10px;  list-style:none'>
-                                          <label><input type="checkbox" name='role_id[]' value='{{$v->id}}'> {{$v->name}}</label>
+                                          <label><input type="radio" name='role_id[]' value='{{$v->id}}'> {{$v->name}}</label>
                                       </li>
+                                     
                                   @endif
                                 @endforeach
                             </ul>

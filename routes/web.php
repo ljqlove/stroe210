@@ -10,12 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// 前台页面
 // 无需登录
-Route::get('/', function () {
-    return view('home.index',['title'=>'我的购物']);
-});
 // 前台列表页
+Route::get('/','Home\IndexController@index');
+
+
 Route::get('/home/cate/{id}','Home\CateController@index');
 
 // 列表详情页
@@ -88,8 +87,11 @@ Route::resource('admin/category','Admin\CategoryController');
 //后台用户管理
 Route::resource('/admin/user','Admin\UserController');
 //后台站点
-Route::get('admin/site','Admin\SiteController@edit');
-Route::get('admin/do_site','Admin\SiteController@update');
+Route::any('admin/site','Admin\SiteController@edit');
+Route::any('admin/do_site','Admin\SiteController@update');
+//后台系统日志
+Route::resource('admin/system','Admin\SystemController');
+
 
 //后台评论管理
 Route::get('/admin/comment','Admin\CommentController@index');
