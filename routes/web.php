@@ -12,9 +12,10 @@
 */
 // 前台页面
 // 无需登录
-Route::get('/', function () {
-    return view('home.index',['title'=>'我的购物']);
-});
+Route::get('/','Home\IndexController@index');
+// Route::get('/', function () {
+//     return view('home.index',['title'=>'我的购物']); 
+// });
 
 Route::get('/home/cate/{id}','Home\CateController@index');
 

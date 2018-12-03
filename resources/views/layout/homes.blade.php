@@ -62,10 +62,10 @@
         </div>
     </div>
     <div class="container clearfix">
-        <!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="/homes/theme/icon/logo.png"></a> </h1></div>
-        <!-- logo end -->
         @yield('sousuo')
+        <!-- logo start -->
+        <div class="header-logo fl"><h1><a href="首页.html"><img src="$site->LOGO"></a> </h1></div>
+        <!-- logo end -->
     </div>
     <div class="yHeader">
         <div class="yNavIndex">
@@ -133,6 +133,7 @@
                 <li><a href="#"> 更多特色服务 </a> </li>
             </ul>
         </div>
+
     </div>
     <div style="border-bottom:1px solid #dedede"></div>
     <div class="time-lists aui-footer-pd time-lists-ls clearfix">
