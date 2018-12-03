@@ -51,6 +51,12 @@
                       <input type="text" class="form-control" id="exampleInputEmail3" placeholder="company" name="company">
                     </div>
 
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">默认尺寸</label>
+                      <input type="text" class="form-control" id="exampleInputEmail3" placeholder="size" name="size">
+                    </div>
+
                     <div class="form-group">
                       <label for="exampleSelectGender">单价</label>
                         <input type="text" class="form-control" id="exampleInputName1" placeholder="price" name="price">

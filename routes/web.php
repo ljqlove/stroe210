@@ -15,7 +15,13 @@
 Route::get('/', function () {
     return view('home.index',['title'=>'我的购物']);
 });
+
+// 前台列表页
 Route::get('/home/cate/{id}','Home\CateController@index');
+
+// 列表详情页
+Route::get('/home/goods/{id}','Home\CateController@goods');
+Route::get('/home/gsize','Home\CateController@gsize');
 
 // 需要登录
 Route::any('/home/myCart','Home\CartController@myCart');
@@ -75,7 +81,8 @@ Route::resource('/admin/user','Admin\UserController');
 Route::get('/admin/comment','Admin\CommentController@index');
 // 商品管理
 Route::resource('admin/goods','Admin\GoodsController');
-
+// 快讯管理
+Route::resource('admin/flash','Admin\FlashController');
 
 
 Route::get('admin/gsize/{id}','Admin\GoodsController@gsize');  // 浏览商品样式页面

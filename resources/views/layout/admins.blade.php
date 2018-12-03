@@ -291,6 +291,8 @@
               </ul>
             </div>
           </li>
+
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-abc" aria-expanded="false" aria-controls="ui-abc">
               <span class="menu-title">商品管理</span>
               <i class="menu-arrow"></i>
@@ -300,6 +302,23 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods/create">添加商品</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods">浏览商品</a></li>
+               </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-flash" aria-expanded="false" aria-controls="ui-flash">
+              <span class="menu-title">快讯管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-cart-outline"></i>
+            </a>
+            <div class="collapse" id="ui-flash">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/flash/create">添加快讯</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/flash">浏览快讯</a></li>
+               </ul>
+            </div>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#ui-azx" aria-expanded="false" aria-controls="ui-azx">
