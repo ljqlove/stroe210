@@ -8,6 +8,31 @@
 
 
 @endsection
+
+@section('sousuo')
+    <!-- 搜索框 start -->
+    <div class="head-form fl">
+        <form class="clearfix">
+            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off"  placeholder="洗衣机">
+            <button class="button" onClick="search('key');return false;">搜索</button>
+        </form>
+        <div class="words-text clearfix">
+            <a href="#" class="red">1元秒爆</a>
+            <a href="#">低至五折</a>
+            <a href="#">农用物资</a>
+            <a href="#">买一赠一</a>
+            <a href="#">佳能相机</a>
+            <a href="#">稻香村月饼</a>
+            <a href="#">服装城</a>
+        </div>
+    </div>
+    <!-- 搜索框 end -->
+    <!-- 购物车 strat -->
+    <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a> <i class="head-amount">99</i></div>
+    <div class="head-mountain"></div>
+    <!-- 购物车 end -->
+@endsection
+
 @section('nav')
     <ul class="yMenuIndex">
         <li><a href="" target="_blank">服装城</a></li>
@@ -94,7 +119,7 @@
             <ul class="clearfix">
                 @foreach($goods as $k=>$v)
                 <li>
-                    <a href="#"> <img src="{{$v->gpic}}" style="width: 200px; height:300;"></a>
+                    <a href="/home/goods/{{$v->gid}}"> <img src="{{$v->gpic}}" style="width: 200px; height:300;"></a>
                     <p class="head-name"><a href="#">{{$v->gname}}</a> </p>
                     <p><span class="price">￥{{$v->price}}.00</span></p>
                     <p class="head-futi clearfix"><span class="fl">评论数:##</span> <span class="fr">100人购买</span></p>
@@ -104,16 +129,10 @@
             </ul>
             <div class="clearfix">
                 <div class="fr pc-search-g">
-                    <a class="fl pc-search-f" href="#">上一页</a>
-                    <a href="#" class="current">1</a>
-                    <a href="javascript:;">2</a>
-                    <a href="javascript:;">3</a>
-                    <a href="javascript:;">4</a>
-                    <a href="javascript:;">5</a>
-                    <a href="javascript:;">6</a>
-                    <a href="javascript:;">7</a>
-                    <span class="pc-search-di">…</span>
-                    <a title="使用方向键右键也可翻到下一页哦！" class="pc-search-n" href="javascript:;" onClick="SEARCH.page(3, true)">下一页</a>
+                    <!-- <a class="fl pc-search-f" href="#">上一页</a> -->
+                  {{$res->appends($request->all())->links()}}
+
+                    <!-- <a title="使用方向键右键也可翻到下一页哦！" class="pc-search-n" href="javascript:;" onClick="SEARCH.page(3, true)">下一页</a> -->
                 <!--     <span class="pc-search-y">
                         <em>  共20页    到第</em>
                         <input type="text" class="pc-search-j" placeholder="1">
@@ -135,4 +154,6 @@
         </div> -->
     </div>
 </div>
+
+
 @endsection
