@@ -189,12 +189,12 @@
     <section id="content">
         <div class="content-wrap">
             <div class="container clearfix alls">
+                <form action="/home/order" method="post" id="goform">
                 <div class="table-responsive bottommargin">
                     <table class="table cart">
                         <thead>
                             <tr>
                                 <th class="cart-product-thumbnail"><a href="javascript:void(0)" class='quan'>全选</a></th>
-                                <!-- <th class="cart-product-thumbnail"><input type="checkbox"><span>全选</span></th> -->
                                 <th class="cart-product-thumbnail">商品图片</th>
                                 <th class="cart-product-name">商品名</th>
                                 <th class="cart-product-price">单价</th>
@@ -207,10 +207,10 @@
                         @foreach($cart as $k => $v)
                             <tr class="cart_items">
                                 <td class="cart-product-thumbnail">
-                                    <input type="checkbox" class='che' gid='{{$v->cid}}'>
+                                    <input type="checkbox" class='che' name="cid[]" value='{{$v->cid}}'>
                                 </td>
                                 <td class="cart-product-thumbnail">
-                                    <a href="#"><img width="64" height="64" src="{{$v->gimg}}" alt="Pink Printed Dress"></a>
+                                    <a href="#"><img width="64" height="64" src="/{{$v->gimg}}" alt="Pink Printed Dress"></a>
                                 </td>
                                 <td class="cart-product-name">
                                     <a href="#">{{$v->gname}}</a>
@@ -221,7 +221,7 @@
                                 <td class="cart-product-quantity">
                                     <div class="quantity clearfix">
                                         <input type="button" value="-" class="minus">
-                                        <input type="text" name="quantity" value="1" class="qty" />
+                                        <input type="text"  value="1" class="qty" />
                                         <input type="button" value="+" class="plus">
                                     </div>
                                 </td>
@@ -237,10 +237,14 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <script>
+                        $(.follow).(function(){
+                            $(this).
+                        })
+                    </script>
                 </div>
                 <div class="row clearfix">
                     <div class="col-md-6 col-md-offset-6 clearfix">
-
                         <div class="table-total">
                             <table class="cart-total">
                                 <caption>购物车结算</caption>
@@ -258,11 +262,12 @@
                                             <strong>已选商品</strong>
                                         </td>
                                         <td class="cart-product-name">
-                                            <span >已选 <b id="num"> 0 </b> 件</span>
+                                            <span >已选 <b id="num"> 0 </b> 种</span>
                                         </td>
                                     </tr>
                                     <tr class="cart_item">
                                         <td class="cart-product-name" colspan="2">
+                                            {{csrf_field()}}
                                             <input type="submit" value="结&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;算" id="total">
                                         </td>
                                     </tr>
@@ -271,6 +276,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
             <div class="cart-empty" style='display:none'>
                 <div class="message">
@@ -287,6 +293,7 @@
                 </div>
             </div>
         </div>
+
     </section>
     <!-- #content end -->
     <script>
@@ -384,6 +391,7 @@
 
             var sum = 0;
             var num = 0;
+            var n = 0;
             //遍历
             $(':checkbox:checked').each(function(){
 
@@ -393,13 +401,19 @@
                 sum = accAdd(sum, pcr);
 
                 num ++;
-
+                // 获取数量
+                var na = $(this).parents('tr').find('.qty').attr('name');
+                if (!na) {
+                    $(this).parents('tr').find('.qty').attr('name','qty[]');
+                }
             })
 
             //让总计发生改变
             $('#sum').text(sum);
             $('#num').text(num);
+
         }
+
 
         //全选
         $('.quan').click(function(){
@@ -426,7 +440,7 @@
 
              //参数发送到控制器中   id
              //获取id
-            var gid = $(this).parents('tr').find('.che').attr('gid');
+            var gid = $(this).parents('tr').find('.che').val();
 
             var rem = $(this);
             $.post('/home/shopcart',{gid:gid},function(data){
@@ -456,5 +470,6 @@
 
         }
         nums()
+
     </script>
 @endsection

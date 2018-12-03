@@ -98,6 +98,7 @@
             margin-top:20px;
             margin-bottom:10px;
         }
+
     </style>
     <script type="text/javascript">
      (function(a){
@@ -181,6 +182,7 @@
             margin:11px;
             border-radius:10px;
             float:left;
+            cursor:pointer;
         }
         .myadd>li>h3{
             /*border:1px solid red;*/
@@ -202,6 +204,22 @@
         .myadd>.default{
             border:5px dashed blue;
         }
+        .myadd>.move{
+            border:5px dashed blue;
+        }
+
+        /*留言*/
+        .mess{
+            width:800px;
+            height:20px;
+            padding:10px;
+            margin-bottom:10px;
+        }
+        #sadd{
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 @endsection
 
@@ -220,15 +238,15 @@
     <section>
         <div class="containers">
            <div class="pc-space">
-               <div class="pc-order-title clearfix"><h3 class="fl">收货人信息</h3> <a href="#" class="fr pc-order-add btn1">新增收货地址</a> </div>
+               <div class="pc-order-title clearfix"><h3 class="fl">选择收货地址</h3> <a href="#" class="fr pc-order-add btn1">新增收货地址</a> </div>
                <div class="pc-border">
                    <div class="pc-order-text clearfix">
-                       <ul class=" myadd">
+                       <ul class="myadd">
                             @foreach($add as $v)
                            <li class="add-list">
-                                <a style="display:none">{{$v->status}}</a>
-                                <h3>{{$v->aname}} (收)</h3>
-                                <span>{{$v->aphone}}</span>
+                                <a style="display:none" class="status">{{$v->status}}</a>
+                                <h3 ><span class="aname">{{$v->aname}}</span> (收)</h3>
+                                <span class="aphone">{{$v->aphone}}</span>
                                 <div class="address">{{$v->address}}</div>
                            </li>
                            @endforeach
@@ -252,74 +270,42 @@
                 </div>
             </div>
            <div class="pc-space clearfix">
-               <div class="fl ">
-                   <div class="pc-order-title clearfix"><h3 class="fl">收货人信息</h3></div>
-                   <div class="fr pc-border">
-                       <div class="pc-order-text pc-order-l clearfix">
-                           <ul id="H-table" class="clearfix H-table">
-                               <li class="">
-                                   <a href="javascript:void(0);">百事汇通</a>
-                               </li>
-                               <li class="">
-                                   <a href="javascript:void(0);">顺风快递</a>
-                               </li>
-                               <li class="cur">
-                                  <a href="javascript:void(0);">中通快递</a>
-                               </li>
-                           </ul>
-                           <div class="" style="height:211px"></div>
-                           <div class="pc-line"></div>
-                           <div class="pc-freight"><p>运费：  8.00元</p></div>
-                       </div>
-                   </div>
-               </div>
-               <div class="fr ">
-                   <div class="pc-order-title clearfix"><h3 class="fl">商品信息</h3></div>
+               <div class="pc-space ">
+                   <div class="pc-order-title clearfix"><h3 class="fl">确认订单信息</h3></div>
                    <div class="pc-border">
                        <div class="pc-order-text clearfix">
-                           <div class="pc-wares-t"><h4>商家：  阿卡官方旗舰店</h4></div>
+
+                           @foreach($data as $v)
+                           <div class="pc-wares-t"><h4>商家：  {{$v -> company}}</h4></div>
+                           <div class="or">
+
                            <div class="clearfix pc-wares-p">
-                               <div class="fl pc-wares"><a href="#"><img src="theme/img/pd/pc1.png"></a></div>
-                               <div class="fl pc-wares-w"> <a href="#">小米（MI）小米USB插线板 3个USB充电口 支持2A快充 3重安全保护</a> <p class="clearfix"><span class="fl">颜色：白色</span><span class="fr">版本：联通高</span></p></div>
-                               <div class="fl pc-wares-s"><span class="reds">￥49.00</span><span>x1</span><span>有货</span></div>
+                               <div class="fl pc-wares"><a href="#"><img width="84" height="84" src="/{{$v->opic}}"></a></div>
+                               <div class="fl pc-wares-w"> <a href="#">{{$v->oname}}</a> <p class="clearfix"><span class="fl">颜色：{{$v->color}}</span><span class="fl">大小：{{$v->size}}</span><span class="fr">版本：联通高</span></p></div>
+                               <div class="fl pc-wares-s"><span class="reds" oid="{{$v->oid}}"><i class="fa fa-jpy" aria-hidden="true"></i><b class="zong">{{$v->total}}</b></span><span>x<b class="sn">{{$v->num}}</b></span><span>有货</span></div>
                            </div>
-                           <div class="clearfix pc-wares-p">
-                               <div class="fl pc-wares"><a href="#"><img src="theme/img/pd/pc1.png"></a></div>
-                               <div class="fl pc-wares-w"> <a href="#">小米（MI）小米USB插线板 3个USB充电口 支持2A快充 3重安全保护</a> <p class="clearfix"><span class="fl">颜色：白色</span><span class="fr">版本：联通高</span></p></div>
-                               <div class="fl pc-wares-s"><span class="reds">￥49.00</span><span>x1</span><span>有货</span></div>
+                           <div class="pc-written"><p>订单留言</p><input type="text" class="mess" value="{{$v->msg}}"></div>
                            </div>
-                           <div class="pc-written"><p>订单留言</p></div>
+                            @endforeach
+
                        </div>
                    </div>
                </div>
            </div>
-           <div class="pc-space">
-                <div class="pc-order-title clearfix"><h3 class="fl">发票信息</h3></div>
-                <div class="pc-border">
-                    <div class="pc-order-text clearfix">
-                        <ul class=" clearfix">
-                            <li class="clearfix fl">
-                                <div class="fl pc-address pc-wares-l"><span>普通发票（纸质）</span> <span> 个人</span> <span>明细</span><span><a href="#">修改</a> </span></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
            <div class="clearfix">
                <div class="fr pc-list-t">
-                   <ul>
-                       <li><span><b>2</b> 件商品，总商品金额：</span> <em>￥558.00</em></li>
-                       <li><span>减额：</span> <em>￥558.00</em></li>
-                       <li><span>运费：</span> <em>￥558.00</em></li>
-                       <li><span>应付总额：</span> <em>￥558.00</em></li>
-                       <li><span>减额：</span> <em>￥558.00</em></li>
+                   <ul id="zbd">
+                       <li><span><b id="sns"></b> 件商品，商品总金额：</span><em style="height:40px" id="st"><i class="fa fa-jpy" aria-hidden="true"></i><a href="javascript:void(0)" class="st">0.0</a></em></li>
+                       <li><span>收货人 : </span> <em id="sname"></em></li>
+                       <li><span>联系电话：</span> <em id="sph"></em></li>
+                       <li><span>配送地址：</span> <em id="sadd" title=""></em></li>
                    </ul>
                </div>
            </div>
            <div class="pc-space-n"></div>
            <div class="clearfix">
                <div class="fr pc-space-j">
-                   <spna>应付总额：<strong>￥558.00</strong></spna>
+                   <spna>应付总额：<strong><i class="fa fa-jpy" aria-hidden="true"></i><span class="st">0.0</span></strong></spna>
                    <button class="pc-submit">提交订单</button>
                </div>
            </div>
@@ -329,10 +315,68 @@
 
 @section('banner')
     <script>
-        var status = $('.add-list a').text();
-        console.log(status);
-        $('.add-list').mouseover(function(){
-            $('this').addClass('default');
+        // 获取总金额赋值给st
+        var zong = 0;
+        $('.zong').each(function(){
+            zong += parseFloat($(this).text());
         })
+        $('.st').text(zong);
+        // 获取商品个数赋值给sns
+        var num = 0;
+        $('.sn').each(function(){
+            num += Number($(this).text());
+        })
+        $('#sns').text(num);
+
+        // 默认地址
+        $('.status').each(function(){
+            // var sta = $(this).text().trim();
+            // console.log(sta);
+            if ($(this).text().trim() == 1) {
+                $(this).parents('li').addClass('default');
+            }
+        })
+        // 获取默认地址信息
+        $('#sname').text($('.default .aname').text());
+        $('#sph').text($('.default .aphone').text());
+        var ad = $('.default .address').text();
+        $('#sadd').text(ad);
+        $('#sadd').attr('title',ad);
+
+        // 鼠标移动到li中
+        $('.add-list').hover(function(){
+            $(this).addClass('move');
+        },function(){
+            $(this).removeClass('move');
+        })
+        // 点击切换默认地址
+        $('.add-list').click(function(){
+            zreo();
+            $(this).addClass('default');
+            // 将默认值赋值给总结表单
+            $('#sname').text($(this).find('.aname').text());
+            $('#sadd').text($(this).find('.address').text());
+            $('#sph').text($(this).find('.aphone').text());
+        })
+        // 全部边框归零
+        function zreo(){
+            $('.add-list').each(function(){
+                $(this).removeClass('default');
+            })
+        }
+        // ajax 修改msg内容
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+       $('.mess').blur(function(){
+            var oid = $(this).parents('.or').find('.reds').attr('oid');
+            var mess = $(this).val();
+
+            $.post('/home/mess',{oid:oid,mess:mess},function(data){
+                console.log(data);
+            })
+       })
     </script>
 @endsection

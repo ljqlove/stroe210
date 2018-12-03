@@ -23,6 +23,9 @@ Route::group([], function(){
     Route::any('/home/myCart','Home\CartController@myCart');
     Route::post('/home/shopcart','Home\CartController@shopcart');
     Route::any('/home/order','Home\OrderController@order');
+    Route::any('/home/addorder','Home\OrderController@addOrder');
+    Route::post('/home/mess','Home\OrderController@message');
+    Route::any('home/follow','Home\OrderController@follow');
 });
 
 
