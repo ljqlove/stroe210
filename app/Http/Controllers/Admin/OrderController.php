@@ -13,11 +13,21 @@ class OrderController extends Controller
      * author:李佳奇
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // dd($query);
+        $res = '%%';
+        $rs = $request->input('ordernum');
+        if(!empty($rs)) {
+            $res ='%'.$rs.'%';
+        }
+
         $list = DB::table('orders')
         ->join('message','orders.uid','=','message.uid')
-        ->select('orders.*','message.uname')
+        ->join('goods','goods.gname','=','orders.oname')
+        ->where('ordernum','like',$res)
+        ->select('orders.*','message.uname','goods.price')
+        ->orderBy('oid','desc')
         ->paginate(7);
         // dd($list);die;
         return view('admin.order.order',['lists'=>$list]);
@@ -134,10 +144,13 @@ class OrderController extends Controller
         $res = [];
         $res['num'] = $request -> uv;
 
+        // 获取商品名
+        $oname = DB::table('orders')->where('oid',$id)->value('oname');
         // echo $res['num'];
 
-        $price = DB::table('goods')->where('oid',$id)->value('price');
-        $res1['price'] = $res['num'] * $price;
+        // 获取商品单价
+        $price = DB::table('goods')->where('gname',$oname)->value('price');
+        $res['total'] = $res['num'] * $price;
         // echo $res['total'];
 
         // 修改参数
@@ -174,8 +187,6 @@ class OrderController extends Controller
         $status = $request -> input('status');
         // dd($status,$oid);
 
-        //数据表修改数据
-        try{
 
             $data = DB::table('orders')
             ->where('oid',$oid)
@@ -183,12 +194,12 @@ class OrderController extends Controller
 
             if($data){
                 return redirect('/admin/order')->with('success','修改成功');
+            } else {
+                return redirect('/admin/order')->with('error','修改失败');
             }
 
-        }catch(\Exception $e){
 
-            return back()->with('error','修改失败');
-        }
+
     }
 
     /**
@@ -197,9 +208,16 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function status(Request $request)
+    public function delAjax(Request $request)
     {
-        echo 111;
+        $oid = $request->oid;
+        $res = DB::table('orders')->where('oid',$oid)->delete();
+
+        if ($res) {
+            echo 1;
+        } else {
+            echo 0;
+        }
     }
 
     /**

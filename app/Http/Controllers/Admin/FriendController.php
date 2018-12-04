@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Admin\Firend;
+use Intervention\Image\ImageManagerStatic as Image;
+use Validator;
 
 class FriendController extends Controller
 {
@@ -23,7 +25,6 @@ class FriendController extends Controller
             if(!empty($rs)) {
                 $query->where('fname','like','%'.$rs.'%');
             }
-
         })->paginate(10);
         // dd($friend);
         return view('admin.firend.index',[
@@ -31,6 +32,7 @@ class FriendController extends Controller
             'friend'=>$friend,
             'request'=>$request
         ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +43,6 @@ class FriendController extends Controller
     {
         //
         return view('admin.firend.add',['title'=>'添加链接']);
-
     }
 
     /**
@@ -52,8 +53,7 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // echo 1;die;
+
                 //表单验
                 // dd($res);
 
@@ -70,23 +70,24 @@ class FriendController extends Controller
         $time = time();
         $res['inputtime'] = ($time=(date('Y-m-d H:i:s')));
 
-        if($request->hasFile('fpic')){
+        if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
+            
+            $photo = $request->file('fpic');
             //自定义名字
-            $name = rand(111,999).time();
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-            //获取后缀
-            $suffix = $request->file('fpic')->getClientOriginalExtension();
+            $file_path =public_path('images/friends/uploads');
+            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-            $request->file('fpic')->move('./images/friends/uploads',$name.'.'.$suffix);
+            $image = Image::make($photo)->resize(200, 200)->save($thumbnail_file_path);
 
-            $res['fpic'] = '/images/friends/uploads/'.$name.'.'.$suffix;
+            $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
         }
 
         try{
 
             $data = Firend::create($res);
-
             if($data){
                 return redirect('/admin/firend')->with('success','添加成功');
             }
@@ -98,9 +99,6 @@ class FriendController extends Controller
 
     }
 
-
-
-    }
 
     /**
      * Display the specified resource.
@@ -128,8 +126,8 @@ class FriendController extends Controller
         return view('admin.firend.edit',[
             'title'=>'友情链接的修改页面',
             'res'=>$res
-        ]);
-
+        ]);    
+    }
 
     /**
      * Update the specified resource in storage.
@@ -140,6 +138,7 @@ class FriendController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
         // echo 1;die;
         // $this->validate($request, [
         //     'fname' => 'required',
@@ -155,24 +154,26 @@ class FriendController extends Controller
         $time = time();
         $res['inputtime'] = ($time=(date('Y-m-d H:i:s')));
 
-        if($request->hasFile('fpic')){
+
+        if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
+            
+            $photo = $request->file('fpic');
             //自定义名字
-            $name = rand(111,999).time();
+            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
+            
+            $file_path =public_path('images/friends/uploads');
+            $thumbnail_file_path = $file_path . '/friends-'.$file_name;
 
-            //获取后缀
-            $suffix = $request->file('fpic')->getClientOriginalExtension();
+            $image = Image::make($photo)->resize(200, 200)->save($thumbnail_file_path);
 
-            $request->file('fpic')->move('./images/friends/uploads',$name.'.'.$suffix);
-
-            $res['fpic'] = '/images/friends/uploads/'.$name.'.'.$suffix;
+            $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
         }
-
+        
         try{
 
             $data = Firend::where('fid', $id)->update($res);
             // dd($data);
-
             if($data){
                 return redirect('/admin/firend')->with('success','修改成功');
             }
@@ -205,6 +206,5 @@ class FriendController extends Controller
         } catch (\Exception $e) {
             return back()->with('error','删除失败');
         }
-
     }
 }

@@ -52,7 +52,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(UserRequest $request)
-    {   
+    {
         $res = $request->except('_token','repass');
 
         //往数据表里面添加数据
@@ -61,7 +61,7 @@ class UserController extends Controller
 
 
             $data = Comment::create($res);
-            
+
             if ($data) {
                 return redirect('/admin/user')->with('success','添加成功');
             }
@@ -111,7 +111,7 @@ class UserController extends Controller
         try{
 
             $data = Comment::where('uid', $id)->update($res);
-            
+
             if($data){
                 return redirect('/admin/user')->with('success','修改成功');
             }
@@ -133,7 +133,7 @@ class UserController extends Controller
     {
         try{
             $res = Comment::destroy($id);
-            
+
             if($res){
                 return redirect('/admin/user')->with('success','删除成功');
             }

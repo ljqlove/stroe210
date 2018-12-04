@@ -4,7 +4,6 @@
 @section('title',$title)
 
 @section('content')
-	  <script src="/admins/js/file-upload.js"></script>
 
 	 <div class="card-body">
                   <h4 class="card-title">{{$title}}</h4>
@@ -63,5 +62,4 @@
 	$('.btn').delay(2000).fadeOut(2000);
 </script>
 @stop
-
 

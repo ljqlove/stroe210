@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Category;
 
 class IndexController extends Controller
 {
@@ -17,5 +18,21 @@ class IndexController extends Controller
     	return view('admin.index',['title'=>'Store网站后台首页']);
     }
     	
+    public static function getCategoryMessage($pid)
+    {
+        $cate = Category::where('pid',$pid)->get();
+        $arr = [];
 
+        foreach($cate as $k=>$v){
+
+            if($v->pid==$pid){
+
+                $v->sub=self::getCategoryMessage($v->tid);
+
+                $arr[]=$v;
+            }
+           
+        }  
+         return $arr;
+    }
 }

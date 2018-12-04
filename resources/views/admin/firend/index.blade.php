@@ -8,13 +8,15 @@
             <form class="d-flex align-items-center h-100" action="/admin/firend" method="get">
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
-                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                        <i class="input-group-text border-0 mdi mdi-magnify"></i>                
+
                     </div>
                     <input type="text" value="{{$request->fname}}" class="form-control bg-transparent border-0" placeholder="链接名称" name="fname">
                     <button class='btn btn-info'>搜索</button>
                   </div>
                 </form>
-                  <h4 class="card-title">{{$title}}</h4>
+                  <h4 class="card-title">{{$title}}  <a href="/admin/firend/create" class="btn btn-danger radius">添加链接</a></h4>
+
                   <p class="card-description">
 
                   </p>
@@ -43,6 +45,7 @@
                     </thead>
                     <tbody>
                     @foreach($friend as $k=>$v)
+                      
 
                       <tr class="">
                         <td>
@@ -50,7 +53,6 @@
                         </td>
                         <td>
                           {{$v->fname}}
-
                         <td>
                           {{$v->url}}
                         </td>
@@ -93,3 +95,4 @@
 </script>
 
 @stop
+        
