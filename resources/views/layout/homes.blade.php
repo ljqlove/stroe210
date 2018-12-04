@@ -62,10 +62,11 @@
         </div>
     </div>
     <div class="container clearfix">
-        @yield('sousuo')
-        <!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="$site->LOGO"></a> </h1></div>
+                <!-- logo start -->
+        <div class="header-logo fl"><h1><a href="/"><img src="/homes/theme/icon/logo.png"></a> </h1></div>
         <!-- logo end -->
+        @yield('sousuo')
+
     </div>
     <div class="yHeader">
         <div class="yNavIndex">

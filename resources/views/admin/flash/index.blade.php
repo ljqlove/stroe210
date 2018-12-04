@@ -5,7 +5,7 @@
 @section('content')
 
         
-<div class="card-body">
+<div class="card-body" >
    <!-- 搜索 -->
                   <div class="input-group">
                             <form  action="/admin/flash" method="get">
@@ -58,7 +58,7 @@
                         <td>
                           {{$v->fname}}
                         </td>
-                        <td>
+                        <td >
                           {!!$v->content!!}
                         </td>
 

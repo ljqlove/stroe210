@@ -81,16 +81,9 @@
             <div class="pc-info-mess  clearfix" style="position: relative;">
                 <h2 class="fl" style="margin-right:20px;">商城快讯</h2>
                 <div id="MarqueeDiv" class="MarqueeDiv">
-                    <a href="new.html">[特惠]新一代Moto 360智能手表登陆</a>
-                    <a href="new.html">[特惠]洗护节 跨品牌满199减100</a>
-                    <a href="new.html">[特惠]仁怀政府开启“仁怀酱香酒馆”</a>
-                    <a href="new.html">[特惠]洗护节 跨品牌满199减100</a>
-                    <a href="new.html">逛商城赚话费，商城通信51城全线抢购 </a>
-                    <a href="new.html">文艺蓝牙音箱 火热众筹中 </a>
-                    <a href="new.html">[公告]第1000家商城帮服务店落户遵义</a>
-                    <a href="new.html">[特惠]新一代Moto 360智能手表登陆</a>
-                    <a href="new.html">[特惠]新一代Moto 360智能手表登陆</a>
-                    <a href="new.html">[特惠]新一代Moto 360智能手表登陆</a>
+                    @foreach($flash as $v)
+                    <a href="/home/flash">{{$v->fname}}</a>
+                    @endforeach
                 </div>
                 <a href="new.html" style="position: absolute;right: 15px;top: 0;"> 更多资讯</a>
             </div>
@@ -201,11 +194,9 @@
             <div class="time-title time-clear"><h2>商城快讯</h2><a href="#" class="fr"> 更多资讯</a> </div>
             <div class="time-border" style="border-left:none;">
                 <ul class="news">
-                    <li><a href="#">[特惠]洗护节 跨品牌满199减100</a> </li>
-                    <li><a href="#">[特惠]新一代Moto 360智能手表登陆</a> </li>
-                    <li><a href="#">[特惠]惠氏品牌日 两件立享85折</a> </li>
-                    <li><a href="#">[特惠]洗护节 跨品牌满199减100</a> </li>
-                    <li><a href="#">[特惠]仁怀政府开启“仁怀酱香酒馆”</a> </li>
+                    @foreach($flash as $k=>$v)
+                    <li><a href="/home/flash">{{$v->fname}}</a> </li>
+                    @endforeach
                 </ul>
                 <div class="time-poduse"><img src="/homes/theme/img/pd/pj1.png"></div>
             </div>

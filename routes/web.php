@@ -21,7 +21,9 @@ Route::get('/home/cate/{id}','Home\CateController@index');
 Route::get('/home/goods/{id}','Home\CateController@goods');
 Route::get('/home/gsize','Home\CateController@gsize');
 
-
+// 快讯列表页
+Route::get('/home/flash','Home\FlashController@index');
+Route::get('/home/content/{id}','Home\FlashController@content');
 // 需要登录
 Route::group([], function(){
     Route::any('/home/myCart','Home\CartController@myCart');

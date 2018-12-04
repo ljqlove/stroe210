@@ -169,38 +169,39 @@ class GoodsController extends Controller
 
 
 
-                $file_path =public_path('uploads/gimgs');
-                $thumbnail_file_path = $file_path . '/friend-'.$file_name;
+        //         $file_path =public_path('uploads/gimgs');
+        //         $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
 
-                $image = Image::make($v)->resize(500, 500)->save($thumbnail_file_path);
+        //         $image = Image::make($v)->resize(500, 500)->save($thumbnail_file_path);
 
 
-                $ar['gimgs'] = '/uploads/gimgs/'.$image->basename;
+        //         $ar['gimgs'] = '/uploads/gimgs/'.$image->basename;
 
-                $arr[] = $ar;
+        //         $arr[] = $ar;
 
-            }
+        //     }
 
-        }
+        // }
 
 
         // 插入数据
 
 
         // 一对多
-        $data = Goods::find($id);
-        // dd($data);
-        try{
-            $gs = $data->gis()->createMany($arr);
-        // dd($gs);
-        if($gs){
-                return redirect('/admin/goods')->with('success','添加成功');
+            $data = Goods::find($id);
+            // dd($data);
+            try{
+                $gs = $data->gis()->createMany($arr);
+            // dd($gs);
+            if($gs){
+                    return redirect('/admin/goods')->with('success','添加成功');
+                }
+            }catch(\Exception $e){
+
+
+                return back()->with('error','添加失败');
             }
-        }catch(\Exception $e){
-
-
-            return back()->with('error','添加失败');
         }
     }
 
