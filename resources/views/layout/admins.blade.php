@@ -34,16 +34,14 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               @php
-      
-                     $user = DB::table('users')->where('uid',session('uid'))->first();
-                     $mess = DB::table('message')->get();
+                  $data =session()->all();
               @endphp
               <div class="nav-profile-img">
-                <img src="@foreach($mess as $k=>$v) @if($user->uid==$v->uid) {{$v->headpic}} @endif @endforeach" alt="image">
+                <img src="{{$data['user_pic']}}" alt="image">
                 <span class="availability-status online"></span>
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">Hello, @foreach($mess as $k=>$v) @if($user->uid==$v->uid) {{$v->mname}} @endif @endforeach</p>
+                <p class="mb-1 text-black">{{$data['user_name']}}</p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">

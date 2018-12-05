@@ -31,9 +31,8 @@ class LoginController extends Controller
     {
     	//表单验证
 
-    	//判断手机号
-    	$rs = DB::table('users')->where('phone',$request->phone)->first();
-    	$res = DB::table('message')->get();
+    	//判断用户名
+    	$rs = DB::table('blog_user')->where('user_name',$request->user_name)->first();
 
     	if(!$rs){
 
@@ -42,7 +41,7 @@ class LoginController extends Controller
 
     	//判断密码
     	//hash
-    	if (!Hash::check($request->password, $rs->password)) {
+    	if (!Hash::check($request->user_pass, $rs->user_pass)) {
 		    
 		    return back()->with('error','用户名或者密码错误');
 		}
@@ -55,7 +54,8 @@ class LoginController extends Controller
 		}
 
 		//存点信息  session
-		session(['uid'=>$rs->uid]);
+		session(['user_name'=>$rs->user_name]);
+		session(['user_pic'=>$rs->user_pic]);
 
 		return redirect('/admin');
 		}
@@ -92,8 +92,8 @@ class LoginController extends Controller
 	    public function logout()
 	    {
 	    	//清空session
-	    	session(['uid'=>'']);
-	    	session(['mname'=>'']);
+	    	session(['user_name'=>'']);
+			session(['user_pic'=>'']);
 
 	    	return redirect('/admin/login');
 	    }
