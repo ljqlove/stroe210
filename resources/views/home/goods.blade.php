@@ -2,10 +2,55 @@
 
 
 @section('title',$title)
-
+<script src='./jquery-1.8.3.min.js'></script>
 
 @section('js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+    <style>
+
+
+        .pc-product-top{cursor:move;}
+
+        #move{
+            width: 160px;
+            height: 160px;
+         /*   position:absolute;
+            left:100px;
+            top:100px;
+            background: url('/homes/theme/img/bg/bg.png');*/
+            display:none;
+
+        }
+
+        #big{
+            width:400px;height: 400px;position:absolute;left:650px;top:240px;overflow:hidden;display:none;
+        }
+
+        #bigImg{
+            position:absolute;
+
+        }
+
+        #uls{
+            width:400px;
+            height:84px;
+            
+            position:absolute;
+            /*left:30px;
+            top:460px;*/
+        }
+
+        #uls li{
+            width: 80px;
+            height: 80px;
+            /*border: solid 1px green;*/
+            float:left;
+            list-style:none;
+            margin-right:5px;
+        }
+    </style>
+
     <script>
          $(function(){
              $(".yScrollListInList1 ul").css({width:$(".yScrollListInList1 ul li").length*(160+84)+"px"});
@@ -176,10 +221,11 @@
             <div class="pc-details-l">
                 <div class="pc-product clearfix">
                     <div class="pc-product-h">
-                        <div class="pc-product-top"><img src="{{$goods[0]['gpic']}}" id="big_img" width="418" height="418"></div>
+                        <div class="pc-product-top"><img src="{{$goods[0]['gpic']}}" id="big_img" width="418" height="418"><div id='move'></div><div id='big'><img src="{{$goods[0]['gpic']}}" alt="" id='bigImg'></div></div>
+
+
                         <div class="pc-product-bop clearfix" id="pro_detail">
-                            <ul>
-                               
+                            <ul id='uls'>
                                 <li><a href="javascript:void(0);" simg="{{$goods[0]['gpic']}}"><img src="{{$goods[0]['gpic']}}" width="58" height="58"></a> </li>
 
                                 @foreach($gimgs as $k => $v)
@@ -188,6 +234,99 @@
                             </ul>
                         </div>
                     </div>
+                    
+                        <script>
+                        //移动事件
+                        $('.pc-product-top').mousemove(function(e){
+
+                            $('#move').css('display','block');
+                            $('#big').css('display','block');
+
+
+                            //获取small的左侧偏移量
+                            var sl = $('.pc-product-top').offset().left;
+                            var st = $('.pc-product-top').offset().top;
+
+                            //获取x和y的坐标
+                            // var x = e.clientX; 
+                            // var y = e.clientY;
+
+                            var x = e.pageX; 
+                            var y = e.pageY;
+
+                            //获取move的宽和高
+                            var mw = $('#move').width()/2;
+                            var mh = $('#move').height()/2;
+
+                            //求出 move距离small的偏移量
+                            var ml = x - sl - mw;
+                            var mt = y - st - mh;
+
+
+                            var maxl = $('.pc-product-top').width()-$('#move').width();
+
+                            var maxt = $('.pc-product-top').height()-$('#move').height();
+
+                            if(ml >= maxl){
+
+                                ml = maxl;
+                            }
+                            if(ml <= 0){
+                                ml = 0;
+                            }
+
+                            if(mt >= maxt){
+
+                                mt = maxt;
+                            }
+                            if(mt <= 0){
+                                mt = 0;
+                            }
+
+                            //获取大图距离big 的偏移量
+                            var bl = $('#bigImg').width() / $('.pc-product-top').width() * ml;
+                            var bt = $('#bigImg').height() / $('.pc-product-top').height() * mt;
+
+
+                            $('#bigImg').css('left',-bl+'px');
+                            $('#bigImg').css('top',-bt+'px');
+
+
+                            $('#move').css('left',ml+'px');
+                            $('#move').css('top',mt+'px');
+
+
+                        })
+
+                        //从small移出来
+                        $('.pc-product-top').mouseout(function(){
+
+                            $('#move').css('display','none');
+                            $('#big').css('display','none');
+
+                        })
+
+                        //鼠标移到小图上
+                        $('#uls').find('img').mouseover(function(){
+
+                            $(this).css('border','solid 1px #e53e41 ');
+
+                            var srcs = $(this).attr('src');
+
+                            //改变small里面的src
+                            $('.pc-product-top').find('img').attr('src',srcs);
+
+                            //改变big里面的src
+                            $('#big').find('img').attr('src',srcs);
+
+                        })
+
+                        $('#uls').find('img').mouseout(function(){
+
+                            $(this).css('border','solid 1px white');
+                        })
+
+                    </script>
 
                     <div class="pc-product-t">
                         <div class="pc-name-info">
@@ -204,10 +343,10 @@
                                 <div class="pc-version">商品尺寸</div>
                                 <div class="pc-adults">
                                     <ul>
-                                        <li><a href="javascript:void(0);" id="gsize">{{$goods[0]['size']}}</a></li>
-                                        @foreach($gsize as $k=>$v)
-                                        <li><a href="javascript:void(0);" class="size">{{$v->gsize}}</a> </li>
-                                        @endforeach
+                                        <li><a href="javascript:void(0);" class="gsize">{{$goods[0]['size']}}</a></li>
+                                        {{-- @foreach($gsize as $k=>$v --)}}
+                                        <li><a href="javascript:void(0);" class="size">{{-- $v->gsize --}}</a> </li>
+                                        {{-- @endforeach --}}
                                     </ul>
                                 </div>
                             </div>
@@ -217,7 +356,7 @@
                                     <ul>
                                         <li><a href="javascript:void(0);" class="goods" ><img src="{{$goods[0]['gpic']}}" width="35" height="35"></a> </li>
                                         @foreach($gsize as $k=>$v)
-                                        <li><a href="javascript:void(0);" title="{{$v->gcolor}}" class="size"><img src="{{$v->cimgs}}" width="35" height="35"></a> </li>
+                                        <li ><a class="pc" data-id="{{$v->id}}" href="javascript:void(0);" title="{{$v->gcolor}}" onclick="gsize(this);" class="size"><img src="{{$v->cimgs}}" width="35" height="35"></a> </li>
                                        @endforeach
                                     </ul>
                                 </div>
@@ -248,11 +387,41 @@
 
                                 })
 
-                                $('#gsize').click(function(){
+                                $('.gsize').click(function(){
                                     // alert('11111111');
                                     var gsize = $(this).text();
-                                    alert(gsize);
+                                     $.get('/home/gsize',{gid:gid},function(data){
+                                         $('#price').text({{$v->gpic}});
+                                    });
+                                    // 控制器
                                 })
+
+                                function gsize(obj)
+                                {   $('.pc').removeClass('cur');
+                                    $(obj).addClass('cur');
+                                    var sid = $(obj).attr("data-id");
+                                    
+                                    $.ajax({
+                                        async: false,
+                                        url: "/home/ajaxgsize",
+                                        data: {
+                                            sid:sid,
+                                            _token:'{{csrf_token()}}'
+                                        },
+                                        type: "POST",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            if(data.status == 1){
+                                                // console.log(data);
+                                                $('#price').text(data.list.gpic);
+
+                                            } else {
+                                                alert('查询失败');
+                                            }
+                                          
+                                        }
+                                    }); 
+                                }
                             </script>
                             <div class="pc-telling clearfix">
                                 <div class="pc-version">数量</div>

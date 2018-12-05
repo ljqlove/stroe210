@@ -628,7 +628,7 @@
 
 @section('sousuo')
 <!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="{{$site->LOGO}}"></a> </h1></div>
+        <div class="header-logo fl"><h1><a href="首页.html"><!-- <img src="{{$site->LOGO}}"></a> --> </h1></div>
         <!-- logo end -->
     <!-- 搜索框 start -->
     <div class="head-form fl">
