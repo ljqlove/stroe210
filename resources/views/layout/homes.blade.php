@@ -35,13 +35,14 @@
         <div class="yNavIndex">
             <ul class="BHeaderl">
                 @php
-                     $rs = DB::table('users')->where('uid',session('uid'))->first();
+                    $uuu=session()->all();
                 @endphp
-                @if(session(['uid']))
-                <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
+
+                @if($uuu['uid'])
+                <li><a href="/" style="color:#ea4949;">Hello,{{$uuu['phone']}}</a> </li>
+                <a href="/home/logout" style="float:left;">退出</a>
                 @else
-                <li><a href="/" style="color:#ea4949;">Hello,{{session(['phone'])}}</a> </li>
-                <a href="/home/logout" style="float:left;">退出</a> </li>
+                <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
                 @endif
                 <li class="headerul">|</li>
                 <li><a href="/home/register">免费注册</a> </li>
@@ -69,10 +70,10 @@
         </div>
     </div>
     <div class="container clearfix">
-        <!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="/homes/theme/icon/logo.png"></a> </h1></div>
-        <!-- logo end -->
         @yield('sousuo')
+        <!-- logo start -->
+        <div class="header-logo fl"><h1><a href="首页.html"><img src="$site->LOGO"></a> </h1></div>
+        <!-- logo end -->
     </div>
     <div class="yHeader">
         <div class="yNavIndex">
@@ -140,6 +141,7 @@
                 <li><a href="#"> 更多特色服务 </a> </li>
             </ul>
         </div>
+
     </div>
     <div style="border-bottom:1px solid #dedede"></div>
     <div class="time-lists aui-footer-pd time-lists-ls clearfix">

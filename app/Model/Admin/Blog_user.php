@@ -29,4 +29,13 @@ class Blog_user extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
+
+    /**
+     * 获得此用户的角色。
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Model\Admin\Blog_roles','blog_role_user','user_id', 'role_id');
+    }
+
 }

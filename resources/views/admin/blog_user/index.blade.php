@@ -4,13 +4,28 @@
 @section('title',$title)
 
 @section('content')
+      <style>
+        .success{
+            background:#83E31BFF;
+            width:90%;
+            text-align:center;
+            margin-left:50px;
+        }
+      </style>
+       @if(session('success')) 
+              <div class="alert alert-success alert-dismissible success" role="alert" >
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                     <li style='font-size:10px;list-style:none;' >{{session('success')}}</li>            
+                    
+             </div>
+         @endif
   <div class="card-body">
             <form class="d-flex align-items-center h-100" action="/admin/blog_user" method="get">
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>
                     </div>
-                    <input type="text" value="{{$request->name}}" class="form-control bg-transparent border-0" placeholder="角色名称" name="name">
+                    <input type="text" value="{{$request->user_name}}" class="form-control bg-transparent border-0" placeholder="管理员名称" name="user_name">
                     <button class='btn btn-info'>搜索</button>
                   </div>
                 </form>
@@ -65,18 +80,23 @@
 
                         </td>
                         <td>
+                          @if($v->user_id == 1)
+                             <button  class='btn btn-warning' style="width:90.4px;height:30px; color:red">不可更改</button>
+                          @else
+                          <a href="/admin/user_role?id={{$v->user_id}}" class='btn btn-warning'>更改角色</a>
+                          @endif
                           <a href="/admin/blog_user/{{$v->user_id}}/edit" class='btn btn-info'>修改</a>
 
-                          
+                            @if($v->user_id == 1)
+                            <button  class='btn btn-danger' style="width:90.4px;height:30px;color:red">不可删除</button>
+                            @endif
+                            @if($v->user_id !== 1)
                             <form action="/admin/blog_user/{{$v->user_id}}" method='post' style='display:inline'>
                               {{csrf_field()}}
-
-
                               {{method_field("DELETE")}}
-                              <button class='btn btn-danger'>删除</button>
-
-
+                              <button class='btn btn-danger' style="width:90.4px;height:30px">删除</button>
                             </form>
+                            @endif
                         </td>
                       </tr>
                       @endforeach

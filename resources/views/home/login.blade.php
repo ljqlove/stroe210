@@ -28,7 +28,7 @@
     <div class="login-main-wrap">
         <div class="login-main wrapper">
             <div class="login-box">
-                <form action="/" method="get">
+                <form action="/home/dologin" method="get">
                     <div class="box-hd">
                         <span class="tit">用户登录</span>
                         <a href="/home/register">注册新账号</a>

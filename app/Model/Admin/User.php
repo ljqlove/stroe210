@@ -3,9 +3,12 @@
 namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFollow\Traits\CanFollow;
 
 class User extends Model
 {
+    // 收藏 关联
+    use CanFollow;
      /**
      * 与模型关联的数据表
      *

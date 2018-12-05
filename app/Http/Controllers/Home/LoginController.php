@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class LoginController extends Controller
 {
@@ -27,8 +28,7 @@ class LoginController extends Controller
     	//表单验证
 
     	//判断用户名
-    	$rs = DB::table('comment')->where('phone',$request->phone)->first();
-
+    	$rs = DB::table('users')->where('phone',$request->phone)->first();
 
     	if(!$rs){
 
@@ -37,14 +37,15 @@ class LoginController extends Controller
 
     	//判断密码
     	//hash
-    	if (!Hash::check($request->password, $rs->password)) {
+    	if (!\Hash::check($request->password, $rs->password)) {
 		    
 		    return back()->with('error','用户名或者密码错误');
 		}
 
 		//存点信息  session
-		session(['uid'=>$rs->id]);
+		session(['uid'=>$rs->uid]);
 		session(['phone'=>$rs->phone]);
+
 
 		return redirect('/');
     	
@@ -55,6 +56,7 @@ class LoginController extends Controller
     {
         //清空session
         session(['uid'=>'']);
+        session(['phone'=>'']);
 
         return redirect('/home/login');
     }

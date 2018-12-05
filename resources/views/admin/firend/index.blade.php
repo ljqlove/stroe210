@@ -4,7 +4,22 @@
 @section('title',$title)
 
 @section('content')
-  <div class="card-body">
+      <style>
+        .success{
+            background:#83E31BFF;
+            width:90%;
+            text-align:center;
+            margin-left:50px;
+        }
+      </style>
+       @if(session('success')) 
+              <div class="alert alert-success alert-dismissible success" role="alert" >
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                     <li style='font-size:10px;list-style:none;' >{{session('success')}}</li>            
+                    
+             </div>
+         @endif
+           <div class="card-body">
             <form class="d-flex align-items-center h-100" action="/admin/firend" method="get">
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
@@ -53,12 +68,11 @@
                         </td>
                         <td>
                           {{$v->fname}}
+                        </td>
                         <td>
                           {{$v->url}}
                         </td>
-                        </td>
                           <td><image src="{{$v->fpic}}" width="80" height="80"></td>
-                        </td>
                         <td>
                           {{$v->inputtime}}
                         </td>

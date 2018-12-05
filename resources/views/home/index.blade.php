@@ -36,7 +36,7 @@
     </script>
 @endsection
 
-@section('title',$title)
+@section('title',$site->title)
 
 @section('content')
     <!--- banner begin-->
@@ -118,7 +118,7 @@
                             <ul>
                                 @foreach($goods as $vs)
                                 <li>
-                                    <a href="/" target="_blank">
+                                    <a href="/home/goods/{{$vs->gid}}" target="_blank">
                                         <img src="{{$vs->gpic}}">
                                         <p class="head-name">{{$vs->gname}}</p>
                                         <p><span class="price">￥{{$vs->price}}</span></p>
@@ -179,7 +179,7 @@
                             <ul>
                                 @foreach($goods as $vc)
                                 <li>
-                                    <a href="/">
+                                    <a href="/home/goods/{{$vc->gid}}">
                                         <img src="{{$vc->gpic}}">
                                         <p class="head-name pc-pa10">{{$vc->gname}}</p>
                                         <p><span class="price">￥{{$vc->price}}</span></p>
@@ -520,13 +520,34 @@
             </div>
         </div>
     </section>
+    <!--友情链接标题部分start-->
+       <div class="time-lists clearfix">
+             <div id="friend_link" >
+                        <div id="fri_title">
+                          <span>友情链接</span>
+                          <hr>
+                        </div>
+                @foreach($friends as $k=>$v)
+                        <div class="fri_content" style="width:150px;float:left;" >
+                            <div class="fri_left"><image src="{{$v->fpic}}" width="80" height="80"></div>
+                              <p><strong>{{$v->fname}}</strong></p>
+                              <p><a href="www.jd.com">www.JDcom</a></p>
+                        </div>
+                @endforeach
+                </div>
+        </div>
+    <!--友情链接内容部分end-->
+
 
 @endsection
 
 @section('sousuo')
+<!-- logo start -->
+        <div class="header-logo fl"><h1><a href="首页.html"><img src="{{$site->LOGO}}"></a> </h1></div>
+        <!-- logo end -->
     <!-- 搜索框 start -->
     <div class="head-form fl">
-        <form class="clearfix" href="/">
+        <form class="clearfix" href="/home/cate">
             <input type="text" class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
             <button class="button">搜索</button>
         </form>
@@ -546,6 +567,7 @@
     <div class="head-mountain"></div>
     <!-- 购物车 end -->
 @endsection
+
 
 @section('zuo')
     <div class="pullDown">
@@ -2119,6 +2141,7 @@
         <!-- 弹框 end -->
     </div>
 @endsection
+
 
 @section('nav')
     <ul class="yMenuIndex">

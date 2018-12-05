@@ -181,20 +181,19 @@
                 </ul>
             </div>
           </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-qaz" aria-expanded="false" aria-controls="ui-qaz">
-              <span class="menu-title">会员信息管理</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-qaz">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/message"">客户信息详情</a></li>
 
-                </ul>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-zhan" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">系统设置</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi mdi-wrench"></i>
+            </a>
+            <div class="collapse" id="ui-zhan">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/site">站点设置</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">屏蔽词</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/system">系统日志</a></li>
+              </ul>
             </div>
           </li>
 
@@ -249,6 +248,8 @@
               </ul>
             </div>
           </li>
+
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-abc" aria-expanded="false" aria-controls="ui-abc">
               <span class="menu-title">商品管理</span>
               <i class="menu-arrow"></i>
@@ -258,6 +259,23 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods/create">添加商品</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/goods">浏览商品</a></li>
+               </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-flash" aria-expanded="false" aria-controls="ui-flash">
+              <span class="menu-title">快讯管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-cart-outline"></i>
+            </a>
+            <div class="collapse" id="ui-flash">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/flash/create">添加快讯</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/flash">浏览快讯</a></li>
+               </ul>
+            </div>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#ui-azx" aria-expanded="false" aria-controls="ui-azx">

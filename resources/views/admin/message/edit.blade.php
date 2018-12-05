@@ -8,35 +8,11 @@
 	 <div class="card-body">
                   <h4 class="card-title">{{$title}}</h4>
 
-
-              	@if (count($errors) > 0)
-					<!-- <div class="mws-form-message error"> -->
-						<!-- <div class="mws-form-message"></div> -->
-					<div class="btn btn-block btn-lg btn-gradient-primary mt-4 error">
-            			<p>显示错误信息</p>
-            			<ul style="list-style:none;" id="err">
-                		@foreach ($errors->all() as $error)
-                			<li style='font-size:20px' >{{$error}}</li>
-                		@endforeach
-                		</ul>
-        			</div>
-       		 	@endif
        		 	<br><br>
 
                   <form action="/admin/message/{{$res->mid}}" method="post" class="mws-form" enctype='multipart/form-data'>
 
-<!--                     <div class="form-group">
-                      <label for="exampleInputName1">电话号</label>
-                      <input type="text" class="form-control" id="exampleInputName1" 
-                      name="phone"
-                      value="  @foreach($user as $key=>$val)                     
-                                @if($val->uid == $res->uid)
-                                 {{($val->phone)}}
-                                @endif
-                              @endforeach" 
-                       placeholder="请输入你的电话号码">
-                    </div>
- -->
+
                      <div>
                       <label for="exampleInputName1">姓名</label>
                       <input type="text" class="form-control" id="exampleInputName1" name="uname" value="{{$res -> uname}}" placeholder="请输入链接名称">

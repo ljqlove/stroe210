@@ -20,22 +20,46 @@ Route::any('/home/doregiste','Home\RegisterController@doregiste');
 Route::any('/home/captcha','Home\RegisterController@captcha');
 //前台登录
 Route::get('/home/login','Home\LoginController@login');
+Route::get('/home/dologin','Home\LoginController@dologin');
 Route::get('/home/logout','Home\LoginController@logout');
+// 无需登录
+// 前台列表页
+Route::get('/','Home\IndexController@index');
+
+
+Route::get('/home/cate/{id}','Home\CateController@index');
+
+// 列表详情页
+Route::get('/home/goods/{id}','Home\CateController@goods');
+Route::get('/home/gsize','Home\CateController@gsize');
+
 
 // 需要登录
-Route::any('/home/myCart','Home\CartController@myCart');
+Route::group([], function(){
+    Route::any('/home/myCart','Home\CartController@myCart');
+    Route::post('/home/shopcart','Home\CartController@shopcart');
+    Route::any('/home/order','Home\OrderController@order');
+    Route::any('/home/addorder','Home\OrderController@addOrder');
+    Route::post('/home/mess','Home\OrderController@message');
+    Route::any('home/follow','Home\OrderController@follow');
+});
+
+
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
 //后台管理员管理
 Route::resource('admin/blog_user', "Admin\Blog_userController");
 //后台给管理员添加角色
-Route::any('/admin/user_role','Admin\UserController@user_role');
-Route::any('/admin/do_user_role','Admin\UserController@do_user_role');
+Route::any('/admin/user_role','Admin\Blog_userController@user_role');
+Route::any('/admin/do_user_role','Admin\Blog_userController@do_user_role');
 
 
 //后台角色管理
 Route::resource('admin/blog_roles', "Admin\Blog_rolesController");
+//给后台角色添加权限
+Route::any('/admin/role_per','Admin\Blog_rolesController@role_per');
+Route::any('/admin/do_role_per','Admin\Blog_rolesController@do_role_per');
 
 
 //后台权限管理
@@ -81,11 +105,19 @@ Route::resource('admin/category','Admin\CategoryController');
 
 //后台用户管理
 Route::resource('/admin/user','Admin\UserController');
+//后台站点
+Route::any('admin/site','Admin\SiteController@edit');
+Route::any('admin/do_site','Admin\SiteController@update');
+//后台系统日志
+Route::resource('admin/system','Admin\SystemController');
+
+
 //后台评论管理
 Route::get('/admin/comment','Admin\CommentController@index');
 // 商品管理
 Route::resource('admin/goods','Admin\GoodsController');
-
+// 快讯管理
+Route::resource('admin/flash','Admin\FlashController');
 
 
 Route::get('admin/gsize/{id}','Admin\GoodsController@gsize');  // 浏览商品样式页面

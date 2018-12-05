@@ -92,9 +92,11 @@
                             @elseif($v->status == 1)
                             <td class="status" val="1"><button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm">新订单</button></td>
                             @elseif($v->status == 2)
-                            <td class="status" val="2"><button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">已发货</button></td>
+                            <td class="status" val="2"><button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-sm">已支付</button></td>
                             @elseif($v->status == 3)
-                            <td class="status" val="3"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm">已收货</button></td>
+                            <td class="status" val="3"><button type="button" class="btn btn-link" data-toggle="modal" data-target=".bs-example-modal-sm">已发货</button></td>
+                            @elseif($v->status == 4)
+                            <td class="status" val="4"><button type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-sm">已收货</button></td>
                             @endif
                             <td class="del"><button type="button" class="btn btn-gradient-danger btn-rounded "><i class="mdi mdi-delete"></i>删除</button></td>
                         </tr>
@@ -131,12 +133,18 @@
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="radio" class="form-check-input" name="status" id="optionsRadios2" value="2" >
-                      已发货
+                      已支付
                     <i class="input-helper"></i></label>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="radio" class="form-check-input" name="status" id="optionsRadios3" value="3">
+                      已发货
+                    <i class="input-helper"></i></label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="status" id="optionsRadios4" value="4">
                       已收货
                     <i class="input-helper"></i></label>
                   </div>

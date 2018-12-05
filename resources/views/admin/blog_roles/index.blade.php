@@ -4,6 +4,21 @@
 @section('title',$title)
 
 @section('content')
+          <style>
+        .success{
+            background:#83E31BFF;
+            width:90%;
+            text-align:center;
+            margin-left:50px;
+        }
+      </style>
+       @if(session('success')) 
+              <div class="alert alert-success alert-dismissible success" role="alert" >
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                     <li style='font-size:10px;list-style:none;' >{{session('success')}}</li>            
+                    
+             </div>
+         @endif
   <div class="card-body">
             <form class="d-flex align-items-center h-100" action="/admin/blog_roles" method="get">
                   <div class="input-group">
@@ -67,6 +82,8 @@
 
                         </td>
                         <td>
+                          <a href="/admin/role_per?id={{$v->id}}" class='btn btn-warning'>更改角色</a>
+
                           <a href="/admin/blog_roles/{{$v->id}}/edit" class='btn btn-info'>修改</a>
 
 

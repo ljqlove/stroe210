@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "5e55037462326702371f8f1d36a461a2",
+    "content-hash": "63a0b7343608410c9930ce4c12591aa1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1163,6 +1164,54 @@
                 "php"
             ],
             "time": "2018-03-25T17:35:16+00:00"
+        },
+        {
+            "name": "overtrue/laravel-follow",
+            "version": "1.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-follow.git",
+                "reference": "bd5bfa02d675f1d081f48e731bb2e4684771b45a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/bd5bfa02d675f1d081f48e731bb2e4684771b45a",
+                "reference": "bd5bfa02d675f1d081f48e731bb2e4684771b45a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "~5.5",
+                "mockery/mockery": "1.0.x-dev",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Overtrue\\LaravelFollow\\FollowServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelFollow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "i@overtrue.me"
+                }
+            ],
+            "description": "Laravel 5 User Based System",
+            "time": "2018-12-02T05:41:27+00:00"
         },
         {
             "name": "paragonie/random_compat",
