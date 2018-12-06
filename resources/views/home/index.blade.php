@@ -615,8 +615,7 @@
                 @foreach($friends as $k=>$v)
                         <div class="fri_content" style="width:150px;float:left;" >
                             <div class="fri_left"><image src="{{$v->fpic}}" width="80" height="80"></div>
-                              <p><strong>{{$v->fname}}</strong></p>
-                              <p><a href="www.jd.com">www.JDcom</a></p>
+                              <p><a href="{{$v->url}}"><strong>{{$v->fname}}</strong></a></p>
                         </div>
                 @endforeach
                 </div>
@@ -627,7 +626,10 @@
 
 
 
+
+
 @section('sousuo')
+
     <!-- 搜索框 start -->
     <div class="head-form fl">
         <form class="clearfix">

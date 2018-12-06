@@ -14,6 +14,23 @@
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
+// 模拟登陆可删除
+Route::any('/home/dologin','Home\LoginController@doLogin');
+Route::any('/home/logout','Home\LoginController@logout');
+
+//前台个人中心主页
+Route::get('/home/wjd/message','Home\MessageController@index');
+//前台个人信息修改
+Route::any('/home/wjd/ajaxmessageEdit','Home\MessageController@ajaxmessageEdit');
+
+//地址管理
+Route::get('/home/wjd/address','Home\AddressController@index');
+Route::any('/home/wjd/dostatus','Home\AddressController@dostatus');
+Route::any('/home/wjd/ajaxedit','Home\AddressController@ajaxedit');
+Route::any('/home/wjd/ajaxupdate','Home\AddressController@ajaxupdate');
+Route::any('/home/wjd/ajaxadd','Home\AddressController@ajaxadd');
+Route::any('/home/wjd/ajaxdeletes','Home\AddressController@ajaxdeletes');
+
 
 Route::get('/home/cate/{id}','Home\CateController@index');
 

@@ -19,11 +19,9 @@ class IndexController extends Controller
 
         // dd()
     	// 引入站点设置
-    	$site = DB::table('site')->get();
         $site = Site::find(1);
+        
 
-    	// dd($friends);
-    	// dd($site);
     	return view('home.index',[
     		'friends' => $friends,
     		'site'=>$site,
