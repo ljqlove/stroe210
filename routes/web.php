@@ -29,9 +29,17 @@ Route::group([], function(){
     Route::any('/home/order','Home\OrderController@order');
     Route::any('/home/addorder','Home\OrderController@addOrder');
     Route::post('/home/mess','Home\OrderController@message');
-    Route::any('home/follow','Home\OrderController@follow');
+    Route::any('home/follow','Home\ColController@follow');
+    Route::get('/home/join/{gid}','Home\CartController@join');
+    Route::any('/home/myCollect','Home\ColController@myCollect');
+    Route::post('/home/coldel','Home\ColController@coldel');
+    Route::any('/home/myOrder','Home\OrderController@myOrder');
+    Route::any('home/myOrderInfo/{oid}','Home\OrderController@myOrderInfo');
 });
 
+// 商家入驻
+Route::get('/home/Merchant','Auth\RegisterController@Merchant');
+Route::get('/home/Merchant_2','Auth\RegisterController@Merchant_2');
 
 
 //后台的首页

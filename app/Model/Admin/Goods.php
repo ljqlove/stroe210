@@ -18,6 +18,17 @@ class Goods extends Model
 
 	protected $guarded = [];
 
+
+    public function goods()
+    {
+        return $this->belongsToMany('App\Model\Admin\User','collect','uid','gid');
+    }
+
+    public function desg()
+    {
+        return $this -> hasMany('App\Model\Home\Shopsize');
+    }
+
 	 public function gis()
     {
         return $this->hasMany('App\Model\Admin\Goodsimg','gid');

@@ -16,7 +16,7 @@ class User extends Model
      */
     protected $table = 'comment';
 
-    protected $primaryKey = 'cid';
+    protected $primaryKey = 'uid';
 
     /**
      * 该模型是否被自动维护时间戳
@@ -38,5 +38,12 @@ class User extends Model
     public function comment()
     {
         return $this->hasOne('App\Comment');
+    }
+    /**
+     * 多对多  用户收藏的商品
+     */
+    public function goods()
+    {
+        return $this->belongsToMany('App\Model\Admin\Goods','collect','uid','gid');
     }
 }

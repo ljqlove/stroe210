@@ -7,18 +7,21 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Admin\User;
 use App\Model\Admin\Goods;
+use App\Model\Home\Collect;
+
 
 class OrderController extends Controller
 {
     public function order(Request $request)
     {
+        $uid = 3;
         $cids = $request -> cid;
         $qtys = $request -> qty;
         // dd($cids,$qtys);
         $data = [];
         // 组合成订单数据
         for ($i=0; $i < count($cids); $i++) {
-            $data[$i]['uid'] = 3;
+            $data[$i]['uid'] = $uid;
             $cid = $cids[$i];
             $num = $qtys[$i];
             $data[$i]['num'] = $qtys[$i];
@@ -54,11 +57,12 @@ class OrderController extends Controller
     public function addOrder(Request $request)
     {
         // 获取新订单数据
-        $address = DB::table('address')->where('uid','3')->get();
+        $uid = 3;
+        $address = DB::table('address')->where('uid',$uid)->get();
         $data = DB::table('orders')
         ->join('goods','oname','gname')
         ->select('orders.*','goods.company')
-        ->where('orders.uid','3')
+        ->where('orders.uid',$uid)
         ->where('orders.status','1')
         ->get();
         return view('home.ljq.order',['title'=>'订单提交','add'=>$address,'data'=>$data]);
@@ -76,8 +80,27 @@ class OrderController extends Controller
         }
     }
 
-    public function follow(Request $request)
+    public function myOrder(Request $request)
     {
-        User::follow(1);
+        $like = '%%';
+        $num = $request ->ordernum;
+        if ($num) {
+            $like = '%'.$num.'%';
+        }
+        $uid = 3;
+        $orders = DB::table('orders')->where('uid',$uid)->where('ordernum','like',$like)->get();
+        return view('home.ljq.myorder',['title'=>'我的订单','orders'=>$orders]);
     }
+    public function myOrderInfo($oid)
+    {
+        $info = DB::table('orders')
+        ->join('address','aid','addid')
+        ->join('goods','gname','oname')
+        ->select('orders.*','address.aphone','address.aname','address.address','address.postcode','goods.company','goods.gid','goods.price')
+        ->where('orders.oid',$oid)
+        ->first();
+        // dd($info);
+        return view('home.ljq.myOrderInfo',['title'=>'订单详情','info'=>$info]);
+    }
+
 }

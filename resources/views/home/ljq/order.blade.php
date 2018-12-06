@@ -98,7 +98,6 @@
             margin-top:20px;
             margin-bottom:10px;
         }
-
     </style>
     <script type="text/javascript">
      (function(a){
@@ -238,7 +237,7 @@
     <section>
         <div class="containers">
            <div class="pc-space">
-               <div class="pc-order-title clearfix"><h3 class="fl">选择收货地址</h3> <a href="#" class="fr pc-order-add btn1">新增收货地址</a> </div>
+               <div class="pc-order-title clearfix"><h3 class="fl">选择收货地址</h3> <a href="/home/wjd/address" class="fr pc-order-add btn1">新增收货地址</a> </div>
                <div class="pc-border">
                    <div class="pc-order-text clearfix">
                        <ul class="myadd">
@@ -276,12 +275,15 @@
                        <div class="pc-order-text clearfix">
 
                            @foreach($data as $v)
+                           @php
+                           $res = \DB::table('goods')->where('gname',$v->oname)->first();
+                           @endphp
                            <div class="pc-wares-t"><h4>商家：  {{$v -> company}}</h4></div>
                            <div class="or">
 
                            <div class="clearfix pc-wares-p">
-                               <div class="fl pc-wares"><a href="#"><img width="84" height="84" src="/{{$v->opic}}"></a></div>
-                               <div class="fl pc-wares-w"> <a href="#">{{$v->oname}}</a> <p class="clearfix"><span class="fl">颜色：{{$v->color}}</span><span class="fl">大小：{{$v->size}}</span><span class="fr">版本：联通高</span></p></div>
+                               <div class="fl pc-wares"><a href="/home/goods/{{$res->gid}}"><img width="84" height="84" src="{{$v->opic}}"></a></div>
+                               <div class="fl pc-wares-w"> <a href="/home/goods/{{$res->gid}}">{{$v->oname}}</a> <p class="clearfix"><span class="fl">颜色：{{(\DB::table('gcolor')->find($v->color))->color}}</span><span class="fl">大小：{{(\DB::table('gsize')->find($v->size))->size}}</span><span class="fr">版本：联通高</span></p></div>
                                <div class="fl pc-wares-s"><span class="reds" oid="{{$v->oid}}"><i class="fa fa-jpy" aria-hidden="true"></i><b class="zong">{{$v->total}}</b></span><span>x<b class="sn">{{$v->num}}</b></span><span>有货</span></div>
                            </div>
                            <div class="pc-written"><p>订单留言</p><input type="text" class="mess" value="{{$v->msg}}"></div>

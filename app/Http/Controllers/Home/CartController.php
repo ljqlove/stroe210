@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Model\Admin\User;
+use App\Model\Admin\Goods;
+use App\Model\Home\Collect;
+
 class CartController extends Controller
 {
     /**
@@ -43,4 +47,11 @@ class CartController extends Controller
         }
         // echo $cid;
     }
+
+    public function join(Request $request,$gid)
+    {
+
+    }
+
+
 }

@@ -5,7 +5,7 @@
 
 
 @section('js')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
          $(function(){
              $(".yScrollListInList1 ul").css({width:$(".yScrollListInList1 ul li").length*(160+84)+"px"});
@@ -39,24 +39,24 @@
                 $(this).addClass("cur");
                 $("#big_img").attr("src",$(this).attr("simg"));
             });
-            
+
             $(".attrdiv a").click(function(){
                 $(".attrdiv a").removeClass("cur");
                 $(this).addClass("cur");
             });
-            
+
             $('.amount2').click(function(){
                 var num_input = $("#subnum");
                 var buy_num = (num_input.val()-1)>0?(num_input.val()-1):1;
                 num_input.val(buy_num);
             });
-        
+
             $('.amount1').click(function(){
                 var num_input = $("#subnum");
                 var buy_num = Number(num_input.val())+1;
                 num_input.val(buy_num);
             });
-            
+
              $("#H-table li").each(function(i){
                  $(this).click((function(k){
                      var _index = k;
@@ -115,9 +115,7 @@
 
          });
      </script>
-
 @endsection
-
 @section('sousuo')
     <!-- 搜索框 start -->
     <div class="head-form fl">
@@ -160,7 +158,7 @@
     <section>
     <div class="pc-details" >
         <div class="containers">
-            
+
             <div class="pc-details-l">
                 <div class="pc-product clearfix">
                     <div class="pc-product-h">
@@ -226,7 +224,7 @@
                                     });
                                     // 控制器里头就可以接受值
                                     // ajax获取price
-                                    
+
 
                                 })
                             </script>
@@ -246,7 +244,7 @@
                         </div>
                         <div class="pc-emption">
                             <a href="#">立即购买</a>
-                            <a href="#" class="join">加入购物车</a>
+                            <a href="/home/join/{{$goods[0]['gid']}}" class="join">加入购物车</a>
                         </div>
                     </div>
 
@@ -316,9 +314,9 @@
                            <li>
                                {!!$goods[0]['descript']!!}
                            </li>
-                          
+
                        </ul>
-                      
+
                    </div>
                    <div class="H-over1" style="display:none">
                        <div class="pc-comment fl"><strong>86<span>%</span></strong><br> <span>好评度</span></div>

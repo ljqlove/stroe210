@@ -43,6 +43,8 @@
                 <li class="headerul">|</li>
                 <li><a href="my-s.html">我的收藏</a> </li>
                 <li class="headerul">|</li>
+                <li><a href="/home/Merchant">我要开店</a> </li>
+                <li class="headerul">|</li>
                 <li id="pc-nav" class="menu"><a href="my-user.html" class="tit">我的商城</a>
                     <div class="subnav">
                         <a href="my-d.html">我的订单</a>
@@ -62,10 +64,11 @@
         </div>
     </div>
     <div class="container clearfix">
-        @yield('sousuo')
+
         <!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="$site->LOGO"></a> </h1></div>
+        <div class="header-logo fl"><h1><a href="首页.html"><img width="200" height="90" src="/homes/theme/icon/logo.png"></a> </h1></div>
         <!-- logo end -->
+        @yield('sousuo')
     </div>
     <div class="yHeader">
         <div class="yNavIndex">

@@ -171,6 +171,33 @@
             font-size:24px;
             text-align:center;
         }
+        .info{
+            /*border:1px solid blue;*/
+            width:50%;
+            margin-left: 25%;
+            margin-left:300px;
+            font-size: 30px;
+        }
+        .info #success{
+            display: none;
+            margin-top:30px;
+            height:60px;
+            line-height: 60px;
+            text-align:center;
+            border:5px solid #EA4949FF;
+            border-radius:20px;
+            background:#37ADEFFF;
+        }
+        .info #error{
+            display: none;
+            margin-top:30px;
+            height:60px;
+            line-height: 60px;
+            text-align:center;
+            border:5px solid #37ADEFFF;
+            border-radius:20px;
+            background:#EA4949FF;
+        }
     </style>
 @endsection
 
@@ -188,6 +215,10 @@
 @section('content')
     <section id="content">
         <div class="content-wrap">
+            <div class="info">
+                <div id="success"></div>
+                <div id="error"> </div>
+            </div>
             <div class="container clearfix alls">
                 <form action="/home/order" method="post" id="goform">
                 <div class="table-responsive bottommargin">
@@ -205,15 +236,18 @@
                         </thead>
                         <tbody>
                         @foreach($cart as $k => $v)
+                        @php
+                            $res = \DB::table('goods')->where('gname',$v->gname)->first();
+                        @endphp
                             <tr class="cart_items">
                                 <td class="cart-product-thumbnail">
                                     <input type="checkbox" class='che' name="cid[]" value='{{$v->cid}}'>
                                 </td>
                                 <td class="cart-product-thumbnail">
-                                    <a href="#"><img width="64" height="64" src="/{{$v->gimg}}" alt="Pink Printed Dress"></a>
+                                    <a href="/home/goods/{{$res->gid}}"><img width="64" height="64" src="{{$v->gimg}}" alt="Pink Printed Dress"></a>
                                 </td>
                                 <td class="cart-product-name">
-                                    <a href="#">{{$v->gname}}</a>
+                                    <a href="/home/goods/{{$res->gid}}">{{$v->gname}}</a>
                                 </td>
                                 <td class="cart-product-price">
                                     <span class="price"><i class="fa fa-jpy" aria-hidden="true"></i> {{$v->price}}</span>
@@ -238,9 +272,7 @@
                         </tbody>
                     </table>
                     <script>
-                        $(.follow).(function(){
-                            $(this).
-                        })
+
                     </script>
                 </div>
                 <div class="row clearfix">
@@ -326,7 +358,7 @@
             }
 
             //小计  单价 * pv
-            $(this).parents('tr').find('.amount').text(accMul(pv, prc));
+            $(this).parents('tr').find('.amount').html('<i class="fa fa-jpy" aria-hidden="true"></i>'+accMul(pv, prc));
 
 
             totals()
@@ -365,7 +397,7 @@
             }
 
             //让小计发生改变
-            $(this).parents('tr').find('.amount').text(accMul(prc, pv));
+            $(this).parents('tr').find('.amount').html('<i class="fa fa-jpy" aria-hidden="true"></i>'+accMul(prc, pv));
 
             totals()
 
@@ -469,7 +501,27 @@
             }
 
         }
-        nums()
+        nums();
 
+        // 移入到收藏
+        $('.follow').click(function(){
+            //提示信息
+            var res = confirm('商品放入收藏,该商品将会移出购物车,你确定要这样做吗?');
+
+            if(!res) return;
+
+            var gid = $(this).parents('tr').find('.che').val();
+            var tr = $(this).parents('tr');
+            $.get('/home/follow',{gid:gid},function(data){
+                if (data) {
+                    $('#success').text('该商品已成功移入收藏').show(500).delay(2000).hide(500);
+                    tr.hide();
+                    nums()
+                } else {
+                    $('#error').text('该商品移入收藏失败').show(500).delay(2000).hide(500);
+                    nums()
+                }
+            })
+        })
     </script>
 @endsection
