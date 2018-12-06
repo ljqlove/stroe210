@@ -5,7 +5,53 @@
 
 
 @section('js')
+<style>
 
+            .pagination li a{
+
+                color: #fff;
+            }
+                
+                .pagination li{
+                    float: left;
+                    height: 20px;
+                    padding: 0 10px;
+                    display: block;
+                    font-size: 12px;
+                    line-height: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    outline: none;
+                    background-color: #444444;
+                    
+                    text-decoration: none;
+                  
+                    border-right: 1px solid rgba(0, 0, 0, 0.5);
+                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                   
+                    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+                }
+
+                .pagination  .active{
+                        color: #323232;
+                        border: none;
+                        background-image: none;
+                        background-color: #88a9eb;
+                       
+                        box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+                }
+
+                .pagination .disabled{
+                    color: #666666;
+                    cursor: default;
+
+                }
+                
+                .pagination{
+                    margin:0px;
+                }
+                
+            </style>
 
 @endsection
 
@@ -56,17 +102,21 @@
 
 <div class="containers clearfix">
     <div class="fl">
-       <!--  <div  class="time-border-list pc-search-list clearfix">
+        <div  class="time-border-list pc-search-list clearfix">
              @foreach($goods as $k=>$v)
+             @if($v->status == 0)
                 <li>
+                    <h2>新品推荐</h5><br>
                     <a href="#"> <img src="{{$v->gpic}}" style="width: 200px; height:300;"></a>
                     <p class="head-name"><a href="#">{{$v->gname}}</a> </p>
                     <p><span class="price">￥{{$v->price}}.00</span></p>
                     <p class="head-futi clearfix"><span class="fl">评论数:##</span> <span class="fr">100人购买</span></p>
                     <p class="clearfix"><span class="label-default fl">抢购</span> <a href="#" class="fr pc-search-c">收藏</a> </p>
                 </li>
-                @endforeach
-        </div> -->
+                <br>
+            @endif
+            @endforeach
+        </div>
     </div>
     <div class="pc-info fr">
         <div class="pc-term">
@@ -130,7 +180,11 @@
             <div class="clearfix">
                 <div class="fr pc-search-g">
                     <!-- <a class="fl pc-search-f" href="#">上一页</a> -->
-                  {{$res->appends($request->all())->links()}}
+                 <!--  <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+                
+                {{$res->appends($request->all())->links()}}
+
+            </div> -->
 
                     <!-- <a title="使用方向键右键也可翻到下一页哦！" class="pc-search-n" href="javascript:;" onClick="SEARCH.page(3, true)">下一页</a> -->
                 <!--     <span class="pc-search-y">

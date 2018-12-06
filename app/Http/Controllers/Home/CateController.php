@@ -62,9 +62,14 @@ class CateController extends Controller
 
         $gsize = Gsize::where('gid',$id)->get();
 
-        // dd($gsize);
 
-        // dd($gimgs);
+        // dd($gsize);
+        $size = [];
+        foreach ($gsize as $k => $v) {
+            // var_dump($v['gsize']);
+             $size[] = explode(',', $v['gsize']);
+        }
+        // dd($size);
     	return view('home.goods',[
     		'title'=>'商品详情页',
     		'goods'=>$goods,
@@ -73,8 +78,19 @@ class CateController extends Controller
     	]);
     }
 
-    public function gsize(Request $request)
+    public function ajaxgsize()
     {
-        echo '111';
+        $sid = $_POST['sid'];
+
+        $result = DB::select('select * from shopsize where id ='.$sid);
+        dd($result);    
+        if ($result) {
+            $a['list'] = $result;
+            $a['status'] = 1;
+            echo json_encode($a);
+        } else {
+            $a['status'] = 2;
+            echo json_encode($a);
+        }
     }
 }

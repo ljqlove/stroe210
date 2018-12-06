@@ -69,6 +69,7 @@
         <div class="header-logo fl"><h1><a href="首页.html"><img width="200" height="90" src="/homes/theme/icon/logo.png"></a> </h1></div>
         <!-- logo end -->
         @yield('sousuo')
+
     </div>
     <div class="yHeader">
         <div class="yNavIndex">
