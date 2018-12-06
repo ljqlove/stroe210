@@ -42,12 +42,9 @@
     <!--- banner begin-->
     <section id="pc-banner">
         <div class="yBanner">
+            @foreach($lunbo as $k=>$v)
             <div class="banner" id="banner" >
-                <a href="javascript:;" class="d1" style="background:url(/homes/theme/img/ad/banner1.jpg) center no-repeat;background-color: #f01a38; padding-left:180px;"></a>
-                <a href="javascript:;" class="d1" style="background:url(/homes/theme/img/ad/banner2.jpg) center no-repeat;background-color: #a96ae3; padding-left:180px;"></a>
-                <a href="javascript:;" class="d1" style="background:url(/homes/theme/img/ad/banner3.jpg) center no-repeat;background-color: #081f3c; padding-left:180px;"></a>
-                <a href="javascript:;" class="d1" style="background:url(/homes/theme/img/ad/banner4.jpg) center no-repeat;background-color: #4684ff; padding-left:180px;"></a>
-                <a href="javascript:;" class="d1" style="background:url(/homes/theme/img/ad/banner5.jpg) center no-repeat;background-color: #a89d9f; padding-left:180px;"></a>
+                <a href="{{$v->url}}" class="d1" style="background:url({{$v->pic}}) center no-repeat;background-color:#FFFFFF; width:1603px;height: 480px;"></a>
                 <div class="d2" id="banner_id">
                     <ul>
                         <li></li>
@@ -58,6 +55,7 @@
                     </ul>
                 </div>
             </div>
+            @endforeach
             <div style="text-align:center;clear:both"></div>
         </div>
     </section>
@@ -111,81 +109,21 @@
                         <a class="yScrollListbtn yScrollListbtnl" id="prev-01"></a>
                         <div class="yScrollListInList yScrollListInList1 jCarouselLite" style="display:block;margin-left: 20px;" id="demo-01">
                             <ul>
+                                @foreach($goods as $vs)
                                 <li>
-                                    <a href="page.html" target="_blank">
-                                        <img src="/homes/theme/img/pd/p1.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
+                                    <a href="/home/goods/{{$vs->gid}}" target="_blank">
+                                        <img src="{{$vs->gpic}}">
+                                        <p class="head-name">{{$vs->gname}}</p>
+                                        <p><span class="price">￥{{$vs->price}}</span></p>
                                         <p class="label-default">3.45折</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="page.html" target="_blank">
-                                        <img src="/homes/theme/img/pd/p2.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page.html" target="_blank">
-                                        <img src="/homes/theme/img/pd/p3.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page.html" target="_blank">
-                                        <img src="/homes/theme/img/pd/p4.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
 
 
                         </div>
                         <a class="yScrollListbtn yScrollListbtnr" id="next-01"></a>
-                        <div class="yScrollListInList yScrollListInList2">
-                            <ul>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p3.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p3.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p3.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p3.png">
-                                        <p class="head-name">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p><span class="price">￥138.00</span><span class="discount">￥1000</span></p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="yScrollListbtn yScrollListbtnl"></div>
-                            <div class="yScrollListbtn yScrollListbtnr"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -230,48 +168,16 @@
                     <div class="yScrollListIn">
                         <div style="display:block;" class="yScrollListInList yScrollListInList1">
                             <ul>
+                                @foreach($goods as $vc)
                                 <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p1.png">
-                                        <p class="head-name pc-pa10">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
+                                    <a href="/home/goods/{{$vc->gid}}">
+                                        <img src="{{$vc->gpic}}">
+                                        <p class="head-name pc-pa10">{{$vc->gname}}</p>
+                                        <p><span class="price">￥{{$vc->price}}</span></p>
                                         <p class="label-default">3.45折</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p2.png">
-                                        <p class="head-name pc-pa10">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p3.png">
-                                        <p class="head-name pc-pa10">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p4.png">
-                                        <p class="head-name pc-pa10">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p5.png">
-                                        <p class="head-name pc-pa10">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="/homes/theme/img/pd/p6.png">
-                                        <p class="head-name pc-pa10">TP-LINK TL-WN725N 微型150M无线USB网卡</p>
-                                        <p class="label-default">3.45折</p>
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -632,9 +538,9 @@
 
     <!-- 搜索框 start -->
     <div class="head-form fl">
-        <form class="clearfix">
-            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off"  placeholder="洗衣机">
-            <button class="button" onClick="search('key');return false;">搜索</button>
+        <form class="clearfix" href="/home/cate">
+            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
+            <button class="button">搜索</button>
         </form>
         <div class="words-text clearfix">
             <a href="#" class="red">1元秒爆</a>
@@ -2232,6 +2138,1580 @@
     </div>
     </div>
 @endsection
+
+@section('zuo')
+    <div class="pullDown">
+        <h2 class="pullDownTitle"> 全部商品分类 </h2>
+        <ul class="pullDownList">
+                <li class="menulihover">
+                    <i class="listi1"></i>
+                    <a href="all-cl.html" target="_blank">家用电器</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi2"></i>
+                    <a href="all-class.html" target="_blank">手机、</a>
+                    <a href="all-class.html" target="_blank">数码</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi3"></i>
+                    <a href="all-class.html" target="_blank">电脑、</a>
+                    <a href="all-class.html" target="_blank">办公</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi4"></i>
+                    <a href="all-class.html" target="_blank">家居、</a>
+                    <a href="all-class.html" target="_blank">家具、</a>
+                    <a href="all-class.html" target="_blank">家装、</a>
+                    <a href="all-class.html" target="_blank">厨具</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi5"></i>
+                    <a href="" target="_blank">男装、</a>
+                    <a href="" target="_blank">女装、</a>
+                    <a href="" target="_blank">内衣、</a>
+                    <a href="" target="_blank">珠宝</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi6"></i>
+                    <a href="" target="_blank">个护化妆</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi7"></i>
+                    <a href="" target="_blank">鞋靴、</a>
+                    <a href="" target="_blank">箱包、</a>
+                    <a href="" target="_blank">钟表、</a>
+                    <a href="" target="_blank">奢侈品</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi8"></i>
+                    <a href="" target="_blank">运动户外</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi9"></i>
+                    <a href="" target="_blank">汽车、</a>
+                    <a href="" target="_blank">汽车用品</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi10"></i>
+                    <a href="" target="_blank">母婴、</a>
+                    <a href="" target="_blank">玩具乐器</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi11"></i>
+                    <a href="" target="_blank">食品、</a>
+                    <a href="" target="_blank">酒类、</a>
+                    <a href="" target="_blank">生鲜、</a>
+                    <a href="" target="_blank">特产</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi12"></i>
+                    <a href="" target="_blank">营养保健</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi13"></i>
+                    <a href="" target="_blank">图书、</a>
+                    <a href="" target="_blank">音像、</a>
+                    <a href="" target="_blank">电子书</a>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="listi14"></i>
+                    <a href="" target="_blank">彩票、</a>
+                    <a href="" target="_blank">旅行、</a>
+                    <a href="" target="_blank">充值、</a>
+                    <a href="" target="_blank">票务</a>
+                    <span></span>
+                </li>
+            </ul>
+        <!-- 弹框 start -->
+        <div class="yMenuListCon">
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="yMenuListConin">
+                <div class="yMenuLCinLisi fl">
+                    <ul>
+                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        <li><a href="#">生活电器<i class="fr">></i></a></li>
+                        <li><a href="#">厨房电器<i class="fr">></i></a></li>
+                        <li><a href="#">个护健康<i class="fr">></i></a></li>
+                        <li><a href="#">五金家装<i class="fr">></i></a></li>
+                    </ul>
+                </div>
+                <div class="yMenuLCinList fl">
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+
+                    <p>
+                        <a href="" class="ecolor610">大牌上新</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                        <a href="">商场同款</a>
+                        <a href="">男装集结</a>
+                        <a href="">羽绒服</a>
+                        <a href="">加厚羽绒 </a>
+                        <a href="">高帮鞋</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 弹框 end -->
+    </div>
+@endsection
+
 
 @section('nav')
     <ul class="yMenuIndex">

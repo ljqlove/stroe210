@@ -10,6 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// 前台页面
+
+Route::get('/','Home\IndexController@index');
+
+//前台注册
+Route::any('/home/register', 'Home\RegisterController@register');
+Route::any('/home/doregiste','Home\RegisterController@doregiste');
+Route::any('/home/captcha','Home\RegisterController@captcha');
+//前台登录
+Route::get('/home/login','Home\LoginController@login');
+Route::get('/home/dologin','Home\LoginController@dologin');
+Route::get('/home/logout','Home\LoginController@logout');
 // 无需登录
 // 前台列表页
 Route::get('/','Home\IndexController@index');
@@ -63,21 +75,25 @@ Route::get('/home/Merchant_2','Auth\RegisterController@Merchant_2');
 
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
-//后头管理员管理
+//后台管理员管理
 Route::resource('admin/blog_user', "Admin\Blog_userController");
 //后台给管理员添加角色
 Route::any('/admin/user_role','Admin\Blog_userController@user_role');
 Route::any('/admin/do_user_role','Admin\Blog_userController@do_user_role');
 
 
-//后头角色管理
+//后台角色管理
 Route::resource('admin/blog_roles', "Admin\Blog_rolesController");
 //给后台角色添加权限
 Route::any('/admin/role_per','Admin\Blog_rolesController@role_per');
 Route::any('/admin/do_role_per','Admin\Blog_rolesController@do_role_per');
 
-//后头权限管理
+
+//后台权限管理
 Route::resource('admin/blog_permissions', "Admin\Blog_permissionsController");
+
+//无限极分类
+Route::get('/admin/getms','Admin\IndexController@getmessage');
 
 
 //后台友情链接管理
@@ -85,6 +101,9 @@ Route::resource('admin/firend', "Admin\FriendController");
 
 //后台登录
 Route::any('/admin/login','Admin\LoginController@login');
+Route::any('/admin/dologin','Admin\LoginController@dologin');
+Route::any('/admin/captcha','Admin\LoginController@captcha');
+Route::any('/admin/logout','Admin\LoginController@logout');
 
 // 后台订单管理
 Route::resource('/admin/order','Admin\OrderController');
@@ -141,3 +160,6 @@ Route::post('/admin/gsize/update/{id}','Admin\GoodsController@gupdate');  // 执
 Route::post('/admin/gsize/del/{id}','Admin\GoodsController@gdelete');
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

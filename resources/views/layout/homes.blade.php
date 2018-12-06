@@ -34,16 +34,19 @@
     <div class="BHeader">
         <div class="yNavIndex">
             <ul class="BHeaderl">
-                <li style="display:none;"><a href="#" style="float:left;">嘻哈杂货铺</a> <a href="#" style="float:left;">退出</a> </li>
-                @if(session(['uid']))
-                    <li>已登录</li>
 
+                @php
+                    $uuu=session()->all();
+                @endphp
+
+                @if($uuu['uid'])
+                <li><a href="/" style="color:#ea4949;">Hello,{{$uuu['phone']}}</a> </li>
+                <a href="/home/logout" style="float:left;">退出</a>
                 @else
-                    <li><a href="/home/dologin" style="color:#ea4949;">请登录</a> </li>
-
+                <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
                 @endif
                 <li class="headerul">|</li>
-                <li><a href="register.html">免费注册</a> </li>
+                <li><a href="/home/register">免费注册</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="my-d.html">订单查询</a> </li>
                 <li><a href="/home/logout">临时退出</a> </li>

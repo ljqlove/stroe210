@@ -20,12 +20,12 @@ class CateController extends Controller
             ->where(function($query) use($request){
                 //检测关键字
                 $gname = $request->input('gname');
-               
+
                 //如果用户名不为空
                 if(!empty($gname)) {
                     $query->where('gname','like','%'.$gname.'%');
                 }
-              
+
             })
         ->paginate($request->input('num', 5));
 
@@ -37,20 +37,15 @@ class CateController extends Controller
     		$arr[] = $v->gid;
     	}
 
-
     	$gimgs = Gsize::where('gid',$arr)->get();
-    	// dd($arr);
-    
 
-    	// dd($gimgs);
 
     	return view('home.cate',[
             'title'=>'类别',
             'res'=>$res,
             'cates'=>$cates,
             'request'=>$request,
-            'gimgs'=>$gimgs,
-            'goods'=>$goods
+            'gimgs'=>$gimgs
         ]);
     }
 
@@ -62,6 +57,10 @@ class CateController extends Controller
 
         $gsize = Gsize::where('gid',$id)->get();
 
+        $comment = DB::table('comment')->get();
+
+
+        // dd($gsize);
 
         // dd($gsize);
         $size = [];
@@ -74,7 +73,9 @@ class CateController extends Controller
     		'title'=>'商品详情页',
     		'goods'=>$goods,
             'gimgs'=>$gimgs,
-            'gsize'=>$gsize
+            'gsize'=>$gsize,
+            'comment'=>$comment
+
     	]);
     }
 
@@ -83,7 +84,7 @@ class CateController extends Controller
         $sid = $_POST['sid'];
 
         $result = DB::select('select * from shopsize where id ='.$sid);
-        dd($result);    
+        dd($result);
         if ($result) {
             $a['list'] = $result;
             $a['status'] = 1;

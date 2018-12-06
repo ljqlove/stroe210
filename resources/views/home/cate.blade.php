@@ -5,13 +5,13 @@
 
 
 @section('js')
-<style>
+    <style>
 
             .pagination li a{
 
                 color: #fff;
             }
-                
+
                 .pagination li{
                     float: left;
                     height: 20px;
@@ -23,12 +23,12 @@
                     cursor: pointer;
                     outline: none;
                     background-color: #444444;
-                    
+
                     text-decoration: none;
-                  
+
                     border-right: 1px solid rgba(0, 0, 0, 0.5);
                     border-left: 1px solid rgba(255, 255, 255, 0.15);
-                   
+
                     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
                 }
 
@@ -37,7 +37,7 @@
                         border: none;
                         background-image: none;
                         background-color: #88a9eb;
-                       
+
                         box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
                 }
 
@@ -46,11 +46,11 @@
                     cursor: default;
 
                 }
-                
+
                 .pagination{
                     margin:0px;
                 }
-                
+
             </style>
 
 @endsection
@@ -181,7 +181,7 @@
                 <div class="fr pc-search-g">
                     <!-- <a class="fl pc-search-f" href="#">上一页</a> -->
                  <!--  <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                
+
                 {{$res->appends($request->all())->links()}}
 
             </div> -->

@@ -553,269 +553,30 @@
                         <span class="column3">购买信息</span>
                         <span class="column4">评论者</span>
                     </div> -->
-                   <!--  <div class="H-over  pc-comments clearfix">
+                    @foreach($comment as $vbc)
+                   <div class="H-over  pc-comments clearfix">
                         <ul class="clearfix">
                             <li class="clearfix">
                                 <div class="column1">
                                     <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
+                                    <p>{{$vbc->content}}</p>
+                                    <p class="column5">{{$vbc->inputtime}}</p>
                                 </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
+                                <div class="column2">@if($vbc->star==1)★
+                                                    @elseif($vbc->star==2)★★
+                                                    @elseif($vbc->star==3)★★★
+                                                    @elseif($vbc->star==4)★★★★
+                                                    @elseif($vbc->star==5)★★★★★
+                                                    @endif</div>
                                 <div class="column3">颜色：云石白</div>
                                 <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> -->
-                    <div style="display:none" class="H-over pc-comments">
-                        <ul class="clearfix">
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
+                                    <p><img src="/theme/icon/user.png"></p>
                                     <p>2014-11-23 22:37 购买</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <div style="display:none" class="H-over pc-comments">
-                        <ul class="clearfix">
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div style="display:none" class="H-over pc-comments">
-                        <ul class="clearfix">
-                            <li class="clearfix">
-                                <div class="column1">
-                                    <p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-                                    <p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-                                    <p class="column5">2014-11-25 14:32</p>
-                                </div>
-                                <div class="column2"><img src="theme/icon/star.png"></div>
-                                <div class="column3">颜色：云石白</div>
-                                <div class="column4">
-                                    <p><img src="theme/icon/user.png"></p>
-                                    <p>2014-11-23 22:37 购买</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 <!--             <div class="clearfix">
