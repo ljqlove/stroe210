@@ -624,8 +624,7 @@
                 @foreach($friends as $k=>$v)
                         <div class="fri_content" style="width:150px;float:left;" >
                             <div class="fri_left"><image src="{{$v->fpic}}" width="80" height="80"></div>
-                              <p><strong>{{$v->fname}}</strong></p>
-                              <p><a href="www.jd.com">www.JDcom</a></p>
+                              <p><a href="{{$v->url}}"><strong>{{$v->fname}}</strong></a></p>
                         </div>
                 @endforeach
                 </div>
@@ -635,10 +634,10 @@
 
 @endsection
 
+
+
 @section('sousuo')
-<!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="{{$site->LOGO}}"></a> </h1></div>
-        <!-- logo end -->
+
     <!-- 搜索框 start -->
     <div class="head-form fl">
         <form class="clearfix">

@@ -35,22 +35,22 @@
         <div class="yNavIndex">
             <ul class="BHeaderl">
                 <li style="display:none;"><a href="#" style="float:left;">嘻哈杂货铺</a> <a href="#" style="float:left;">退出</a> </li>
-                <li><a href="login.html" style="color:#ea4949;">请登录</a> </li>
+                @if(session(['uid']))
+                    <li>已登录</li>
+
+                @else
+                    <li><a href="/home/dologin" style="color:#ea4949;">请登录</a> </li>
+                
+                @endif
                 <li class="headerul">|</li>
                 <li><a href="register.html">免费注册</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="my-d.html">订单查询</a> </li>
+                <li><a href="/home/logout">临时退出</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="my-s.html">我的收藏</a> </li>
                 <li class="headerul">|</li>
-                <li id="pc-nav" class="menu"><a href="my-user.html" class="tit">我的商城</a>
-                    <div class="subnav">
-                        <a href="my-d.html">我的订单</a>
-                        <a href="my-s.html">我的收藏</a>
-                        <a href="my-user.html">账户安全</a>
-                        <a href="my-add.html">地址管理</a>
-                        <a href="my-p.html">我要评价</a>
-                    </div>
+                <li id="pc-nav" class="menu"><a href="/home/wjd/message" >我的商城</a>
                 </li>
                 <li class="headerul">|</li>
                 <li id="pc-nav1" class="menu"><a href="#" class="tit M-iphone">手机悦商城</a>
@@ -62,10 +62,17 @@
         </div>
     </div>
     <div class="container clearfix">
-        @yield('sousuo')
+        @php
+        $message = DB::table('message')->where('mid',session('mid'))->first();
+
+            $site = DB::table('site')->where('id',1)->first();
+        @endphp
         <!-- logo start -->
-        <div class="header-logo fl"><h1><a href="首页.html"><img src="$site->LOGO"></a> </h1></div>
+        <div class="header-logo fl"><h1><a href="/"><img src="{{$site->LOGO}}"></a> </h1></div>
         <!-- logo end -->
+        
+        @yield('sousuo')
+
     </div>
     <div class="yHeader">
         <div class="yNavIndex">

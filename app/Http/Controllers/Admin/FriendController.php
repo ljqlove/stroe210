@@ -79,7 +79,7 @@ class FriendController extends Controller
             $file_path =public_path('images/friends/uploads');
             $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-            $image = Image::make($photo)->resize(200, 200)->save($thumbnail_file_path);
+            $image = Image::make($photo)->resize(80, 80)->save($thumbnail_file_path);
 
             $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
@@ -164,7 +164,7 @@ class FriendController extends Controller
             $file_path =public_path('images/friends/uploads');
             $thumbnail_file_path = $file_path . '/friends-'.$file_name;
 
-            $image = Image::make($photo)->resize(200, 200)->save($thumbnail_file_path);
+            $image = Image::make($photo)->resize(80, 80)->save($thumbnail_file_path);
 
             $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
