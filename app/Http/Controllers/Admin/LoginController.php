@@ -54,8 +54,13 @@ class LoginController extends Controller
 		}
 
 		//存点信息  session
+		session(['uid'=>$rs->user_id]);
 		session(['user_name'=>$rs->user_name]);
 		session(['user_pic'=>$rs->user_pic]);
+		$map['uid'] = session('uid');
+        $map['created_at'] = date('Y-m-d H:i:s',time());
+    	$result = DB::table('system')->insert($map);
+
 
 		return redirect('/admin');
 		}

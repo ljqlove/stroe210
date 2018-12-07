@@ -39,30 +39,22 @@
                     $uuu=session()->all();
                 @endphp
 
-                @if($uuu['uid'])
-                <li><a href="/" style="color:#ea4949;">Hello,{{$uuu['phone']}}</a> </li>
+                @if($uuu)
+                <li><a href="/" style="color:#ea4949;">Hello 登陆成功</a> </li>
                 <a href="/home/logout" style="float:left;">退出</a>
-                @else
+                @else if
                 <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
                 @endif
                 <li class="headerul">|</li>
                 <li><a href="/home/register">免费注册</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="my-d.html">订单查询</a> </li>
-                <li><a href="/home/logout">临时退出</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="my-s.html">我的收藏</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="/home/Merchant">我要开店</a> </li>
                 <li class="headerul">|</li>
                 <li id="pc-nav" class="menu"><a href="/home/wjd/message" >我的商城</a>
-                    <div class="subnav">
-                        <a href="my-d.html">我的订单</a>
-                        <a href="my-s.html">我的收藏</a>
-                        <a href="my-user.html">账户安全</a>
-                        <a href="my-add.html">地址管理</a>
-                        <a href="my-p.html">我要评价</a>
-                    </div>
                 </li>
                 <li class="headerul">|</li>
                 <li id="pc-nav1" class="menu"><a href="#" class="tit M-iphone">手机悦商城</a>

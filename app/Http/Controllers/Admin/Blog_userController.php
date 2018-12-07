@@ -204,6 +204,7 @@ class Blog_userController extends Controller
         // dd($res);
         $res['updated_at'] = date('Y-m-d H:i:s',time());
 
+        dd($res);
         if($request->hasFile('user_pic') && $request->file('user_pic')->isValid()){
             
             $photo = $request->file('user_pic');

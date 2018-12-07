@@ -10,10 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// 前台页面
-
-Route::get('/','Home\IndexController@index');
-
 //前台注册
 Route::any('/home/register', 'Home\RegisterController@register');
 Route::any('/home/doregiste','Home\RegisterController@doregiste');
@@ -26,14 +22,14 @@ Route::get('/home/logout','Home\LoginController@logout');
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
-// 模拟登陆可删除
-Route::any('/home/dologin','Home\LoginController@doLogin');
-Route::any('/home/logout','Home\LoginController@logout');
+
 
 //前台个人中心主页
 Route::get('/home/wjd/message','Home\MessageController@index');
 //前台个人信息修改
 Route::any('/home/wjd/ajaxmessageEdit','Home\MessageController@ajaxmessageEdit');
+// 个人信息头像修改
+Route::any('/home/wjd/message/ajaxupdate','Home\MessageController@ajaxupdate');
 
 //地址管理
 Route::get('/home/wjd/address','Home\AddressController@index');
