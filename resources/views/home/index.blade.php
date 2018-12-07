@@ -529,13 +529,7 @@
     <!--友情链接内容部分end-->
 @endsection
 
-
-
-
-
-
 @section('sousuo')
-
     <!-- 搜索框 start -->
     <div class="head-form fl">
         <form class="clearfix" href="/home/cate">
@@ -555,17 +549,20 @@
     <!-- 搜索框 end -->
     <!-- 购物车 strat -->
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
-        <i class="head-amount">{{\DB::table('cart')->where('uid',3)->count()}}</i>
+        @if($userinfo = session('userinfo'))
+        <i class="head-amount set">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
+        @else if($userinfo == 0)
+        <i class="head-amount">0</i>
+        @endif
         <script>
             setInterval(function(){
-                $('i[class=head-amount]').toggle();
+                $('i[class=set]').toggle();
             },1000)
         </script>
     </div>
     <div class="head-mountain"></div>
     <!-- 购物车 end -->
 @endsection
-
 
 @section('zuo')
     <div class="pullDown">

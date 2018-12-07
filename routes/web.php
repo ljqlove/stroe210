@@ -23,6 +23,9 @@ Route::get('/home/logout','Auth\LoginController@logout');
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
+
+
+
 Route::get('/home/cate/{id}','Home\CateController@index');
 
 // 列表详情页
@@ -68,6 +71,23 @@ Route::group(['middleware' => 'auth'], function(){
     Route::any('/home/wjd/ajaxupdate','Home\AddressController@ajaxupdate');
     Route::any('/home/wjd/ajaxadd','Home\AddressController@ajaxadd');
     Route::any('/home/wjd/ajaxdeletes','Home\AddressController@ajaxdeletes');
+
+    // 前台个人中心账户安全
+    Route::get('/home/security/{id}','Home\MessageController@user_security');
+    Route::get('/home/security/pw/{id}','Home\MessageController@user_pw');
+    // 修改密码
+    Route::post('/home/set_password','Home\MessageController@set_password');
+    // 修改密码前的密保问题验证
+    Route::get('/home/pro_pw','Home\MessageController@pro_pw');
+    Route::post('/home/yz_pw','Home\MessageController@yz_pw');
+
+    // 密保问题
+    Route::get('/home/propass/{id}','Home\MessageController@propass');
+    Route::post('/home/set_propass','Home\MessageController@set_propass');
+    // 修改密保前的密保问题验证
+    Route::get('/home/pro_mb','Home\MessageController@pro_mb');
+    Route::post('/home/yz_mb','Home\MessageController@yz_mb');
+    Route::post('/home/uppropass','Home\MessageController@uppropass');
 });
 
 

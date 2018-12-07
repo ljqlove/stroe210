@@ -45,7 +45,8 @@ class CateController extends Controller
             'res'=>$res,
             'cates'=>$cates,
             'request'=>$request,
-            'gimgs'=>$gimgs
+            'gimgs'=>$gimgs,
+            'goods'=>$goods
         ]);
     }
 
@@ -68,7 +69,7 @@ class CateController extends Controller
             // var_dump($v['gsize']);
              $size[] = explode(',', $v['gsize']);
         }
-        // dd($size);
+        dd($size);
     	return view('home.goods',[
     		'title'=>'商品详情页',
     		'goods'=>$goods,

@@ -42,6 +42,7 @@
                     @endif
                 </a> </li>
 
+
                 <a href="/home/logout" style="float:left;">退出</a>
                 @else if
                 <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
@@ -76,6 +77,7 @@
             @yield('zuo')
             @yield('nav')
             <!-- nav start -->
+
 
             <!-- nav end -->
         </div>

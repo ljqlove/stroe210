@@ -98,7 +98,7 @@
                     <dd class="cur"><a href="/home/wjd/message">我的信息</a></dd>
                     <dd class="cur"><a href="#">我的订单</a></dd>
                     <dd><a href="#">我的收藏</a></dd>
-                    <dd><a href="#">账户安全</a></dd>
+                    <dd><a href="/home/security/{{$message->uid}}">账户安全</a></dd>
                     <dd><a href="#">我的评价</a></dd>
                     <dd><a href="/home/wjd/address">地址管理</a></dd>
                 </dl>
