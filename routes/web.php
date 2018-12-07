@@ -34,6 +34,22 @@ Route::any('/home/logout','Home\LoginController@logout');
 Route::get('/home/wjd/message','Home\MessageController@index');
 //前台个人信息修改
 Route::any('/home/wjd/ajaxmessageEdit','Home\MessageController@ajaxmessageEdit');
+// 前台个人中心账户安全
+Route::get('/home/security/{id}','Home\MessageController@user_security');
+Route::get('/home/security/pw/{id}','Home\MessageController@user_pw');
+// 修改密码
+Route::post('/home/set_password','Home\MessageController@set_password');
+// 修改密码前的密保问题验证
+Route::get('/home/pro_pw','Home\MessageController@pro_pw');
+Route::post('/home/yz_pw','Home\MessageController@yz_pw');
+
+// 密保问题
+Route::get('/home/propass/{id}','Home\MessageController@propass');
+Route::post('/home/set_propass','Home\MessageController@set_propass');
+// 修改密保前的密保问题验证
+Route::get('/home/pro_mb','Home\MessageController@pro_mb');
+Route::post('/home/yz_mb','Home\MessageController@yz_mb');
+Route::post('/home/uppropass','Home\MessageController@uppropass');
 
 //地址管理
 Route::get('/home/wjd/address','Home\AddressController@index');
