@@ -33,9 +33,9 @@
         <div class="pc-order-title fl"><h1><a href="/"><img src="/homes/theme/icon/logo.png"></a></h1></div>
         <div class="pc-step-title fr">
             <ul>
-                <li class="cur"><a href="#">1 . 商户入驻协议书</a></li>
-                <li class=""><a href="#">2 . 填写入驻信息</a></li>
-                <li class=""><a href="#">3 . 等待审核</a></li>
+                <li class="cur"><a href="/home/Merchant">1 . 商户入驻协议书</a></li>
+                <li class=""><a href="javascript:void(0)">2 . 填写入驻信息</a></li>
+                <li class=""><a href="javascript:void(0)">3 . 等待审核</a></li>
             </ul>
         </div>
         <div style="clear:both"></div>

@@ -15,20 +15,16 @@
 Route::get('/','Home\IndexController@index');
 
 //前台注册
-Route::any('/home/register', 'Home\RegisterController@register');
-Route::any('/home/doregiste','Home\RegisterController@doregiste');
-Route::any('/home/captcha','Home\RegisterController@captcha');
+Route::any('/home/register', 'Auth\RegisterController@register');
+Route::any('/home/doregister','Auth\RegisterController@doregister');
+Route::any('/home/captcha','Auth\LoginController@captcha');
 //前台登录
-Route::get('/home/login','Home\LoginController@login');
-Route::get('/home/dologin','Home\LoginController@dologin');
-Route::get('/home/logout','Home\LoginController@logout');
+Route::get('/home/login','Auth\LoginController@login');
+Route::get('/home/dologin','Auth\LoginController@dologin');
+Route::get('/home/logout','Auth\LoginController@logout');
 // 无需登录
 // 前台列表页
 Route::get('/','Home\IndexController@index');
-
-// 模拟登陆可删除
-Route::any('/home/dologin','Home\LoginController@doLogin');
-Route::any('/home/logout','Home\LoginController@logout');
 
 //前台个人中心主页
 Route::get('/home/wjd/message','Home\MessageController@index');
@@ -53,8 +49,10 @@ Route::any('/home/ajaxgsize','Home\CateController@ajaxgsize');
 // 快讯列表页
 Route::get('/home/flash','Home\FlashController@index');
 Route::get('/home/content/{id}','Home\FlashController@content');
+
 // 需要登录
-Route::group([], function(){
+Route::group(['middleware' => 'auth'], function(){
+
     Route::any('/home/myCart','Home\CartController@myCart');
     Route::post('/home/shopcart','Home\CartController@shopcart');
     Route::any('/home/order','Home\OrderController@order');
@@ -66,11 +64,14 @@ Route::group([], function(){
     Route::post('/home/coldel','Home\ColController@coldel');
     Route::any('/home/myOrder','Home\OrderController@myOrder');
     Route::any('home/myOrderInfo/{oid}','Home\OrderController@myOrderInfo');
+    // 商家入驻
+    Route::get('/home/Merchant','Auth\RegisterController@Merchant');
+    Route::get('/home/Merchant_2','Auth\RegisterController@Merchant_2');
+    Route::post('/home/Merchant_3','Auth\RegisterController@Merchant_3');
+    Route::post('/home/checkphone','Auth\RegisterController@checkphone');
+    Route::get('/home/checkcode','Auth\RegisterController@checkcode');
 });
 
-// 商家入驻
-Route::get('/home/Merchant','Auth\RegisterController@Merchant');
-Route::get('/home/Merchant_2','Auth\RegisterController@Merchant_2');
 
 
 //后台的首页

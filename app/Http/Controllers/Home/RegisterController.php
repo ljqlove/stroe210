@@ -22,15 +22,15 @@ class RegisterController extends Controller
             $this->validate($request, [
                 'phone' => 'required|regex:/^1[3456789]\d{9}$/',
                 'password' => 'required|regex:/^\S{5,12}$/',
-                'repass'=>'same:password',
-                'captcha'=>'required'
+                'repassword'=>'same:password',
+                'code'=>'required'
             ],[
                 'phone.required' => '请输入手机号',
                 'phone.regex' => '手机号格式不正确',
                 'password.required' => '请输入密码',
                 'password.regex' => '密码格式不正确',
-                'repass.same' => '两次输入密码不一致',
-                'captcha.required' => '请输入验证码',
+                'repassword.same' => '两次输入密码不一致',
+                'vode.required' => '请输入验证码',
                 // 'captcha.captcha' =>'请输入正确的验证码'
             ]);
 
@@ -43,7 +43,7 @@ class RegisterController extends Controller
             //存储数据
 
             $data = Comment::create($res);
-            
+
             if($data){
                 return redirect('/home/login')->with('success','注册成功');
             }else{

@@ -1,6 +1,6 @@
-@extends('layout.homes')
-
+@extends('layout.myinfo')
 @section('title',$title)
+@section('cur1','cur')
 
 @section('js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -199,17 +199,6 @@
             background:#EA4949FF;
         }
     </style>
-@endsection
-
-@section('sousuo')
-    <div class="pc-order-titlei fl"><h2>我的购物车</h2></div>
-    <div class="pc-step-title fl">
-        <ul>
-            <li class="cur"><a href="#">1 . 我的购物车</a></li>
-            <li class=""><a href="#">2 . 填写核对订单</a></li>
-            <li class=""><a href="#">3 . 成功提交订单</a></li>
-        </ul>
-    </div>
 @endsection
 
 @section('content')

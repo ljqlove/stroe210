@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
  <head>
@@ -21,7 +20,6 @@
  </head>
  <body>
 
-
 <div>
     <div id="moquu_wxin" class="moquu_wxin"><a href="javascript:void(0)"><div class="moquu_wxinh"></div></a></div>
     <div id="moquu_wshare" class="moquu_wshare"><a href="javascript:void(0)" style="text-indent:0"><div class="moquu_wshareh"><img src="/homes/theme/icon/moquu_wshare.png" width="100%"></div></a></div>
@@ -35,23 +33,25 @@
         <div class="yNavIndex">
             <ul class="BHeaderl">
 
-                @php
-                    $uuu=session()->all();
-                @endphp
-
-                @if($uuu['uid'])
-                <li><a href="/" style="color:#ea4949;">Hello,{{$uuu['phone']}}</a> </li>
+                @if($userinfo = session('userinfo'))
+                <li><a href="/" style="color:#ea4949;">Hello,
+                    @if(($res = \DB::table('message')->where('uid',$userinfo['uid'])->first())->mname != 'default')
+                    {{$res->mname}}
+                    @else
+                    {{$userinfo['phone']}}
+                    @endif
+                </a> </li>
                 <a href="/home/logout" style="float:left;">退出</a>
                 @else
                 <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
                 @endif
+
                 <li class="headerul">|</li>
                 <li><a href="/home/register">免费注册</a> </li>
                 <li class="headerul">|</li>
-                <li><a href="my-d.html">订单查询</a> </li>
-                <li><a href="/home/logout">临时退出</a> </li>
+                <li><a href="/home/myOrder">订单查询</a> </li>
                 <li class="headerul">|</li>
-                <li><a href="my-s.html">我的收藏</a> </li>
+                <li><a href="/home/myCollect">我的收藏</a> </li>
                 <li class="headerul">|</li>
                 <li><a href="/home/Merchant">我要开店</a> </li>
                 <li class="headerul">|</li>
@@ -65,18 +65,11 @@
                     </div>
                 </li>
                 <li class="headerul">|</li>
-                <li id="pc-nav1" class="menu"><a href="#" class="tit M-iphone">手机悦商城</a>
-                   <div class="subnav">
-                       <a href="#"><img src="/homes/theme/icon/ewm.png" width="115" height="115" title="扫一扫，有惊喜！"></a>
-                   </div>
-                </li>
             </ul>
         </div>
     </div>
     <div class="container clearfix">
         @php
-        $message = DB::table('message')->where('mid',session('mid'))->first();
-
             $site = DB::table('site')->where('id',1)->first();
         @endphp
         <!-- logo start -->

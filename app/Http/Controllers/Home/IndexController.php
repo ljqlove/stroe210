@@ -9,7 +9,7 @@ use App\Model\Admin\Goods;
 use App\Model\Admin\Site;
 use  App\Model\Admin\Flash;
 use DB;
-class IndexController extends Controller
+/*class IndexController extends Controller
 {
     //
     public function index()
@@ -28,7 +28,7 @@ class IndexController extends Controller
     		'friends' => $friends,
     		'site'=>$site,
             'flash'=>$flash,
-    	]);
+    	]);*/
 
 class IndexController extends Controller
 {
@@ -42,6 +42,9 @@ class IndexController extends Controller
         // 引入友情链接
         $friends = DB::table('friends')->get();
 
+        // 引入商城快讯
+        $flash = DB::table('shopflash')->get();
+
         // 引入站点设置
         $site = DB::table('site')->get();
         $site = Site::find(1);
@@ -50,6 +53,7 @@ class IndexController extends Controller
             'good'=>$good,
             'goods'=>$goods,
             'friends' => $friends,
+            'flash'=>$flash,
             'site'=>$site,
             'title'=>'歪秀购物'
         ]);

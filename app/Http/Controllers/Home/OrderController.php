@@ -14,7 +14,7 @@ class OrderController extends Controller
 {
     public function order(Request $request)
     {
-        $uid = 3;
+        $uid = session('userinfo')['uid'];
         $cids = $request -> cid;
         $qtys = $request -> qty;
         // dd($cids,$qtys);
@@ -57,7 +57,7 @@ class OrderController extends Controller
     public function addOrder(Request $request)
     {
         // 获取新订单数据
-        $uid = 3;
+        $uid = session('userinfo')['uid'];
         $address = DB::table('address')->where('uid',$uid)->get();
         $data = DB::table('orders')
         ->join('goods','oname','gname')
@@ -87,7 +87,7 @@ class OrderController extends Controller
         if ($num) {
             $like = '%'.$num.'%';
         }
-        $uid = 3;
+        $uid = session('userinfo')['uid'];
         $orders = DB::table('orders')->where('uid',$uid)->where('ordernum','like',$like)->get();
         return view('home.ljq.myorder',['title'=>'我的订单','orders'=>$orders]);
     }

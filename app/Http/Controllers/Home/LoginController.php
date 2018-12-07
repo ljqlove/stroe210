@@ -9,35 +9,35 @@ use App\Model\Admin\Comment;
 use DB;
 use Session;
 
-class LoginController extends Controller
-{
-    //
-    /**
-     *  临时的  全部都可删除
-     *
-     *  @return \Illuminate\Http\Response
-     */
+// /*class LoginController extends Controller
+// {
+//     //
+//     /**
+//      *  临时的  全部都可删除
+//      *
+//      *  @return \Illuminate\Http\Response
+//      */
 
 
-    public function doLogin()
-    {
-    	// $message = Message::find(2);
-    	$user = Comment::find(3);
-    	// dd($user);
-		session(['uid'=>$user->uid]);
-		// session(['uid'=>$rs->id]);
+//     public function doLogin()
+//     {
+//     	// $message = Message::find(2);
+//     	$user = Comment::find(3);
+//     	// dd($user);
+// 		session(['uid'=>$user->uid]);
+// 		// session(['uid'=>$rs->id]);
 
 
-    	// dd($message);
-    	return redirect('/');
-    }
+//     	// dd($message);
+//     	return redirect('/');
+//     }
 
-    public function logout()
-    {
-    	session(['uid'=>'']);
+//     public function logout()
+//     {
+//     	session(['uid'=>'']);
 
-    	return redirect('/');
-    }
+//     	return redirect('/');
+//     }*/
 
 
 class LoginController extends Controller

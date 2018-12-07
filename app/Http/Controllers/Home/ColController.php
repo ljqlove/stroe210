@@ -16,12 +16,12 @@ class ColController extends Controller
     public function myCollect(Request $request)
     {
         $gname = '%%';
-        // dd($request ->gname);
         if ($request ->gname) {
             $gname = '%'.($request->gname).'%';
         }
-        // dd($gname);
-        $user = User::find(3);
+
+        $uid = session('userinfo')['uid'];
+        $user = User::find($uid);
         $goods = $user->goods()
         ->where('gname','like',$gname)
         ->paginate(8);
@@ -31,7 +31,8 @@ class ColController extends Controller
 
     public function coldel(Request $request)
     {
-        $user = User::find(3);
+        $uid = session('userinfo')['uid'];
+        $user = User::find($uid);
         $gids = $request -> good;
         $res = $user -> goods() -> detach($gids);
         if ($res) {

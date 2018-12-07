@@ -14,7 +14,7 @@ class User extends Model
      *
      * @var string
      */
-    protected $table = 'comment';
+    protected $table = 'users';
 
     protected $primaryKey = 'uid';
 
