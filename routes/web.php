@@ -10,10 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// 前台页面
-
-Route::get('/','Home\IndexController@index');
-
 //前台注册
 Route::any('/home/register', 'Auth\RegisterController@register');
 Route::any('/home/doregister','Auth\RegisterController@doregister');
@@ -22,23 +18,10 @@ Route::any('/home/captcha','Auth\LoginController@captcha');
 Route::get('/home/login','Auth\LoginController@login');
 Route::get('/home/dologin','Auth\LoginController@dologin');
 Route::get('/home/logout','Auth\LoginController@logout');
+
 // 无需登录
 // 前台列表页
 Route::get('/','Home\IndexController@index');
-
-//前台个人中心主页
-Route::get('/home/wjd/message','Home\MessageController@index');
-//前台个人信息修改
-Route::any('/home/wjd/ajaxmessageEdit','Home\MessageController@ajaxmessageEdit');
-
-//地址管理
-Route::get('/home/wjd/address','Home\AddressController@index');
-Route::any('/home/wjd/dostatus','Home\AddressController@dostatus');
-Route::any('/home/wjd/ajaxedit','Home\AddressController@ajaxedit');
-Route::any('/home/wjd/ajaxupdate','Home\AddressController@ajaxupdate');
-Route::any('/home/wjd/ajaxadd','Home\AddressController@ajaxadd');
-Route::any('/home/wjd/ajaxdeletes','Home\AddressController@ajaxdeletes');
-
 
 Route::get('/home/cate/{id}','Home\CateController@index');
 
@@ -70,6 +53,21 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/home/Merchant_3','Auth\RegisterController@Merchant_3');
     Route::post('/home/checkphone','Auth\RegisterController@checkphone');
     Route::get('/home/checkcode','Auth\RegisterController@checkcode');
+
+    //前台个人中心主页
+    Route::get('/home/wjd/message','Home\MessageController@index');
+    //前台个人信息修改
+    Route::any('/home/wjd/ajaxmessageEdit','Home\MessageController@ajaxmessageEdit');
+    // 个人信息头像修改
+    Route::any('/home/wjd/message/ajaxupdate','Home\MessageController@ajaxupdate');
+
+    //地址管理
+    Route::get('/home/wjd/address','Home\AddressController@index');
+    Route::any('/home/wjd/dostatus','Home\AddressController@dostatus');
+    Route::any('/home/wjd/ajaxedit','Home\AddressController@ajaxedit');
+    Route::any('/home/wjd/ajaxupdate','Home\AddressController@ajaxupdate');
+    Route::any('/home/wjd/ajaxadd','Home\AddressController@ajaxadd');
+    Route::any('/home/wjd/ajaxdeletes','Home\AddressController@ajaxdeletes');
 });
 
 

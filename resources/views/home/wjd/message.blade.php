@@ -81,7 +81,10 @@
     <div class="member-center clearfix">
         <div class="member-left fl">
             <div class="member-apart clearfix">
-                <div class="fl"><a href="#"><img src="{{$message->headpic}}" width="80px" height="80px"></a></div>
+                <div class="fl">
+                    <img id="lula" src="{{$message->headpic}}" width="80px" height="80px">
+                   
+                </div>
                 <div class="fl">
                     <p>用户名：</p>
                     <p><a href="#">&nbsp;&nbsp;{{$message->uname}}</a></p>
@@ -106,15 +109,15 @@
         <div class="mod-main">
                   <div class="mt">
                       <ul class="extra-l">
-                          <li class="fore-1"><a class="curr" href="javascript:void(0);" onclick="xinxi(this)" >基本信息</a></li>
-                          <li class="fore-2"><a href="javascript:void(0)" onclick="pic(this )">头像照片</a></li>
+                          <li class="fore-1"><a id="jb" class="curr" href="javascript:void(0);"onclick="dianji()" >基本信息</a></li>
+                          <li class="fore-2"><a id="tx" class="" href="javascript:void(0)" onclick="pic(this )">头像照片</a></li>
                       </ul>
                   </div>
                     @php
                       $user = DB::table('users')->where('uid',session('uid'))->first();
                     @endphp
 
-                    <div class="mc">
+                    <div class="mc" id="ziliao">
                         <div class="user-set userset-lcol">
                             <div class="form">
                               <div class="item" id="aliasArea">
@@ -156,21 +159,57 @@
           
               </div>
             </div>
-        <div class="mc update-face-cont" style="display:none";">
+        <div id="touxiang" class="mc update-face-cont" style="display:none";">
+          <div >
+            <p>
+                
+            </p>
+          </div>
                           <div class="update-lcol">
-                              <div class="mb10">
-                                  <object id="SWFUpload_0" type="application/x-shockwave-flash" data="/commons/swfupload.swf?preventswfcaching=1543998134759" width="202" height="34" class="swfupload"><param name="wmode" value="transparent"><param name="movie" value="/commons/swfupload.swf?preventswfcaching=1543998134759"><param name="quality" value="high"><param name="menu" value="false"><param name="allowScriptAccess" value="always"><param name="flashvars" value="movieName=SWFUpload_0&amp;uploadURL=%2Fuser%2Fupload%2Fimage.action&amp;useQueryString=false&amp;requeueOnError=false&amp;httpSuccess=&amp;assumeSuccessTimeout=0&amp;params=flashuploadimg%3DD73B73D9E60FAE816192664D9C57C62BFAB6D81921E46B8CCFFAC1BD9887DA5968DA51A4629107EFF839994F325F0A4CFF50A6236E69D3D5289E95C4670E074E1805BD138D62F18CE320E9A6818CA4C0A5218F71C9B892A0762FC821D8B1E29E2D7524557200EED774EB96A8C97AB35BCB6FBA3250A63145772C94523FE186F2C54B1539624E3C15CC1D66A8E2688A660BC0B6EE6F32F15FE361AFDF388C396C&amp;filePostName=file&amp;fileTypes=*.jpg%3B*.gif%3B*.png%3B*.jpeg%3B*.bmp&amp;fileTypesDescription=img&amp;fileSizeLimit=4%20MB&amp;fileUploadLimit=0&amp;fileQueueLimit=0&amp;debugEnabled=false&amp;buttonImageURL=%2Fimages%2Fperfect_bg.jpg&amp;buttonWidth=202&amp;buttonHeight=34&amp;buttonText=&amp;buttonTextTopPadding=0&amp;buttonTextLeftPadding=0&amp;buttonTextStyle=color%3A%20%23000000%3B%20font-size%3A%2016pt%3B&amp;buttonAction=-100&amp;buttonDisabled=false&amp;buttonCursor=-1"></object>
-                                  <img id="loading" class="float:left" src="/errors/loading.png" style="display:none">
-                                  <div id="messages" style="border:1px solid #DB9A9A;background-color:#FFE8E8;color:#CC0000;text-align: left;"></div>
-                                  <input id="btnCancel" type="hidden" clstag="pageclick|keycount|201602251|5">
-                                  <div class="ftx03">仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
-                              </div>
-                              <div class="img-b-cont img-cont ">
-                                  <!--<div class="tip">编辑预览区</div>-->
-                                  <div class="img-b">
-                                      <img id="bigImage" name="bigImage" alt="" width="150" height="150" src="//storage.360buyimg.com/i.imageUpload/6a645f3665386364356537663931616131353433393938313332313733_big.jpg">
-                                  </div>
-                              </div>
+                             <form id="myForm" method="post"  enctype='multipart/form-data'>
+                                <div class="mb10">
+                                    <div id="messages" style="border:1px solid #DB9A9A;background-color:#FFE8E8;color:#CC0000;text-align: left;"></div>
+                                    <input type="file" name="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
+                                    <input id="btnCancel" type="hidden" clstag="pageclick|keycount|201602251|5">
+                                    <input type="hidden" name="image" class="file" value=""/>
+                                    <!-- <input type="file" name="file" value="" id="choose" accept="image/gif, image/png, image/jpg, image/jpeg" /> -->
+                                    
+                                    <div class="ftx03">仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
+                                </div>
+                                <div class="img-b-cont img-cont ">
+                                    <!--<div class="tip">编辑预览区</div>-->
+                               
+                                    <div class="img-b">
+                                        <img id="xmTanImg" name="bigImage" alt="" width="150" height="150" src="{{$message->headpic}}">
+                                    </div>
+                                  {{csrf_field()}}
+                               
+                                </div>
+                              </form>
+                              <!-- <div class="smt"><h3>推荐头像</h3></div> -->
+                              <div class="smc face-list">
+   <!--                              <ul class="imgUl" clstag="homepage|keycount|home2013|infoshowtx2">
+                                    <li value="1"><img src="/homes/defaultImgs/1.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="2"><img src="/homes/defaultImgs/2.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="3"><img src="/homes/defaultImgs/3.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="4" class="selected"><img src="/homes/defaultImgs/4.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="5"><img src="/homes/defaultImgs/5.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="6"><img src="/homes/defaultImgs/6.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="7"><img src="/homes/defaultImgs/7.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="8"><img src="/homes/defaultImgs/8.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="9"><img src="/homes/defaultImgs/9.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="10"><img src="/homes/defaultImgs/10.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="11"><img src="/homes/defaultImgs/11.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="12"><img src="/homes/defaultImgs/12.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="13"><img src="/homes/defaultImgs/13.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="14"><img src="/homes/defaultImgs/14.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="15"><img src="/homes/defaultImgs/15.jpg" alt="" width="50" height="50"><b></b></li>
+                                    <li value="16"><img src="/homes/defaultImgs/16.jpg" alt="" width="50" height="50"><b></b></li>
+                                </ul> -->
+                                <div class="btns mt20">
+                                    <a data-uid="{{$message->uid}}" clstag="homepage|keycount|home2013|infoshowbtn" href="javascript:void(0)" class="btn-5 mr10" onclick="uploadDefaultImg(this)">保存</a>
+                                </div>
+                            </div>
 
                           </div>
                           <div class="update-rcol">
@@ -179,13 +218,13 @@
                                   你上传的图片会自动生成2种尺寸，请注意小尺寸的头像是否清晰
                                   <div class="img-m-cont img-cont">
                                       <div class="img-s">
-                                          <img id="midImage" name="midImage" src="//storage.360buyimg.com/i.imageUpload/6a645f3665386364356537663931616131353433393938313332313733_mid.jpg">
+                                          <img id="midImage" name="midImage" width="100" height="100" src="{{$message->headpic}}">
                                       </div>
                                   </div>
                                   100*100像素
                                   <div class="img-s-cont img-cont">
                                       <div class="img-s">
-                                          <img id="smaImage" name="smaImage" src="//storage.360buyimg.com/i.imageUpload/6a645f3665386364356537663931616131353433393938313332313733_sma.jpg">
+                                          <img id="smaImage" name="smaImage" width="50" height="50" src="{{$message->headpic}}">
                                       </div>
                                   </div>
                                   50*50像素
@@ -254,7 +293,7 @@
               $('#online_box').val(data.status);
               var element = document.getElementById("online_box").value;
               if (element == '2') {
-                Command: toastr["error"]("您并没有任何修改", "错误")
+                Command: toastr["warning"]("您并没有任何修改", "错误")
                   toastr.options = {
                     "closeButton": true,
                     "debug": true,
@@ -281,5 +320,189 @@
 
   }
 
+  function pic(obj){
+    // 让个人基本资料先隐藏
+    var ziliao = document.getElementById('ziliao');
+    if (ziliao) {
+      ziliao.style.display="none";
+    }
+
+    // 显示修改头像
+    var touxiang = document.getElementById('touxiang');
+    // 修改class
+    var jb = document.getElementById('jb');
+    jb.className="";
+    var tx = document.getElementById('tx');
+    tx.className="curr";
+    if (touxiang) {
+      touxiang.style.display="";
+    }
+  }
+
+
+  function uploadDefaultImg(obj){
+    var form = new FormData();
+    form.append('file',$("input[name='file']")[0].files[0]);
+    var tp = $('#xmTanImg').attr("src");
+    var ltx = $('#smaImage').attr("src");
+    if (tp == ltx) {
+      $('#online_box').val(2);
+        var element = document.getElementById("online_box").value;
+        if (element == '2') {
+          Command: toastr["warning"]("您没有做任何修改", "警告")
+          toastr.options = {
+            "closeButton": true,
+            "debug": true,
+            "newestOnTop": true,
+            "progressBar": true,
+            "rtl": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 1000,
+            "timeOut": 2000,
+            "extendedTimeOut": 1000,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          }
+        }
+        return false;
+      }
+
+    var  _token = '{{csrf_token()}}';
+    form.append('_token', _token);
+    
+    $.ajax({
+            async: false,
+            type: "POST",
+            url: "/home/wjd/message/ajaxupdate",
+            data: form,
+            dataType:'json',       //返回的数据类型
+            contentType: false,
+            processData: false,
+            success: function(data) {
+              // console.log(data);
+              if(data.status == 1){
+                $('#online_box').val(data.status);
+                // 映射头像
+                $("#midImage").attr("src",data.mpic);
+                $("#smaImage").attr("src",data.mpic);
+                $("#lula").attr("src",data.mpic);
+                var element = document.getElementById("online_box").value;
+                if (element == '1') {
+                  Command: toastr["success"]("修改成功", "提示")
+                  toastr.options = {
+                    "closeButton": true,
+                    "debug": true,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "rtl": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": 300,
+                    "hideDuration": 1000,
+                    "timeOut": 2000,
+                    "extendedTimeOut": 1000,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                  }
+                }
+
+              } else {
+
+                $('#online_box').val(data.status);
+                var element = document.getElementById("online_box").value;
+                if (element == '2') {
+                  Command: toastr["error"]("上传格式或大小不符合", "错误")
+                  toastr.options = {
+                    "closeButton": true,
+                    "debug": true,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "rtl": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": 300,
+                    "hideDuration": 1000,
+                    "timeOut": 2000,
+                    "extendedTimeOut": 1000,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                  }
+                }
+            }
+          }
+      });
+  }
+
+  function dianji(){
+    var touxiang = document.getElementById('touxiang');
+    if (touxiang) {
+      touxiang.style.display="none";
+    }
+
+    // 显示修改头像
+    var ziliao = document.getElementById('ziliao');
+    if (ziliao) {
+      ziliao.style.display="";
+    }
+    // 修改class
+    var tx = document.getElementById('tx');
+    tx.className="";
+    var jb = document.getElementById('jb');
+    jb.className="curr";
+  }
+
+</script>
+
+<script type="text/javascript">            
+            //判断浏览器是否支持FileReader接口
+            if (typeof FileReader == 'undefined') {
+                document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+                //使选择控件不可操作
+                document.getElementById("xdaTanFileImg").setAttribute("disabled", "disabled");
+            }
+
+            //选择图片，马上预览
+            function xmTanUploadImg(obj) {
+                var file = obj.files[0];
+                
+                console.log(obj);console.log(file);
+                console.log("file.size = " + file.size);  //file.size 单位为byte
+
+                var reader = new FileReader();
+
+                //读取文件过程方法
+                reader.onloadstart = function (e) {
+                    // console.log("开始读取....");
+                }
+                reader.onprogress = function (e) {
+                    // console.log("正在读取中....");
+                }
+                reader.onabort = function (e) {
+                    console.log("中断读取....");
+                }
+                reader.onerror = function (e) {
+                    console.log("读取异常....");
+                }
+                reader.onload = function (e) {
+                    console.log("成功读取....");
+
+                    var img = document.getElementById("xmTanImg");
+                    img.src = e.target.result;
+                    //或者 img.src = this.result;  //e.target == this
+                }
+
+                reader.readAsDataURL(file)
+            }
 </script>
 @endsection

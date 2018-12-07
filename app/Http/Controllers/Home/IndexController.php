@@ -9,26 +9,6 @@ use App\Model\Admin\Goods;
 use App\Model\Admin\Site;
 use  App\Model\Admin\Flash;
 use DB;
-/*class IndexController extends Controller
-{
-    //
-    public function index()
-    {
-    	// 引入友情链接
-    	$friends = DB::table('friends')->get();
-        // 引入商城快讯
-        $flash = DB::table('shopflash')->get();
-
-        // dd()
-    	// 引入站点设置
-        $site = Site::find(1);
-
-
-    	return view('home.index',[
-    		'friends' => $friends,
-    		'site'=>$site,
-            'flash'=>$flash,
-    	]);*/
 
 class IndexController extends Controller
 {

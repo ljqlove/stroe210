@@ -41,8 +41,9 @@
                     {{$userinfo['phone']}}
                     @endif
                 </a> </li>
+
                 <a href="/home/logout" style="float:left;">退出</a>
-                @else
+                @else if
                 <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
                 @endif
 
@@ -56,13 +57,6 @@
                 <li><a href="/home/Merchant">我要开店</a> </li>
                 <li class="headerul">|</li>
                 <li id="pc-nav" class="menu"><a href="/home/wjd/message" >我的商城</a>
-                    <div class="subnav">
-                        <a href="my-d.html">我的订单</a>
-                        <a href="my-s.html">我的收藏</a>
-                        <a href="my-user.html">账户安全</a>
-                        <a href="my-add.html">地址管理</a>
-                        <a href="my-p.html">我要评价</a>
-                    </div>
                 </li>
                 <li class="headerul">|</li>
             </ul>
