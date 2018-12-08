@@ -133,6 +133,7 @@ Route::get('/admin/phajax','Admin\OrderController@phAjax');
 Route::get('/admin/numajax','Admin\OrderController@numAjax');
 Route::get('/admin/delajax','Admin\OrderController@delAjax');
 
+Route::resource('/admin/stroe','Admin\StroeController');
 
 //后台友情链接管理
 Route::resource('admin/firend', "Admin\FriendController");

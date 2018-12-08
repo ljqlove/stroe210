@@ -16,6 +16,37 @@
     <script type="text/javascript" src="/homes/theme/js/jquery.js"></script>
 
     <link rel="stylesheet" href="/font/css/font-awesome.min.css">
+    <style>
+        /*灰色遮罩层*/
+        .fade{
+            width:100%;
+            height:100%;
+            background:rgba(0, 0, 0, 0.5);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99;
+        }
+        /*弹出层*/
+        .succ-pop{
+            width: 400px;
+            height: 300px;
+            background: #fff;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -150px;
+            z-index: 999;
+            border-radius: 5px;
+        }
+        .succ-pop h3.title{
+            text-align: center;
+            font-size: 22px;
+            color: #ce002c;
+            margin-top:80px;
+        }
+    </style>
     @yield('js')
  </head>
  <body>
@@ -26,7 +57,17 @@
     <div id="moquu_wmaps"><a href="javascript:void(0)" class='moquu_wmaps'></a></div>
     <a id="moquu_top" href="javascript:void(0)"></a>
 </div>
-
+@if($err=session('error'))
+    <div class="fade"></div>
+    <div class="succ-pop">
+        <div >
+            <ul>
+               <li style="font-weight: bold;font-size: 20px;text-align: center;padding:10px 80px;margin-top:80px">{{$err}}</li>
+            </ul>
+        </div>
+        <a id="button" style="border:1px solid red;display: block;width:200px;margin-top:120px;height:40px;border-radius:10px;margin-left:100px;text-align:center;line-height: 40px;font-size:18px;font-weight: bold;color:#fff;background:#e53e41" href="javascript:void(0)">关闭</a>
+    </div>
+@endif
 <!--- header begin-->
 <header id="pc-header">
     <div class="BHeader">
@@ -194,6 +235,12 @@
 </div>
 <!-- 轮播js start -->
 @yield('banner')
+<script>
+    $('#button').click(function(){
+        $('.succ-pop').css('display','none');
+        $('.fade').css('display','none');
+    })
+</script>
 <!-- 轮播js stop -->
 </body>
 </html>

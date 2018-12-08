@@ -83,7 +83,7 @@
                             <td class="oname">{{$v->oname}}</td>
                             <td class="uname">{{$v->uname}}</td>
                             <td class="address">{{$v->address}}</td>
-                            <td class="phone">{{$v->phone}}</td>
+                            <td class="phone">{{$v->aphone}}</td>
                             <td class="num">{{$v->num}}</td>
                             <td class="total">{{$v->total}}</td>
                             <td class="msg">{{$v->msg}}</td>

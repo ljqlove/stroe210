@@ -30,83 +30,86 @@
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/admins/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <div class="search-field d-none d-md-block">
+          <form class="d-flex align-items-center h-100" action="#">
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
+              </div>
+              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+            </div>
+          </form>
+        </div>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              @php
-                  $data =session()->all();
-              @endphp
               <div class="nav-profile-img">
-                <img src="
-                @if($data['user_pic'])
-                {{$data['user_pic']}}
-                @endif
-                " alt="image">
+                <img src="../../images/faces/face1.jpg" alt="image">
                 <span class="availability-status online"></span>
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">
-                @if($data['user_name'])
-                {{$data['user_name']}}
-                @endif
-              </p>
+                <p class="mb-1 text-black">David Greymaax</p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="#">
+                <i class="mdi mdi-cached mr-2 text-success"></i>
+                Activity Log
+              </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/admin/logout">
+              <a class="dropdown-item" href="#">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
-                退出
+                Signout
               </a>
             </div>
           </li>
-          
+          <li class="nav-item d-none d-lg-block full-screen-link">
+            <a class="nav-link">
+              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+            </a>
+          </li>
           <li class="nav-item dropdown">
-            
+            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-email-outline"></i>
+              <span class="count-symbol bg-warning"></span>
+            </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-              <h6 class="p-3 mb-0">Messages</h6>
+              <h6 class="p-3 mb-0">新的申请信息</h6>
+              @foreach($news as $v)
+              @php
+                $res = DB::table('message')->where('uid',$v->uid)->first();
+              @endphp
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                    <img src="/admins/images/faces/face4.jpg" alt="image" class="profile-pic">
+                    <img src="{{$res->headpic}}" alt="image" class="profile-pic">
                 </div>
                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">{{$v->uname}}@的申请</h6>
                   <p class="text-gray mb-0">
-                    1 Minutes ago
+                    @php
+                      $rs = (time() - strtotime($v->create_at))/60;
+                      if($rs < 60){
+                      echo $rs." Minutes ago ";
+                    } else if(($rss = $rs/60) < 60) {
+                      echo $rss." Hours ago ";
+                    } else if(($rsss = $rss/24)) {
+                      echo $rsss." Days ago ";
+                    }
+                    @endphp
                   </p>
                 </div>
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="/admins/images/faces/face2.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                  <p class="text-gray mb-0">
-                    15 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="/admins/images/faces/face3.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                  <p class="text-gray mb-0">
-                    18 Minutes ago
-                  </p>
-                </div>
-              </a>
+              @endforeach
               <div class="dropdown-divider"></div>
               <h6 class="p-3 mb-0 text-center">4 new messages</h6>
             </div>
           </li>
           <li class="nav-item dropdown">
-            
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="mdi mdi-bell-outline"></i>
+              <span class="count-symbol bg-danger"></span>
+            </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
               <h6 class="p-3 mb-0">Notifications</h6>
               <div class="dropdown-divider"></div>
@@ -154,6 +157,16 @@
               <div class="dropdown-divider"></div>
               <h6 class="p-3 mb-0 text-center">See all notifications</h6>
             </div>
+          </li>
+          <li class="nav-item nav-logout d-none d-lg-block">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-power"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-block">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-format-line-spacing"></i>
+            </a>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -224,10 +237,23 @@
             <div class="collapse" id="ui-order">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
                 </ul>
             </div>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-stroe" aria-expanded="false" aria-controls="ui-stroe">
+              <span class="menu-title">商家管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-home-modern menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-stroe">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/stroe">商家列表</a></li>
+                </ul>
+            </div>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">友情链接</span>
@@ -296,21 +322,14 @@
               </ul>
             </div>
           </li>
-          
+
         </ul>
       </nav>
       <!-- partial -->
 
       <div class="main-panel">
 
-      @section('content')
-
-
-
-
-
-
-      @show
+      @yield('content')
 
 
         <!-- content-wrapper ends -->

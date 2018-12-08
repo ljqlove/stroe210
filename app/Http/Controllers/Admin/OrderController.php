@@ -24,9 +24,10 @@ class OrderController extends Controller
 
         $list = DB::table('orders')
         ->join('message','orders.uid','=','message.uid')
+        ->join('address','address.aid','=','orders.addid')
         ->join('goods','goods.gname','=','orders.oname')
-        ->where('ordernum','like',$res)
-        ->select('orders.*','message.uname','goods.price')
+        ->where('orders.ordernum','like',$res)
+        ->select('orders.*','message.uname','goods.price','address.aphone','address.address')
         ->orderBy('oid','desc')
         ->paginate(7);
         // dd($list);die;
@@ -95,10 +96,10 @@ class OrderController extends Controller
         $res['address'] = $request -> uv;
 
         // var_dump($res);die;
-
+        $addid = (DB::table('orders')->where('oid',$id)->first())->addid;
         // 修改参数
-        $data = DB::table('orders')
-        ->where('oid',$id)
+        $data = DB::table('address')
+        ->where('aid',$addid)
         ->update($res);
 
         if ($data) {
@@ -118,12 +119,12 @@ class OrderController extends Controller
         $id = $request -> ids;
         $res = [];
         $res['phone'] = $request -> uv;
-
+        $addid = (DB::table('orders')->where('oid',$id)->first())->addid;
         // var_dump($res);die;
 
         // 修改参数
-        $data = DB::table('orders')
-        ->where('oid',$id)
+        $data = DB::table('address')
+        ->where('aid',$addid)
         ->update($res);
 
         if ($data) {

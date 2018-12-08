@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="content-wrapper">
-          
+
           @if (count($errors) > 0)
           <div class="btn btn-gradient-primary mr-2" id="mr-2" style="width: 800px">
                   显示错误信息
@@ -34,7 +34,7 @@
                   <form class="forms-sample" action="/admin/goods" method="post" class="mws-form" enctype='multipart/form-data'>
 
                     <select class="form-control" id="exampleFormControlSelect2" name="tid">
-                        
+
                         <option value="0">请选择</option>
                         @foreach($rs as $v)
                         <option value='{{$v->tid}}'>{{$v->tname}}</option>
@@ -61,17 +61,17 @@
                       <label for="exampleSelectGender">单价</label>
                         <input type="text" class="form-control" id="exampleInputName1" placeholder="price" name="price">
                       </div>
-                    
+
                     <div class="form-group">
                       <label>商品默认图片</label>
                      <input type="file" name='gpic' >
-                     
+
                     </div>
 
                    <div class="form-group">
                       <label>商品图片</label>
                      <input type="file" name='gimgs[]' multiple  >
-                     
+
                     </div>
 
                     <div class="form-group">
@@ -83,7 +83,7 @@
                       <label for="exampleTextarea1">简介</label>
                       <script id="editor" name='descript' type="text/plain" style="width:1145px;height:500px;"></script>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">状态</label>
@@ -112,7 +112,7 @@
                     <!-- <button class="btn btn-light">重置</button> -->
                   </form>
                 </div>
-    
+
 </div>
 
 
