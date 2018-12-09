@@ -82,7 +82,7 @@
 
                         </td>
                         <td>
-                          <a href="/admin/role_per?id={{$v->id}}" class='btn btn-warning'>更改角色</a>
+                          <a href="/admin/role_per?id={{$v->id}}" class='btn btn-warning'>更改权限</a>
 
                           <a href="/admin/blog_roles/{{$v->id}}/edit" class='btn btn-info'>修改</a>
 

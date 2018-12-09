@@ -91,7 +91,13 @@ Route::group(['middleware' => 'auth'], function(){
 });
 
 
+//后台登录
+Route::any('/admin/login','Admin\LoginController@login');
+Route::any('/admin/dologin','Admin\LoginController@dologin');
+Route::any('/admin/captcha','Admin\LoginController@captcha');
+Route::any('/admin/logout','Admin\LoginController@logout');
 
+Route::group(['middleware'=>['login','userper']], function(){
 //后台的首页
 Route::get('/admin', 'Admin\IndexController@index');
 //后台管理员管理
@@ -117,12 +123,6 @@ Route::get('/admin/getms','Admin\IndexController@getmessage');
 
 //后台友情链接管理
 Route::resource('admin/firend', "Admin\FriendController");
-
-//后台登录
-Route::any('/admin/login','Admin\LoginController@login');
-Route::any('/admin/dologin','Admin\LoginController@dologin');
-Route::any('/admin/captcha','Admin\LoginController@captcha');
-Route::any('/admin/logout','Admin\LoginController@logout');
 
 // 后台订单管理
 Route::resource('/admin/order','Admin\OrderController');
@@ -177,7 +177,9 @@ Route::get('/admin/gsize/edit/{id}','Admin\GoodsController@gedit'); // 进入到
 Route::post('/admin/gsize/update/{id}','Admin\GoodsController@gupdate');  // 执行商品添加方法
 
 Route::post('/admin/gsize/del/{id}','Admin\GoodsController@gdelete');
+});
 
+Route::get('/admin/remind','Admin\RemindController@index');
 
 Auth::routes();
 

@@ -73,7 +73,7 @@ class MessageController extends Controller
               $result = move_uploaded_file($_FILES["file"]["tmp_name"],$filename);
               $picname = '/images/message/uploads/'.$name.'.'.$huzui;
               $map['headpic'] = $picname;
-              $result = DB::table('message')->where('uid', session('uid'))->update($map);
+              $result = DB::table('message')->where('uid', session('userinfo')['uid'])->update($map);
               $info['status'] = 1;
               $info['msg'] = '上传成功';
               $info['mpic'] = $map['headpic']; 
