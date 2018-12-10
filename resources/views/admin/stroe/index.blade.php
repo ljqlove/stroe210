@@ -42,9 +42,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                  <form action="/admin/order" method="get">
+                  <form action="/admin/stroe" method="get">
                     <div  class="input-group col-md-4 pull-right" style="margin-right:150px">
-                        <input type="text" class="form-control" name="ordernum" placeholder="请输入订单号...">
+                        <input type="text" class="form-control" name="company" placeholder="请输入店铺名...">
                         <span class="input-group-btn">
                           {{csrf_field()}}
                           <button class="btn btn-secondary" type="submit">搜索</button>
@@ -52,9 +52,9 @@
                     </div>
                   </form>
                   <div>
-                    <h4 class="card-title">订单列表</h4>
+                    <h4 class="card-title">商家列表</h4>
                     <p class="card-description">
-                      订单管理 >><code>订单列表</code>
+                      订单管理 >><code>商家列表</code>
                     </p>
                   </div>
                   <table class="table table-hover">
@@ -78,11 +78,11 @@
                         @endphp
                         <tr>
                             <td class="id">{{$v->id}}</td>
-                            <td class="oname">{{$v->company}}</td>
+                            <td class="company"><a href="/admin/stroe/{{$v->id}}">{{$v->company}}</a></td>
                             <td class="uname">{{$res->uname}}</td>
-                            <td class="address">{{$v->uname}}</td>
-                            <td class="phone">{{$v->iphone}}</td>
-                            <td class="num">{{$v->create_at}}</td>
+                            <td class="zname">{{$v->uname}}</td>
+                            <td class="iphone">{{$v->iphone}}</td>
+                            <td class="create_at">{{$v->create_at}}</td>
                               @if($v->status == 0)
                             <td class="status" val="0"><mark class="bg-primary text-white">申请待处理</mark></td>
                             @elseif($v->status == 1)
@@ -96,7 +96,7 @@
                     </tbody>
                   </table>
                   <nav aria-label="Page navigation">
-                      {{-- $lists->render() --}}
+                      {!! $lists->render() !!}
                   </nav>
                     </div>
                 </div>

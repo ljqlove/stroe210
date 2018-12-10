@@ -69,12 +69,21 @@
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <i class="mdi mdi-email-outline"></i>
-              <span class="count-symbol bg-warning"></span>
+              <span class="count-symbol bg-danger aa"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-              <h6 class="p-3 mb-0">新的申请信息</h6>
+               @php
+                $news = DB::table('stores')->where('status','0')->get();
+                if(!empty($news)){
+                  $st = 1;
+                } else {
+                  $st = 0;
+                }
+              @endphp
+              <h6 class="p-3 mb-0 bb" st = "{{$st}}">新的申请信息</h6>
+
               @foreach($news as $v)
               @php
                 $res = DB::table('message')->where('uid',$v->uid)->first();
@@ -82,19 +91,23 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                    <img src="{{$res->headpic}}" alt="image" class="profile-pic">
+                    <img src="{{$res->headpic}}" alt="image" class="profile-pic asd" style="cursor:pointer" sid="{{$v->id}}">
                 </div>
                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">{{$v->uname}}@的申请</h6>
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal asd" style="cursor:pointer" sid="{{$v->id}}">{{$v->uname}}@的申请</h6>
                   <p class="text-gray mb-0">
                     @php
                       $rs = (time() - strtotime($v->create_at))/60;
                       if($rs < 60){
-                      echo $rs." Minutes ago ";
+                      echo ceil($rs)." Minutes ago ";
                     } else if(($rss = $rs/60) < 60) {
-                      echo $rss." Hours ago ";
+                      echo ceil($rss)." Hours ago ";
                     } else if(($rsss = $rss/24)) {
-                      echo $rsss." Days ago ";
+                      echo ceil($rsss)." Days ago ";
+                    } else if(($rssss = $rsss/30)) {
+                      echo ceil($rssss)." Month ago ";
+                    } else if(($rsssss = $rssss/12)) {
+                      echo ceil($rsssss)."Year ago";
                     }
                     @endphp
                   </p>
@@ -104,6 +117,21 @@
               <div class="dropdown-divider"></div>
               <h6 class="p-3 mb-0 text-center">4 new messages</h6>
             </div>
+            <script>
+              var st = $('.bb').attr('st');
+              if (st) {
+                setInterval(function(){
+                  $('.aa').toggle();
+                },1000);
+              } else {
+                $('.aa').hide();
+              }
+              $('.asd').click(function(){
+                var id = $(this).attr('sid');
+                console.log(id);
+                location.href = '/admin/stroe/'+id;
+              })
+            </script>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">

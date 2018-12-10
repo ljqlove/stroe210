@@ -16,8 +16,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $news = DB::table('stores')->where('status','0')->get();
-    	return view('layout.admins',['title'=>'Store网站后台首页','news'=>$news]);
+    	return view('layout.admins',['title'=>'Store网站后台首页']);
     }
 
     public static function getCategoryMessage($pid)

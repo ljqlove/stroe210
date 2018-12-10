@@ -134,6 +134,8 @@ Route::get('/admin/numajax','Admin\OrderController@numAjax');
 Route::get('/admin/delajax','Admin\OrderController@delAjax');
 
 Route::resource('/admin/stroe','Admin\StroeController');
+Route::get('/admin/stroesub2/{id}','Admin\StroeController@stroesub2');
+Route::post('/admin/ajaxstroe/{id}','Admin\StroeController@ajaxstroe');
 
 //后台友情链接管理
 Route::resource('admin/firend', "Admin\FriendController");

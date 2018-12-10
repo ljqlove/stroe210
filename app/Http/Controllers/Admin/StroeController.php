@@ -15,7 +15,12 @@ class StroeController extends Controller
      */
     public function index(Request $request)
     {
-        $list = DB::table('stores')->get();
+        $res = '%%';
+        $rs = trim($request->input('company'));
+        if(!empty($rs)) {
+            $res ='%'.$rs.'%';
+        }
+        $list = DB::table('stores')->where('company','like',$res)->orderBy('create_at','desc')->paginate(7);
         return view('admin.stroe.index',['title'=>'商家管理','lists'=>$list]);
     }
 
@@ -37,7 +42,7 @@ class StroeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo 123;
     }
 
     /**
@@ -48,7 +53,29 @@ class StroeController extends Controller
      */
     public function show($id)
     {
-        //
+        $sinfo = DB::table('stores')->where('id',$id)->first();
+
+        return view('admin.stroe.stroeinfo',['title'=>'商家信息','sinfo'=>$sinfo]);
+
+    }
+
+    public function stroesub2($id)
+    {
+        $res = DB::table('stores')->where('id',$id)->update(['status'=>'2']);
+        if ($res) {
+            return back()->with('success','修改成功');
+        } else {
+            return back()->with('error','修改失败');
+        }
+
+    }
+
+    public function ajaxstroe(Request $request,$id)
+    {
+        //获取上传的文件对象
+        $file = $request->file('image');
+         var_dump($file);die;
+
     }
 
     /**
