@@ -69,7 +69,7 @@
                 退出
               </a>
             </div>
-          </li>
+          </li> 
           <li class="nav-item d-none d-lg-block full-screen-link">
             <a class="nav-link">
               <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
