@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="exampleInputCity1">商品颜色价格</label>
+                      <label for="exampleInputCity1">商品尺寸价格</label>
                       <input type="text" class="form-control" id="exampleInputCity1" placeholder="gpic" name="gpic">
                     </div>
                     

@@ -69,13 +69,23 @@ class CateController extends Controller
             // var_dump($v['gsize']);
              $size[] = explode(',', $v['gsize']);
         }
-        dd($size);
+        // dd($size['1']);
+        $new_size = [];
+        foreach ($size as $k => $v) {
+            foreach ($v as $kk => $vv) {
+                $new_size[] = $vv;
+            }
+        }
+        $new_size = array_unique($new_size);
+
+        // dd($new_size);
     	return view('home.goods',[
     		'title'=>'商品详情页',
     		'goods'=>$goods,
             'gimgs'=>$gimgs,
             'gsize'=>$gsize,
-            'comment'=>$comment
+            'comment'=>$comment,
+            'new_size'=>$new_size,
 
     	]);
     }

@@ -349,7 +349,9 @@
                                 <div class="pc-version">商品尺寸</div>
                                 <div class="pc-adults">
                                     <ul>
-                                        <li><a href="javascript:void(0);" class="gsize">{{$goods[0]['size']}}</a></li>
+                                        @foreach($new_size as $k=>$v)
+                                        <li><a href="javascript:void(0);" class="gsize">{{$v}}</a></li>
+                                        @endforeach
                                         {{-- @foreach($gsize as $k=>$v --)}}
                                         <li><a href="javascript:void(0);" class="size">{{-- $v->gsize --}}</a> </li>
                                         {{-- @endforeach --}}
@@ -501,7 +503,7 @@
             <div class="pc-overall">
                 <ul id="H-table1" class="brand-tab H-table1 H-table-shop clearfix ">
                     <li class="cur"><a href="javascript:void(0);">商品介绍</a></li>
-                    <li><a href="javascript:void(0);">商品评价<em class="reds">(91)</em></a></li>
+                    <li><a href="javascript:void(0);">商品评价<em class="reds"></em></a></li>
                     <li><a href="javascript:void(0);">售后保障</a></li>
                 </ul>
                 <div class="pc-term clearfix">

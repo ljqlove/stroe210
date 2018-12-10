@@ -107,7 +107,7 @@
              @if($v->status == 0)
                 <li>
                     <h2>新品推荐</h5><br>
-                    <a href="#"> <img src="{{$v->gpic}}" style="width: 200px; height:300;"></a>
+                    <a href="/home/goods/{{$v->gid}}"> <img src="{{$v->gpic}}" style="width: 200px; height:300;"></a>
                     <p class="head-name"><a href="#">{{$v->gname}}</a> </p>
                     <p><span class="price">￥{{$v->price}}.00</span></p>
                     <p class="head-futi clearfix"><span class="fl">评论数:##</span> <span class="fr">100人购买</span></p>
