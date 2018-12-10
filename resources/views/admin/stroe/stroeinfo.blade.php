@@ -55,17 +55,19 @@
                     {{$sinfo->create_at}}
                   </p>
                   <form class="forms-sample" id="art_form" action="/admin/stroe" method="post" enctype='multipart/form-data'>
+                    {{ csrf_field() }}
                     <div class="form-group">
                       <label for="exampleInputName1">店铺名</label>
-                      <input type="text" class="form-control asd" id="exampleInputName1" name="company" value="{{$sinfo->company}}">
+                      <input type="text" class="form-control asd"  name="company" value="{{$sinfo->company}}">
+                      <input type="hidden" class="form-control asd"  name="id" value="{{$sinfo->id}}">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail3">掌柜</label>
-                      <input type="text" class="form-control asd" id="exampleInputEmail3" name="uname" value="{{$sinfo->uname}}">
+                      <input type="text" class="form-control asd"  name="uname" value="{{$sinfo->uname}}">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword4">联系电话</label>
-                      <input type="text" class="form-control asd" id="exampleInputPassword4" name="iphone" value="{{$sinfo->iphone}}">
+                      <input type="text" class="form-control asd"  name="iphone" value="{{$sinfo->iphone}}">
                     </div>
                     <!-- <div class="form-group">
                       <label for="exampleSelectGender">Gender</label>
@@ -93,9 +95,6 @@
                       <label for="exampleTextarea1">Textarea</label>
                       <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
                     </div> -->
-                    {{csrf_field()}}
-
-                    {{method_field('PUT')}}
                     <button type="submit" class="btn btn-gradient-primary mr-2">{{$sub1}}</button>
                     <a  href="/admin/stroesub2/{{$sinfo->id}}" class="btn btn-gradient-info sub2">{{$sub2}}</a>
                     @if($sinfo->status == 2)
@@ -139,8 +138,8 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(data) {
-                                    // $('#imgs').attr('src',data);
-                                      console.log(data);
+                                    $('#imgs').attr('src',data);
+                                      // console.log(data);
                                 },
                                 error: function(data) {
                                     alert("上传失败，请检查网络后重试");

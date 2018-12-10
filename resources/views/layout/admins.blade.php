@@ -69,7 +69,7 @@
                 退出
               </a>
             </div>
-          </li> 
+          </li>
           <li class="nav-item d-none d-lg-block full-screen-link">
             <a class="nav-link">
               <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
@@ -101,7 +101,7 @@
                     <img src="{{$res->headpic}}" alt="image" class="profile-pic asd" style="cursor:pointer" sid="{{$v->id}}">
                 </div>
                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal asd" style="cursor:pointer" sid="{{$v->id}}">{{$v->uname}}@的申请</h6>
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal asd" style="cursor:pointer" sid="{{$v->id}}">{{$res->uname}}@的申请</h6>
                   <p class="text-gray mb-0">
                     @php
                       $rs = (time() - strtotime($v->create_at))/60;
@@ -122,7 +122,7 @@
               </a>
               @endforeach
               <div class="dropdown-divider"></div>
-              <h6 class="p-3 mb-0 text-center">4 new messages</h6>
+              <h6 class="p-3 mb-0 text-center">{{count($news)}} new messages</h6>
             </div>
             <script>
               var st = $('.bb').attr('st');
