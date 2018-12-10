@@ -45,14 +45,14 @@ class UserPermissionMiddleware
         $active = $action[0];
         // dump($active);
 
-        // // 判断  该用户有哪些权限
-        // if(in_array($active,$urls) || $uid == 1){
-        //     //如果角色有权限
-        //     return $next($request);
-        // }else{
-        //     // 如果角色没有权限  提示页面  没有权限不能访问
-        //     return redirect('/admin/remind');
-        // }
-        return $next($request);
+        // 判断  该用户有哪些权限
+        if(in_array($active,$urls) || $uid == 1){
+            //如果角色有权限
+            return $next($request);
+        }else{
+            // 如果角色没有权限  提示页面  没有权限不能访问
+            return redirect('/admin/remind');
+        }
+        // return $next($request);
     }
 }
