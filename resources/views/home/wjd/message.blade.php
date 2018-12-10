@@ -245,7 +245,67 @@
     // 获取mid
     var mid = $(obj).attr('data-id');
     var uName = $('#uName').val();
+    if (uName == null || uName == undefined || uName == '') {
+          $('#online_box').val(1);
+          var element = document.getElementById("online_box").value;
+          if (element == '1') {
+            Command: toastr["warning"]("用户名错误", "提示")
+            toastr.options = {
+              "closeButton": true,
+              "debug": true,
+              "newestOnTop": true,
+              "progressBar": true,
+              "rtl": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": 300,
+              "hideDuration": 1000,
+              "timeOut": 2000,
+              "extendedTimeOut": 1000,
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            setTimeout(function () {
+                // alert('修改成功');
+              window.location.reload();
+            }, 2000);
+            return false;
+          }
+    }
     var mName = $('#mName').val();
+    if (mName == null || mName == undefined || mName == '') {
+          $('#online_box').val(1);
+          var element = document.getElementById("online_box").value;
+          if (element == '1') {
+            Command: toastr["warning"]("昵称错误", "提示")
+            toastr.options = {
+              "closeButton": true,
+              "debug": true,
+              "newestOnTop": true,
+              "progressBar": true,
+              "rtl": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": 300,
+              "hideDuration": 1000,
+              "timeOut": 2000,
+              "extendedTimeOut": 1000,
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            setTimeout(function () {
+                // alert('修改成功');
+              window.location.reload();
+            }, 2000);
+            return false;
+          }
+    }
     var checked = $('input:radio:checked').val()
     // 加载ajax事件
       $.ajax({

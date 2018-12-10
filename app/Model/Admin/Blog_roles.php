@@ -35,7 +35,7 @@ class Blog_roles extends Model
      */
     public function pers()
     {
-        return $this->belongsToMany('App\Model\Admin\Blog_permissions','blog_permission_role','permission_id','role_id');
+        return $this->belongsToMany('App\Model\Admin\Blog_permissions','blog_permission_role','role_id','permission_id');
     }
 
 }

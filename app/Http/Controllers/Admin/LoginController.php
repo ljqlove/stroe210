@@ -97,6 +97,7 @@ class LoginController extends Controller
 	    public function logout()
 	    {
 	    	//清空session
+	    	session(['uid'=>'']);
 	    	session(['user_name'=>'']);
 			session(['user_pic'=>'']);
 
