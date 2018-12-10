@@ -30,6 +30,16 @@
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/admins/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <div class="search-field d-none d-md-block">
+          <form class="d-flex align-items-center h-100" action="#">
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
+              </div>
+              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+            </div>
+          </form>
+        </div>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -45,53 +55,81 @@
               </a>
             </div>
           </li>
-          
-          <li class="nav-item dropdown">
-            
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-              <h6 class="p-3 mb-0">Messages</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="/admins/images/faces/face4.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
-                  <p class="text-gray mb-0">
-                    1 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="/admins/images/faces/face2.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                  <p class="text-gray mb-0">
-                    15 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    <img src="/admins/images/faces/face3.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                  <p class="text-gray mb-0">
-                    18 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <h6 class="p-3 mb-0 text-center">4 new messages</h6>
-            </div>
+          <li class="nav-item d-none d-lg-block full-screen-link">
+            <a class="nav-link">
+              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+            </a>
           </li>
           <li class="nav-item dropdown">
-            
+              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-email-outline"></i>
+              <span class="count-symbol bg-danger aa"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+               @php
+                $news = DB::table('stores')->where('status','0')->get();
+                if(!empty($news)){
+                  $st = 1;
+                } else {
+                  $st = 0;
+                }
+              @endphp
+              <h6 class="p-3 mb-0 bb" st = "{{$st}}">新的申请信息</h6>
+
+              @foreach($news as $v)
+              @php
+                $res = DB::table('message')->where('uid',$v->uid)->first();
+              @endphp
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{{$res->headpic}}" alt="image" class="profile-pic asd" style="cursor:pointer" sid="{{$v->id}}">
+                </div>
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal asd" style="cursor:pointer" sid="{{$v->id}}">{{$res->uname}}@的申请</h6>
+                  <p class="text-gray mb-0">
+                    @php
+                      $rs = (time() - strtotime($v->create_at))/60;
+                      if($rs < 60){
+                      echo ceil($rs)." Minutes ago ";
+                    } else if(($rss = $rs/60) < 60) {
+                      echo ceil($rss)." Hours ago ";
+                    } else if(($rsss = $rss/24)) {
+                      echo ceil($rsss)." Days ago ";
+                    } else if(($rssss = $rsss/30)) {
+                      echo ceil($rssss)." Month ago ";
+                    } else if(($rsssss = $rssss/12)) {
+                      echo ceil($rsssss)."Year ago";
+                    }
+                    @endphp
+                  </p>
+                </div>
+              </a>
+              @endforeach
+              <div class="dropdown-divider"></div>
+              <h6 class="p-3 mb-0 text-center">{{count($news)}} new messages</h6>
+            </div>
+            <script>
+              var st = $('.bb').attr('st');
+              if (st) {
+                setInterval(function(){
+                  $('.aa').toggle();
+                },1000);
+              } else {
+                $('.aa').hide();
+              }
+              $('.asd').click(function(){
+                var id = $(this).attr('sid');
+                console.log(id);
+                location.href = '/admin/stroe/'+id;
+              })
+            </script>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="mdi mdi-bell-outline"></i>
+              <span class="count-symbol bg-danger"></span>
+            </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
               <h6 class="p-3 mb-0">Notifications</h6>
               <div class="dropdown-divider"></div>
@@ -139,6 +177,16 @@
               <div class="dropdown-divider"></div>
               <h6 class="p-3 mb-0 text-center">See all notifications</h6>
             </div>
+          </li>
+          <li class="nav-item nav-logout d-none d-lg-block">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-power"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-block">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-format-line-spacing"></i>
+            </a>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -209,10 +257,23 @@
             <div class="collapse" id="ui-order">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/order">订单列表</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
                 </ul>
             </div>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-stroe" aria-expanded="false" aria-controls="ui-stroe">
+              <span class="menu-title">商家管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-home-modern menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-stroe">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/stroe">商家列表</a></li>
+                </ul>
+            </div>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-asd" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-title">友情链接</span>
@@ -281,21 +342,14 @@
               </ul>
             </div>
           </li>
-          
+
         </ul>
       </nav>
       <!-- partial -->
 
       <div class="main-panel">
 
-      @section('content')
-
-
-
-
-
-
-      @show
+      @yield('content')
 
 
         <!-- content-wrapper ends -->

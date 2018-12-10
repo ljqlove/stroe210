@@ -37,11 +37,15 @@ class GoodsController extends Controller
 
         $cate = Category::select();
 
+        $merchant = DB::select('select * from stores');
+        // dd($merchant);
+
         return view('admin.goods.index',[
             'title'=>'商品的列表页',
             'res'=>$res,
             'request'=>$request,
-            'cate'=>$cate
+            'cate'=>$cate,
+            'merchant'=>$merchant,
         ]);
     }
 

@@ -401,30 +401,12 @@
                 </div>
                 <div class="shop-bar clearfix fl">
                     <ul>
+                        @foreach($merchant as $k=>$v)
                         <li>
-                            <div class="shop-icn"><a href="#"><img src="/homes/theme/img/ad/shop4.png"></a></div>
-                            <div class="shop-tex"><a href="#">阿迪王品牌店铺</a> </div>
+                            <div class="shop-icn"><a href="#"><img src="{{$v->image}}"></a></div>
+                            <div class="shop-tex"><a href="#">{{$v->company}}</a> </div>
                         </li>
-                        <li>
-                            <div class="shop-icn"><a href="#"><img src="/homes/theme/img/ad/shop4.png"></a></div>
-                            <div class="shop-tex"><a href="#">阿迪王品牌店铺</a> </div>
-                        </li>
-                        <li>
-                            <div class="shop-icn"><a href="#"><img src="/homes/theme/img/ad/shop4.png"></a></div>
-                            <div class="shop-tex"><a href="#">阿迪王品牌店铺</a> </div>
-                        </li>
-                        <li>
-                            <div class="shop-icn"><a href="#"><img src="/homes/theme/img/ad/shop4.png"></a></div>
-                            <div class="shop-tex"><a href="#">阿迪王品牌店铺</a> </div>
-                        </li>
-                        <li>
-                            <div class="shop-icn"><a href="#"><img src="/homes/theme/img/ad/shop4.png"></a></div>
-                            <div class="shop-tex"><a href="#">阿迪王品牌店铺</a> </div>
-                        </li>
-                        <li>
-                            <div class="shop-icn"><a href="#"><img src="/homes/theme/img/ad/shop4.png"></a></div>
-                            <div class="shop-tex"><a href="#">阿迪王品牌店铺</a> </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

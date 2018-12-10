@@ -27,6 +27,8 @@ class IndexController extends Controller
         // 引入商城快讯
         $flash = DB::table('shopflash')->get();
 
+        // 引入商铺
+        $merchant = DB::select('select * from stores');
 
         // 引入商城快讯
         $flash = DB::table('shopflash')->get();
@@ -45,6 +47,7 @@ class IndexController extends Controller
             'flash'=>$flash,
             'site'=>$site,
             'lunbo'=>$lunbo,
+            'merchant'=>$merchant,
         ]);
     }
 }

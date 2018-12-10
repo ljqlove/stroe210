@@ -107,7 +107,7 @@ class AddressController extends Controller
     	$map['aphone'] = strip_tags($_POST['aphone']);
     	$map['postcode'] = strip_tags($_POST['postcode']);
     	$map['inputtime'] = date('Y-m-d H:i:s',time());
-    	$map['uid'] = session('uid');
+    	$map['uid'] = session('userinfo')['uid'];
     	$result = DB::table('address')->insert($map);
     	if($result){
 	    	$a['status'] = 1;

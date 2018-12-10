@@ -67,7 +67,7 @@ class Blog_userController extends Controller
             $rs['role_id'] = $v;
             $arr[] = $rs;
         }
-        dd($arr);
+        // dd($arr);
         // 向用户角色关联表里面插入数据
         $data = DB::table('blog_role_user')->insert($arr);
         if ($data) {

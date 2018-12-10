@@ -30,6 +30,7 @@ class Blog_rolesController extends Controller
 
         //把所有的权限路径查询出来
         $per = Blog_permissions::all();
+        // dd($info);
 
         return view('admin.blog_roles.role_per',[
             'title'=>'角色添加权限的页面',
@@ -46,14 +47,25 @@ class Blog_rolesController extends Controller
      */
     public function do_role_per(Request $request)
     {
+        $this->validate($request, [
+            'id' => 'required',
+            'per_id' => 'required'
+        ],[
+            'id.required' => '角色不能为空',
+            'id.regex'=>'角色格式不正确',
+            'per_id.required'  => '权限不能为空',
+            'per_id.regex'  => '权限格式不正确',
+        ]);
         //角色id
         $id = $request->id;
         // dd($id);
-        DB::table('blog_permission_role')->where('role_id',$id)->delete();
-
         // 权限路径id
         $per_id = $request->per_id;
         // dd($per_id);
+
+        DB::table('blog_permission_role')->where('role_id',$id)->delete();
+
+
 
         $pers = [];
         foreach($per_id as $k => $v){
@@ -69,22 +81,12 @@ class Blog_rolesController extends Controller
         if ($data) {
             return redirect('admin/blog_roles')->with('success','更改成功');
         }
+            return back()->with('error',"更改失败");
+
 
     }
     
     
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**

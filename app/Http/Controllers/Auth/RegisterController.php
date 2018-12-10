@@ -112,13 +112,15 @@ class RegisterController extends Controller
     {
 
         $this->validate($request, [
-                'company'=>'unique:stores'
+                'company'=>'required|unique:stores'
             ],[
-                'company.unique'=>'！！您的店铺名已经存在！！'
+                'company.unique'=>'！！您的店铺名已经存在！！',
+                'company.required'=>'！！请输入店铺名！！'
             ]);
-        $uid = 3;
+        $uid = session('userinfo')['uid'];
 
         $data = $request -> except('password','code','_token');
+        $data['create_at'] = date('Y-m-d H:i:s',time());
         // dd($data);
         $data['uid'] = $uid;
         $res = DB::table('stores')->insert($data);

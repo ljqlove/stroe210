@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Category;
+use DB;
 
 class IndexController extends Controller
 {
@@ -15,9 +16,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-    	return view('admin.index',['title'=>'Store网站后台首页']);
+    	return view('layout.admins',['title'=>'Store网站后台首页']);
     }
-    	
+
     public static function getCategoryMessage($pid)
     {
         $cate = Category::where('pid',$pid)->get();
@@ -31,8 +32,8 @@ class IndexController extends Controller
 
                 $arr[]=$v;
             }
-           
-        }  
+
+        }
          return $arr;
     }
 }

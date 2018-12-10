@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Gregwar\Captcha\PhraseBuilder;
 use App\Model\Admin\User;
+use session;
 use DB;
 use Hash;
 
@@ -61,8 +62,12 @@ class LoginController extends Controller
             return back()->with('error','验证码错误');
         }
         //存点信息  session
+        // dd($rs->uid);
+
         $userinfo = ['uid'=>$rs->uid,'phone'=>$rs->phone,'auth'=>$rs->auth,'status'=>$rs->status];
         session(['userinfo'=>$userinfo]);
+        // $uid = $rs->uid;
+        // session(['uid'=>$uid]);
 
         return redirect('/');
 
