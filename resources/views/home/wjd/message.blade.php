@@ -68,13 +68,16 @@
                 <a href="#">稻香村月饼</a>
                 <a href="#">服装城</a>
             </div>
+            <!-- dd(session('userinfo')['uid']); -->
         </div>
 
 @endsection
 
 @section('content')
 	@php
-		$message = DB::table('message')->where('uid',session('uid'))->first();
+        
+
+		$message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
 	@endphp
 
 <section id="member">
@@ -114,7 +117,7 @@
                       </ul>
                   </div>
                     @php
-                      $user = DB::table('users')->where('uid',session('uid'))->first();
+                      $user = \DB::table('users')->where('uid',(session('userinfo')['uid']))->first();
                     @endphp
 
                     <div class="mc" id="ziliao">

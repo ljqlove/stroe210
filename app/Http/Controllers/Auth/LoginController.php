@@ -66,8 +66,8 @@ class LoginController extends Controller
 
         $userinfo = ['uid'=>$rs->uid,'phone'=>$rs->phone,'auth'=>$rs->auth,'status'=>$rs->status];
         session(['userinfo'=>$userinfo]);
-        $uid = $rs->uid;
-        session(['uid'=>$uid]);
+        // $uid = $rs->uid;
+        // session(['uid'=>$uid]);
 
         return redirect('/');
 

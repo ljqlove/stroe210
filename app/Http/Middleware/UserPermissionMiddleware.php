@@ -24,6 +24,7 @@ class UserPermissionMiddleware
         //获取用户信息
         $uid = session('uid');
         $users = Blog_user::find($uid);
+        // dd($users);
         //通过用户的信息查找角色
         $roles = $users->roles;
         // dump($roles);

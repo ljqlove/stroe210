@@ -61,12 +61,14 @@
                 <a href="#">服装城</a>
             </div>
         </div>
+            <!-- dd(session('userinfo')['uid']); -->
+
 
 @endsection
 
 @section('content')
 	@php
-		$message = DB::table('message')->where('uid',session('uid'))->first();
+		$message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
 	@endphp
 
 <section id="member">
@@ -100,8 +102,8 @@
                 <div class="member-heels fl"><h2>地址管理</h2></div>
             </div>
             	@php
-					$addres = DB::table('address')->where('uid',session('uid'))->orderBy('status', 'desc')->get();
-					$addresCount = DB::table('address')->where('uid',session('uid'))->count();
+					$addres = \DB::table('address')->where('uid',(session('userinfo')['uid']))->orderBy('status', 'desc')->get();
+					$addresCount = \DB::table('address')->where('uid',(session('userinfo')['uid']))->count();
 				@endphp
 
             <div class="member-border">
