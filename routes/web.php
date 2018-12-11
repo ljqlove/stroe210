@@ -50,13 +50,21 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/home/coldel','Home\ColController@coldel');
     Route::any('/home/myOrder','Home\OrderController@myOrder');
     Route::any('home/myOrderInfo/{oid}','Home\OrderController@myOrderInfo');
+    // 我的店铺
+    Route::get('/home/myStroe','Home\StroeController@myStroe');
+    Route::get('/home/myStroeInfo/{id}','Home\StroeController@myStroeInfo');
+    Route::get('/home/select','Home\StroeController@select');
+    Route::post('/home/addgood','Home\StroeController@addgood');
+    Route::get('/home/goodinfo/{gid}','Home\StroeController@goodinfo');
+    Route::post('/home/goodcolor','Home\StroeController@goodcolor');
+    Route::post('/home/goodsize','Home\StroeController@goodsize');
+    Route::post('/home/good-up/{gid}','Home\StroeController@goodup');
     // 商家入驻
     Route::get('/home/Merchant','Auth\RegisterController@Merchant');
     Route::get('/home/Merchant_2','Auth\RegisterController@Merchant_2');
     Route::post('/home/Merchant_3','Auth\RegisterController@Merchant_3');
     Route::post('/home/checkphone','Auth\RegisterController@checkphone');
     Route::get('/home/checkcode','Auth\RegisterController@checkcode');
-
     //前台个人中心主页
     Route::get('/home/wjd/message','Home\MessageController@index');
     //前台个人信息修改
