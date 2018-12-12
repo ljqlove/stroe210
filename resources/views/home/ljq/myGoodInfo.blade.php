@@ -2,6 +2,11 @@
 @section('title',$title)
 @section('style','style=height:36px')
 @section('content')
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
+        <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+        <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
     <style>
         .le{
             margin-left:20px;
@@ -34,9 +39,9 @@
     <div class="containers"><div class="pc-nav-item"><a href="#" class="pc-title">首页</a> > <a href="/home/myStroe">我的店铺</a> > <a href="javascript:void(0)">商品详情</a> </div></div>
 
     <div class="containers">
+        <form action="/home/good-up/{{$good->gid}}" method="post" enctype='multipart/form-data'>
         <div>
             <div class="pull-left"><img src="{{$good->gpic}}" width="400" height="400" alt=""></div>
-            <form action="/home/good-up/{{$good->gid}}" method="post">
                 {{ csrf_field() }}
             <div class="pull-left le">
                 <h3>{{$good->gname}}</h3><br>
@@ -64,14 +69,17 @@
                     <option value="1" {{$sel1}}>上架</option>
                     <option value="2" {{$sel2}}>新品</option>
                 </select><br><br>
-                <span class="sta">商品描述:</span><br><br>
-                <textarea name="descript" class="form-control" >{{$good->descript}}</textarea><br>
                 <button type="submit" class="btn btn-primary">修改</button>
             </div>
-            </form>
+
             <div style="clear:both"></div>
         </div>
 
+        <div>
+            <h2>商品介绍 : </h2>
+            <div><script id="editor" name='descript' type="text/plain" style="width:1145px;height:500px;">{!!$good->descript!!}</script></div>
+        </div>
+        </form>
         <div>
             <div class="bst" data-example-id="contextual-backgrounds-helpers">
                 <p class="bg-warning" style="margin-top:50px;height:40px;border-radius:5px">&nbsp;</p>
@@ -142,6 +150,11 @@
             <div style="clear:both"></div>
         </div>
 
+
+
     </div>
+    <script>
+       var ue = UE.getEditor('editor');
+    </script>
 
 @endsection

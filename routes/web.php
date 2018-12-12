@@ -23,14 +23,14 @@ Route::get('/home/logout','Auth\LoginController@logout');
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
-
+Route::get('/home/stroe/{id}','Home\StroeController@stroe');
 
 
 Route::get('/home/cate/{id}','Home\CateController@index');
 
 // 列表详情页
-Route::get('/home/goods/{id}','Home\CateController@goods');
-Route::any('/home/ajaxgsize','Home\CateController@ajaxgsize');
+Route::get('/home/goods/{id}','Home\GoodController@index');
+Route::any('/home/ajaxgsize','Home\GoodController@ajaxgsize');
 
 // 快讯列表页
 Route::get('/home/flash','Home\FlashController@index');
@@ -39,13 +39,20 @@ Route::get('/home/content/{id}','Home\FlashController@content');
 // 需要登录
 Route::group(['middleware' => 'auth'], function(){
 
+    // 加入购物车
+    Route::post('/home/joinCart','Home\CartController@joinCart');
     Route::any('/home/myCart','Home\CartController@myCart');
     Route::post('/home/shopcart','Home\CartController@shopcart');
     Route::any('/home/order','Home\OrderController@order');
     Route::any('/home/addorder','Home\OrderController@addOrder');
     Route::post('/home/mess','Home\OrderController@message');
+
+    // 收藏
+    Route::get('home/collect/{id}','Home\ColController@collect');
+    Route::get('home/stroedel/{ids}','Home\ColController@stroedel');
     Route::any('home/follow','Home\ColController@follow');
     Route::get('/home/join/{gid}','Home\CartController@join');
+
     Route::any('/home/myCollect','Home\ColController@myCollect');
     Route::post('/home/coldel','Home\ColController@coldel');
     Route::any('/home/myOrder','Home\OrderController@myOrder');

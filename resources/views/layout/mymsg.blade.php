@@ -27,9 +27,11 @@
         <i class="head-amount">0</i>
         @endif
         <script>
-            setInterval(function(){
-                $('i[class=set]').toggle();
-            },1000)
+            $(function(){
+                setInterval(function(){
+                    $('i[class=set]').toggle();
+                },1000)
+            })
         </script>
     </div>
     <div class="head-mountain"></div>

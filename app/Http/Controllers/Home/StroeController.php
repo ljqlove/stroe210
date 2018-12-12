@@ -8,6 +8,13 @@ use DB;
 
 class StroeController extends Controller
 {
+    public function stroe($id)
+    {
+        $stroe = DB::table('stores')->where('id',$id)->first();
+        $good = DB::table('goods')->where('company',$id)->whereIn('status',['1','2'])->get();
+        return view('home.ljq.stroe',['title'=>'店铺','stroe'=>$stroe,'goods'=>$good]);
+    }
+
     public function myStroe()
     {
         $uid = Session('userinfo')['uid'];
