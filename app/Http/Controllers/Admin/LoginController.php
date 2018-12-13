@@ -38,7 +38,6 @@ class LoginController extends Controller
 
     		return back()->with('error','用户名或者密码错误');
     	}
-
     	//判断密码
     	//hash
     	if (!Hash::check($request->user_pass, $rs->user_pass)) {
@@ -52,18 +51,31 @@ class LoginController extends Controller
 		if($code != $request->code){
 		    return back()->with('error','验证码错误');
 		}
+    	if ($rs->status == 0) {
+    		session(['uid'=>$rs->user_id]);
+			session(['user_name'=>$rs->user_name]);
+			session(['user_pic'=>$rs->user_pic]);
+			$map['uid'] = session('uid');
+			$map['uname'] = session('user_name');
+			$map['title'] = '登录失败';
+	        $map['created_at'] = date('Y-m-d H:i:s',time());
+	    	$result = DB::table('system')->insert($map);
+			return redirect('/admin/mywork');
+    	}else{
+			//存点信息  session
+			session(['uid'=>$rs->user_id]);
+			session(['user_name'=>$rs->user_name]);
+			session(['user_pic'=>$rs->user_pic]);
+			$map['uid'] = session('uid');
+			$map['uname'] = session('user_name');
+	        $map['created_at'] = date('Y-m-d H:i:s',time());
+	    	$result = DB::table('system')->insert($map);
 
-		//存点信息  session
-		session(['uid'=>$rs->user_id]);
-		session(['user_name'=>$rs->user_name]);
-		session(['user_pic'=>$rs->user_pic]);
-		$map['uid'] = session('uid');
-        $map['created_at'] = date('Y-m-d H:i:s',time());
-    	$result = DB::table('system')->insert($map);
 
-
-		return redirect('/admin');
+			return redirect('/admin');
 		}
+			
+	}
 		/**
      *  验证码
      *
@@ -102,5 +114,11 @@ class LoginController extends Controller
 			session(['user_pic'=>'']);
 
 	    	return redirect('/admin/login');
+	    }
+
+	    //没有登录权限 调到另一个地方
+	    public function doout()
+	    {
+	    	return view('/admin/mywork',['title'=>'屏蔽登陆界面']);
 	    }
 }

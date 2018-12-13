@@ -75,6 +75,11 @@
               <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
             </a>
           </li>
+          @php
+            $rs = DB::table('blog_user')->where('user_id',session('uid'))->first();
+            $es = DB::table('blog_role_user')->where('user_id',$rs->user_id)->first();
+          @endphp
+          @if($es->role_id == 1)
           <li class="nav-item dropdown">
               <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <i class="mdi mdi-email-outline"></i>
@@ -140,6 +145,7 @@
               })
             </script>
           </li>
+          @endif
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
               <i class="mdi mdi-bell-outline"></i>

@@ -1,5 +1,4 @@
-@extends('layout.homes')
-
+@extends('layout.mymsg')
 
 @section('title',$title)
 
@@ -45,56 +44,15 @@
 <link type="text/css" rel="stylesheet" href="//misc.360buyimg.com/user/myjd-2015/widget/??common/common.css" source="widget">
 @endsection
 
-@section('sousuo')
-<div class="head-form fl">
-            <form class="clearfix">
-                <input type="text" class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机">
-                <button class="button" onclick="search('key');return false;">搜索</button>
-            </form>
-            <div class="words-text clearfix">
-                <a href="#" class="red">1元秒爆</a>
-                <a href="#">低至五折</a>
-                <a href="#">农用物资</a>
-                <a href="#">买一赠一</a>
-                <a href="#">佳能相机</a>
-                <a href="#">稻香村月饼</a>
-                <a href="#">服装城</a>
-            </div>
-        </div>
-            <!-- dd(session('userinfo')['uid']); -->
 
 
-@endsection
-
-@section('content')
 	@php
+        
+
 		$message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
 	@endphp
 
-<section id="member">
-    <div class="member-center clearfix">
-        <div class="member-left fl">
-            <div class="member-apart clearfix">
-                <div class="fl"><a href="#"><img src="{{$message->headpic}}" width="80px" height="80px"></a></div>
-                <div class="fl">
-                    <p>用户名：</p>
-                    <p><a href="#">&nbsp;&nbsp;{{$message->uname}}</a></p>
-                    <p>昵称：</p>
-                    <p>&nbsp;&nbsp;{{$message->mname}}</p>
-                </div>
-            </div>
-            <div class="member-lists">
-                <dl>
-                    <dt>我的商城</dt>
-                    <dd class="cur"><a href="#">我的订单</a></dd>
-                    <dd><a href="#">我的收藏</a></dd>
-                    <dd><a href="#">账户安全</a></dd>
-                    <dd><a href="#">我的评价</a></dd>
-                    <dd><a href="/home/wjd/address">地址管理</a></dd>
-                </dl>
-            </div>
-        </div>
-		
+@section('con')
 		<!-- 地址开头 -->
 
 			<div class="member-right fr">
@@ -138,7 +96,8 @@
                             </div>
                             <div class="pc-event">
                             @if($v->status == '0')
-                                <a href="/home/wjd/dostatus?id={{$v->aid}}">设为默认地址</a>
+                                <!-- <a href="/home/wjd/dostatus?id={{$v->aid}}">设为默认地址</a> -->
+                                <a data-mid="{{$v->aid}}" href="javascript:void(0)" onclick="mren(this)">设为默认地址</a>
                             @endif
                             @if($v->status == '1')
                                 <a href="#"  class="pc-event-d">设为默认地址</a>
@@ -610,6 +569,79 @@
  			var res = document.getElementById('update');
  			res.style.visibility="hidden";
  		}
+ 	}
+
+ 	function mren(obj){
+ 		var mid = $(obj).attr('data-mid');
+ 		// 加载修改事件
+	    $.ajax({
+	        async: false,
+	        url: "/home/wjd/dostatus",
+	        data: {
+	            mid: mid,
+	            _token:'{{csrf_token()}}'
+	        },
+	        type: "POST",
+	        dataType: "json",
+	        success: function(data) {
+	        	if(data.status == 1){
+	        		$('#online_box').val(data.status);
+ 					var element = document.getElementById("online_box").value;
+ 					if (element == '1') {
+ 						Command: toastr["success"]("修改成功", "提示")
+						toastr.options = {
+						  "closeButton": true,
+						  "debug": true,
+						  "newestOnTop": true,
+						  "progressBar": true,
+						  "rtl": false,
+						  "positionClass": "toast-top-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": 300,
+						  "hideDuration": 1000,
+						  "timeOut": 2000,
+						  "extendedTimeOut": 1000,
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+						}
+ 					}
+	        		setTimeout(function () {
+	        			// alert('修改成功');
+			     		window.location.reload();
+			        }, 2000);
+	        	} else {
+	        		// alert('修改失败');
+	        		$('#online_box').val(data.status);
+
+ 					var element = document.getElementById("online_box").value;
+ 					if (element == '2') {
+ 						Command: toastr["error"]("您没有做任何修改", "错误")
+						toastr.options = {
+						  "closeButton": true,
+						  "debug": true,
+						  "newestOnTop": true,
+						  "progressBar": true,
+						  "rtl": false,
+						  "positionClass": "toast-top-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": 300,
+						  "hideDuration": 1000,
+						  "timeOut": 2000,
+						  "extendedTimeOut": 1000,
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+						}
+ 					}
+	        	}
+	        }
+	    });
+
  	}
 
 

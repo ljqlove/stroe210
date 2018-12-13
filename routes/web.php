@@ -23,9 +23,6 @@ Route::get('/home/logout','Auth\LoginController@logout');
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
-
-
-
 Route::get('/home/cate/{id}','Home\CateController@index');
 
 // 列表详情页
@@ -96,6 +93,8 @@ Route::any('/admin/login','Admin\LoginController@login');
 Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
 Route::any('/admin/logout','Admin\LoginController@logout');
+Route::any('/admin/mywork','Admin\LoginController@doout');
+
 
 Route::group(['middleware'=>['login','userper']], function(){
 //后台的首页
@@ -159,6 +158,7 @@ Route::any('admin/site','Admin\SiteController@edit');
 Route::any('admin/do_site','Admin\SiteController@update');
 //后台系统日志
 Route::resource('admin/system','Admin\SystemController');
+Route::any('admin/do_update','Admin\SystemController@do_update');
 
 
 //后台评论管理
