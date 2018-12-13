@@ -18,8 +18,6 @@ class IndexController extends Controller
     public function index(Request $request)
     {
 
-        $rs = $request->input('gname');
-        $good=Goods::where('gname','like','%'.$rs.'%')->get();
         $lunbo = DB::table('lunbo')->get();
         $goods = DB::table('goods')->get();
         // 引入友情链接
@@ -39,7 +37,6 @@ class IndexController extends Controller
 
         return view('home.index',[
             'friends' => $friends,
-            'good'=>$good,
             'goods'=>$goods,
             'friends' => $friends,
             'flash'=>$flash,

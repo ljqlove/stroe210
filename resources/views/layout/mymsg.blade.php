@@ -4,7 +4,7 @@
     <!-- 搜索框 start -->
     <div class="head-form fl">
         <form class="clearfix" href="/home/cate">
-            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
+            <input type="text" class="search-text" accesskey="" value="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
             <button class="button">搜索</button>
         </form>
         <div class="words-text clearfix">

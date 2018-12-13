@@ -5,7 +5,9 @@
 
 @section('content')
 
-
 @stop
 
+@section('js')
+
+@stop
 

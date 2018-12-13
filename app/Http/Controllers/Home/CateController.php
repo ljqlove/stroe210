@@ -69,7 +69,7 @@ class CateController extends Controller
             // var_dump($v['gsize']);
              $size[] = explode(',', $v['gsize']);
         }
-        dd($size);
+        // dd($size);
     	return view('home.goods',[
     		'title'=>'商品详情页',
     		'goods'=>$goods,

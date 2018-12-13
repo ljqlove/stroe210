@@ -17,11 +17,8 @@ class MessageController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        // echo 1;die;
         // 条件搜索  分页
         $user = DB::table('users')->get();
-        // dd($user);
         $message = Message::orderBy('mid','asc')
                 ->where(function($query) use($request){
             $rs = $request->input('uname');
@@ -29,7 +26,6 @@ class MessageController extends Controller
                 $query->where('uname','like','%'.$rs.'%');
             }
         })->paginate(5);
-        // dd($message);
         return view('admin.message.index',[
             'title'=>'客户的信息界面',
             'message'=>$message,

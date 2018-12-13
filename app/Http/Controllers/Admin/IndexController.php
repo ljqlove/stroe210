@@ -16,7 +16,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-    	return view('layout.admins',['title'=>'Store网站后台首页']);
+    	return view('admin.index',['title'=>'Store网站后台首页']);
     }
 
     public static function getCategoryMessage($pid)
