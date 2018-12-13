@@ -186,8 +186,8 @@
                             </span></div>
                         </div>
                         <div class="pc-emption">
-                            <a href="#" id="mall-l" style="cursor: not-allowed;">立即购买</a>
-                            <a href="javascript:void(0)" id="join-l" style="cursor: not-allowed;">加入购物车</a>
+                            <a href="#" id="mall" style="cursor: not-allowed;">立即购买</a>
+                            <a href="javascript:void(0)" id="join" style="cursor: not-allowed;">加入购物车</a>
                         </div>
                     </div>
                         <script>
@@ -207,14 +207,20 @@
                         <div class="pc-custom"><a href="#">联系客服</a> </div>
                         <div class="pc-trigger">
                             <a href="/home/stroe/{{$stroe->id}}">进入店铺</a>
-                            @php
-                            $res = DB::table('collect')->where('uid',session('userinfo')['uid'])->where('sid',$stroe->id)->first();
-                            @endphp
-                            @if(!count($res))
-                            <a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>
-                            @else
-                            <a href="javascript:void(0)" style="margin:0;">已收藏</a>
-                            @endif
+                                @php
+                                if(!empty($userinfo = session('userinfo'))){
+                                    $res = DB::table('collect')->where('uid',session('userinfo')['uid'])->where('sid',$stroe->id)->first();
+
+                                    if(!count($res)){
+                                        echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
+                                    } else {
+                                        echo '<a href="javascript:void(0)" style="margin:0;">已收藏</a>';
+                                    }
+                                } else {
+                                    echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
+                                }
+                                @endphp
+
                         </div>
                     </div>
                 </div>
@@ -363,7 +369,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        // 颜色图片选择
         $('.pc').click(function(){
             var cid = $(this).attr('cid');
             var img = $(this).attr('src');
@@ -373,8 +379,6 @@
             $(this).parent().addClass('cur');
             var res = $('.chicun').find('.cur').length;
             if (res) {
-                $('#mall-l').attr('id','mall');
-                $('#join-l').attr('id','join');
                 $('#mall').css('cursor','pointer');
                 $('#join').css('cursor','pointer');
                 $('#mall').css('background','#EA4949FF');
@@ -384,6 +388,7 @@
             }
         })
 
+        // 大小尺寸选择
         $('.size').click(function(){
             var sid = $(this).attr('sid');
             $('.size').removeClass('cur');
@@ -398,8 +403,6 @@
             // ajax获取price
             var res = $('.yanse').find('.cur').length;
             if (res) {
-                $('#mall-l').attr('id','mall');
-                $('#join-l').attr('id','join');
                 $('#mall').css('cursor','pointer');
                 $('#join').css('cursor','pointer');
                 $('#mall').css('background','#EA4949FF');
@@ -491,6 +494,12 @@
 
         // 加入购物车
         $('#join').click(function(){
+            var rs1 = $('.yanse').find('.cur').length;
+            var rs2 = $('.chicun').find('.cur').length;
+            if (rs1 != 1 || rs2 != 1) {
+                alert('请先选择颜色和尺寸');return;
+            }
+
             var j = $(this);
             var gname = $('#gname').text();
             var price = $('#price').text();
@@ -512,13 +521,28 @@
                     },1500)
                     clone.hide(1500);
                     setTimeout(function(){
-                        var n = Number($('i[class=set]').text());
-                        $('i[class=set]').text(n+1);
-                    })
+                        var n = Number($('#setl').text());
+                        $('#setl').text(n+1);
+                    },3000)
                 } else {
                     alert('加入购物车失败,或该商品已经在购物车中');
                 }
             })
+        })
+
+        // 立即购买
+        $('#mall').click(function(){
+            var rs1 = $('.yanse').find('.cur').length;
+            var rs2 = $('.chicun').find('.cur').length;
+            if (rs1 != 1 || rs2 != 1) {
+                alert('请先选择颜色和尺寸');return;
+            }
+            var gname = $('#gname').text();
+            var price = $('#price').text();
+            var size = $('.chicun').find('.cur').attr('sid');
+            var color = $('.yanse .cur img').attr('cid');
+            var gimg = $('.yanse .cur img').attr('src');
+            var num = $('#subnum').val();
         })
     </script>
 
