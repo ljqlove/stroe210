@@ -96,7 +96,15 @@
                 <li class="headerul">|</li>
                 <li><a href="/home/myCollect">我的收藏</a> </li>
                 <li class="headerul">|</li>
-                <li><a href="/home/Merchant">我要开店</a> </li>
+                @php
+                $res = \DB::table('stores')->where('uid',session('userinfo')['uid'])->get();
+
+                if(count($res)){
+                    echo '<li><a href="/home/myStroe">我的店铺</a> </li>';
+                } else {
+                    echo '<li><a href="/home/Merchant">我要开店</a> </li>';
+                }
+                @endphp
                 <li class="headerul">|</li>
                 <li id="pc-nav" class="menu"><a href="/home/wjd/message" >我的商城</a>
                 </li>

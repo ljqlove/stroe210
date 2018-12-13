@@ -10,7 +10,6 @@
 
 @section('content')
 <div class="content-wrapper">
-          
           @if (count($errors) > 0)
           <div class="btn btn-gradient-primary mr-2" id="mr-2" style="width: 800px">
                   显示错误信息
@@ -34,7 +33,7 @@
                   <form class="forms-sample" action="/admin/goods/{{$res->gid}}" method="post" class="mws-form" enctype='multipart/form-data'>
 
                     <select class="form-control" id="exampleFormControlSelect2" name="tid">
-                        
+
                         <option value="0">请选择</option>
                         @foreach($rs as $v)
 
@@ -66,12 +65,12 @@
                       <label for="exampleSelectGender">单价</label>
                         <input type="text" class="form-control" id="exampleInputName1" placeholder="price" name="price" value="{{$res->price}}">
                       </div>
-                    
+
                     <div class="form-group">
                       <label>商品默认图片</label>
                      <input type="file" name='gpic' >
                      <img src="{{$res->gpic}}"  style='width:130px;height:80px'>
-                     
+
                     </div>
 
                    <div class="form-group">
@@ -80,7 +79,7 @@
                      @foreach($gimgs as $v)
                             <img src="{{$v->gimgs}}" class='imgs' gid="{{$v->gid}}" alt="" style='width:130px;height:80px'>
                      @endforeach
-                     
+
                     </div>
 
                     <div class="form-group">
@@ -92,7 +91,7 @@
                       <label for="exampleTextarea1">简介</label>
                       <script id="editor" name='descript' type="text/plain" style="width:1145px;height:500px;">{!!$res->descript!!}</script>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">状态</label>
@@ -116,11 +115,11 @@
                       </div>
 
 
-                    
+
                     {{csrf_field()}}
 
                     {{method_field('PUT')}}
-                    
+
                     <button type="submit" class="btn btn-gradient-primary mr-2">修改</button>
                     <!-- <button class="btn btn-light">重置</button> -->
                   <button type="button" class="btn btn-gradient-dark"><a href="/admin/goods" style="text-decoration:none;color:white;">返回</a></button>
@@ -128,7 +127,7 @@
 
 
                 </div>
-    
+
 </div>
 
 

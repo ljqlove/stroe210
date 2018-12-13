@@ -41,7 +41,7 @@ class LoginController extends Controller
     	//判断密码
     	//hash
     	if (!Hash::check($request->user_pass, $rs->user_pass)) {
-		    
+
 		    return back()->with('error','用户名或者密码错误');
 		}
 
@@ -70,6 +70,15 @@ class LoginController extends Controller
 			$map['uname'] = session('user_name');
 	        $map['created_at'] = date('Y-m-d H:i:s',time());
 	    	$result = DB::table('system')->insert($map);
+
+		//存点信息  session
+		session(['uid'=>$rs->user_id]);
+		session(['user_name'=>$rs->user_name]);
+		session(['user_pic'=>$rs->user_pic]);
+		$map['uid'] = session('uid');
+        $map['uname'] = session('user_name');
+        $map['created_at'] = date('Y-m-d H:i:s',time());
+    	$result = DB::table('system')->insert($map);
 
 
 			return redirect('/admin');

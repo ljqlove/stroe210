@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gsize extends Model
 {
-    protected $table = 'shopsize';
+    protected $table = 'gsize';
 
     protected $primaryKey = 'id';
 

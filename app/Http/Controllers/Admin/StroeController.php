@@ -42,7 +42,16 @@ class StroeController extends Controller
      */
     public function store(Request $request)
     {
-        echo 123;
+        $data = $request -> except('_token','id');
+        $id = $request -> id;
+        $data['status']='1';
+        // dd($data,$id);
+        $res = DB::table('stores')->where('id',$id)->update($data);
+        if ($res) {
+            return back()->with('success','修改成功');
+        } else {
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -74,7 +83,25 @@ class StroeController extends Controller
     {
         //获取上传的文件对象
         $file = $request->file('image');
-         var_dump($file);die;
+         // var_dump($file);die;
+         //判断文件是否有效
+        if($file->isValid()){
+            //上传文件的后缀名
+            $entension = $file->getClientOriginalExtension();
+            //修改名字
+            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
+            //移动文件
+            $path = $file->move('./uploads/images/',$newName);
+
+
+            $filepath = '/uploads/images/'.$newName;
+
+
+            $res['image'] = $filepath;
+            DB::table('stores')->where('id',$id)->update($res);
+            //返回文件的路径
+            return  $filepath;
+        }
 
     }
 
