@@ -185,9 +185,15 @@
                                 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","weixin","sqq","youdao","tieba"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","weixin","sqq","youdao","tieba"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                             </span></div>
                         </div>
+                        @php
+                            $href = 'javascript:(0)';
+                            if(empty(session('userinfo'))){
+                                $href = '/home/login';
+                            }
+                        @endphp
                         <div class="pc-emption">
-                            <a href="#" id="mall" style="cursor: not-allowed;">立即购买</a>
-                            <a href="javascript:void(0)" id="join" style="cursor: not-allowed;">加入购物车</a>
+                            <a href="{{$href}}" id="mall" style="cursor: not-allowed;">立即购买</a>
+                            <a href="{{$href}}" id="join" style="cursor: not-allowed;">加入购物车</a>
                         </div>
                     </div>
                         <script>
@@ -496,6 +502,7 @@
         $('#join').click(function(){
             var rs1 = $('.yanse').find('.cur').length;
             var rs2 = $('.chicun').find('.cur').length;
+
             if (rs1 != 1 || rs2 != 1) {
                 alert('请先选择颜色和尺寸');return;
             }
@@ -543,6 +550,10 @@
             var color = $('.yanse .cur img').attr('cid');
             var gimg = $('.yanse .cur img').attr('src');
             var num = $('#subnum').val();
+            // console.log(gname,price,size,color,gimg,num);
+            $.post('/home/joinorder',{oname:gname,price:price,size:size,color:color,opic:gimg,num:num},function(data){
+                location.href='/home/addorder/'+data;
+            })
         })
     </script>
 

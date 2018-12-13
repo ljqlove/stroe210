@@ -44,8 +44,21 @@ Route::group(['middleware' => 'auth'], function(){
     Route::any('/home/myCart','Home\CartController@myCart');
     Route::post('/home/shopcart','Home\CartController@shopcart');
     Route::any('/home/order','Home\OrderController@order');
-    Route::any('/home/addorder','Home\OrderController@addOrder');
+    Route::any('/home/addorder/{ids}','Home\OrderController@addOrder');
     Route::post('/home/mess','Home\OrderController@message');
+
+    // 立即购买
+    Route::post('/home/joinorder','Home\OrderController@joinorder');
+    // 取消订单
+    Route::get('/home/delorder/{oid}','Home\OrderController@delorder');
+    // 给订单选择地址
+    Route::get('/home/seladdress','Home\OrderController@seladdress');
+    // 设置支付密码
+    Route::post('/home/pass','Home\OrderController@pass');
+    // 订单支付
+    Route::post('/home/pay/{oids}','Home\OrderController@pay');
+    // 支付成功
+    Route::get('/home/paysuccess/{oids}','Home\OrderController@paysuccess');
 
     // 收藏
     Route::get('home/collect/{id}','Home\ColController@collect');

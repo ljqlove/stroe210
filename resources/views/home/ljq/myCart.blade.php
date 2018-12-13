@@ -471,7 +471,7 @@
                     rem.parents('tr').remove();
 
                     //刷新
-                    nums()
+                    nums();
                 }
             })
 

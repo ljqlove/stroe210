@@ -551,7 +551,7 @@
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
         @if($userinfo = session('userinfo'))
         <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
-        @else if($userinfo == 0)
+        @elseif($userinfo == 0)
         <i class="head-amount">0</i>
         @endif
         <script>
