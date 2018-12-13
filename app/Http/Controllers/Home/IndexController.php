@@ -17,6 +17,7 @@ class IndexController extends Controller
     //
     public function index(Request $request)
     {
+        // dd($_GET);
 
         $lunbo = DB::table('lunbo')->get();
         $goods = DB::table('goods')->get();

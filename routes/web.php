@@ -18,8 +18,6 @@ Route::any('/home/captcha','Auth\LoginController@captcha');
 Route::get('/home/login','Auth\LoginController@login');
 Route::get('/home/dologin','Auth\LoginController@dologin');
 Route::get('/home/logout','Auth\LoginController@logout');
-
-// 无需登录
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
