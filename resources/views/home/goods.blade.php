@@ -49,6 +49,22 @@
             list-style:none;
             margin-right:5px;
         }
+
+        #advert_right{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            right:0px;
+        }
+
+        #advert_left{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            left:0px;
+        }
     </style>
 
     <script>
@@ -175,6 +191,29 @@
 
 @section('sousuo')
     <!-- 搜索框 start -->
+    <div id="advert_right">
+        
+        @foreach($advert as $k=>$v)
+        @if($v->status == 1)
+        @if($v->id == 1)
+        <button onclick="document.getElementById('advert_right').style.display='none';" style="width:20px; float: right;">X</button>
+        <img src="{{$v->img}}" title="{{$v->name}}" style="width: 150px;
+            height: 380px;">    
+        @endif
+        @endif
+        @endforeach
+    </div>
+    <div id="advert_left">
+        @foreach($advert as $k=>$v)
+        @if($v->status == 1)
+        @if($v->id == 2)
+        <button onclick="document.getElementById('advert_left').style.display='none';" style="width:20px; float: right;">X</button>
+        <img src="{{$v->img}}" title="{{$v->name}}" style="width: 150px;
+            height: 380px;">    
+        @endif
+        @endif
+        @endforeach</div>
+
     <div class="head-form fl">
         <form class="clearfix">
             <input type="text" class="search-text" accesskey="" id="key" autocomplete="off"  placeholder="洗衣机">
@@ -516,6 +555,7 @@
                        </ul>
 
                    </div>
+
                    <div class="H-over1" style="display:none">
                        <div class="pc-comment fl"><strong>86<span>%</span></strong><br> <span>好评度</span></div>
                        <div class="pc-percent fl">

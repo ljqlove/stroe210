@@ -60,6 +60,7 @@ class CateController extends Controller
 
         $comment = DB::table('comment')->get();
 
+        $advert = DB::select('select * from advert');
 
         // dd($gsize);
 
@@ -86,6 +87,7 @@ class CateController extends Controller
             'gsize'=>$gsize,
             'comment'=>$comment,
             'new_size'=>$new_size,
+            'advert'=>$advert,
 
     	]);
     }

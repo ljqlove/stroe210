@@ -389,14 +389,13 @@
     </div>
 
     <div class="containers main-banner"><a href="#"><img src="/homes/theme/img/ad/br1.jpg" width="1200" height="105"></a> </div>
-
     <div class="time-lists clearfix">
         <div class="time-list fl">
             <div class="time-title time-clear"><h2>好店推荐 </h2></div>
             <div class="time-border time-border-h clearfix">
                 <div class="fl shop-img">
-                    <div class="shop-title"><a href="#"><img src="/homes/theme/img/ad/shop1.png"></a></div>
-                    <div class="shop-text"><h2>熊太子坚果炒货金冠店铺...</h2> <p>[正品 有赠品 如实描述]</p></div>
+                    <div class="shop-title"><a href="#"><img src=""></a></div>
+                    <div class="shop-text"><h2>12321321321</h2> <p>[正品 有赠品 如实描述]</p></div>
                     <div class="shop-work clearfix"><a href="#"><img src="/homes/theme/img/ad/shop2.png"></a><a href="#"><img src="/homes/theme/img/ad/shop3.png"></a> </div>
                 </div>
                 <div class="shop-bar clearfix fl">
@@ -415,22 +414,6 @@
             <div class="time-title time-clear"><h2>店铺销量top排行</h2></div>
             <div style="border-left:none;" class="time-border time-border-h">
                 <ul class="shop-top">
-                    <li class="clearfix">
-                        <div class="shop-name fl"><a href="#"><img src="/homes/theme/img/ad/top1.png"></a></div>
-                        <div class="shop-titl fl"><p><b>NO.1 阿卡官方旗舰店</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="shop-name fl"><a href="#"><img src="/homes/theme/img/ad/top1.png"></a></div>
-                        <div class="shop-titl fl"><p><b>NO.1 阿卡官方旗舰店</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="shop-name fl"><a href="#"><img src="/homes/theme/img/ad/top1.png"></a></div>
-                        <div class="shop-titl fl"><p><b>NO.1 阿卡官方旗舰店</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="shop-name fl"><a href="#"><img src="/homes/theme/img/ad/top1.png"></a></div>
-                        <div class="shop-titl fl"><p><b>NO.1 阿卡官方旗舰店</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>
-                    </li>
                     <li class="clearfix">
                         <div class="shop-name fl"><a href="#"><img src="/homes/theme/img/ad/top1.png"></a></div>
                         <div class="shop-titl fl"><p><b>NO.1 阿卡官方旗舰店</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>

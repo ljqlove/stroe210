@@ -29,8 +29,8 @@
 @endsection
 
 @php
-	$message = DB::table('message')->where('uid',session('uid'))->first();
-	$user = DB::table('users')->where('uid',session('uid'))->first();
+	$message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
+    $user = DB::table('users')->where('uid',session('userinfo')['uid'])->first();
 @endphp
 
 

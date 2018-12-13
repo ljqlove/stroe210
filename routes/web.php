@@ -168,6 +168,9 @@ Route::resource('admin/goods','Admin\GoodsController');
 // 快讯管理
 Route::resource('admin/flash','Admin\FlashController');
 
+//后台广告设置
+Route::resource('/admin/advert','Admin\AdvertController');
+
 
 Route::get('admin/gsize/{id}','Admin\GoodsController@gsize');  // 浏览商品样式页面
 

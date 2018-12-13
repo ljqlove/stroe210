@@ -343,6 +343,19 @@
             </div>
           </li>
 
+               <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-guang" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">广告管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi mdi-wrench"></i>
+            </a>
+            <div class="collapse" id="ui-guang">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/advert">设置广告</a></li>
+              </ul>
+            </div>
+          </li>
+
         </ul>
       </nav>
       <!-- partial -->
