@@ -42,11 +42,11 @@ class OrderController extends Controller
             $data[$i]['size'] = $shop -> size;
             $data[$i]['opic'] = $shop -> gimg;
             $add = DB::table('address') -> where('uid','3') ->where('status','1') -> first();
-
-            $data[$i]['address'] = $add -> address;
-            $data[$i]['phone'] = $add -> aphone;
+            // dd($add);
+            $data[$i]['addid'] = $add['aid'];
             $data[$i]['inputtime'] = date('Y-m-d H:i:s',time());
         }
+        // dd($data);
         // 插入数据
         $res = DB::table('orders') -> insert($data);
         if ($res) {
@@ -58,7 +58,9 @@ class OrderController extends Controller
     {
         // 获取新订单数据
         $uid = session('userinfo')['uid'];
+        // dd($uid);
         $address = DB::table('address')->where('uid',$uid)->get();
+        // dd($address);
         $data = DB::table('orders')
         ->join('goods','oname','gname')
         ->select('orders.*','goods.company')

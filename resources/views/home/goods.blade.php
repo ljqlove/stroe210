@@ -1,53 +1,35 @@
-@extends('layout.homes')
-
+@extends('layout.mymsg')
 
 @section('title',$title)
-<script src='./jquery-1.8.3.min.js'></script>
 
 @section('js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
-
-
-        .pc-product-top{cursor:move;}
-
-        #move{
-            width: 160px;
-            height: 160px;
-         /*   position:absolute;
-            left:100px;
-            top:100px;
-            background: url('/homes/theme/img/bg/bg.png');*/
-            display:none;
-
+        #small{
+            position: relative;
         }
-
-        #big{
-            width:400px;height: 400px;position:absolute;left:650px;top:240px;overflow:hidden;display:none;
-        }
-
         #bigImg{
             position:absolute;
-
         }
-
-        #uls{
+        #big{
             width:400px;
-            height:84px;
-
+            height:400px;
             position:absolute;
-            /*left:30px;
-            top:460px;*/
+            left:550px;
+            top:220px;
+            overflow: hidden;
+            display: none
         }
-
-        #uls li{
-            width: 80px;
-            height: 80px;
-            /*border: solid 1px green;*/
-            float:left;
-            list-style:none;
-            margin-right:5px;
+        #move{
+            width:200px;
+            height:200px;
+            background-image:url('/images/bg.png');
+            position:absolute;
+            display: none;
+            cursor:move;
+            left:0px;
+            top:0px;
         }
     </style>
 
@@ -77,53 +59,7 @@
              })
          })
      </script>
-    <script>
-         $(function(){
-            $("#pro_detail a").hover(function(){
-                $("#pro_detail a").removeClass("cur");
-                $(this).addClass("cur");
-                $("#big_img").attr("src",$(this).attr("simg"));
-            });
 
-            $(".attrdiv a").click(function(){
-                $(".attrdiv a").removeClass("cur");
-                $(this).addClass("cur");
-            });
-
-            $('.amount2').click(function(){
-                var num_input = $("#subnum");
-                var buy_num = (num_input.val()-1)>0?(num_input.val()-1):1;
-                num_input.val(buy_num);
-            });
-
-            $('.amount1').click(function(){
-                var num_input = $("#subnum");
-                var buy_num = Number(num_input.val())+1;
-                num_input.val(buy_num);
-            });
-
-             $("#H-table li").each(function(i){
-                 $(this).click((function(k){
-                     var _index = k;
-                     return function(){
-                         $(this).addClass("cur").siblings().removeClass("cur");
-                         $(".H-over").hide();
-                         $(".H-over:eq(" + _index + ")").show();
-                     }
-                 })(i));
-             });
-             $("#H-table1 li").each(function(i){
-                 $(this).click((function(k){
-                     var _index = k;
-                     return function(){
-                         $(this).addClass("cur").siblings().removeClass("cur");
-                         $(".H-over1").hide();
-                         $(".H-over1:eq(" + _index + ")").show();
-                     }
-                 })(i));
-             });
-         });
-     </script>
     <script type="text/javascript">
          (function(a){
              a.fn.hoverClass=function(b){
@@ -160,301 +96,131 @@
 
          });
      </script>
-
-     <script>
-    $(".goods").toggle(
-        function () {
-        $(this).addClass("selected");//添加选中
-        },
-        function () {
-        $(this).removeClass("selected"); //移除选中
-        }
-        );
-    </script>
 @endsection
 
-@section('sousuo')
-    <!-- 搜索框 start -->
-    <div class="head-form fl">
-        <form class="clearfix">
-            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off"  placeholder="洗衣机">
-            <button class="button" onClick="search('key');return false;">搜索</button>
-        </form>
-        <div class="words-text clearfix">
-            <a href="#" class="red">1元秒爆</a>
-            <a href="#">低至五折</a>
-            <a href="#">农用物资</a>
-            <a href="#">买一赠一</a>
-            <a href="#">佳能相机</a>
-            <a href="#">稻香村月饼</a>
-            <a href="#">服装城</a>
-        </div>
-    </div>
-    <!-- 搜索框 end -->
-    <!-- 购物车 strat -->
-    <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
-        <i class="head-amount">{{\DB::table('cart')->where('uid',3)->count()}}</i>
-        <script>
-            setInterval(function(){
-                $('i[class=head-amount]').toggle();
-            },1000)
-        </script>
-    </div>
-    <div class="head-mountain"></div>
-    <!-- 购物车 end -->
-@endsection
 
 @section('nav')
     <ul class="yMenuIndex">
-        <li><a href="" target="_blank">服装城</a></li>
-        <li><a href="" target="_blank">美妆馆</a></li>
-        <li><a href="" target="_blank">美食</a></li>
-        <li><a href="" target="_blank">全球购</a></li>
-        <li><a href="" target="_blank">闪购</a></li>
-        <li><a href="" target="_blank">团购</a></li>
-        <li><a href="" target="_blank">拍卖</a></li>
-        <li><a href="" target="_blank">金融</a></li>
-        <li><a href="" target="_blank">智能</a></li>
+        @foreach($type as $v)
+        <li><a href="" target="_blank">{{$v->tname}}</a></li>
+        @endforeach
     </ul>
 @endsection
 
 @section('content')
     <section>
+        <div id='big'>
+            <img src="{{$goods['gpic']}}" alt="" id='bigImg'>
 
+        </div>
     <div class="pc-details" >
         <div class="containers">
 
             <div class="pc-details-l">
                 <div class="pc-product clearfix">
                     <div class="pc-product-h">
-                        <div class="pc-product-top"><img src="{{$goods[0]['gpic']}}" id="big_img" width="418" height="418"><div id='move'></div><div id='big'><img src="{{$goods[0]['gpic']}}" alt="" id='bigImg'></div></div>
+                        <div class="pc-product-top" id="small"><img src="{{$goods['gpic']}}" id="smallImg" width="418" height="418">
+                        <div id='move'></div>
+
+                        </div>
 
 
                         <div class="pc-product-bop clearfix" id="pro_detail">
                             <ul id='uls'>
-                                <li><a href="javascript:void(0);" simg="{{$goods[0]['gpic']}}"><img src="{{$goods[0]['gpic']}}" width="58" height="58"></a> </li>
-
-                                @foreach($gimgs as $k => $v)
-                                <li><a href="javascript:void(0);" simg="{{$v->gimgs}}"><img src="{{$v->gimgs}}" width="58" height="58"></a> </li>
+                                @foreach($gcolor as $k => $v)
+                                <li><a href="javascript:void(0);" simg="{{$v->id}}" class="size"><img class="lun" src="{{$v->pictrue}}" width="58" height="58"></a> </li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
 
-                        <script>
-                        //移动事件
-                        $('.pc-product-top').mousemove(function(e){
 
-                            $('#move').css('display','block');
-                            $('#big').css('display','block');
-
-
-                            //获取small的左侧偏移量
-                            var sl = $('.pc-product-top').offset().left;
-                            var st = $('.pc-product-top').offset().top;
-
-                            //获取x和y的坐标
-                            // var x = e.clientX;
-                            // var y = e.clientY;
-
-                            var x = e.pageX;
-                            var y = e.pageY;
-
-                            //获取move的宽和高
-                            var mw = $('#move').width()/2;
-                            var mh = $('#move').height()/2;
-
-                            //求出 move距离small的偏移量
-                            var ml = x - sl - mw;
-                            var mt = y - st - mh;
-
-
-                            var maxl = $('.pc-product-top').width()-$('#move').width();
-
-                            var maxt = $('.pc-product-top').height()-$('#move').height();
-
-                            if(ml >= maxl){
-
-                                ml = maxl;
-                            }
-                            if(ml <= 0){
-                                ml = 0;
-                            }
-
-                            if(mt >= maxt){
-
-                                mt = maxt;
-                            }
-                            if(mt <= 0){
-                                mt = 0;
-                            }
-
-                            //获取大图距离big 的偏移量
-                            var bl = $('#bigImg').width() / $('.pc-product-top').width() * ml;
-                            var bt = $('#bigImg').height() / $('.pc-product-top').height() * mt;
-
-
-                            $('#bigImg').css('left',-bl+'px');
-                            $('#bigImg').css('top',-bt+'px');
-
-
-                            $('#move').css('left',ml+'px');
-                            $('#move').css('top',mt+'px');
-
-
-                        })
-
-                        //从small移出来
-                        $('.pc-product-top').mouseout(function(){
-
-                            $('#move').css('display','none');
-                            $('#big').css('display','none');
-
-                        })
-
-                        //鼠标移到小图上
-                        $('#uls').find('img').mouseover(function(){
-
-                            $(this).css('border','solid 1px #e53e41 ');
-
-                            var srcs = $(this).attr('src');
-
-                            //改变small里面的src
-                            $('.pc-product-top').find('img').attr('src',srcs);
-
-                            //改变big里面的src
-                            $('#big').find('img').attr('src',srcs);
-
-                        })
-
-                        $('#uls').find('img').mouseout(function(){
-
-                            $(this).css('border','solid 1px white');
-                        })
-
-                    </script>
 
                     <div class="pc-product-t">
                         <div class="pc-name-info">
-                            <h1>{{$goods[0]['gname']}}</h1>
-                            <a href="#" id="gid" style="display: none;">{{$goods[0]['gid']}}</a>
-                            <p class="clearfix pc-rate" "><strong id="price">{{$goods[0]['price']}}.00</strong> </p>
-                            <p>由<a href="#" class="reds">{{$goods[0]['company']}}</a> 负责发货，并提供售后服务。</p>
+                            <h1 id="gname">{{$goods['gname']}}</h1>
+                            <a href="#" id="gid" style="display: none;">{{$goods['gid']}}</a>
+                            <p class="clearfix pc-rate" "><strong id="price"><i class="fa fa-jpy" aria-hidden="true"></i> {{$goods['price']}}.00</strong> </p>
+                            <p>由<a href="#" class="reds">{{$stroe->company}}</a> 负责发货，并提供售后服务。</p>
                         </div>
                         <div class="pc-dashed clearfix">
-                            <span>累计销量：<em class="reds">3988</em> 件</span><b>|</b><span>累计评价：<em class="reds">3888</em></span>
+                            <span>累计销量：<em class="reds">3988</em> 件</span><b>|</b><span>累计评价：<em class="reds">{{count($comment)}}</em></span>
                         </div>
                         <div class="pc-size">
                             <div class="attrdiv pc-telling clearfix">
                                 <div class="pc-version">商品尺寸</div>
-                                <div class="pc-adults">
+                                <div class="pc-adults chicun">
                                     <ul>
-                                        <li><a href="javascript:void(0);" class="gsize">{{$goods[0]['size']}}</a></li>
-                                        {{-- @foreach($gsize as $k=>$v --)}}
-                                        <li><a href="javascript:void(0);" class="size">{{-- $v->gsize --}}</a> </li>
-                                        {{-- @endforeach --}}
+                                        @foreach($gsize as $k=>$v)
+                                        <li><a href="javascript:void(0);" sid="{{$v->id}}" class="size">{{ $v->size }}</a> </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                             <div class="pc-telling clearfix">
                                 <div class="pc-version">颜色分类</div>
-                                <div class="pc-adults">
+                                <div class="pc-adults yanse">
                                     <ul>
-                                        <li><a href="javascript:void(0);" class="goods" ><img src="{{$goods[0]['gpic']}}" width="35" height="35"></a> </li>
-                                        @foreach($gsize as $k=>$v)
-                                        <li ><a class="pc" data-id="{{$v->id}}" href="javascript:void(0);" title="{{$v->gcolor}}" onclick="gsize(this);" class="size"><img src="{{$v->cimgs}}" width="35" height="35"></a> </li>
+                                        @foreach($gcolor as $k=>$v)
+                                        <li ><a   href="javascript:void(0);" title="{{$v->color}}" class="pca"><img src="{{$v->pictrue}}" class="pc" cid="{{$v->id}}" width="35" height="35"></a> </li>
                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <script>
-                                $.ajaxSetup({
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                    }
-                                });
-                                $('.size').click(function(){
-                                    var size = $(this).text();
-                                    var gid = $('#gid').text();
-                                    // ajax获取size对应的price
-                                    // larvel中ajax meta cfsc
-                                    // js header text --_token
-                                    $.get('/home/gsize',{gid:gid},function(data){
-                                         $('#price').text({{$v->gpic}});
-                                    });
-                                    // 控制器里头就可以接受值
-                                    // ajax获取price
 
-                                $('.gsize').click(function(){
-                                    // alert('11111111');
-                                    var gsize = $(this).text();
-                                     $.get('/home/gsize',{gid:gid},function(data){
-                                         $('#price').text({{$v->gpic}});
-                                    });
-                                    // 控制器
-                                });
-
-                                function gsize(obj) {
-                                   $('.pc').removeClass('cur');
-                                    $(obj).addClass('cur');
-                                    var sid = $(obj).attr("data-id");
-
-                                    $.ajax({
-                                        async: false,
-                                        url: "/home/ajaxgsize",
-                                        data: {
-                                            sid:sid,
-                                            _token:'{{csrf_token()}}'
-                                        },
-                                        type: "POST",
-                                        dataType: "json",
-                                        success: function(data) {
-                                            if(data.status == 1){
-                                                // console.log(data);
-                                                $('#price').text(data.list.gpic);
-
-                                            } else {
-                                                alert('查询失败');
-                                            }
-
-                                        }
-                                    });
-                                }
-                            </script>
                             <div class="pc-telling clearfix">
                                 <div class="pc-version">数量</div>
                                 <div class="pc-adults clearfix">
-                                    <div class="pc-adults-p clearfix fl">
-                                        <input type="" id="subnum" placeholder="1">
-                                        <a href="javascript:void(0);" class="amount1"></a>
-                                        <a href="javascript:void(0);" class="amount2"></a>
+                                    <div class="pc-adults-p clearfix fl" style="width:100px;" >
+                                        <a href="javascript:void(0);" class="amount2" style="border:1px solid #ddd;width:20px;height:30px;line-height: 30px;text-align: center;margin:0 2px;"> - </a>
+                                        <input type="text" id="subnum" value="1">
+                                        <a href="javascript:void(0);" class="amount1" style="border:1px solid #ddd;width:20px;height:30px;line-height: 30px;text-align: center;margin:0 2px;"> + </a>
                                     </div>
                                     <div class="fl pc-letter ">件</div>
-                                    <div class="fl pc-stock ">库存<em>{{$goods[0]['stock']}}</em>件</div>
+                                    <div class="fl pc-stock ">库存<em>{{$goods['stock']}}</em>件</div>
                                 </div>
                             </div>
-                            <div class="pc-number clearfix"><span class="fl">商品编号：{{$goods[0]['gid']}}   </span> <span class="fr">
+                            <div class="pc-number clearfix"><span class="fl">商品编号：{{$goods['gid']}}   </span> <span class="fr">
                                 <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></div>
                                 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","weixin","sqq","youdao","tieba"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","weixin","sqq","youdao","tieba"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                             </span></div>
                         </div>
                         <div class="pc-emption">
-                            <a href="#">立即购买</a>
-                            <a href="/home/join/{{$goods[0]['gid']}}" class="join">加入购物车</a>
+                            <a href="#" id="mall" style="cursor: not-allowed;">立即购买</a>
+                            <a href="javascript:void(0)" id="join" style="cursor: not-allowed;">加入购物车</a>
                         </div>
                     </div>
+                        <script>
 
+                        </script>
                     <div class="pc-product-s">
-                        <div class="pc-shoplo"><a href="#"><img src="theme/icon/shop-logo.png"></a> </div>
+                        <div class="pc-shoplo">
+                            <a href="#"><img width="180" height="80" src="{{$stroe->image}}"></a>
+                        </div>
                         <div class="pc-shopti">
-                            <h2>神游官方旗舰店</h2>
-                            <p>公司名称：优购科技有限公司</p>
-                            <p>所在地： 广东省   深圳市</p>
+                            <h2></h2>
+                            <p>店铺名称：{{$stroe->company}}</p>
+                            <p><b>{{ceil((time()-strtotime($stroe->create_at))/(3600*24*30*12))}}</b>年老店</p>
+
+                            <p>掌柜： {{$stroe->uname}}</p>
                         </div>
                         <div class="pc-custom"><a href="#">联系客服</a> </div>
                         <div class="pc-trigger">
-                            <a href="#">进入店铺</a>
-                            <a href="#" style="margin:0;">关注店铺</a>
+                            <a href="/home/stroe/{{$stroe->id}}">进入店铺</a>
+                                @php
+                                if(!empty($userinfo = session('userinfo'))){
+                                    $res = DB::table('collect')->where('uid',session('userinfo')['uid'])->where('sid',$stroe->id)->first();
+
+                                    if(!count($res)){
+                                        echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
+                                    } else {
+                                        echo '<a href="javascript:void(0)" style="margin:0;">已收藏</a>';
+                                    }
+                                } else {
+                                    echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
+                                }
+                                @endphp
+
                         </div>
                     </div>
                 </div>
@@ -508,7 +274,7 @@
                    <div class="H-over1 pc-text-word clearfix">
                        <ul class="clearfix">
                            <li>
-                               {!!$goods[0]['descript']!!}
+                               {!!$goods['descript']!!}
                            </li>
 
                        </ul>
@@ -597,6 +363,187 @@
         </div>
     </div>
 </section>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // 颜色图片选择
+        $('.pc').click(function(){
+            var cid = $(this).attr('cid');
+            var img = $(this).attr('src');
+            $('#smallImg').attr('src',img);
+            $('#bigImg').attr('src',img);
+            $('.pca').removeClass('cur');
+            $(this).parent().addClass('cur');
+            var res = $('.chicun').find('.cur').length;
+            if (res) {
+                $('#mall').css('cursor','pointer');
+                $('#join').css('cursor','pointer');
+                $('#mall').css('background','#EA4949FF');
+                $('#join').css('background','#EA4949FF');
+                $('#mall').css('color','#fff');
+                $('#join').css('color','#fff');
+            }
+        })
 
+        // 大小尺寸选择
+        $('.size').click(function(){
+            var sid = $(this).attr('sid');
+            $('.size').removeClass('cur');
+            $(this).addClass('cur');
+            // ajax获取size对应的price
+            // larvel中ajax meta cfsc
+            // js header text --_token
+            $.get('/home/ajaxgsize',{sid:sid},function(data){
+                 $('#price').html('<i class="fa fa-jpy" aria-hidden="true"></i> '+data+'.00');
+            });
+            // 控制器里头就可以接受值
+            // ajax获取price
+            var res = $('.yanse').find('.cur').length;
+            if (res) {
+                $('#mall').css('cursor','pointer');
+                $('#join').css('cursor','pointer');
+                $('#mall').css('background','#EA4949FF');
+                $('#join').css('background','#EA4949FF');
+                $('#mall').css('color','#fff');
+                $('#join').css('color','#fff');
+            }
+        })
+
+        // 图下轮播
+        $('.lun').mouseover(function(){
+            var img = $(this).attr('src');
+            $('#smallImg').attr('src',img);
+            $('#bigImg').attr('src',img);
+            $('.size').removeClass('cur');
+            $(this).parent().addClass('cur');
+        })
+
+        // 绑定鼠标移动事件
+        $('#small').mousemove(function(e){
+            $('#move').css('display','block');
+            $('#big').css('display','block');
+
+            // 获取small的左侧偏移量
+            var sl = $('#small').offset().left;
+            var st = $('#small').offset().top;
+
+            // 获取x和y的坐标
+            var x = e.pageX;
+            var y = e.pageY;
+
+            // 获取move的宽和高
+            var mw = $('#move').width()/2;
+            var mh = $('#move').height()/2;
+
+            // 求出move距离 small的偏移量
+            var ml = x - sl - mw;
+            var mt = y - st - mh;
+
+            var maxl = $('#small').width()-$('#move').width();
+            var maxt = $('#small').height()-$('#move').height();
+
+            if (ml >= maxl) {
+                ml = maxl;
+            }
+
+            if (ml <= 0) {
+                ml = 0;
+            }
+
+            if (mt >= maxt) {
+                mt = maxt;
+            }
+
+            if (mt <= 0) {
+                mt = 0;
+            }
+
+            // 获取大图距离big的偏移量
+            var bl = $('#bigImg').width() / $('#small').width() * ml;
+            var bt = $('#bigImg').height() / $('#small').height() * mt;
+
+            $('#bigImg').css('left',-bl+'px');
+            $('#bigImg').css('top',-bt+'px');
+
+            $('#move').css('left',ml+'px');
+            $('#move').css('top',mt+'px');
+        })
+
+        // 从small移出来
+        $('#small').mouseout(function(){
+            $('#move').css('display','none');
+            $('#big').css('display','none');
+        })
+
+        // -
+        $('.amount2').click(function(){
+            var num_input = $("#subnum");
+            var buy_num = (num_input.val()-1)>0?(num_input.val()-1):1;
+            num_input.val(buy_num);
+        });
+
+        // +
+        $('.amount1').click(function(){
+            var num_input = $("#subnum");
+            var buy_num = Number(num_input.val())+1;
+            num_input.val(buy_num);
+        });
+
+        // 加入购物车
+        $('#join').click(function(){
+            var rs1 = $('.yanse').find('.cur').length;
+            var rs2 = $('.chicun').find('.cur').length;
+            if (rs1 != 1 || rs2 != 1) {
+                alert('请先选择颜色和尺寸');return;
+            }
+
+            var j = $(this);
+            var gname = $('#gname').text();
+            var price = $('#price').text();
+            var size = $('.chicun').find('.cur').attr('sid');
+            var color = $('.yanse .cur img').attr('cid');
+            var gimg = $('.yanse .cur img').attr('src');
+            var num = $('#subnum').val();
+            // console.log(gname,price,gsize,gcolor,gimg,num);
+            $.post('/home/joinCart',{gname:gname,price:price,size:size,color:color,gimg:gimg,num:num},function(data){
+                if(data){
+                    var clone = j.clone(true);
+                    j.before(clone);
+                    clone.css('position','absolute');
+                    clone.animate({
+                        right:'280px',
+                        top:'100px',
+                        width:'0px',
+                        borderRadius:'50%',
+                    },1500)
+                    clone.hide(1500);
+                    setTimeout(function(){
+                        var n = Number($('#setl').text());
+                        $('#setl').text(n+1);
+                    },3000)
+                } else {
+                    alert('加入购物车失败,或该商品已经在购物车中');
+                }
+            })
+        })
+
+        // 立即购买
+        $('#mall').click(function(){
+            var rs1 = $('.yanse').find('.cur').length;
+            var rs2 = $('.chicun').find('.cur').length;
+            if (rs1 != 1 || rs2 != 1) {
+                alert('请先选择颜色和尺寸');return;
+            }
+            var gname = $('#gname').text();
+            var price = $('#price').text();
+            var size = $('.chicun').find('.cur').attr('sid');
+            var color = $('.yanse .cur img').attr('cid');
+            var gimg = $('.yanse .cur img').attr('src');
+            var num = $('#subnum').val();
+        })
+    </script>
 
 @endsection

@@ -11,9 +11,9 @@ class Comment extends Model
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'comment';
 
-    protected $primaryKey = 'uid';
+    protected $primaryKey = 'cid';
 
     /**
      * 该模型是否被自动维护时间戳

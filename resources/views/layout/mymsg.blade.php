@@ -1,10 +1,11 @@
 @extends('layout.homes')
 
 @section('sousuo')
+
     <!-- 搜索框 start -->
     <div class="head-form fl">
         <form class="clearfix" href="/home/cate">
-            <input type="text" class="search-text" accesskey="" value="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
+            <input @yield('style') type="text" class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
             <button class="button">搜索</button>
         </form>
         <div class="words-text clearfix">
@@ -21,14 +22,16 @@
     <!-- 购物车 strat -->
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
         @if($userinfo = session('userinfo'))
-        <i class="head-amount set">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
-        @else if($userinfo == 0)
+        <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
+        @elseif($userinfo == 0)
         <i class="head-amount">0</i>
         @endif
         <script>
-            setInterval(function(){
-                $('i[class=set]').toggle();
-            },1000)
+            $(function(){
+                setInterval(function(){
+                    $('#setl').toggle();
+                },1000)
+            })
         </script>
     </div>
     <div class="head-mountain"></div>
@@ -36,6 +39,7 @@
 @endsection
 
 @section('content')
+    @if(!empty($userinfo = session('userinfo'))){
     @php
         $res = \DB::table('message')->where('uid',$userinfo['uid'])->first();
     @endphp
@@ -76,4 +80,5 @@
             </div>
         </div>
     @yield('con')
+    @endif
 @endsection

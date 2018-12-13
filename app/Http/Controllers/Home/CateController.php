@@ -15,7 +15,19 @@ class CateController extends Controller
 {
     public function index(Request $request , $id)
     {
-    	
+    	// dd($id);
+    	$res = Goods::orderBy('gid','asc')
+            ->where(function($query) use($request){
+                //检测关键字
+                $gname = $request->input('gname');
+
+                //如果用户名不为空
+                if(!empty($gname)) {
+                    $query->where('gname','like','%'.$gname.'%');
+                }
+
+            })
+        ->paginate($request->input('num', 5));
 
     	$goods = Goods::where('tid',$id)->get();
     	$cates = Category::where('tid',$id)->get();
@@ -30,6 +42,7 @@ class CateController extends Controller
 
     	return view('home.cate',[
             'title'=>'类别',
+            'res'=>$res,
             'cates'=>$cates,
             'request'=>$request,
             'gimgs'=>$gimgs,

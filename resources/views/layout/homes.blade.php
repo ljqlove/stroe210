@@ -74,7 +74,7 @@
         <div class="yNavIndex">
             <ul class="BHeaderl">
 
-                @if($userinfo = session('userinfo'))
+                @if(!empty($userinfo = session('userinfo')))
                 <li><a href="/" style="color:#ea4949;">Hello,
                     @if(($res = \DB::table('message')->where('uid',$userinfo['uid'])->first())->mname != 'default')
                     {{$res->mname}}
@@ -85,7 +85,7 @@
 
 
                 <a href="/home/logout" style="float:left;">退出</a>
-                @else if
+                @else
                 <li><a href="/home/login" style="color:#ea4949;">请登录</a> </li>
                 @endif
 
@@ -96,7 +96,19 @@
                 <li class="headerul">|</li>
                 <li><a href="/home/myCollect">我的收藏</a> </li>
                 <li class="headerul">|</li>
-                <li><a href="/home/Merchant">我要开店</a> </li>
+                @php
+                if(!empty($userinfo)>0){
+                    $res = \DB::table('stores')->where('uid',$userinfo['uid'])->get();
+
+                    if(count($res)){
+                        echo '<li><a href="/home/myStroe">我的店铺</a> </li>';
+                    } else {
+                        echo '<li><a href="/home/Merchant">我要开店</a> </li>';
+                    }
+                } else {
+                    echo '<li><a href="/home/Merchant">我要开店</a> </li>';
+                }
+                @endphp
                 <li class="headerul">|</li>
                 <li id="pc-nav" class="menu"><a href="/home/wjd/message" >我的商城</a>
                 </li>

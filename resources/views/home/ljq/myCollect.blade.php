@@ -196,97 +196,88 @@
                     }
                     nums();
                   </script>
-                   <div class="member-return H-over">
+                   <div class="member-return H-over stroe">
+                    @if(count($stroe)>0)
                        <div class="member-troll clearfix">
                            <div class="member-all fl"><b class="on"></b>全选</div>
-                           <div class="member-check clearfix fl"> <a href="#" class="member-delete">删除商品</a> </div>
+                           <div class="member-check clearfix fl"> <a href="javascript:void(0)" class="member-delete sdel">删除店铺</a> </div>
                        </div>
                        <div class="member-vessel">
                            <ul>
+                            @foreach($stroe as $v)
                                <li class="clearfix">
                                    <div class="member-tenant fl clearfix">
-                                       <div class="fl member-all1 member-all2"><b class="on"></b></div>
+                                       <div class="fl member-all1 member-all2"><b class="on" sid="{{$v->id}}"></b></div>
                                        <div class="fr">
-                                           <a href="#"><img src="/homes/theme/icon/shop-ll.png" width="114" height="114" title=""></a>
-                                           <p>秋水伊人官方旗舰店</p>
-                                           <p><a href="#" class="member-shops">进入店铺</a> </p>
-                                           <p>关注人气：1000+</p>
-                                           <p>收藏时间：2014-11-21</p>
+                                           <a href="#"><img src="{{$v->image}}" width="150" height="114" title=""></a>
+                                           <p>{{$v->company}}</p>
+                                           <p><a href="/home/stroe/{{$v->id}}" class="member-shops">进入店铺</a> </p>
+                                           <p>店铺掌柜：{{$v->uname}}</p>
+                                           <p>{{ceil((time()-strtotime($v->create_at))/(3360*24*30*12))}}年老店</p>
                                        </div>
                                    </div>
-
+                                  @php
+                                    $res = DB::table('goods')->where('company',$v->id)->where('status','1')->take(4)->get();
+                                  @endphp
                                    <div class="member-volume fl">
-                                       <a href="#" class="fl member-btn-fl"></a>
+                                       <a href="javascript:void(0)" class="fl member-btn-fl"></a>
                                        <div class="member-cakes fl">
                                            <ul>
+                                            @foreach($res as $vv)
                                                <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m3.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
+                                                   <a href="/home/goods/{{$vv->gid}}"><img src="{{$vv->gpic}}" width="125" height="125" title=""></a>
+                                                   <p>￥{{$vv->price}}.00</p>
                                                </li>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m4.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m5.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m3.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
+                                            @endforeach
                                            </ul>
                                        </div>
-                                       <a href="#" class="fr member-btn-fr"></a>
+                                       <a href="javascript:void(0)" class="fr member-btn-fr"></a>
                                    </div>
                                </li>
-                               <li class="clearfix">
-                                   <div class="member-tenant fl clearfix">
-                                       <div class="fl member-all1 member-all2"><b class="on"></b></div>
-                                       <div class="fr">
-                                           <a href="#"><img src="/homes/theme/icon/shop-ll.png" width="114" height="114" title=""></a>
-                                           <p>秋水伊人官方旗舰店</p>
-                                           <p><a href="#" class="member-shops">进入店铺</a> </p>
-                                           <p>关注人气：1000+</p>
-                                           <p>收藏时间：2014-11-21</p>
-                                       </div>
-                                   </div>
-
-                                   <div class="member-volume fl">
-                                       <a href="#" class="fl member-btn-fl"></a>
-                                       <div class="member-cakes fl">
-                                           <ul>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m3.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m4.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m5.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
-                                               <li>
-                                                   <a href="#"><img src="/homes/theme/img/pd/m3.png" width="125" height="125" title=""></a>
-                                                   <p>￥78.00</p>
-                                               </li>
-                                           </ul>
-                                       </div>
-                                       <a href="#" class="fr member-btn-fr"></a>
-                                   </div>
-                               </li>
+                            @endforeach
                            </ul>
                        </div>
-                       <div class="clearfix" style="padding:30px 20px;">
-                          <div class="fr pc-search-g pc-search-gs">
-                              <span class="pc-search-di">当前是第{{$goods->currentPage()}}页</span>
-                              <a  class="fl " href="{{$goods->previousPageUrl()}}">上一页</a>
-                              <a class="" href="{{$goods->nextPageUrl()}}">下一页</a>
-                          </div>
-                       </div>
+                    @else
+                      <div class="cart-empty ">
+                        <div class="message">
+                            <ul>
+                                <li class="txt">
+                                    <i class="fa fa-envelope-open-o" aria-hidden="true"></i>收藏夹空空的哦~，去看看心仪的店铺吧~
+                                </li>
+                                <li class="mt10">
+                                    <a href="/" class="ftx-05">
+                                        看看就看看😊 &gt;&gt;&gt;
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
                    </div>
+                  <script type="text/javascript">
+                    $('.stroe b').click(function(){
+                      var a = $(this).attr('class');
+                      if (a == 'on') {
+                        $(this).attr('class','off');
+                      } else {
+                        $(this).attr('class','on');
+                      }
+                    })
+                    $('.stroe b').eq(0).click(function(){
+                       var a = $(this).attr('class');
+                       $('.stroe b').attr('class',a);
+                    })
+                    $('.stroe .sdel').click(function(){
+                      var id = [];
+                      $('.stroe b').each(function(){
+                        id.push($(this).attr('sid'));
+                      })
+                      ids = id.join(',');
+                      // console.log(id);
+                      location.href='/home/stroedel/'+ids;
+                    })
+
+                  </script>
                 </div>
             </div>
         </div>
