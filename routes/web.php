@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/home/remind','Home\IndexController@remind');
+//网站开关
+Route::group(['middleware'=>'site'], function(){
 //前台注册
 Route::any('/home/register', 'Auth\RegisterController@register');
 Route::any('/home/doregister','Auth\RegisterController@doregister');
@@ -37,7 +40,7 @@ Route::get('/home/flash','Home\FlashController@index');
 Route::get('/home/content/{id}','Home\FlashController@content');
 
 // 需要登录
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware'=>'auth'], function(){
 
     // 加入购物车
     Route::post('/home/joinCart','Home\CartController@joinCart');
@@ -103,6 +106,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/home/pro_mb','Home\MessageController@pro_mb');
     Route::post('/home/yz_mb','Home\MessageController@yz_mb');
     Route::post('/home/uppropass','Home\MessageController@uppropass');
+});
 });
 
 

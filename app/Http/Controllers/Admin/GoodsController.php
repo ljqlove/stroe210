@@ -10,7 +10,7 @@ use DB;
 use App\Model\Admin\Goods;
 use App\Model\Admin\Goodsimg;
 use App\Model\Admin\Gsize;
-
+use Image;
 
 class GoodsController extends Controller
 {

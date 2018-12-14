@@ -44,4 +44,15 @@ class IndexController extends Controller
             'lunbo'=>$lunbo,
         ]);
     }
+
+    /**
+     *  网站开关进入
+     *
+     *  @return \Illuminate\Http\Response
+     */
+    
+    public function remind()
+    {
+        return view('home.remind',['title'=>'网站关闭页面']);
+    }
 }
