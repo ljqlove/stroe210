@@ -31,6 +31,22 @@
             left:0px;
             top:0px;
         }
+
+        #advert_right{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            right:0px;
+        }
+
+        #advert_left{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            left:0px;
+        }
     </style>
 
     <script>
@@ -273,7 +289,7 @@
             <div class="pc-overall">
                 <ul id="H-table1" class="brand-tab H-table1 H-table-shop clearfix ">
                     <li class="cur"><a href="javascript:void(0);">商品介绍</a></li>
-                    <li><a href="javascript:void(0);">商品评价<em class="reds">(91)</em></a></li>
+                    <li><a href="javascript:void(0);">商品评价<em class="reds"></em></a></li>
                     <li><a href="javascript:void(0);">售后保障</a></li>
                 </ul>
                 <div class="pc-term clearfix">
@@ -286,6 +302,7 @@
                        </ul>
 
                    </div>
+
                    <div class="H-over1" style="display:none">
                        <div class="pc-comment fl"><strong>86<span>%</span></strong><br> <span>好评度</span></div>
                        <div class="pc-percent fl">

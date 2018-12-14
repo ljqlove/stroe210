@@ -27,15 +27,171 @@
     <script type="text/javascript" src="//misc.360buyimg.com/jdf/??lib/jquery-1.6.4.js,1.0.0/unit/libPath/1.0.0/libPath.js"></script>
     <script type="text/javascript" async="" src="//nfa.jd.com/loadFa.js?aid=2_959_6296-2_959_6297"></script>
 
+
+
 @endsection
 
 @php
-    $message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
-	$user = DB::table('users')->where('uid',(session('userinfo')['uid']))->first();
+
+	 $message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
+	$user = DB::table('users')->where('uid',session('userinfo')['uid'])->first();
 @endphp
 
 
-@section('con')
+@section('content')
+<!-- 账户安全模块 begin-->
+@if(isset($status))
+<input id="online_box"  type="hidden" value="{{$status}}"></input>
+
+ <script type="text/javascript">
+
+                var element = document.getElementById("online_box").value;
+                if (element == '1') {
+                 Command: toastr["success"]("修改完成", "提示")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "rtl": false,
+                  "positionClass": "toast-top-center",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+      }
+      if (element == '0')
+      {
+       Command: toastr["error"]("密码错误", "提示")
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "rtl": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": 300,
+          "hideDuration": 1000,
+          "timeOut": 5000,
+          "extendedTimeOut": 1000,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+                  }
+
+      if (element == '2') {
+         Command: toastr["success"]("密保设置成功", "提示")
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": true,
+          "rtl": false,
+          "positionClass": "toast-top-center",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": 300,
+          "hideDuration": 1000,
+          "timeOut": 5000,
+          "extendedTimeOut": 1000,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+      }
+
+
+    if (element == '3')
+      {
+       Command: toastr["error"]("密保设置失败", "提示")
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "rtl": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": 300,
+          "hideDuration": 1000,
+          "timeOut": 5000,
+          "extendedTimeOut": 1000,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+                  }
+
+        if (element == '4')
+      {
+       Command: toastr["error"]("密保问题输入不正确", "提示")
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "rtl": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": 300,
+          "hideDuration": 1000,
+          "timeOut": 5000,
+          "extendedTimeOut": 1000,
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+                  }
+  </script>
+@else
+@endif
+<section id="member">
+    <div class="member-center clearfix">
+
+       <div class="member-left fl">
+            <div class="member-apart clearfix">
+                <div class="fl"><a href="#"><img src="{{$message->headpic}}" width="80px" height="80px"></a></div>
+                <div class="fl">
+                    <p>用户名：</p>
+                    <p><a href="#">&nbsp;&nbsp;{{$message->uname}}</a></p>
+                    <p>昵称：</p>
+                    <p>&nbsp;&nbsp;{{$message->mname}}</p>
+                </div>
+            </div>
+            <div class="member-lists">
+                <dl>
+                    <dt>我的商城</dt>
+                    <dd class="cur"><a href="/home/wjd/message">我的信息</a></dd>
+                    <dd class="cur"><a href="#">我的订单</a></dd>
+                    <dd><a href="#">我的收藏</a></dd>
+                    <dd><a href="/home/security/{{$message->uid}}">账户安全</a></dd>
+                    <dd><a href="#">我的评价</a></dd>
+                    <dd><a href="/home/wjd/address">地址管理</a></dd>
+                </dl>
+            </div>
+        </div>
+
         <div class="member-right fr">
             <div class="member-head">
                 <div class="member-heels fl"><h2>账户安全</h2></div>

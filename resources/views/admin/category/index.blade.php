@@ -103,7 +103,7 @@
               </div>
                 
 
-                <style>
+<!--                 <style>
 
       .pagination li a{
 
@@ -149,7 +149,7 @@
           margin:0px;
         }
         
-      </style>
+      </style> -->
               <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
                         {{$res->appends($request->all())->links()}}
               <!-- </div> -->

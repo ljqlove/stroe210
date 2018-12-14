@@ -19,6 +19,9 @@ Route::get('/home/login','Auth\LoginController@login');
 Route::get('/home/dologin','Auth\LoginController@dologin');
 Route::get('/home/logout','Auth\LoginController@logout');
 
+// 忘记密码
+Route::get('/home/dxyz','Home\YzController@index');
+
 // 无需登录
 // 前台列表页
 Route::get('/','Home\IndexController@index');
@@ -198,6 +201,9 @@ Route::get('/admin/comment','Admin\CommentController@index');
 Route::resource('admin/goods','Admin\GoodsController');
 // 快讯管理
 Route::resource('admin/flash','Admin\FlashController');
+
+//后台广告设置
+Route::resource('/admin/advert','Admin\AdvertController');
 
 
 Route::get('admin/gsize/{id}','Admin\GoodsController@gsize');  // 浏览商品样式页面

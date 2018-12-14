@@ -76,14 +76,16 @@ class LoginController extends Controller
 		session(['user_name'=>$rs->user_name]);
 		session(['user_pic'=>$rs->user_pic]);
 		$map['uid'] = session('uid');
-        $map['uname'] = session('user_name');
+
+		$map['uname'] = session('user_name');
+
         $map['created_at'] = date('Y-m-d H:i:s',time());
     	$result = DB::table('system')->insert($map);
 
 
 			return redirect('/admin');
 		}
-			
+
 	}
 		/**
      *  验证码

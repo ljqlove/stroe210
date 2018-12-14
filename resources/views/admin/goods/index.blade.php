@@ -68,8 +68,13 @@
               {{$v->gname}}
             </td>
             <td>
-              {{$v->company}}
+              @foreach($merchant as $sk => $sv)
+              @if($sv->id == $v->company )
+              {{$sv->company}}
+              @endif
+              @endforeach
             </td>
+            
             <td>
               {{$v->size}}
             </td>

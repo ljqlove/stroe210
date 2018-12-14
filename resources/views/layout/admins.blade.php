@@ -43,22 +43,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              @php
-                  $data =session()->all();
-              @endphp
-              <div class="nav-profile-img">
-                <img src="
-                @if($data['user_pic'])
-                {{$data['user_pic']}}
-                @endif
-                " alt="image">
-                <span class="availability-status online"></span>
-              </div>
-              <div class="nav-profile-text">
-                <p class="mb-1 text-black">
-                @if($data['user_name'])
-                {{$data['user_name']}}
-                @endif
+            
               </p>
               </div>
             </a>
@@ -375,6 +360,19 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/site">站点设置</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/system">系统日志</a></li>
+              </ul>
+            </div>
+          </li>
+
+               <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-guang" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-title">广告管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi mdi-wrench"></i>
+            </a>
+            <div class="collapse" id="ui-guang">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/advert">设置广告</a></li>
               </ul>
             </div>
           </li>

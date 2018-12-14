@@ -266,7 +266,7 @@ body{min-width: 1200px; _width:expression(document.documentElement.clientWidth>1
 .shop-bar {width:661px; height:280px;}
 .shop-bar ul li {width:220px; height:120px; text-align:center; border-right:1px solid #e0e0e0; border-bottom:1px solid #e0e0e0; padding-top:20px; float:left;}
 .shop-bar ul {display:block; width:800px;}
-.shop-icn img {width:50px; height:50px; border:1px solid #b6afaf; border-radius:50%;}
+.shop-icn img {width:50px; height:50px; border:1px solid #b6afaf;}
 .shop-tex a {font-size:14px; display:block; padding-top:10px;}
 .footer {padding-top:40px; padding-bottom:10px; text-align:left; border-bottom:1px solid #333;}
 .footer ul li {float:left; padding:0 12px;}

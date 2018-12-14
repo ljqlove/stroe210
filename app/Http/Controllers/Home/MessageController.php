@@ -18,18 +18,14 @@ class MessageController extends Controller
      *
      *  @return \Illuminate\Http\Response
      */
-   	public function index()
-   	{
-   		// dd(1);
-   		return view('home/wjd/message',[
-   			'title'=>'个人中心']);
-   	}
+    public function index()
+    {
+      // dd(1);
+      return view('home/wjd/message',[
+        'title'=>'个人中心']);
+    }
 
-    /**
-     *  修改基本资料
-     *
-     *  @return \Illuminate\Http\Response
-     */
+
     public function ajaxmessageEdit()
     {
         $mid = strip_tags($_POST['mid']);
@@ -45,7 +41,6 @@ class MessageController extends Controller
           echo json_encode($a);
         }
     }
-
 
     /**
      *  修改头像
@@ -135,14 +130,23 @@ class MessageController extends Controller
     // 重置密码方法
     public function set_password(Request $request){
       // $id = Auth::User()->id;
+      // echo 'set_password方法';exit;
       $id = $request->input('id');
       $oldpassword = $request->input('oldpassword');
       $newpassword = $request->input('newpassword');
       $res = DB::table('users')->where('uid',$id)->select('password')->first();
-      if(!Hash::check($oldpassword, $res->password)){
-          echo 2;
-          exit;//原密码不对
+      if(!Hash::check($oldpassword, $res->password)){  
+          // 原密码不对
+        $users = DB::select('select * from users where uid='.$id);
+        $status = '0';
+        // dd($users);
+        return view('home/security',[
+          'title'=>'账户安全页面',
+          'users'=>$users,
+          'status'=>$status,
+        ]);
       }
+
       $update = array(
         'password'  =>bcrypt($newpassword),
       );
@@ -150,14 +154,20 @@ class MessageController extends Controller
       if($result){
         $users = DB::select('select * from users where uid='.$id);
         $status = '1';
+        // dd($status);
+        // dd($users);
+        return redirect('/home/login');
+      }else{
+        $users = DB::select('select * from users where uid='.$id);
+        $status = '0';
+
+        dd($status);
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
           'users'=>$users,
           'status'=>$status,
         ]);
-      }else{
-        $status = '2';
         // echo '修改失败';exit;
       }
 
@@ -194,13 +204,30 @@ class MessageController extends Controller
 
       $req['ptitle'] = $request->input('ptitle');
       $req['pcontent'] = $request->input('pcontent');
-
+      $id = $request->input('id');
       // dd($req);
       $props = Propass::create($req);
       if ($props) {
-        echo '添加成功';exit;
+
+        $users = DB::select('select * from users where uid='.$id);
+        $status = '2';
+        // dd($users);
+        // echo '添加成功';exit;
+        return view('home/security',[
+          'title'=>'账户安全页面',
+          'users'=>$users,
+          'status'=>$status,
+        ]);
       } else {
         echo '添加失败';exit;
+          $users = DB::select('select * from users where uid='.$id);
+        $status = '3';
+        // dd($users);
+        return view('home/security',[
+          'title'=>'账户安全页面',
+          'users'=>$users,
+          'status'=>$status,
+        ]);
       }
       // echo $ptitle;
       // echo $pcontent;
@@ -227,11 +254,12 @@ class MessageController extends Controller
       ]);
       } else {
         $users = DB::select('select * from users where uid='.$id);
-
+        $status = '4';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
       }
 
@@ -248,6 +276,7 @@ class MessageController extends Controller
       foreach ($res as $k => $v) {
         $oldpcontent = $v['pcontent'];
       }
+      
       if($oldpcontent == $pcontent){
        return view('/home/propass',[
         'title'=>'修改密保页面',
@@ -255,11 +284,12 @@ class MessageController extends Controller
       ]);
       } else {
         $users = DB::select('select * from users where uid='.$id);
-
+        $status = '4';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
       }
 
@@ -269,8 +299,9 @@ class MessageController extends Controller
     // 重置密保方法
      public function uppropass(Request $request){
       // $id = Auth::User()->id;
-      $id = $request->input('id');
 
+      $id = $request->input('id');
+      // dd($id);
       $new = [];
       $new['ptitle'] = $request->input('ptitle');
       $new['pcontent'] = $request->input('pcontent');
@@ -279,14 +310,25 @@ class MessageController extends Controller
       $result = DB::table('propass')->where('uid',$id)->update($new);
       if($result){
         $users = DB::select('select * from users where uid='.$id);
+        // echo '重置成功';exit;
+        $status = '2';
+        // dd($users);
+        return view('home/security',[
+          'title'=>'账户安全页面',
+          'users'=>$users,
+          'status'=>$status,
+        ]);
+      }else{
+        $status = '3';
+        // echo '重置失败';exit;
+        $users = DB::select('select * from users where uid='.$id);
 
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
-      }else{
-          echo '修改失败';exit;
       }
 
     }

@@ -51,12 +51,12 @@
  </head>
  <body>
 
-<div>
+<!-- <div>
     <div id="moquu_wxin" class="moquu_wxin"><a href="javascript:void(0)"><div class="moquu_wxinh"></div></a></div>
     <div id="moquu_wshare" class="moquu_wshare"><a href="javascript:void(0)" style="text-indent:0"><div class="moquu_wshareh"><img src="/homes/theme/icon/moquu_wshare.png" width="100%"></div></a></div>
     <div id="moquu_wmaps"><a href="javascript:void(0)" class='moquu_wmaps'></a></div>
     <a id="moquu_top" href="javascript:void(0)"></a>
-</div>
+</div> -->
 @if($err=session('error'))
     <div class="fade"></div>
     <div class="succ-pop">
