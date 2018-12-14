@@ -547,7 +547,7 @@
         </div>
     </div>
     <!-- 搜索框 end -->
-    <!-- 购物车 strat -->
+        <!-- 购物车 strat -->
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
         @if($userinfo = session('userinfo'))
         <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
