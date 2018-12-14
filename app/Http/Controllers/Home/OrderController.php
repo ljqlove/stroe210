@@ -199,7 +199,8 @@ class OrderController extends Controller
     // 订单支付
     public function pay(Request $request,$oids)
     {
-
+        $res = $request->post();
+        dd($res);
         $uid = session('userinfo')['uid'];
         // 商品库存 -num;
         $oid = explode(',',$oids);
