@@ -2,7 +2,9 @@
 
 
 @section('title',$title)
-
+@section('bnv')
+    &gt; <a href='/home/myOrder'>个人信息管理</a>
+@endsection
 
 @section('js')
     <link rel="shortcut icon" type="image/x-icon" href="/homes/theme/icon/favicon.ico">

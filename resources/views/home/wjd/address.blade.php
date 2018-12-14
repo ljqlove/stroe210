@@ -1,7 +1,9 @@
 @extends('layout.mymsg')
 
 @section('title',$title)
-
+@section('bnv')
+    &gt; <a href='/home/myOrder'>地址管理</a>
+@endsection
 
 @section('js')
     <link rel="shortcut icon" type="image/x-icon" href="/homes/theme/icon/favicon.ico">
@@ -322,11 +324,35 @@
 	        		$('#num').attr('data-num',num);
 	        		$('#nums').text(num);
 	        	} else {
-	        		alert('删除失败');
-	        	}
-	          
-	        }
-	    });
+	        		if(data.status == 2){
+	        		$('#online_box').val(data.status);
+ 					var element = document.getElementById("online_box").value;
+ 					if (element == '2') {
+ 						Command: toastr["success"]("删除成功", "提示")
+						toastr.options = {
+						  "closeButton": true,
+						  "debug": true,
+						  "newestOnTop": true,
+						  "progressBar": true,
+						  "rtl": false,
+						  "positionClass": "toast-top-right",
+						  "preventDuplicates": false,
+						  "onclick": null,
+						  "showDuration": 300,
+						  "hideDuration": 1000,
+						  "timeOut": 2000,
+						  "extendedTimeOut": 1000,
+						  "showEasing": "swing",
+						  "hideEasing": "linear",
+						  "showMethod": "fadeIn",
+						  "hideMethod": "fadeOut"
+						}
+ 					}
+       		 		}
+
+				}
+			}
+    	});
 	}
 	// 显示添加
 	function add(){

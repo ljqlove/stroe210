@@ -550,14 +550,14 @@
         <!-- 购物车 strat -->
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
         @if($userinfo = session('userinfo'))
-        <i class="head-amount set">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
-        @else if($userinfo == 0)
+        <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
+        @elseif($userinfo == 0)
         <i class="head-amount">0</i>
         @endif
         <script>
             $(function(){
                 setInterval(function(){
-                    $('i[class=set]').toggle();
+                    $('#setl').toggle();
                 },1000)
             })
         </script>

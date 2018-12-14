@@ -1,4 +1,4 @@
-@extends('layout.homes')
+@extends('layout.mymsg')
 
 
 @section('title',$title)
@@ -30,39 +30,12 @@
 @endsection
 
 @php
-	$message = DB::table('message')->where('uid',session('uid'))->first();
-	$user = DB::table('users')->where('uid',session('uid'))->first();
+    $message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
+	$user = DB::table('users')->where('uid',(session('userinfo')['uid']))->first();
 @endphp
 
 
-@section('content')
-<!-- 账户安全模块 begin-->
-<section id="member">
-    <div class="member-center clearfix">
-
-       <div class="member-left fl">
-            <div class="member-apart clearfix">
-                <div class="fl"><a href="#"><img src="{{$message->headpic}}" width="80px" height="80px"></a></div>
-                <div class="fl">
-                    <p>用户名：</p>
-                    <p><a href="#">&nbsp;&nbsp;{{$message->uname}}</a></p>
-                    <p>昵称：</p>
-                    <p>&nbsp;&nbsp;{{$message->mname}}</p>
-                </div>
-            </div>
-            <div class="member-lists">
-                <dl>
-                    <dt>我的商城</dt>
-                    <dd class="cur"><a href="/home/wjd/message">我的信息</a></dd>
-                    <dd class="cur"><a href="#">我的订单</a></dd>
-                    <dd><a href="#">我的收藏</a></dd>
-                    <dd><a href="/home/security/{{$message->uid}}">账户安全</a></dd>
-                    <dd><a href="#">我的评价</a></dd>
-                    <dd><a href="/home/wjd/address">地址管理</a></dd>
-                </dl>
-            </div>
-        </div>
-
+@section('con')
         <div class="member-right fr">
             <div class="member-head">
                 <div class="member-heels fl"><h2>账户安全</h2></div>
@@ -124,6 +97,6 @@
             </div>
         </div>
     </div>
-</section>
+
 <!-- 账户安全模块 End-->
 @endsection

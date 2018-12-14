@@ -40,9 +40,7 @@
                         <th>
                           id
                         </th>
-                        <th>
-                          用户电话
-                        </th>
+                        
                         <th>
                           姓名
                         </th>
@@ -53,14 +51,17 @@
                           性别
                         </th>
                         <th>
+                          用户电话
+                        </th>
+                        <th>
                           地址
                         </th>
                         <th>
                           头像
                         </th>
-                         <th>
+<!--                          <th>
                             操作
-                        </th>
+                        </th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -71,33 +72,42 @@
                         <td>
                           {{$v->mid}}
                         </td>
-                        <td>
-	                    @foreach($user as $key=>$val)                  	  
-                        @if($val->uid == $v->uid)
-						            	{{($val->phone)}}
-	                   		@endif
-	                   	@endforeach
-                   		</td>
+                       
                         <td>
                           {{$v->uname}}
+                        </td>
                         <td>
                           {{$v->mname}}
                         </td>
                          <td>
-						  @if($v->sex == 'b')
-						  	保密
-						  @elseif($v->sex == 'm')
-						  	男
-						  @elseif($v->sex == 'w')
-						  	女
-						  @endif
+        						  @if($v->sex == 'b')
+        						  	保密
+        						  @elseif($v->sex == 'm')
+        						  	男
+        						  @elseif($v->sex == 'w')
+        						  	女
+        						  @endif
                         </td>
+                      @foreach($user as $key=>$val)                     
+                        @if($val->uid == $v->uid)
+                         <td>
+                          {{($val->phone)}}
                         </td>
-                        <td>
-                          {{$v->address}}
-                        </td>
+                      @php
+                          $address = DB::table('address')->where('uid',$val->uid)->where('status','1')->first();
+                      @endphp
+                        <td align="center">
+                          @if(empty($address))
+                          尚无地址
+                          @else
+                          {{$address->address}}
+                          @endif
+                      </td>
+                        @endif
+                      @endforeach
+
                           <td><image src="{{$v->headpic}}" width="80" height="80"></td>
-                        <td>
+<!--                         <td>
                           <a href="/admin/message/{{$v->mid}}/edit" class='btn btn-info'>修改</a>
 
 
@@ -110,7 +120,7 @@
 
 
                             </form>
-                        </td>
+                        </td> -->
                       </tr>
                       @endforeach
                     </tbody>

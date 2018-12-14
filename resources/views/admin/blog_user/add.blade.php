@@ -51,7 +51,7 @@
 @section('js')
 <script>
 	// $('.mws-form-message').delay(2000).fadeOut(2000);
-	$('.btn-block').delay(2000).fadeOut(2000);
+	$('.alert alert-error').delay(2000).fadeOut(2000);
 </script>
 @stop
 

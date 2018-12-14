@@ -22,14 +22,14 @@
     <!-- 购物车 strat -->
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
         @if($userinfo = session('userinfo'))
-        <i class="head-amount set">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
-        @else if($userinfo == 0)
+        <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
+        @elseif($userinfo == 0)
         <i class="head-amount">0</i>
         @endif
         <script>
             $(function(){
                 setInterval(function(){
-                    $('i[class=set]').toggle();
+                    $('#setl').toggle();
                 },1000)
             })
         </script>
@@ -39,6 +39,7 @@
 @endsection
 
 @section('content')
+    @if(!empty($userinfo = session('userinfo'))){
     @php
         
 
@@ -65,8 +66,8 @@
             <div class="member-lists">
                 <dl>
                     <dt>我的商城</dt>
-                    <dd class="cur"><a href="/home/wjd/message">我的信息</a></dd>
-                    <dd class="cur"><a href="/home/myOrder">我的订单</a></dd>
+                    <dd><a href="/home/wjd/message">我的信息</a></dd>
+                    <dd><a href="/home/myOrder">我的订单</a></dd>
                     <dd><a href="/home/myCollect">我的收藏</a></dd>
                     <dd><a href="/home/security/{{$message->uid}}">账户安全</a></dd>
                     <dd><a href="#">我的评价</a></dd>
@@ -85,4 +86,5 @@
             </div>
         </div>
     @yield('con')
+    @endif
 @endsection

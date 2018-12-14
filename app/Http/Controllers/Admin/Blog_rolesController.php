@@ -203,6 +203,16 @@ class Blog_rolesController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ],[
+            'name.required' => '角色名不能为空',
+            'name.regex'=>'角色名格式不正确',
+            'description.required'  => '描述不能为空',
+            'description.regex'  => '描述格式不正确',
+        ]);
+
 
         $res = $request->except('_token','_method');
         // dd($res);
