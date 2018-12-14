@@ -102,7 +102,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -179,7 +179,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -257,7 +257,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -335,7 +335,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -413,7 +413,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -491,7 +491,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php

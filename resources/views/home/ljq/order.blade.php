@@ -411,7 +411,7 @@
         <span>请输入支付密码</span>
         <form action="/home/pay/{{$ids}}" method="post">
             {{csrf_field()}}
-            <input type="password" name="v1">
+            <input type="password" autofocus name="v1">
             <input type="password" name="v2">
             <input type="password" name="v3">
             <input type="password" name="v4">
@@ -427,7 +427,7 @@
             {{csrf_field()}}
             <span>支付密码 : </span>
             <div class="pass">
-                <input type="password" name="v[]">
+                <input type="password" autofocus name="v[]">
                 <input type="password" name="v[]">
                 <input type="password" name="v[]">
                 <input type="password" name="v[]">
@@ -458,6 +458,11 @@
                 alert('您还没有设置支付密码,请输入一个支付密码!!');
                 $('#pay').show();
             }
+        })
+        $('input[type=password]').keyup(function(event){
+            // 将光标跳到下一个
+            // console.log($(this).next());
+            $(this).next().focus();break;
         })
     </script>
 @endsection

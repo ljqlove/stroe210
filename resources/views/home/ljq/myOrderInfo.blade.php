@@ -79,10 +79,10 @@
                    </dl>
                    <dl>
                        <dt>配送信息</dt>
-                       <dd class="member-seller"><span>收货人：<em>{{$add['aname']}}</em></dd>
-                       <dd class="member-seller"><span>收货人电话：<em>{{$add['aphone']}}</em></dd>
-                       <dd class="member-seller"><span>收货地址：<em>{{$add['address']}}</em></dd>
-                       <dd class="member-seller"><span>收货人邮编：<em>{{$add['postcode']}}</em></dd>
+                       <dd class="member-seller"><span>收货人：<em>{{$add->aname}}</em></dd>
+                       <dd class="member-seller"><span>收货人电话：<em>{{$add->aphone}}</em></dd>
+                       <dd class="member-seller"><span>收货地址：<em>{{$add->address}}</em></dd>
+                       <dd class="member-seller"><span>收货人邮编：<em>{{$add->postcode}}</em></dd>
                    </dl>
                    <dl class="member-custom clearfix ">
                        <dt>客户留言</dt>

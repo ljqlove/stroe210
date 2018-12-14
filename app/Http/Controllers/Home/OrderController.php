@@ -9,6 +9,7 @@ use App\Model\Admin\User;
 use App\Model\Admin\Goods;
 use App\Model\Home\Collect;
 use App\Model\Home\Order;
+use Validator;
 
 
 class OrderController extends Controller
@@ -188,7 +189,7 @@ class OrderController extends Controller
             $str .= $v;
         }
         $paypwd = md5($str);
-        $result = DB::table('users')->where('uid',$uid)->update(['paypwd'=>$str]);
+        $result = DB::table('users')->where('uid',$uid)->update(['paypwd'=>$paypwd]);
         if ($result) {
             return back()->with('error','支付密码设置成功');
         } else {
@@ -199,12 +200,30 @@ class OrderController extends Controller
     // 订单支付
     public function pay(Request $request,$oids)
     {
-        $res = $request->post();
-        dd($res);
+        $validator = Validator::make($request->all(), [
+            'v1' => 'required|max:1',
+            'v2' => 'required|max:1',
+            'v3' => 'required|max:1',
+            'v4' => 'required|max:1',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('error','密码不正确!!请重新输入');
+        }
+        $res = $request->except('_token');
         $uid = session('userinfo')['uid'];
+
+        $pass = $res['v1'].$res['v2'].$res['v3'].$res['v4'];
+        $pass = md5($pass);
+        $passl = DB::table('users')->where('uid',$uid)->value('paypwd');
+        if($pass != $passl){
+            return back()->with('error','密码不正确!!请重新输入');
+        }
         // 商品库存 -num;
+
         $oid = explode(',',$oids);
         // 订单状态变为 2
+
         $rs1 = 1;
         $rs2 = 1;
         foreach ($oid as $v) {
