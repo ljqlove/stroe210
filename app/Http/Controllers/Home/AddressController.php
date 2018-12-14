@@ -29,21 +29,30 @@ class AddressController extends Controller
      */
     public function dostatus(Request $request)
     {
-    	$id = $request->id;
-    	// 获取状态为1的地址
-    	$status = DB::table('address')->where('status','1')->first();
-    	if ($status) {
-	    	// 取消原来的默认地址的字段
-	    	$aid = $status->aid;
-			DB::update('update address set status="0" where aid=?',[$aid]);
-    	}
-    	// 查询出要将要设为默认地址的
-    	$res = DB::table('address')->where('aid',$id)->first();
-    	
-    	DB::update('update address set status="1" where aid=?',[$id]);
-    	return view('home/wjd/address',[
-    		'title'=>'我的地址管理'
-    	]);
+        $id = strip_tags($_POST['mid']);
+        // 获取状态为1的地址
+        $status = DB::table('address')->where('status','1')->first();
+        if ($status) {
+            // 取消原来的默认地址的字段
+            $aid = $status->aid;
+            DB::update('update address set status="0" where aid=?',[$aid]);
+        }
+        // 查询出要将要设为默认地址的
+        $res = DB::table('address')->where('aid',$id)->first();
+        
+        $result = DB::update('update address set status="1" where aid=?',[$id]);
+
+        if($result){
+            $a['status'] = 1;
+            echo json_encode($a);
+        } else {
+            $a['status'] = 2;
+            echo json_encode($a);
+        }
+    	// $id = $request->id;
+    	// return view('home/wjd/address',[
+    	// 	'title'=>'我的地址管理'
+    	// ]);
 
     }
     /**

@@ -75,24 +75,34 @@
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
                               $add = \DB::table('address')->where('aid',$v->addid)->first();
+                              $com = \DB::table('stores')->where('id',$res->company)->first();
+                              $color = \DB::table('gcolor')->where('id',$v->color)->first();
+                              $size = \DB::table('gsize')->where('id',$v->size)->first();
                           @endphp
                          <li>
                              <div class="member-minute clearfix">
                                  <span>{{$v->inputtime}}</span>
                                  <span>订单号：<em>{{$v->ordernum}}</em></span>
-                                 <span><a href="#">{{$res->company}}</a></span>
+                                 <span><a href="#">{{$com->company}}</a></span>
                                  <span class="member-custom">客服电话：<em>010-6544-0986</em></span>
                              </div>
-                             <div class="member-circle clearfix" style="height:125px">
+                             <div class="member-circle clearfix" >
                                  <div class="ci1">
                                      <div class="ci7 clearfix">
-
-                                         <span class="gr1" style="height:100px"><a href="#"><img src="{{$v->opic}}" width="60" height="60" title="" about=""></a></span>
-                                         <span class="gr2"><a href="/home/goods/{{$res->gid}}">{{$v->oname}} {{$v->color}} {{$v->size}}</a></span>
+                                         <span class="gr1" >
+                                          <a href="/home/goods/{{$res->gid}}">
+                                            <img src="{{$v->opic}}" width="60" height="60" title="" about="">
+                                          </a>
+                                        </span>
+                                         <span class="gr2">
+                                          <a style="font-size:14px" href="/home/goods/{{$res->gid}}">
+                                            {{$v->oname}} {{$color->color}} {{$size->size}}
+                                          </a>
+                                        </span>
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -101,7 +111,7 @@
                                       $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
                                   } elseif ($v->status == 1){
                                       $status = "等待付款";
-                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                      $con = "<p> <a href='/home/addorder/$v->oid' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 2){
                                       $status = "等待卖家发货";
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
@@ -140,37 +150,66 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
+                              $add = \DB::table('address')->where('aid',$v->addid)->first();
+                              $com = \DB::table('stores')->where('id',$res->company)->first();
+                              $color = \DB::table('gcolor')->where('id',$v->color)->first();
+                              $size = \DB::table('gsize')->where('id',$v->size)->first();
                           @endphp
                           @if ($v->status == 1)
                           <li>
                              <div class="member-minute clearfix">
                                  <span>{{$v->inputtime}}</span>
                                  <span>订单号：<em>{{$v->ordernum}}</em></span>
-                                 <span><a href="#">{{$res->company}}</a></span>
+                                 <span><a href="#">{{$com->company}}</a></span>
                                  <span class="member-custom">客服电话：<em>010-6544-0986</em></span>
                              </div>
-                             <div class="member-circle clearfix" style="height:125px">
+                             <div class="member-circle clearfix" >
                                  <div class="ci1">
                                      <div class="ci7 clearfix">
-
-                                         <span class="gr1" style="height:100px"><a href="#"><img src="{{$v->opic}}" width="60" height="60" title="" about=""></a></span>
-                                         <span class="gr2"><a href="/home/goods/{{$res->gid}}">{{$v->oname}} {{$v->color}} {{$v->size}}</a></span>
+                                         <span class="gr1" >
+                                          <a href="/home/goods/{{$res->gid}}">
+                                            <img src="{{$v->opic}}" width="60" height="60" title="" about="">
+                                          </a>
+                                        </span>
+                                         <span class="gr2">
+                                          <a style="font-size:14px" href="/home/goods/{{$res->gid}}">
+                                            {{$v->oname}} {{$color->color}} {{$size->size}}
+                                          </a>
+                                        </span>
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 @php
+                                  if ($v->status == 0){
+                                      $status = "无效订单";
+                                      $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
+                                  } elseif ($v->status == 1){
+                                      $status = "等待付款";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 2){
+                                      $status = "等待卖家发货";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 3){
+                                      $status = "已发货";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                  } else {
+                                      $status = "已完成";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
+                                  }
+                                  @endphp
                                   <div class="ci5" style="height:100px">
-                                      <p><a href="#">等待付款</a></p>
+                                      <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
                                   <div class="ci5 ci8" style="height:100px">
-                                      <p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>
+                                      {!! $con !!}
                                   </div>
                              </div>
-                         </li>
-                         @endif
+                          </li>
+                          @endif
                          @endforeach
                      </ul>
                  </div>
@@ -189,37 +228,66 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
+                              $add = \DB::table('address')->where('aid',$v->addid)->first();
+                              $com = \DB::table('stores')->where('id',$res->company)->first();
+                              $color = \DB::table('gcolor')->where('id',$v->color)->first();
+                              $size = \DB::table('gsize')->where('id',$v->size)->first();
                           @endphp
                           @if ($v->status == 2)
                           <li>
                              <div class="member-minute clearfix">
                                  <span>{{$v->inputtime}}</span>
                                  <span>订单号：<em>{{$v->ordernum}}</em></span>
-                                 <span><a href="#">{{$res->company}}</a></span>
+                                 <span><a href="#">{{$com->company}}</a></span>
                                  <span class="member-custom">客服电话：<em>010-6544-0986</em></span>
                              </div>
-                             <div class="member-circle clearfix" style="height:125px">
+                             <div class="member-circle clearfix" >
                                  <div class="ci1">
                                      <div class="ci7 clearfix">
-
-                                         <span class="gr1" style="height:100px"><a href="#"><img src="{{$v->opic}}" width="60" height="60" title="" about=""></a></span>
-                                         <span class="gr2"><a href="/home/goods/{{$res->gid}}">{{$v->oname}} {{$v->color}} {{$v->size}}</a></span>
+                                         <span class="gr1" >
+                                          <a href="/home/goods/{{$res->gid}}">
+                                            <img src="{{$v->opic}}" width="60" height="60" title="" about="">
+                                          </a>
+                                        </span>
+                                         <span class="gr2">
+                                          <a style="font-size:14px" href="/home/goods/{{$res->gid}}">
+                                            {{$v->oname}} {{$color->color}} {{$size->size}}
+                                          </a>
+                                        </span>
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 @php
+                                  if ($v->status == 0){
+                                      $status = "无效订单";
+                                      $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
+                                  } elseif ($v->status == 1){
+                                      $status = "等待付款";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 2){
+                                      $status = "等待卖家发货";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 3){
+                                      $status = "已发货";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                  } else {
+                                      $status = "已完成";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
+                                  }
+                                  @endphp
                                   <div class="ci5" style="height:100px">
-                                      <p><a href="#">等待卖家发货</a></p>
+                                      <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
                                   <div class="ci5 ci8" style="height:100px">
-                                      <p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>
+                                      {!! $con !!}
                                   </div>
                              </div>
-                         </li>
-                         @endif
+                          </li>
+                          @endif
                          @endforeach
                      </ul>
                  </div>
@@ -238,37 +306,66 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
+                              $add = \DB::table('address')->where('aid',$v->addid)->first();
+                              $com = \DB::table('stores')->where('id',$res->company)->first();
+                              $color = \DB::table('gcolor')->where('id',$v->color)->first();
+                              $size = \DB::table('gsize')->where('id',$v->size)->first();
                           @endphp
                           @if ($v->status == 3)
                           <li>
                              <div class="member-minute clearfix">
                                  <span>{{$v->inputtime}}</span>
                                  <span>订单号：<em>{{$v->ordernum}}</em></span>
-                                 <span><a href="#">{{$res->company}}</a></span>
+                                 <span><a href="#">{{$com->company}}</a></span>
                                  <span class="member-custom">客服电话：<em>010-6544-0986</em></span>
                              </div>
-                             <div class="member-circle clearfix" style="height:125px">
+                             <div class="member-circle clearfix" >
                                  <div class="ci1">
                                      <div class="ci7 clearfix">
-
-                                         <span class="gr1" style="height:100px"><a href="#"><img src="{{$v->opic}}" width="60" height="60" title="" about=""></a></span>
-                                         <span class="gr2"><a href="/home/goods/{{$res->gid}}">{{$v->oname}} {{$v->color}} {{$v->size}}</a></span>
+                                         <span class="gr1" >
+                                          <a href="/home/goods/{{$res->gid}}">
+                                            <img src="{{$v->opic}}" width="60" height="60" title="" about="">
+                                          </a>
+                                        </span>
+                                         <span class="gr2">
+                                          <a style="font-size:14px" href="/home/goods/{{$res->gid}}">
+                                            {{$v->oname}} {{$color->color}} {{$size->size}}
+                                          </a>
+                                        </span>
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 @php
+                                  if ($v->status == 0){
+                                      $status = "无效订单";
+                                      $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
+                                  } elseif ($v->status == 1){
+                                      $status = "等待付款";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 2){
+                                      $status = "等待卖家发货";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 3){
+                                      $status = "已发货";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                  } else {
+                                      $status = "已完成";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
+                                  }
+                                  @endphp
                                   <div class="ci5" style="height:100px">
-                                      <p><a href="#">已发货</a></p>
+                                      <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
                                   <div class="ci5 ci8" style="height:100px">
-                                      <p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>
+                                      {!! $con !!}
                                   </div>
                              </div>
-                         </li>
-                         @endif
+                          </li>
+                          @endif
                          @endforeach
                      </ul>
                  </div>
@@ -287,37 +384,66 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
+                              $add = \DB::table('address')->where('aid',$v->addid)->first();
+                              $com = \DB::table('stores')->where('id',$res->company)->first();
+                              $color = \DB::table('gcolor')->where('id',$v->color)->first();
+                              $size = \DB::table('gsize')->where('id',$v->size)->first();
                           @endphp
                           @if ($v->status == 4)
                           <li>
                              <div class="member-minute clearfix">
                                  <span>{{$v->inputtime}}</span>
                                  <span>订单号：<em>{{$v->ordernum}}</em></span>
-                                 <span><a href="#">{{$res->company}}</a></span>
+                                 <span><a href="#">{{$com->company}}</a></span>
                                  <span class="member-custom">客服电话：<em>010-6544-0986</em></span>
                              </div>
-                             <div class="member-circle clearfix" style="height:125px">
+                             <div class="member-circle clearfix" >
                                  <div class="ci1">
                                      <div class="ci7 clearfix">
-
-                                         <span class="gr1" style="height:100px"><a href="#"><img src="{{$v->opic}}" width="60" height="60" title="" about=""></a></span>
-                                         <span class="gr2"><a href="/home/goods/{{$res->gid}}">{{$v->oname}} {{$v->color}} {{$v->size}}</a></span>
+                                         <span class="gr1" >
+                                          <a href="/home/goods/{{$res->gid}}">
+                                            <img src="{{$v->opic}}" width="60" height="60" title="" about="">
+                                          </a>
+                                        </span>
+                                         <span class="gr2">
+                                          <a style="font-size:14px" href="/home/goods/{{$res->gid}}">
+                                            {{$v->oname}} {{$color->color}} {{$size->size}}
+                                          </a>
+                                        </span>
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 @php
+                                  if ($v->status == 0){
+                                      $status = "无效订单";
+                                      $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
+                                  } elseif ($v->status == 1){
+                                      $status = "等待付款";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 2){
+                                      $status = "等待卖家发货";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 3){
+                                      $status = "已发货";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                  } else {
+                                      $status = "已完成";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
+                                  }
+                                  @endphp
                                   <div class="ci5" style="height:100px">
-                                      <p><a href="#">已完成</a></p>
+                                      <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
                                   <div class="ci5 ci8" style="height:100px">
-                                      <p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>
+                                      {!! $con !!}
                                   </div>
                              </div>
-                         </li>
-                         @endif
+                          </li>
+                          @endif
                          @endforeach
                      </ul>
                  </div>
@@ -336,37 +462,66 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
+                              $add = \DB::table('address')->where('aid',$v->addid)->first();
+                              $com = \DB::table('stores')->where('id',$res->company)->first();
+                              $color = \DB::table('gcolor')->where('id',$v->color)->first();
+                              $size = \DB::table('gsize')->where('id',$v->size)->first();
                           @endphp
                           @if ($v->status == 0)
                           <li>
                              <div class="member-minute clearfix">
                                  <span>{{$v->inputtime}}</span>
                                  <span>订单号：<em>{{$v->ordernum}}</em></span>
-                                 <span><a href="#">{{$res->company}}</a></span>
+                                 <span><a href="#">{{$com->company}}</a></span>
                                  <span class="member-custom">客服电话：<em>010-6544-0986</em></span>
                              </div>
-                             <div class="member-circle clearfix" style="height:125px">
+                             <div class="member-circle clearfix" >
                                  <div class="ci1">
                                      <div class="ci7 clearfix">
-
-                                         <span class="gr1" style="height:100px"><a href="#"><img src="{{$v->opic}}" width="60" height="60" title="" about=""></a></span>
-                                         <span class="gr2"><a href="/home/goods/{{$res->gid}}">{{$v->oname}} {{$v->color}} {{$v->size}}</a></span>
+                                         <span class="gr1" >
+                                          <a href="/home/goods/{{$res->gid}}">
+                                            <img src="{{$v->opic}}" width="60" height="60" title="" about="">
+                                          </a>
+                                        </span>
+                                         <span class="gr2">
+                                          <a style="font-size:14px" href="/home/goods/{{$res->gid}}">
+                                            {{$v->oname}} {{$color->color}} {{$size->size}}
+                                          </a>
+                                        </span>
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add['aname']}}</div>
+                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 @php
+                                  if ($v->status == 0){
+                                      $status = "无效订单";
+                                      $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
+                                  } elseif ($v->status == 1){
+                                      $status = "等待付款";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 2){
+                                      $status = "等待卖家发货";
+                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                  } elseif ($v->status == 3){
+                                      $status = "已发货";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                  } else {
+                                      $status = "已完成";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
+                                  }
+                                  @endphp
                                   <div class="ci5" style="height:100px">
-                                      <p><a href="#">无效订单</a></p>
+                                      <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
                                   <div class="ci5 ci8" style="height:100px">
-                                      <p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>
+                                      {!! $con !!}
                                   </div>
                              </div>
-                         </li>
-                         @endif
+                          </li>
+                          @endif
                          @endforeach
                      </ul>
                  </div>

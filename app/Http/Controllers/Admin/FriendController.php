@@ -53,10 +53,6 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-
-                //表单验
-                // dd($res);
-
         $this->validate($request, [
             'fname' => 'required',
             'url' => 'required',
@@ -66,25 +62,28 @@ class FriendController extends Controller
             'url.required'  => '地址不能为空',
             'fpic.required'=>'请上传图片'
         ]);
-        $res = $request->except('_token','fipc');
+        $res = $request->except('_token');
         $time = time();
         $res['inputtime'] = ($time=(date('Y-m-d H:i:s')));
+        // dd($_FILES["fpic"]);
+        if ($_FILES["fpic"]['type'] == "image/jpeg" || $_FILES["fpic"]['type'] == "image/png" ||  $_FILES["fpic"]['type'] == "image/gif" || $_FILES["fpic"]["size"] < 2000000){
+            if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
+                
+                $photo = $request->file('fpic');
+                //自定义名字
+                $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
 
-        if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
-            
-            $photo = $request->file('fpic');
-            //自定义名字
-            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
+                $file_path =public_path('images/friends/uploads');
+                $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
-            $file_path =public_path('images/friends/uploads');
-            $thumbnail_file_path = $file_path . '/friend-'.$file_name;
+                $image = Image::make($photo)->resize(80, 80)->save($thumbnail_file_path);
 
-            $image = Image::make($photo)->resize(80, 80)->save($thumbnail_file_path);
+                $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
-            $res['fpic'] = '/images/friends/uploads/'.$image->basename;
-
+            }
+        }else{
+            return back()->with('errores','图片类型不符合只支持上传"jpg"或"png"或"gif"');
         }
-
         try{
 
             $data = Firend::create($res);
@@ -98,7 +97,6 @@ class FriendController extends Controller
         }
 
     }
-
 
     /**
      * Display the specified resource.
@@ -154,20 +152,23 @@ class FriendController extends Controller
         $time = time();
         $res['inputtime'] = ($time=(date('Y-m-d H:i:s')));
 
+        if ($_FILES["fpic"]['type'] == "image/jpeg" || $_FILES["fpic"]['type'] == "image/png" ||  $_FILES["fpic"]['type'] == "image/gif" || $_FILES["fpic"]["size"] < 2000000){
+            if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
+                
+                $photo = $request->file('fpic');
+                //自定义名字
+                $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
+                
+                $file_path =public_path('images/friends/uploads');
+                $thumbnail_file_path = $file_path . '/friends-'.$file_name;
 
-        if($request->hasFile('fpic') && $request->file('fpic')->isValid()){
-            
-            $photo = $request->file('fpic');
-            //自定义名字
-            $file_name = uniqid().'.'.$photo->getClientOriginalExtension();
-            
-            $file_path =public_path('images/friends/uploads');
-            $thumbnail_file_path = $file_path . '/friends-'.$file_name;
+                $image = Image::make($photo)->resize(80, 80)->save($thumbnail_file_path);
 
-            $image = Image::make($photo)->resize(80, 80)->save($thumbnail_file_path);
+                $res['fpic'] = '/images/friends/uploads/'.$image->basename;
 
-            $res['fpic'] = '/images/friends/uploads/'.$image->basename;
-
+            }
+        }else{
+            return back()->with('errores','图片类型不符合只支持上传"jpg"或"png"或"gif"');
         }
         
         try{

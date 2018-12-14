@@ -18,6 +18,7 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         // 条件搜索  分页
+        // $address = DB::table('address')->get();
         $user = DB::table('users')->get();
         $message = Message::orderBy('mid','asc')
                 ->where(function($query) use($request){
@@ -31,6 +32,7 @@ class MessageController extends Controller
             'message'=>$message,
             'request'=>$request,
             'user'=>$user
+
         ]);
     }
 
@@ -162,7 +164,7 @@ class MessageController extends Controller
 
             $message = Message::destroy($id);
             if ($message && $comment) {
-                return redirect('/admin/firend')->with('success','删除成功');
+                return redirect('/admin/message')->with('success','删除成功');
             }
         } catch (\Exception $e) {
             return back()->with('error','删除失败');

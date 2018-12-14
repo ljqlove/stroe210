@@ -102,6 +102,13 @@ class Blog_permissionsController extends Controller
     public function edit($id)
     {
         //
+        $res = Blog_permissions::find($id);
+        // dd($res);
+
+        return view('admin.blog_permissions.edit',[
+            'title'=>'权限修改页面',
+            'res'=>$res
+        ]);
     }
 
     /**
@@ -114,6 +121,34 @@ class Blog_permissionsController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ],[
+            'name.required' => '角色名不能为空',
+            'name.regex'=>'角色名格式不正确',
+            'description.required'  => '描述不能为空',
+            'description.regex'  => '描述格式不正确',
+        ]);
+
+
+        $res = $request->except('_token','_method');
+        // dd($res);
+        $res['updated_at'] = date('Y-m-d H:i:s',time());
+
+        try{
+
+            $data = Blog_permissions::where('id', $id)->update($res);
+            // dd($data);
+            if($data){
+                return redirect('/admin/blog_permissions')->with('success','修改成功');
+            }
+
+        }catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+        }
+
     }
 
     /**

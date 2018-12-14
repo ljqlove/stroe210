@@ -36,9 +36,6 @@ class IndexController extends Controller
         // 引入站点设置
         $site = Site::find(1);
 
-
-
-
         return view('home.index',[
             'friends' => $friends,
             'goods'=>$goods,

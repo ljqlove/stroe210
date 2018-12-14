@@ -4,24 +4,26 @@
 @section('title',$title)
 
 @section('content')
-
-	 <div class="card-body">
-                  <h4 class="card-title">{{$title}}</h4>
-
-
-              	@if (count($errors) > 0)
-					<!-- <div class="mws-form-message error"> -->
-						<!-- <div class="mws-form-message"></div> -->
-					<div class="btn btn-block btn-lg btn-gradient-primary mt-4 error">
-            			<p>显示错误信息</p>
-            			<ul style="list-style:none;" id="err">
-                		@foreach ($errors->all() as $error)
-                			<li style='font-size:20px' >{{$error}}</li>
-                		@endforeach
-                		</ul>
-        			</div>
-       		 	@endif
-       		 	<br><br>
+    <style>
+        .error{
+            background:#FF000080;
+            width:90%;
+            text-align:center;
+            margin-left:50px;
+        }
+    </style>
+          <div class="card-body">
+          <h4 class="card-title">{{$title}}</h4>
+        @if (count($errors) > 0 || !empty(session('errores')))
+          <div class="alert alert-error alert-dismissible error" id="yqero" role="alert" >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              @foreach ($errors->all() as $error)
+           <li style='font-size:10px;list-style:none;' >{{$error}}</li>            
+              @endforeach
+           <li style='font-size:10px;list-style:none;' >{{session('errores')}}</li>            
+          </div>
+        @endif
+            <br><br>
 
                   <form action="/admin/firend/{{$res->fid}}" method="post" class="mws-form" enctype='multipart/form-data'>
                     <div class="form-group">
@@ -32,8 +34,6 @@
                       <label for="exampleInputName1">链接地址</label>
                       <input type="text" class="form-control" id="exampleInputName1" name="url" placeholder="请输入链接地址" value="{{$res->url}}">
                     </div>
-
-
                     <div class="form-group">
                       <label>链接图片</label>
                       <input type="file" name="fpic" class="file-upload-default">

@@ -45,8 +45,8 @@
                 {{ csrf_field() }}
             <div class="pull-left le">
                 <h3>{{$good->gname}}</h3><br>
-                <span class="price">
-                    <i class="fa fa-jpy" aria-hidden="true">标价:</i>
+                <span class="price">标价:
+                    <i class="fa fa-jpy" aria-hidden="true"></i>
                     <input id="price" type="text" name="price" value="{{$good->price}}" style="width:80px;text-align: center;margin-left:5px">
                 </span>
                 <br><br>

@@ -41,7 +41,9 @@
 @section('content')
     @if(!empty($userinfo = session('userinfo'))){
     @php
-        $res = \DB::table('message')->where('uid',$userinfo['uid'])->first();
+        
+
+        $message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
     @endphp
     <div class="containers"><div class="pc-nav-item"><a href="/">首页</a> &gt; <a href="/home/wjd/message">会员中心 </a> @yield('bnv')</div></div>
 
@@ -50,22 +52,26 @@
         <div class="member-center clearfix">
         <div class="member-left fl">
             <div class="member-apart clearfix">
-                <div class="fl"><a href="#"><img height="80" width="80" src="{{$res->headpic}}"></a></div>
                 <div class="fl">
-                    <p>用户昵称：</p>
-                    <p><a href="">{{$res->mname}}</a></p>
-                    <p>搜悦号：</p>
-                    <p>{!!$res->mid!!}</p>
+                    <img id="lula" src="{{$message->headpic}}" width="80px" height="80px">
+                   
+                </div>
+                <div class="fl">
+                    <p>用户名：</p>
+                    <p><a href="#">&nbsp;&nbsp;{{$message->uname}}</a></p>
+                    <p>昵称：</p>
+                    <p>&nbsp;&nbsp;{{$message->mname}}</p>
                 </div>
             </div>
             <div class="member-lists">
                 <dl>
                     <dt>我的商城</dt>
-                    <dd class="cur"><a href="/home/myOrder">我的订单</a></dd>
+                    <dd><a href="/home/wjd/message">我的信息</a></dd>
+                    <dd><a href="/home/myOrder">我的订单</a></dd>
                     <dd><a href="/home/myCollect">我的收藏</a></dd>
-                    <dd><a href="#">账户安全</a></dd>
+                    <dd><a href="/home/security/{{$message->uid}}">账户安全</a></dd>
                     <dd><a href="#">我的评价</a></dd>
-                    <dd><a href="#">地址管理</a></dd>
+                    <dd><a href="/home/wjd/address">地址管理</a></dd>
                 </dl>
                 <dl>
                     <dt>客户服务</dt>

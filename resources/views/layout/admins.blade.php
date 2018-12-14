@@ -75,6 +75,11 @@
               <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
             </a>
           </li>
+          @php
+            $rs = DB::table('blog_user')->where('user_id',session('uid'))->first();
+            $es = DB::table('blog_role_user')->where('user_id',$rs->user_id)->first();
+          @endphp
+          @if($es->role_id == 1)
           <li class="nav-item dropdown">
               <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <i class="mdi mdi-email-outline"></i>
@@ -140,6 +145,7 @@
               })
             </script>
           </li>
+          @endif
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
               <i class="mdi mdi-bell-outline"></i>
@@ -232,6 +238,21 @@
                 <li class="nav-item"> <a class="nav-link" href="/admin/blog_roles">角色管理</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/blog_permissions">权限管理</a></li>
                 <li class="nav-item"> <a class="nav-link" href="/admin/blog_user">管理员列表</a></li>
+                </ul>
+            </div>
+          </li>
+
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-hui" aria-expanded="false" aria-controls="ui-hui">
+              <span class="menu-title">会员管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-account-key menu-icon"></i>
+            </a>
+            <div class="collapse" id="ui-hui">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">会员添加</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/user">会员列表</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/message">客户列表</a></li>
                 </ul>
             </div>
           </li>
