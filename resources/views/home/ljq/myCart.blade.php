@@ -244,7 +244,7 @@
                                 <td class="cart-product-quantity">
                                     <div class="quantity clearfix">
                                         <input type="button" value="-" class="minus">
-                                        <input type="text"  value="1" class="qty" />
+                                        <input type="text" stock="{{$res -> stock}}" value="1" class="qty" />
                                         <input type="button" value="+" class="plus">
                                     </div>
                                 </td>
@@ -396,7 +396,35 @@
         $('.che').click(function(){
             totals()
         })
+        // 输入值
+        $('.qty').blur(function(){
+            function accMul(arg1, arg2) {
 
+                var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+
+                try { m += s1.split(".")[1].length } catch (e) { }
+
+                try { m += s2.split(".")[1].length } catch (e) { }
+
+                return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+
+            }
+            var v = Number($(this).val());
+
+            var stock = Number($(this).attr('stock'));
+            //获取单价
+            var prc = $(this).parents('tr').find('.price').text().trim();
+            // 让小计发生改变
+            $(this).parents('tr').find('.amount').html('<i class="fa fa-jpy" aria-hidden="true"></i>'+accMul(prc, v));
+                totals();
+            if(v>stock) {
+                $(this).val(1);
+                $(this).parents('tr').find('.amount').html('<i class="fa fa-jpy" aria-hidden="true"></i>'+prc);
+                alert('sorry!您的购买力超出了我们的极限,给您带来的不便还请谅解!')
+                return;
+            }
+
+        })
 
         function totals()
         {

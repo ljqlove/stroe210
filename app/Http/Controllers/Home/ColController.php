@@ -73,18 +73,15 @@ class ColController extends Controller
         $uid = session('userinfo')['uid'];
         // 获取购物车id
         $cid = $request -> gid;
-        // 将改商品移出购物车
-        $del = DB::table('cart')->where('cid',$cid)->delete();
-        if ($del) {
-            $gname = DB::table('cart')->where('cid',$cid)->value('gname');
-            // 获取商品id
-            $gid = Goods::where('gname',$gname)->value('gid');
-            $res = Collect::insert(['uid'=>$uid,'gid'=>$gid]);
-            if ($res) {
-                echo 1;
-            } else {
-                echo 0;
-            }
+        $gname = DB::table('cart')->where('cid',$cid)->value('gname');
+        // 获取商品id
+        $gid = Goods::where('gname',$gname)->value('gid');
+        $res = Collect::insert(['uid'=>$uid,'gid'=>$gid]);
+        if ($res) {
+            // 将改商品移出购物车
+            $del = DB::table('cart')->where('cid',$cid)->delete();
+
+            echo 1;
         } else {
             echo 0;
         }
