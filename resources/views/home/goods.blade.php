@@ -212,7 +212,8 @@
             height: 380px;">    
         @endif
         @endif
-        @endforeach</div>
+        @endforeach
+    </div>
 
     <div class="head-form fl">
         <form class="clearfix">
