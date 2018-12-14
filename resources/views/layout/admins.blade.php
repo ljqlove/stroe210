@@ -317,6 +317,20 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-abc" aria-expanded="false" aria-controls="ui-aaa">
+              <span class="menu-title">会员管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-cart-outline"></i>
+            </a>
+            <div class="collapse" id="ui-aaa">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/user/create">添加会员</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/user">浏览会员</a></li>
+               </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-flash" aria-expanded="false" aria-controls="ui-flash">
               <span class="menu-title">快讯管理</span>
               <i class="menu-arrow"></i>

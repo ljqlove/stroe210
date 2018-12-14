@@ -12,6 +12,7 @@ use App\Model\Admin\Goodsimg;
 use App\Model\Admin\Gsize;
 
 
+
 class GoodsController extends Controller
 {
     /**
@@ -109,7 +110,7 @@ class GoodsController extends Controller
             $thumbnail_file_path = $file_path . '/friend-'.$file_name;
 
 
-            $image = Image::make($photo)->resize(500, 500)->save($thumbnail_file_path);
+            $image = \Image::make($photo)->resize(500, 500)->save($thumbnail_file_path);
 
 
             $res['gpic'] = '/uploads/goods/'.$image->basename;
