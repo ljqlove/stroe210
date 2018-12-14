@@ -64,11 +64,18 @@
 
         <div class="member-right fr">
             <div class="member-head">
-                <div class="member-heels fl"><h2>密保设置</h2></div>
+                <div class="member-heels fl"><h2>添加密保问题</h2></div>
             </div>
             <div class="member-border">
                      <div class="form">
-                              <form action="/home/uppropass" method="post">
+                        @php
+                            $res = DB::table('propass')->where('uid',$id)->get();
+                        @endphp
+                            @if(is_null($res))
+                            <form action="/home/uppropass" method="post">
+                            @else
+                            <form action="/home/set_propass" method="post">
+                            @endif
                                 <div class="item">
                                     <span class="label">密保问题:</span>
                                         <input clstag="homepage|keycount|home2013|infoname" type="text" class="itxt" maxlength="20" name="ptitle">

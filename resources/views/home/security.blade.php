@@ -26,7 +26,9 @@
     <link type="text/css" rel="stylesheet" href="//misc.360buyimg.com/user/myjd-2015/widget/??common/common.css" source="widget">
     <script type="text/javascript" src="//misc.360buyimg.com/jdf/??lib/jquery-1.6.4.js,1.0.0/unit/libPath/1.0.0/libPath.js"></script>
     <script type="text/javascript" async="" src="//nfa.jd.com/loadFa.js?aid=2_959_6296-2_959_6297"></script>
-
+    
+   
+              
 @endsection
 
 @php
@@ -37,6 +39,134 @@
 
 @section('content')
 <!-- 账户安全模块 begin-->
+@if(isset($status))
+<input id="online_box"  type="hidden" value="{{$status}}"></input>
+
+ <script type="text/javascript">
+
+                var element = document.getElementById("online_box").value;
+                if (element == '1') {
+                 Command: toastr["success"]("修改完成", "提示")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "rtl": false,
+                  "positionClass": "toast-top-center",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+              }
+              if (element == '0') 
+              {
+               Command: toastr["error"]("密码错误", "提示")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "rtl": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                          }
+
+              if (element == '2') {
+                 Command: toastr["success"]("密保设置成功", "提示")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "rtl": false,
+                  "positionClass": "toast-top-center",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+              }
+            
+
+            if (element == '3') 
+              {
+               Command: toastr["error"]("密保设置失败", "提示")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "rtl": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                          }
+
+                if (element == '4') 
+              {
+               Command: toastr["error"]("密保问题输入不正确", "提示")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "rtl": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+                          }
+
+
+  </script>
+@else
+@endif
 <section id="member">
     <div class="member-center clearfix">
 

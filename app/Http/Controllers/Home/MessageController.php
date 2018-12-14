@@ -132,14 +132,15 @@ class MessageController extends Controller
     // 重置密码方法
     public function set_password(Request $request){
       // $id = Auth::User()->id;
+      // echo 'set_password方法';exit;
       $id = $request->input('id');
       $oldpassword = $request->input('oldpassword');
       $newpassword = $request->input('newpassword');
       $res = DB::table('users')->where('uid',$id)->select('password')->first();
-      if(!Hash::check($oldpassword, $res->password)){
+      if(!Hash::check($oldpassword, $res->password)){  
           // 原密码不对
         $users = DB::select('select * from users where uid='.$id);
-        $status = '1';
+        $status = '0';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
@@ -147,6 +148,7 @@ class MessageController extends Controller
           'status'=>$status,
         ]);
       }
+
       $update = array(
         'password'  =>bcrypt($newpassword),
       );
@@ -154,15 +156,14 @@ class MessageController extends Controller
       if($result){
         $users = DB::select('select * from users where uid='.$id);
         $status = '1';
+        // dd($status);
         // dd($users);
-        return view('home/security',[
-          'title'=>'账户安全页面',
-          'users'=>$users,
-          'status'=>$status,
-        ]);
+        return redirect('/home/login');
       }else{
         $users = DB::select('select * from users where uid='.$id);
-        $status = '1';
+        $status = '0';
+
+        dd($status);
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
@@ -205,14 +206,15 @@ class MessageController extends Controller
 
       $req['ptitle'] = $request->input('ptitle');
       $req['pcontent'] = $request->input('pcontent');
-
+      $id = $request->input('id');
       // dd($req);
       $props = Propass::create($req);
       if ($props) {
+
         $users = DB::select('select * from users where uid='.$id);
-        $status = '1';
+        $status = '2';
         // dd($users);
-        echo '添加成功';exit;
+        // echo '添加成功';exit;
         return view('home/security',[
           'title'=>'账户安全页面',
           'users'=>$users,
@@ -221,7 +223,7 @@ class MessageController extends Controller
       } else {
         echo '添加失败';exit;
           $users = DB::select('select * from users where uid='.$id);
-        $status = '1';
+        $status = '3';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
@@ -254,11 +256,12 @@ class MessageController extends Controller
       ]);
       } else {
         $users = DB::select('select * from users where uid='.$id);
-
+        $status = '4';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
       }
 
@@ -283,11 +286,12 @@ class MessageController extends Controller
       ]);
       } else {
         $users = DB::select('select * from users where uid='.$id);
-
+        $status = '4';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
       }
 
@@ -299,7 +303,7 @@ class MessageController extends Controller
       // $id = Auth::User()->id;
 
       $id = $request->input('id');
-      dd($id);
+      // dd($id);
       $new = [];
       $new['ptitle'] = $request->input('ptitle');
       $new['pcontent'] = $request->input('pcontent');
@@ -308,20 +312,24 @@ class MessageController extends Controller
       $result = DB::table('propass')->where('uid',$id)->update($new);
       if($result){
         $users = DB::select('select * from users where uid='.$id);
-        echo '重置成功';exit;
+        // echo '重置成功';exit;
+        $status = '2';
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
       }else{
-        echo '重置失败';exit;
+        $status = '3';
+        // echo '重置失败';exit;
         $users = DB::select('select * from users where uid='.$id);
 
         // dd($users);
         return view('home/security',[
           'title'=>'账户安全页面',
-          'users'=>$users
+          'users'=>$users,
+          'status'=>$status,
         ]);
       }
 

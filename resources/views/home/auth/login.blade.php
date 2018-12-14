@@ -114,7 +114,7 @@
                                     <label for>记住密码</label>
                                 </span>
                                 <span class="forget-pw-safe">
-                                    <a href="">忘记密码</a>
+                                    <a href="/home/dxyz">忘记密码</a>
                                 </span>
                             </div>
                         </div>
