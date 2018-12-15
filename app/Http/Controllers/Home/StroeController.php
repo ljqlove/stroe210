@@ -41,6 +41,8 @@ class StroeController extends Controller
 
     public function addgood(Request $request)
     {
+        // $res = $request -> post();
+        // dd($res);
         $this->validate($request, [
             'type1' => 'required',
             'gname' => 'required',
@@ -57,14 +59,16 @@ class StroeController extends Controller
             'gsize.required'=>'！！请填写商品大小型号！！',
         ]);
         $good = $request -> only('company','gname','price','stock','gpic','descript','');
-        if (array_key_exists('type3',$request->post())) {
+        if (array_key_exists('type3',$request->post()) && !empty($request->type3)) {
             $tid = $request -> type3;
         } else {
-            if (array_key_exists('type2',$request->post())) {
+            if (array_key_exists('type2',$request->post()) && !empty($request->type2)) {
                 $tid = $request -> type2;
             } else {
-                 if (array_key_exists('type1',$request->post())) {
+                 if (array_key_exists('type1',$request->post() && !empty($request->type1))) {
                     $tid = $request -> type1;
+                } else {
+                    return back()->with('error','选一个类别');
                 }
             }
         }
