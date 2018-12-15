@@ -230,19 +230,18 @@
                         <div class="pc-trigger">
                             <a href="/home/stroe/{{$stroe->id}}">进入店铺</a>
                                 @php
-                                if(!empty($userinfo = session('userinfo'))){
                                     $res = DB::table('collect')->where('uid',session('userinfo')['uid'])->where('sid',$stroe->id)->first();
-
-                                    if(!count($res)){
-                                        echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
-                                    } else {
-                                        echo '<a href="javascript:void(0)" style="margin:0;">已收藏</a>';
-                                    }
-                                } else {
-                                    echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
-                                }
                                 @endphp
+                                @if(!empty($userinfo = session('userinfo')))
 
+                                    @if(!$res)
+                                        <a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>
+                                    @else
+                                        <a href="javascript:void(0)" style="margin:0;">已收藏</a>
+                                    @endif
+                                @else
+                                    <a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>
+                                @endif
                         </div>
                     </div>
                 </div>
