@@ -1,6 +1,6 @@
 @extends('layout.mymsg')
 @section('title',$title)
-
+@section('style','style=height:36px')
 @section('content')
     <link rel="stylesheet" href="/bs/css/bootstrap.min.css">
     <script src="/bs/js/bootstrap.min.js"></script>

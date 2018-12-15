@@ -216,14 +216,14 @@
                                 @php
                                 if(!empty($userinfo = session('userinfo'))){
                                     $res = DB::table('collect')->where('uid',session('userinfo')['uid'])->where('sid',$stroe->id)->first();
-
-                                    if(!count($res)){
-                                        echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
+                                   
+                                    if(!$res){
+                                        echo "<a href="/home/collect/"".{$stroe->id}."style="margin:0;">收藏店铺</a>";
                                     } else {
                                         echo '<a href="javascript:void(0)" style="margin:0;">已收藏</a>';
                                     }
                                 } else {
-                                    echo '<a href="/home/collect/{{$stroe->id}}" style="margin:0;">收藏店铺</a>';
+                                    echo "<a href="/home/collect/"".{$stroe->id}." style="margin:0;">收藏店铺</a>";
                                 }
                                 @endphp
 
