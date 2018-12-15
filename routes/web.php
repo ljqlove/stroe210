@@ -26,14 +26,14 @@ Route::get('/home/dxyz','Home\YzController@index');
 // 前台列表页
 Route::get('/','Home\IndexController@index');
 
-
+Route::get('/home/stroe/{id}','Home\StroeController@stroe');
 
 
 Route::get('/home/cate/{id}','Home\CateController@index');
 
 // 列表详情页
-Route::get('/home/goods/{id}','Home\CateController@goods');
-Route::any('/home/ajaxgsize','Home\CateController@ajaxgsize');
+Route::get('/home/goods/{id}','Home\GoodController@index');
+Route::any('/home/ajaxgsize','Home\GoodController@ajaxgsize');
 
 // 快讯列表页
 Route::get('/home/flash','Home\FlashController@index');
@@ -42,24 +42,52 @@ Route::get('/home/content/{id}','Home\FlashController@content');
 // 需要登录
 Route::group(['middleware' => 'auth'], function(){
 
+    // 加入购物车
+    Route::post('/home/joinCart','Home\CartController@joinCart');
     Route::any('/home/myCart','Home\CartController@myCart');
     Route::post('/home/shopcart','Home\CartController@shopcart');
     Route::any('/home/order','Home\OrderController@order');
-    Route::any('/home/addorder','Home\OrderController@addOrder');
+    Route::any('/home/addorder/{ids}','Home\OrderController@addOrder');
     Route::post('/home/mess','Home\OrderController@message');
+
+    // 立即购买
+    Route::post('/home/joinorder','Home\OrderController@joinorder');
+    // 取消订单
+    Route::get('/home/delorder/{oid}','Home\OrderController@delorder');
+    // 给订单选择地址
+    Route::get('/home/seladdress','Home\OrderController@seladdress');
+    // 设置支付密码
+    Route::post('/home/pass','Home\OrderController@pass');
+    // 订单支付
+    Route::post('/home/pay/{oids}','Home\OrderController@pay');
+    // 支付成功
+    Route::get('/home/paysuccess/{oids}','Home\OrderController@paysuccess');
+
+    // 收藏
+    Route::get('home/collect/{id}','Home\ColController@collect');
+    Route::get('home/stroedel/{ids}','Home\ColController@stroedel');
     Route::any('home/follow','Home\ColController@follow');
     Route::get('/home/join/{gid}','Home\CartController@join');
+
     Route::any('/home/myCollect','Home\ColController@myCollect');
     Route::post('/home/coldel','Home\ColController@coldel');
     Route::any('/home/myOrder','Home\OrderController@myOrder');
     Route::any('home/myOrderInfo/{oid}','Home\OrderController@myOrderInfo');
+    // 我的店铺
+    Route::get('/home/myStroe','Home\StroeController@myStroe');
+    Route::get('/home/myStroeInfo/{id}','Home\StroeController@myStroeInfo');
+    Route::get('/home/select','Home\StroeController@select');
+    Route::post('/home/addgood','Home\StroeController@addgood');
+    Route::get('/home/goodinfo/{gid}','Home\StroeController@goodinfo');
+    Route::post('/home/goodcolor','Home\StroeController@goodcolor');
+    Route::post('/home/goodsize','Home\StroeController@goodsize');
+    Route::post('/home/good-up/{gid}','Home\StroeController@goodup');
     // 商家入驻
     Route::get('/home/Merchant','Auth\RegisterController@Merchant');
     Route::get('/home/Merchant_2','Auth\RegisterController@Merchant_2');
     Route::post('/home/Merchant_3','Auth\RegisterController@Merchant_3');
     Route::post('/home/checkphone','Auth\RegisterController@checkphone');
     Route::get('/home/checkcode','Auth\RegisterController@checkcode');
-
     //前台个人中心主页
     Route::get('/home/wjd/message','Home\MessageController@index');
     //前台个人信息修改
@@ -99,6 +127,8 @@ Route::any('/admin/login','Admin\LoginController@login');
 Route::any('/admin/dologin','Admin\LoginController@dologin');
 Route::any('/admin/captcha','Admin\LoginController@captcha');
 Route::any('/admin/logout','Admin\LoginController@logout');
+Route::any('/admin/mywork','Admin\LoginController@doout');
+
 
 Route::group(['middleware'=>['login','userper']], function(){
 //后台的首页
@@ -162,6 +192,7 @@ Route::any('admin/site','Admin\SiteController@edit');
 Route::any('admin/do_site','Admin\SiteController@update');
 //后台系统日志
 Route::resource('admin/system','Admin\SystemController');
+Route::any('admin/do_update','Admin\SystemController@do_update');
 
 
 //后台评论管理

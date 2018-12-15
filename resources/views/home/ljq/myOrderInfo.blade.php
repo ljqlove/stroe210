@@ -39,6 +39,7 @@
 
 
 @section('con')
+
         <div class="member-right fr">
             <div class="member-head">
                 <div class="member-heels fl"><h2>订单号：{{$info->ordernum}}</h2></div>
@@ -56,6 +57,13 @@
                 } else {
                     $status = "买家已收货";
                 }
+
+                $good = DB::table('goods')->where('gname',$info->oname)->first();
+                $user = DB::table('users')->where('uid',$info->uid)->first();
+                $add = DB::table('address')->where('aid',$info->addid)->first();
+                $com = DB::table('stores')->where('id',$good->company)->first();
+                $gcolor = DB::table('gcolor')->where('id',$info->color)->first();
+                $gsize = DB::table('gsize')->where('id',$info->size)->first();
             @endphp
             <div class="member-border">
                <div class="member-order">
@@ -71,10 +79,10 @@
                    </dl>
                    <dl>
                        <dt>配送信息</dt>
-                       <dd class="member-seller"><span>收货人：<em>{{$info->aname}}</em></dd>
-                       <dd class="member-seller"><span>收货人电话：<em>{{$info->aphone}}</em></dd>
-                       <dd class="member-seller"><span>收货地址：<em>{{$info->address}}</em></dd>
-                       <dd class="member-seller"><span>收货人邮编：<em>{{$info->postcode}}</em></dd>
+                       <dd class="member-seller"><span>收货人：<em>{{$add->aname}}</em></dd>
+                       <dd class="member-seller"><span>收货人电话：<em>{{$add->aphone}}</em></dd>
+                       <dd class="member-seller"><span>收货地址：<em>{{$add->address}}</em></dd>
+                       <dd class="member-seller"><span>收货人邮编：<em>{{$add->postcode}}</em></dd>
                    </dl>
                    <dl class="member-custom clearfix ">
                        <dt>客户留言</dt>
@@ -83,7 +91,7 @@
                    </dl>
                    <dl>
                        <dt>商品信息</dt>
-                       <dd class="member-seller">本订单是由 “{{$info->company}}” 发货并且提高售后服务，商品在下单后会尽快给您发货。 </dd>
+                       <dd class="member-seller">本订单是由 “{{$com->company}}” 发货并且提高售后服务，商品在下单后会尽快给您发货。 </dd>
                    </dl>
                </div>
                <div class="member-serial">
@@ -96,10 +104,10 @@
                            <div class="No5">小计</div>
                        </li>
                        <li class="clearfix">
-                           <div class="No1">{{$info->gid}}</div>
-                           <div class="No2"><a href="#">{{$info->oname}}</a> </div>
+                           <div class="No1">{{$good->gid}}</div>
+                           <div class="No2"><a href="#">{{$good->gname}}</a> </div>
                            <div class="No3">{{$info->num}}</div>
-                           <div class="No4">￥{{$info->price}}</div>
+                           <div class="No4">￥{{$gsize->price}}</div>
                            <div class="No5">￥{{$info->total}}</div>
                        </li>
                    </ul>

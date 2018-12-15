@@ -24,6 +24,7 @@ class Blog_userController extends Controller
         $id = $request->id;
         // dd($id);
         $res = Blog_user::find($id);
+        // dd($res);
         // dd($res->roles);
         $info = [];
         foreach($res->roles as $k=>$v){
@@ -58,8 +59,8 @@ class Blog_userController extends Controller
         // dd($res);
 
         // 删除原来的角色
-        DB::table('blog_role_user')->where('user_id',$id)->delete();
-
+        $rs = DB::table('blog_role_user')->where('user_id',$id)->delete();
+        // dump($rs);die;
         $arr = [];
         foreach($res as $K =>$v){
             $rs = [];
@@ -84,14 +85,7 @@ class Blog_userController extends Controller
      */
     public function index(Request $request)
     {   
-        $role = DB::select('select * from blog_user order by user_id DESC limit 1');
-        $roles = [];
-        foreach($role as $k=>$v){
-            $roles['user_id'] = ($v->user_id);
-        }
-        // dd($roles);
-        $data = DB::table('blog_role_user')->insert($roles);
-        // 以上是为了给新添加的管理员赋予一个默认的角色
+
 
 
         // 条件搜索  分页
@@ -154,6 +148,14 @@ class Blog_userController extends Controller
         $data = Blog_user::create($res);
 
         if ($data) {
+            $role = DB::select('select * from blog_user order by user_id DESC limit 1');
+            $roles = [];
+            foreach($role as $k=>$v){
+                $roles['user_id'] = ($v->user_id);
+            }
+            // dd($roles);
+            $data = DB::table('blog_role_user')->insert($roles);
+            // 以上是为了给新添加的管理员赋予一个默认的角色
             return redirect('/admin/blog_user')->with('success','添加成功');
         }
             return back()->with('error','添加失败');
@@ -204,7 +206,7 @@ class Blog_userController extends Controller
         // dd($res);
         $res['updated_at'] = date('Y-m-d H:i:s',time());
 
-        dd($res);
+        // dd($res);
         if($request->hasFile('user_pic') && $request->file('user_pic')->isValid()){
             
             $photo = $request->file('user_pic');

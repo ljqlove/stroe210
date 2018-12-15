@@ -46,4 +46,8 @@ class User extends Model
     {
         return $this->belongsToMany('App\Model\Admin\Goods','collect','uid','gid');
     }
+    public function stroes()
+    {
+        return $this->belongsToMany('App\Model\Home\Store','collect','uid','sid');
+    }
 }

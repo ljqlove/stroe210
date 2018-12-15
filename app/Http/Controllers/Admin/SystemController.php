@@ -30,9 +30,9 @@ class SystemController extends Controller
         // 条件搜索  分页
         $system = System::orderBy('id','asc')
                 ->where(function($query) use($request){
-            $rs = $request->input('title');
+            $rs = $request->input('uname');
             if(!empty($rs)) {
-                $query->where('title','like','%'.$rs.'%');
+                $query->where('uname','like','%'.$rs.'%');
             }
         })->paginate(10);
         // dd($system);
@@ -80,14 +80,16 @@ class SystemController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 禁止登陆操作
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
+        
+
     }
 
     /**
@@ -100,6 +102,18 @@ class SystemController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $uid = $id;
+        try{
+        
+            $data = DB::update('update blog_user set status="0" where user_id=?',[$uid]);
+            if($data){
+                return redirect('/admin/system')->with('success','修改成功');
+            }
+
+        }catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -120,5 +134,31 @@ class SystemController extends Controller
         } catch (\Exception $e) {
             return back()->with('error','删除失败');
         }
+    }
+
+    /**
+     * 禁止登陆操作
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function do_update(Request $request)
+    {
+        //
+
+        $uid = $request->id;
+        
+        try{
+        
+            $data = DB::update('update blog_user set status="1" where user_id=?',[$uid]);
+            if($data){
+                return redirect('/admin/system')->with('success','修改成功');
+            }
+
+        }catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+        }
+
     }
 }

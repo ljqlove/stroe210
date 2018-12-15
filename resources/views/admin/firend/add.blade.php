@@ -14,12 +14,13 @@
     </style>
           <div class="card-body">
           <h4 class="card-title">{{$title}}</h4>
-        @if (count($errors) > 0)
+        @if (count($errors) > 0 || !empty(session('errores')))
           <div class="alert alert-error alert-dismissible error" id="yqero" role="alert" >
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
               @foreach ($errors->all() as $error)
            <li style='font-size:10px;list-style:none;' >{{$error}}</li>            
               @endforeach
+           <li style='font-size:10px;list-style:none;' >{{session('errores')}}</li>            
           </div>
         @endif
        		 	<br><br>

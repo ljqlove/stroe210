@@ -54,7 +54,6 @@ class MessageController extends Controller
                   $info['status'] = 2;
                   $info['msg'] = '未知错误';
                   return json_encode($info);
-              dd(2);
 
             }else{
               $name = rand(111,999).time();
@@ -75,7 +74,6 @@ class MessageController extends Controller
               return json_encode($info);
             }
         } else {
-          dd(1);
             $info['status'] = 2;
             $info['msg'] = '文件类型或者大小不正确';
             return json_encode($info);

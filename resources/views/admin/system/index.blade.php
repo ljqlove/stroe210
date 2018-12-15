@@ -26,7 +26,7 @@
                         <i class="input-group-text border-0 mdi mdi-magnify"></i>                
 
                     </div>
-                    <input type="text" value="{{$request->title}}" class="form-control bg-transparent border-0" placeholder="登陆成功或登录失败" name="title">
+                    <input type="text" value="{{$request->title}}" class="form-control bg-transparent border-0" placeholder="管理员名称" name="uname">
                     <button class='btn btn-info'>搜索</button>
                   </div>
                 </form>
@@ -45,7 +45,10 @@
                           内容
                         </th>
                         <th>
-                        用户名
+                        管理员名称
+                        </th>
+                        <th>
+                        状态
                         </th>
                         <th>
                         头像
@@ -53,6 +56,7 @@
                         <th>
                           角色
                         </th>
+
                         <th>
                           时间
                         </th>
@@ -75,8 +79,20 @@
                       <!-- 判断管理员表的user_id和系统日志的uid是否相等 -->
                         @if($uv->user_id == $v->uid)
                           <td>
-                            {{$uv->user_name}}
+                            {{$v->uname}}
                           </td>
+                          
+                        @if($uv->status == 1)
+                         <td>
+                            <label class="badge badge-gradient-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可以登录</font></font></label>
+                          </td>
+                        @endif
+                        @if($uv->status == 0)
+                           <td>
+                            <label class="badge badge-gradient-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">不可登陆</font></font></label>
+                          </td>
+                        @endif
+                          
                           </td>
                           <td><image src="{{$uv->user_pic}}" width="80" height="80"></td>
                         @endif
@@ -99,24 +115,47 @@
                               @endif
                             @endforeach
                           @endif
-                        
                       @endforeach
                         <td>
                           {{$v->created_at}}
                         </td>
                         <td>
-                          <a href="/admin/system/{{$v->id}}/edit" class='btn btn-info'>修改</a>
-
-
-                            <form action="/admin/system/{{$v->id}}" method='post' style='display:inline'>
+                          @if($v->uid == 1)
+                            <a href="javescript:vode(0)" class='btn btn-info' style="width: 90.4px;color:red"">不可禁止</a>
+                          @endif
+                          @php
+                            $blog = \DB::table('blog_user')->where('user_id',$v->uid)->first();
+                          @endphp 
+                          @if($blog->status == 0)
+                            <a href="javescript:vode(0)" class='btn btn-info' style="width: 90.4px;color:yellow">已禁登陆</a>
+                          @endif
+                          @if($blog->status == 1 and $blog->user_id != 1)
+                          <form action="/admin/system/{{$v->uid}}" method='post' style='display:inline'>
                               {{csrf_field()}}
-
-
-                              {{method_field("DELETE")}}
-                              <button class='btn btn-danger'>删除</button>
+                              {{method_field('PUT')}}
+                                    
+                              <button class='btn btn-info'>禁止登陆</button>
 
 
                             </form>
+                          @endif
+                          
+                          @if($blog->status == 0)
+                            <form action="/admin/do_update?id={{$v->uid}}" method='post' style='display:inline'>
+                              {{csrf_field()}}
+                                    
+                              <button class='btn btn-info'>恢复登陆</button>
+
+
+                            </form>
+                          @else
+    
+                            <form action="/admin/system/{{$v->id}}" method='post' style='display:inline'>
+                              {{csrf_field()}}
+                              {{method_field("DELETE")}}
+                              <button class='btn btn-danger' style="width: 90.4px">删除记录</button>
+                            </form>
+                          @endif
                         </td>
                       </tr>
                       @endforeach

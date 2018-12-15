@@ -29,7 +29,7 @@
                     <button class='btn btn-info'>搜索</button>
                   </div>
                 </form>
-                  <h4 class="card-title">{{$title}}  <a href="/admin/blog_user/create" class="btn btn-danger radius">添加角色</a></h4>
+                  <h4 class="card-title">{{$title}}  <a href="/admin/blog_user/create" class="btn btn-danger radius">添加管理员</a></h4>
                   <p class="card-description">
 
                   </p>

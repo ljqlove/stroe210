@@ -221,6 +221,101 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        #zhifu{
+            position:fixed;
+            left:30%;
+            top:30%;
+            border-top:5px solid #E4393CFF;
+            border-left:3px solid #E4393CFF;
+            border-right:3px solid #E4393CFF;
+            border-bottom:1px solid #E4393CFF;
+            width:500px;
+            height:200px;
+            border-radius:15px;
+            background-color: #DDD;
+        }
+        #zhifu span{
+            font-weight: bold;
+            font-size: 20px;
+            margin-top:20px;
+            margin-left: 60px;
+            /*border:1px solid red;*/
+            display: block;
+        }
+        #zhifu input[type='password']{
+            border:1px solid #C1C1C1FF;
+            width:40px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            margin-top:30px;
+        }
+        #zhifu input[name='v1']{
+            margin-left: 150px;
+        }
+        #zhifu input[type='submit']{
+            width:120px;
+            height:30px;
+            border-radius: 5px;
+            background-color: #E4393CFF;
+            color:#fff;
+            float:right;
+            margin-right:20px;
+            margin-bottom:20px;
+        }
+        #pay{
+            position:fixed;
+            left:30%;
+            top:20%;
+            border-top:5px solid #E4393CFF;
+            border-left:3px solid #E4393CFF;
+            border-right:3px solid #E4393CFF;
+            border-bottom:1px solid #E4393CFF;
+            width:500px;
+            height:300px;
+            border-radius:15px;
+            background-color: #DDD;
+            display: none;
+        }
+        #pay span{
+            font-weight: bold;
+            font-size: 20px;
+            margin-top:30px;
+            margin-left: 40px;
+            width:100px;
+            height:42px;
+            line-height: 40px;
+            /*border:1px solid red;*/
+            display: block;
+            float: left;
+        }
+        #pay input[type='password']{
+            border:1px solid #C1C1C1FF;
+            width:40px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            float: block;
+        }
+        #zhifu input[name='v1']{
+            margin-left: 150px;
+        }
+        #pay input[type='submit']{
+            width:120px;
+            height:30px;
+            border-radius: 5px;
+            background-color: #E4393CFF;
+            color:#fff;
+            float:right;
+            margin-right:20px;
+            margin-bottom:20px;
+        }
+        .pass{
+            float: left;
+            margin-top:30px;
+            /*border:1px solid red;*/
+            width:200px;
+        }
     </style>
 @endsection
 
@@ -233,7 +328,7 @@
                    <div class="pc-order-text clearfix">
                        <ul class="myadd">
                             @foreach($add as $v)
-                           <li class="add-list">
+                           <li class="add-list" aid="{{$v->aid}}" oid="{{$ids}}">
                                 <a style="display:none" class="status">{{$v->status}}</a>
                                 <h3 ><span class="aname">{{$v->aname}}</span> (收)</h3>
                                 <span class="aphone">{{$v->aphone}}</span>
@@ -296,18 +391,90 @@
                </div>
            </div>
            <div class="pc-space-n"></div>
+            @php
+                $res = DB::table('users')->where('uid',session('userinfo')['uid'])->first();
+                if(empty($res->paypwd)){
+                    $sta = '0';
+                } else {
+                    $sta = '1';
+                }
+            @endphp
            <div class="clearfix">
                <div class="fr pc-space-j">
                    <spna>应付总额：<strong><i class="fa fa-jpy" aria-hidden="true"></i><span class="st">0.0</span></strong></spna>
-                   <button class="pc-submit">提交订单</button>
+                   <button class="pc-submit" sta="{{$sta}}">提交订单</button>
                </div>
            </div>
         </div>
     </section>
+    <div id="zhifu" style="display: none;">
+        <span>请输入支付密码</span>
+        <form action="/home/pay/{{$ids}}" method="post">
+            {{csrf_field()}}
+            <input type="password" autofocus name="v1">
+            <input type="password" name="v2">
+            <input type="password" name="v3">
+            <input type="password" name="v4">
+            <br>
+            <br>
+            <br>
+            <input type="submit"  value="确认">
+            <div style="clear:both"></div>
+        </form>
+    </div>
+    <div id="pay">
+        <form action="/home/pass" method="post">
+            {{csrf_field()}}
+            <span>支付密码 : </span>
+            <div class="pass">
+                <input type="password" autofocus name="v[]">
+                <input type="password" name="v[]">
+                <input type="password" name="v[]">
+                <input type="password" name="v[]">
+            </div>
+            <div style="clear:both"></div>
+            <br>
+            <br>
+            <span>重复密码 : </span>
+            <div class="pass">
+                <input type="password" name="rv[]">
+                <input type="password" name="rv[]">
+                <input type="password" name="rv[]">
+                <input type="password" name="rv[]">
+            </div>
+            <div style="clear:both"></div>
+            <br>
+            <br>
+            <br>
+            <input type="submit"  value="确认">
+        </form>
+    </div>
+    <script>
+        $('.pc-submit').click(function(){
+            var sta = $(this).attr('sta');
+            if (sta == '1') {
+                $('#zhifu').show();
+            } else {
+                alert('您还没有设置支付密码,请输入一个支付密码!!');
+                $('#pay').show();
+            }
+        })
+        $('input[type=password]').keyup(function(event){
+            // 将光标跳到下一个
+            // console.log($(this).next());
+            $(this).next().focus();break;
+        })
+    </script>
 @endsection
 
 @section('banner')
     <script>
+        // ajax 修改msg内容
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         // 获取总金额赋值给st
         var zong = 0;
         $('.zong').each(function(){
@@ -350,6 +517,16 @@
             $('#sname').text($(this).find('.aname').text());
             $('#sadd').text($(this).find('.address').text());
             $('#sph').text($(this).find('.aphone').text());
+            var aid = $(this).attr('aid');
+            var oids = $(this).attr('oid');
+            $.get('/home/seladdress',{aid:aid,oids:oids},function(data){
+                if(data){
+                    alert('地址已修改');
+                } else {
+                    alert('地址未修改');
+                }
+                // console.log(data);
+            })
         })
         // 全部边框归零
         function zreo(){
@@ -357,12 +534,7 @@
                 $(this).removeClass('default');
             })
         }
-        // ajax 修改msg内容
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+
        $('.mess').blur(function(){
             var oid = $(this).parents('.or').find('.reds').attr('oid');
             var mess = $(this).val();
