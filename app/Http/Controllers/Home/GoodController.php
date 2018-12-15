@@ -29,6 +29,7 @@ class GoodController extends Controller
         $stroe = DB::table('stores')->where('id',$sid)->first();
         // dd($stroe);
         // dd($goods,$gsize,$gcolor,$comment);
+        $advert = DB::select('select * from advert');
 
         return view('home.goods',[
             'title'=>'商品详情',
@@ -37,6 +38,7 @@ class GoodController extends Controller
             'gsize'=>$gsize,
             'stroe'=>$stroe,
             'type'=>$type,
+            'advert'=>$advert,
             'comment'=>$comment
         ]);
     }

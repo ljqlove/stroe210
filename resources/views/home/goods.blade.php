@@ -49,6 +49,36 @@
         }
     </style>
 
+    <!-- css -->
+    <style type="text/css">
+      #advert_right{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            right:0px;
+            z-index: 1000;
+        }
+
+
+        #advert_left{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            left:0px;
+            z-index: 1000;
+        }
+        #advert_left div,#advert_right div{
+             position: absolute;
+             bottom: 16px;
+             /*opacity: 0.1;*/
+             color:#000;
+             cursor:pointer;
+        }
+
+    </style>
+
     <script>
          $(function(){
              $(".yScrollListInList1 ul").css({width:$(".yScrollListInList1 ul li").length*(160+84)+"px"});
@@ -74,7 +104,7 @@
                  }
              })
          })
-     </script>
+    </script>
 
     <script type="text/javascript">
          (function(a){
@@ -124,6 +154,30 @@
 @endsection
 
 @section('content')
+    <!-- 广告 -->
+    <div id="advert_right">
+
+        @foreach($advert as $k=>$v)
+        @if($v->status == 1)
+        @if($v->id == 1)
+        <div onclick="document.getElementById('advert_right').style.display='none';" >X</div>
+        <img src="{{$v->img}}" title="{{$v->name}}" style="width: 150px;
+            height: 380px;">
+        @endif
+        @endif
+        @endforeach
+    </div>
+    <div id="advert_left">
+        @foreach($advert as $k=>$v)
+        @if($v->status == 1)
+        @if($v->id == 2)
+        <div onclick="document.getElementById('advert_left').style.display='none';" >X</div>
+        <img src="{{$v->img}}" title="{{$v->name}}" style="width: 150px;
+            height: 380px;">
+        @endif
+        @endif
+        @endforeach
+    </div>
     <section>
         <div id='big'>
             <img src="{{$goods['gpic']}}" alt="" id='bigImg'>

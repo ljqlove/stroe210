@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //条件搜索 分页
-        $users = Comment::orderBy('uid','asc')->where(function($query) use($request){
+        $users = User::orderBy('uid','asc')->where(function($query) use($request){
             $rs = $request->input('phone');
             if(!empty($rs)) {
                 $query->where('phone','like','%'.$rs.'%');
@@ -60,7 +60,7 @@ class UserController extends Controller
         $res['inputtime'] = date('Y-m-d H:i:s',time());
 
 
-            $data = Comment::create($res);
+            $data = User::create($res);
 
             if ($data) {
                 return redirect('/admin/user')->with('success','添加成功');
@@ -88,7 +88,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //根据id获取数据
-        $res=Comment::find($id);
+        $res=User::find($id);
 
         return view('admin.user.edit',[
             'title'=>'用户修改',
@@ -110,7 +110,7 @@ class UserController extends Controller
         //数据表修改数据
         try{
 
-            $data = Comment::where('uid', $id)->update($res);
+            $data = User::where('uid', $id)->update($res);
 
             if($data){
                 return redirect('/admin/user')->with('success','修改成功');
@@ -132,7 +132,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
-            $res = Comment::destroy($id);
+            $res = User::destroy($id);
 
             if($res){
                 return redirect('/admin/user')->with('success','删除成功');

@@ -43,7 +43,22 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-            
+              @php
+                  $data =session()->all();
+              @endphp
+              <div class="nav-profile-img">
+                <img src="
+                @if($data['user_pic'])
+                {{$data['user_pic']}}
+                @endif
+                " alt="image">
+                <span class="availability-status online"></span>
+              </div>
+              <div class="nav-profile-text">
+                <p class="mb-1 text-black">
+                @if($data['user_name'])
+                {{$data['user_name']}}
+                @endif
               </p>
               </div>
             </a>

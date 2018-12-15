@@ -147,15 +147,15 @@
         <div class="time-list fl">
             <div class="time-title time-clear"><h2>卖场推荐</h2><a href="javascript:;" class="pc-spin fr">换一换</a> </div>
             <div class="time-poued clearfix">
-                <a href="#"><img src="/homes/theme/img/ad/a2.png"></a>
-                <a href="#"><img src="/homes/theme/img/ad/a3.png"></a>
-                <a href="#"><img src="/homes/theme/img/ad/a4.png"></a>
-                <a href="#"><img src="/homes/theme/img/ad/a5.png"></a>
+                <a href="javascript:void(0);"><img src="/homes/theme/img/ad/a2.png"></a>
+                <a href="javascript:void(0);"><img src="/homes/theme/img/ad/a3.png"></a>
+                <a href="javascript:void(0);"><img src="/homes/theme/img/ad/a4.png"></a>
+                <a href="javascript:void(0);"><img src="/homes/theme/img/ad/a5.png"></a>
             </div>
         </div>
         <div class="news-list fr">
             <div class="time-title time-clear"><h2>今日值得购买</h2></div>
-            <div class="news-right"><a href="#"><img src="/homes/theme/img/ad/a1.png"></a></div>
+            <div class="news-right"><a href="javascript:void(0);"><img src="/homes/theme/img/ad/a1.png"></a></div>
         </div>
     </div>
     <!-- 卖场推荐 End -->
@@ -205,12 +205,12 @@
             <div class="time-border time-border-h clearfix">
                 <div class="brand-img fl">
                     <ul>
-                        <li><a href="#"><img src="/homes/theme/img/ad/p1.png" width="125" height="47"></a></li>
-                        <li><a href="#"><img src="/homes/theme/img/ad/p2.png" width="125" height="47"></a></li>
-                        <li><a href="#"><img src="/homes/theme/img/ad/p3.png" width="125" height="47"></a></li>
-                        <li><a href="#"><img src="/homes/theme/img/ad/p4.png" width="125" height="47"></a></li>
-                        <li><a href="#"><img src="/homes/theme/img/ad/p5.png" width="125" height="47"></a></li>
-                        <li><a href="#"><img src="/homes/theme/img/ad/p6.png" width="125" height="47"></a></li>
+                        <li><a href="javascript:void(0);"><img src="/homes/theme/img/ad/p1.png" width="125" height="47"></a></li>
+                        <li><a href="javascript:void(0);"><img src="/homes/theme/img/ad/p2.png" width="125" height="47"></a></li>
+                        <li><a href="javascript:void(0);"><img src="/homes/theme/img/ad/p3.png" width="125" height="47"></a></li>
+                        <li><a href="javascript:void(0);"><img src="/homes/theme/img/ad/p4.png" width="125" height="47"></a></li>
+                        <li><a href="javascript:void(0);"><img src="/homes/theme/img/ad/p5.png" width="125" height="47"></a></li>
+                        <li><a href="javascript:void(0);"><img src="/homes/theme/img/ad/p6.png" width="125" height="47"></a></li>
                     </ul>
                 </div>
                 <div class="brand-bar fl"><a href="#"><img src="/homes/theme/img/ad/bar.jpg" width="300" height="476"></a> </div>
@@ -389,21 +389,22 @@
     </div>
 
     <div class="containers main-banner"><a href="#"><img src="/homes/theme/img/ad/br1.jpg" width="1200" height="105"></a> </div>
+
     <div class="time-lists clearfix">
         <div class="time-list fl">
             <div class="time-title time-clear"><h2>好店推荐 </h2></div>
             <div class="time-border time-border-h clearfix">
                 <div class="fl shop-img">
-                    <div class="shop-title"><a href="#"><img src=""></a></div>
-                    <div class="shop-text"><h2>12321321321</h2> <p>[正品 有赠品 如实描述]</p></div>
-                    <div class="shop-work clearfix"><a href="#"><img src="/homes/theme/img/ad/shop2.png"></a><a href="#"><img src="/homes/theme/img/ad/shop3.png"></a> </div>
+                    <div class="shop-title"><a href="javascript:void(0);"><img src="/homes/theme/img/ad/shop1.png"></a></div>
+                    <div class="shop-text"><h2>熊太子坚果炒货金冠店铺...</h2> <p>[正品 有赠品 如实描述]</p></div>
+                    <div class="shop-work clearfix"><a href="javascript:void(0);"><img src="/homes/theme/img/ad/shop2.png"></a><a href="#"><img src="/homes/theme/img/ad/shop3.png"></a> </div>
                 </div>
                 <div class="shop-bar clearfix fl">
                     <ul>
-                        @foreach($merchant as $k=>$v)
+                        @foreach($store as $pl)
                         <li>
-                            <div class="shop-icn"><a href="#"><img src="{{$v->image}}"></a></div>
-                            <div class="shop-tex"><a href="#">{{$v->company}}</a> </div>
+                            <div class="shop-icn"><a href="javascript:void(0);"><img src="{{$pl->image}}"></a></div>
+                            <div class="shop-tex"><a href="javascript:void(0);">{{$pl->company}}</a> </div>
                         </li>
                         @endforeach
                     </ul>
@@ -414,10 +415,12 @@
             <div class="time-title time-clear"><h2>店铺销量top排行</h2></div>
             <div style="border-left:none;" class="time-border time-border-h">
                 <ul class="shop-top">
+                    @foreach($store as $lp)
                     <li class="clearfix">
-                        <div class="shop-name fl"><a href="#"><img src="/homes/theme/img/ad/top1.png"></a></div>
-                        <div class="shop-titl fl"><p><b>NO.1 阿卡官方旗舰店</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>
+                        <div class="shop-name fl"><a href="javascript:void(0);"><img src="/homes/theme/img/ad/top1.png"></a></div>
+                        <div class="shop-titl fl"><p><b>{{$lp->company}}</b></p> <p>梦想会喜欢 <span class="fr red">已售出：3000+</span></p> </div>
                     </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -532,16 +535,21 @@
 @endsection
 
 @section('zuo')
+@php
+    use App\Http\Controllers\Admin\IndexController;
+    $rs = IndexController::getCategoryMessage(0);
+@endphp
  <div class="pullDown">
-    
+
         <h2 class="pullDownTitle"> 全部商品分类 </h2>
         <ul class="pullDownList">
+                @foreach($rs as $v)
                 <li class="menulihover">
                     <i class="listi1"></i>
-                    <a href="all-cl.html" target="_blank">家用电器</a>
+                    <a href="/home/cate/{{$v->tid}}" target="_blank">{{$v->tname}}</a>
                     <span></span>
                 </li>
-               
+                @endforeach
             </ul>
         <!-- 弹框 start -->
         <div class="yMenuListCon">
@@ -549,14 +557,28 @@
             <div class="yMenuListConin">
                 <div class="yMenuLCinLisi fl">
                     <ul>
-                        <li><a href="#">大家电<i class="fr">></i></a></li>
+                        @foreach($rs as $v)
+                            @if($v->sub)
+                                @foreach($v->sub as $vv)
+                        <li><a href="/home/cate/{{$vv->tid}}">{{$vv->tname}}<i class="fr">></i></a></li>
+                                @endforeach
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
                 <div class="yMenuLCinList fl">
                     <p>
-                        <a href="" class="ecolor610">大牌上新</a>
-                        <a href="">商场同款</a>
-
+                        @foreach($rs as $v)
+                            @if($v->sub)
+                                @foreach($v->sub as $vv)
+                                    @if($vv->sub)
+                                        @foreach($vv->sub as $vvv)
+                        <a href="/home/cate/{{$vvv->tid}}" class="ecolor610">{{$vvv->tname}}</a>
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
                     </p>
                 </div>
             </div>
