@@ -37,13 +37,13 @@
                   @endif
                   <br>
                 <div class="form-group">
-                  <input type="phone" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="请输入管理员账号" name="user_name">
+                  <input type="phone" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="请输入管理员账号" name="user_name" autocomplete="off">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="请输入密码" name="user_pass"> 
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="请输入密码" name="user_pass" autocomplete="off"> 
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control pull-left" placeholder="请输入验证码" name="code" style="width:170px"><img class="pull-right" src="/admin/captcha" alt="" onclick='this.src=this.src+="?1"'>
+                  <input type="text" class="form-control pull-left" placeholder="请输入验证码" name="code" style="width:170px" autocomplete="off"><img class="pull-right" src="/admin/captcha" alt="" onclick='this.src=this.src+="?1"'>
                 </div>
                 {{csrf_field()}}
                 <div class="mt-3">
