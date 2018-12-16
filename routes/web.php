@@ -42,6 +42,9 @@ Route::any('/home/ajaxgsize','Home\GoodController@ajaxgsize');
 Route::get('/home/flash','Home\FlashController@index');
 Route::get('/home/content/{id}','Home\FlashController@content');
 
+// 全局搜索
+    Route::get('/home/sousuo/','Home\GoodController@sousuo');
+
 // 需要登录
 Route::group(['middleware'=>'auth'], function(){
 
@@ -71,11 +74,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('home/stroedel/{ids}','Home\ColController@stroedel');
     Route::any('home/follow','Home\ColController@follow');
     Route::get('/home/join/{gid}','Home\CartController@join');
+    Route::get('/home/colgood','Home\ColController@colgood');
+    Route::get('/home/delgood','Home\ColController@delgood');
 
     Route::any('/home/myCollect','Home\ColController@myCollect');
     Route::post('/home/coldel','Home\ColController@coldel');
     Route::any('/home/myOrder','Home\OrderController@myOrder');
     Route::any('home/myOrderInfo/{oid}','Home\OrderController@myOrderInfo');
+    Route::get('/home/goodok/{oid}','Home\OrderController@goodok');
     // 我的店铺
     Route::get('/home/myStroe','Home\StroeController@myStroe');
     Route::get('/home/myStroeInfo/{id}','Home\StroeController@myStroeInfo');
@@ -91,6 +97,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/home/Merchant_3','Auth\RegisterController@Merchant_3');
     Route::post('/home/checkphone','Auth\RegisterController@checkphone');
     Route::get('/home/checkcode','Auth\RegisterController@checkcode');
+
     //前台个人中心主页
     Route::get('/home/wjd/message','Home\MessageController@index');
     //前台个人信息修改

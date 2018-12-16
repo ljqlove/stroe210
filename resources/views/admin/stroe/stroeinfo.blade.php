@@ -88,7 +88,7 @@
                     </div> -->
                     <div class="form-group"  style="position: relative;">
                       <label for="exampleInputCity1">店铺简图(1200X315)</label>
-                      <img src="{{$sinfo->image}}" id='imgs' width="200" height="150"  alt="" style="cursor:pointer">
+                      <img src="{{$sinfo->image}}" id='imgs' width="570" height="150"  alt="" style="cursor:pointer">
                       <input type="file" name="image" id="file_upload" multiple style="position:absolute;top:0px;left:60px;font-size:100px;width:150px;cursor: pointer;opacity: 0;z-index: 999;">
                     </div>
                     <!-- <div class="form-group">

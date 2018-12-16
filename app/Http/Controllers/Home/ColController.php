@@ -87,5 +87,33 @@ class ColController extends Controller
         }
     }
 
+    // 收藏商品
+    public function colgood(Request $request)
+    {
+        $gid = $request->gid;
+        $uid = session('userinfo')['uid'];
+        $res = Collect::insert(['uid'=>$uid,'gid'=>$gid]);
+
+        if ($res) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
+    // 取消收藏
+    public function delgood(Request $request)
+    {
+        $gid = $request -> gid;
+        $uid = session('userinfo')['uid'];
+        $user = User::find($uid);
+        $res = $user -> goods() -> detach($gid);
+        if ($res) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
 
 }

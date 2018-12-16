@@ -49,4 +49,23 @@ class GoodController extends Controller
         $price = DB::table('gsize')->where('id',$id)->value('price');
         echo $price;
     }
+
+    public function sousuo(Request $request)
+    {
+        $res = $request -> gname;
+        $order = $request -> order;
+        // dd($order);
+        $goods = Goods::where('goods.gname','like','%'.$res.'%')
+        ->where('goods.status','1')
+        ->join('stores','goods.company','stores.id')
+        ->select('goods.*','stores.company as com')
+        ->orderBy('price',$order)
+        ->get();
+        $good = Goods::OrderBy('inputtime','desc')
+        ->join('stores','goods.company','stores.id')
+        ->select('goods.*','stores.company as com')
+        ->first();
+        // dd($good);
+        return view('home.ljq.goodsou',['goods'=>$goods,'good'=>$good,'title'=>$res]);
+    }
 }

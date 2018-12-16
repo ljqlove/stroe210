@@ -248,4 +248,15 @@ class OrderController extends Controller
             return view('home.ljq.paysuccess',['title'=>'支付成功','res'=>$res]);
         }
     }
+
+    // 确认收货
+    public function goodok($oid)
+    {
+        $res = DB::table('orders')->where('oid',$oid)->update(['status'=>'4']);
+        if ($res) {
+            return back()->with('error','恭喜您收到心仪的宝贝');
+        } else {
+            return back()->with('error','操作失误请您重新尝试');
+        }
+    }
 }

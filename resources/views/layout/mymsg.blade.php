@@ -1,11 +1,11 @@
 @extends('layout.homes')
 
 @section('sousuo')
-
     <!-- 搜索框 start -->
     <div class="head-form fl">
-        <form class="clearfix" href="/home/cate">
-            <input @yield('style') type="text" class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
+        <form class="clearfix" action="/home/sousuo" method="get">
+            {{csrf_field()}}
+            <input type="text" @yield('style') class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
             <button class="button">搜索</button>
         </form>
         <div class="words-text clearfix">
@@ -19,7 +19,7 @@
         </div>
     </div>
     <!-- 搜索框 end -->
-    <!-- 购物车 strat -->
+        <!-- 购物车 strat -->
     <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
         @if($userinfo = session('userinfo'))
         <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
@@ -41,7 +41,7 @@
 @section('content')
     @if(!empty($userinfo = session('userinfo'))){
     @php
-        
+
 
         $message = \DB::table('message')->where('uid',(session('userinfo')['uid']))->first();
     @endphp
@@ -54,7 +54,7 @@
             <div class="member-apart clearfix">
                 <div class="fl">
                     <img id="lula" src="{{$message->headpic}}" width="80px" height="80px">
-                   
+
                 </div>
                 <div class="fl">
                     <p>用户名：</p>

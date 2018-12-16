@@ -221,6 +221,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         #zhifu{
             position:fixed;
             left:30%;
@@ -233,6 +234,7 @@
             height:200px;
             border-radius:15px;
             background-color: #DDD;
+            z-index: 999;
         }
         #zhifu span{
             font-weight: bold;
@@ -276,6 +278,7 @@
             border-radius:15px;
             background-color: #DDD;
             display: none;
+            z-index: 999;
         }
         #pay span{
             font-weight: bold;
@@ -462,7 +465,7 @@
         $('input[type=password]').keyup(function(event){
             // 将光标跳到下一个
             // console.log($(this).next());
-            $(this).next().focus();break;
+            $(this).next().focus();
         })
     </script>
 @endsection

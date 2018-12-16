@@ -74,7 +74,6 @@
                                {{-- 获取店铺信息 --}}
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
-                              $add = \DB::table('address')->where('aid',$v->addid)->first();
                               $com = \DB::table('stores')->where('id',$res->company)->first();
                               $color = \DB::table('gcolor')->where('id',$v->color)->first();
                               $size = \DB::table('gsize')->where('id',$v->size)->first();
@@ -102,7 +101,16 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
+                                 <div class="ci2" style="height:100px">
+                                  @php
+                                    $add = \DB::table('address')->where('aid',$v->addid)->first();
+                                  @endphp
+                                  @if($add)
+                                  {{$add->aname}}
+                                  @else
+                                  尚无
+                                  @endif
+                                </div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -117,7 +125,7 @@
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 3){
                                       $status = "已发货";
-                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='/home/goodok/$v->oid' class='member-touch'>确认收货</a> </p>";
                                   } else {
                                       $status = "已完成";
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
@@ -150,7 +158,6 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
-                              $add = \DB::table('address')->where('aid',$v->addid)->first();
                               $com = \DB::table('stores')->where('id',$res->company)->first();
                               $color = \DB::table('gcolor')->where('id',$v->color)->first();
                               $size = \DB::table('gsize')->where('id',$v->size)->first();
@@ -179,7 +186,16 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
+                                 <div class="ci2" style="height:100px">
+                                  @php
+                                    $add = \DB::table('address')->where('aid',$v->addid)->first();
+                                  @endphp
+                                  @if($add)
+                                  {{$add->aname}}
+                                  @else
+                                  尚无
+                                  @endif
+                                 </div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -194,7 +210,7 @@
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 3){
                                       $status = "已发货";
-                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='/home/goodok/$v->oid' class='member-touch'>确认收货</a> </p>";
                                   } else {
                                       $status = "已完成";
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
@@ -228,7 +244,6 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
-                              $add = \DB::table('address')->where('aid',$v->addid)->first();
                               $com = \DB::table('stores')->where('id',$res->company)->first();
                               $color = \DB::table('gcolor')->where('id',$v->color)->first();
                               $size = \DB::table('gsize')->where('id',$v->size)->first();
@@ -257,7 +272,16 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
+                                 <div class="ci2" style="height:100px">
+                                  @php
+                                    $add = \DB::table('address')->where('aid',$v->addid)->first();
+                                  @endphp
+                                  @if($add)
+                                  {{$add->aname}}
+                                  @else
+                                  尚无
+                                  @endif
+                                 </div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -272,7 +296,7 @@
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 3){
                                       $status = "已发货";
-                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='/home/goodok/$v->oid' class='member-touch'>确认收货</a> </p>";
                                   } else {
                                       $status = "已完成";
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
@@ -306,7 +330,6 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
-                              $add = \DB::table('address')->where('aid',$v->addid)->first();
                               $com = \DB::table('stores')->where('id',$res->company)->first();
                               $color = \DB::table('gcolor')->where('id',$v->color)->first();
                               $size = \DB::table('gsize')->where('id',$v->size)->first();
@@ -335,7 +358,16 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
+                                 <div class="ci2" style="height:100px">
+                                  @php
+                                    $add = \DB::table('address')->where('aid',$v->addid)->first();
+                                  @endphp
+                                  @if($add)
+                                  {{$add->aname}}
+                                  @else
+                                  尚无
+                                  @endif
+                                 </div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -350,7 +382,7 @@
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 3){
                                       $status = "已发货";
-                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='/home/goodok/$v->oid' class='member-touch'>确认收货</a> </p>";
                                   } else {
                                       $status = "已完成";
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
@@ -384,7 +416,6 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
-                              $add = \DB::table('address')->where('aid',$v->addid)->first();
                               $com = \DB::table('stores')->where('id',$res->company)->first();
                               $color = \DB::table('gcolor')->where('id',$v->color)->first();
                               $size = \DB::table('gsize')->where('id',$v->size)->first();
@@ -413,7 +444,16 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
+                                 <div class="ci2" style="height:100px">
+                                  @php
+                                    $add = \DB::table('address')->where('aid',$v->addid)->first();
+                                  @endphp
+                                  @if($add)
+                                  {{$add->aname}}
+                                  @else
+                                  尚无
+                                  @endif
+                                 </div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -428,7 +468,7 @@
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 3){
                                       $status = "已发货";
-                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='/home/goodok/$v->oid' class='member-touch'>确认收货</a> </p>";
                                   } else {
                                       $status = "已完成";
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
@@ -462,7 +502,6 @@
                           @foreach ($orders as $v)
                           @php
                               $res = \DB::table('goods')->where('gname',$v->oname)->first();
-                              $add = \DB::table('address')->where('aid',$v->addid)->first();
                               $com = \DB::table('stores')->where('id',$res->company)->first();
                               $color = \DB::table('gcolor')->where('id',$v->color)->first();
                               $size = \DB::table('gsize')->where('id',$v->size)->first();
@@ -491,7 +530,16 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">{{$add->aname}}</div>
+                                 <div class="ci2" style="height:100px">
+                                   @php
+                                    $add = \DB::table('address')->where('aid',$v->addid)->first();
+                                  @endphp
+                                  @if($add)
+                                  {{$add->aname}}
+                                  @else
+                                  尚无
+                                  @endif
+                                 </div>
                                  <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
                                  <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
@@ -506,7 +554,7 @@
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 3){
                                       $status = "已发货";
-                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='javascript:void(0)' class='member-touch'>确认收货</a> </p>";
+                                      $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> <a href='/home/goodok/$v->oid' class='member-touch'>确认收货</a> </p>";
                                   } else {
                                       $status = "已完成";
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";

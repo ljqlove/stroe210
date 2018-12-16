@@ -173,7 +173,7 @@
                     <p class="head-name"><a href="#">{{$v->gname}}</a> </p>
                     <p><span class="price">￥{{$v->price}}.00</span></p>
                     <p class="head-futi clearfix"><span class="fl">评论数:##</span> <span class="fr">100人购买</span></p>
-                    <p class="clearfix"><span class="label-default fl">抢购</span> <a href="#" class="fr pc-search-c">收藏</a> </p>
+                    <p class="clearfix"><span class="label-default fl">抢购</span> <a href="javascript:void(0)" class="fr pc-search-c">收藏</a> </p>
                 </li>
                 @endforeach
             </ul>
