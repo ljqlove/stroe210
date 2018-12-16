@@ -101,7 +101,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">
+                                 <div class="ci2" >
                                   @php
                                     $add = \DB::table('address')->where('aid',$v->addid)->first();
                                   @endphp
@@ -111,8 +111,8 @@
                                   尚无
                                   @endif
                                 </div>
-                                 <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
-                                 <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 <div class="ci3" ><b>￥{{$v->total}}</b></div>
+                                 <div class="ci4" ><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
                                   if ($v->status == 0){
                                       $status = "无效订单";
@@ -131,11 +131,11 @@
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
                                   }
                                   @endphp
-                                  <div class="ci5" style="height:100px">
+                                  <div class="ci5" >
                                       <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
-                                  <div class="ci5 ci8" style="height:100px">
+                                  <div class="ci5 ci8" >
                                       {!! $con !!}
                                   </div>
                              </div>
@@ -186,7 +186,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">
+                                 <div class="ci2" >
                                   @php
                                     $add = \DB::table('address')->where('aid',$v->addid)->first();
                                   @endphp
@@ -196,15 +196,15 @@
                                   尚无
                                   @endif
                                  </div>
-                                 <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
-                                 <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 <div class="ci3" ><b>￥{{$v->total}}</b></div>
+                                 <div class="ci4" ><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
                                   if ($v->status == 0){
                                       $status = "无效订单";
                                       $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
                                   } elseif ($v->status == 1){
                                       $status = "等待付款";
-                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                      $con = "<p> <a href='/home/addorder/$v->oid' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 2){
                                       $status = "等待卖家发货";
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
@@ -216,11 +216,11 @@
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
                                   }
                                   @endphp
-                                  <div class="ci5" style="height:100px">
+                                  <div class="ci5" >
                                       <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
-                                  <div class="ci5 ci8" style="height:100px">
+                                  <div class="ci5 ci8" >
                                       {!! $con !!}
                                   </div>
                              </div>
@@ -272,7 +272,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">
+                                 <div class="ci2" >
                                   @php
                                     $add = \DB::table('address')->where('aid',$v->addid)->first();
                                   @endphp
@@ -282,15 +282,15 @@
                                   尚无
                                   @endif
                                  </div>
-                                 <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
-                                 <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 <div class="ci3" ><b>￥{{$v->total}}</b></div>
+                                 <div class="ci4" ><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
                                   if ($v->status == 0){
                                       $status = "无效订单";
                                       $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
                                   } elseif ($v->status == 1){
                                       $status = "等待付款";
-                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                      $con = "<p> <a href='/home/addorder/$v->oid' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 2){
                                       $status = "等待卖家发货";
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
@@ -302,11 +302,11 @@
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
                                   }
                                   @endphp
-                                  <div class="ci5" style="height:100px">
+                                  <div class="ci5" >
                                       <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
-                                  <div class="ci5 ci8" style="height:100px">
+                                  <div class="ci5 ci8" >
                                       {!! $con !!}
                                   </div>
                              </div>
@@ -358,7 +358,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">
+                                 <div class="ci2" >
                                   @php
                                     $add = \DB::table('address')->where('aid',$v->addid)->first();
                                   @endphp
@@ -368,15 +368,15 @@
                                   尚无
                                   @endif
                                  </div>
-                                 <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
-                                 <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 <div class="ci3" ><b>￥{{$v->total}}</b></div>
+                                 <div class="ci4" ><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
                                   if ($v->status == 0){
                                       $status = "无效订单";
                                       $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
                                   } elseif ($v->status == 1){
                                       $status = "等待付款";
-                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                      $con = "<p> <a href='/home/addorder/$v->oid' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 2){
                                       $status = "等待卖家发货";
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
@@ -388,11 +388,11 @@
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
                                   }
                                   @endphp
-                                  <div class="ci5" style="height:100px">
+                                  <div class="ci5" >
                                       <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
-                                  <div class="ci5 ci8" style="height:100px">
+                                  <div class="ci5 ci8" >
                                       {!! $con !!}
                                   </div>
                              </div>
@@ -444,7 +444,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">
+                                 <div class="ci2" >
                                   @php
                                     $add = \DB::table('address')->where('aid',$v->addid)->first();
                                   @endphp
@@ -454,15 +454,15 @@
                                   尚无
                                   @endif
                                  </div>
-                                 <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
-                                 <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 <div class="ci3" ><b>￥{{$v->total}}</b></div>
+                                 <div class="ci4" ><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
                                   if ($v->status == 0){
                                       $status = "无效订单";
                                       $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
                                   } elseif ($v->status == 1){
                                       $status = "等待付款";
-                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                      $con = "<p> <a href='/home/addorder/$v->oid' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 2){
                                       $status = "等待卖家发货";
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
@@ -474,11 +474,11 @@
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
                                   }
                                   @endphp
-                                  <div class="ci5" style="height:100px">
+                                  <div class="ci5" >
                                       <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
-                                  <div class="ci5 ci8" style="height:100px">
+                                  <div class="ci5 ci8" >
                                       {!! $con !!}
                                   </div>
                              </div>
@@ -530,7 +530,7 @@
                                          <span class="gr3">X{{$v->num}}</span>
                                      </div>
                                  </div>
-                                 <div class="ci2" style="height:100px">
+                                 <div class="ci2" >
                                    @php
                                     $add = \DB::table('address')->where('aid',$v->addid)->first();
                                   @endphp
@@ -540,15 +540,15 @@
                                   尚无
                                   @endif
                                  </div>
-                                 <div class="ci3" style="height:100px"><b>￥{{$v->total}}</b></div>
-                                 <div class="ci4" style="height:100px"><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
+                                 <div class="ci3" ><b>￥{{$v->total}}</b></div>
+                                 <div class="ci4" ><p>{{date('Y年m月d日',strtotime($v->inputtime))}}</p></div>
                                  @php
                                   if ($v->status == 0){
                                       $status = "无效订单";
                                       $con = "<p> 订单已失效 </p> <p> <a href='/home/myOrderInfo/$v->oid'>查看订单</a> </p>";
                                   } elseif ($v->status == 1){
                                       $status = "等待付款";
-                                      $con = "<p> <a href='javascript:void(0)' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
+                                      $con = "<p> <a href='/home/addorder/$v->oid' class='member-touch'>立即支付</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
                                   } elseif ($v->status == 2){
                                       $status = "等待卖家发货";
                                       $con = "<p> <a href='javascript:void(0)' class='member-touch'>提醒发货</a> </p> <p> <a href='/home/delorder/$v->oid'>取消订单</a> </p>";
@@ -560,11 +560,11 @@
                                       $con = "<p> <a href='/home/myOrderInfo/$v->oid'>查看</a> </p> <p> 交易完成 </p>";
                                   }
                                   @endphp
-                                  <div class="ci5" style="height:100px">
+                                  <div class="ci5" >
                                       <p>{{$status}}</p>
                                       <p><a href="/home/myOrderInfo/{{$v->oid}}">订单详情</a></p>
                                   </div>
-                                  <div class="ci5 ci8" style="height:100px">
+                                  <div class="ci5 ci8" >
                                       {!! $con !!}
                                   </div>
                              </div>
