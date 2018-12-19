@@ -80,7 +80,7 @@
                 <h2 class="fl" style="margin-right:20px;">商城快讯</h2>
                 <div id="MarqueeDiv" class="MarqueeDiv">
                     @foreach($flash as $v)
-                    <a href="/home/flash">{{$v->fname}}</a>
+                    <a href="/home/content/{{$v->id}}">{{$v->fname}}</a>
                     @endforeach
                 </div>
                 <a href="new.html" style="position: absolute;right: 15px;top: 0;"> 更多资讯</a>

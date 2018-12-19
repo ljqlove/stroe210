@@ -63,7 +63,7 @@
                         <!-- <th>ID</th> -->
                         <th>订单号</th>
                         <th>商品名</th>
-                        <th>购买用户</th>
+                        <th>用户</th>
                         <th style="width:200px">发货地址</th>
                         <th>收货电话</th>
                         <th>数量</th>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-        
+
 <div class="card-body" >
    <!-- 搜索 -->
                   <div class="input-group">
@@ -19,7 +19,7 @@
                   <h4 class="card-title">浏览快讯</h4>
                   <p class="card-description">
                     index flash
-                  
+
                   </p>
 
                   <table class="table table-striped">
@@ -31,6 +31,10 @@
 
                         <th>
                           快讯标题
+                        </th>
+
+                        <th>
+                          作者署名
                         </th>
 
                         <th>
@@ -54,19 +58,27 @@
                         <td class="py-1">
                         {{$v->id}}
                         </td>
-                       
+
                         <td>
                           {{$v->fname}}
                         </td>
-                        <td >
+
+                        <td>
+                          {{$v->writer}}
+                        </td>
+
+                        <td>
+                          <div style="width:400px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                           {!!$v->content!!}
+
+                          </div>
                         </td>
 
                         <td>
                           {{$v->ftime}}
                         </td>
 
-                        
+
                         <td class=" ">
 
                           <a href="/admin/flash/{{$v->id}}/edit" class='btn btn-info'>修改内容</a>
@@ -80,14 +92,14 @@
                             </form>
                           </td>
                       </tr>
-                      
+
                       @endforeach
-                    
+
 
                     </tbody>
                   </table>
                 </div>
-          
+
 @stop
 
 

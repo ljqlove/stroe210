@@ -15,15 +15,15 @@ class FlashController extends Controller
             ->where(function($query) use($request){
                 //检测关键字
                 $fname = $request->input('fname');
-               
+
                 //如果用户名不为空
                 if(!empty($fname)) {
                     $query->where('fname','like','%'.$fname.'%');
                 }
-              
+
             })
         ->paginate(10);
-        
+
    		return view('home.flash',[
    			'title'=>'快讯列表',
    			'flash'=>$flash,
@@ -35,10 +35,12 @@ class FlashController extends Controller
    	{
    		// dd($id);
    		$flash = Flash::where('id',$id)->get();
+      $advert = DB::select('select * from advert');
 
    		// dd($flash);
    		return view('home.content',[
    			'title'=>'快讯详情页',
+        'advert'=>$advert,
    			'flash'=>$flash
    		]);
    	}

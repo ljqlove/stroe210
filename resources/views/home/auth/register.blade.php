@@ -89,7 +89,7 @@
         </div>
         <div class="login-back">
             <div class="H-over">
-                @if (count($errors) > 0)
+                @if (count($errors) > 0 || session('error'))
                     <div class="fade"></div>
                     <div class="succ-pop">
                         <h3 class="title">
@@ -97,6 +97,7 @@
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
+                                <li>{{session('error')}}</li>
                             </ul>
                         </h3>
                         <a id="button" style="border:1px solid red;display: block;width:200px;margin-top:120px;height:40px;border-radius:10px;margin-left:100px;text-align:center;line-height: 40px;font-size:18px;font-weight: bold;color:#fff;background:#e53e41" href="javascript:void(0)">关闭</a>
@@ -122,7 +123,7 @@
 
                     <div class="login-input">
                         <label><i class="heart">*</i>验证码：</label>
-                        <input type="text" class="list-notes" id="code" name="code" placeholder=""> <img style="margin-left:15px;cursor: pointer;" src="/admin/captcha" alt="这是验证码" onclick='this.src = this.src+="?1"'>
+                        <input type="text" class="list-notes" id="code" name="code" placeholder=""> <img style="margin-left:15px;cursor: pointer;" src="/home/captcha" alt="这是验证码" onclick='this.src = this.src+="?1"'>
 
                     </div>
                     <div class="item-ifo">

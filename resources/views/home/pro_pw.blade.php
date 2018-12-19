@@ -35,7 +35,6 @@
 
 
 @section('content')
-这是密码验证问题
 <!-- 账户安全模块 begin-->
 <section id="member">
     <div class="member-center clearfix">
@@ -65,7 +64,7 @@
 
         <div class="member-right fr">
             <div class="member-head">
-                <div class="member-heels fl"><h2>密保设置</h2></div>
+                <div class="member-heels fl"><h2>验证密保问题</h2></div>
             </div>
             <div class="member-border">
                      <div class="form">
@@ -74,7 +73,7 @@
                                     <span class="label">密保问题:</span>
                                         <input clstag="homepage|keycount|home2013|infoname" type="text" class="itxt" maxlength="20" name="ptitle" value="{{$props['ptitle']}}">
                                 </div>
-                                
+
                                 <div class="item">
                                     <span class="label"><em>*</em>答案：</span>
                                     <div class="fl">
@@ -83,7 +82,7 @@
                                         <div class="clr"></div><div class="prompt-06"><span id="nickName_msg"></span></div>
                                     </div>
                                 </div>
-                            
+
                             <div class="item">
                                     <span class="label">&nbsp;</span>
                                     <div class="fl">

@@ -47,7 +47,7 @@
            <li>
             <h2>新品推荐</h2><br>
                 <a href="/home/goods/{{$good->gid}}"> <img src="{{$good->gpic}}" style="width: 200px; height:300;"></a>
-                <p class="head-name" style="height:40px;overflow: hidden;text-overflow:ellipsis;display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"><a href="/home/goods/{{$good->gid}}">{{$good->gname}}</a> </p>
+                <p class="head-name" style="width:190px;height:40px;overflow: hidden;text-overflow:ellipsis;display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"><a href="/home/goods/{{$good->gid}}">{{$good->gname}}</a> </p>
                 <p><span class="price">￥ {{$good->price}}.00</span></p>
                 <p class="head-futi clearfix"><span class="fl">有货:{{$good->stock}}件</span> <a href="/home/stroe/{{$good->company}}" class="fr">{{$good->com}}</a></p>
                 <p class="clearfix"><span class="label-default fl">抢购</span>
@@ -104,7 +104,7 @@
             <ul class="clearfix">
                 @foreach($goods as $v)
                 <li>
-                    <a href="/home/goods/{{$v->gid}}"> <img src="{{$v->gpic}}" style="width: 200px; height:300;"></a>
+                    <a href="/home/goods/{{$v->gid}}"> <img src="{{$v->gpic}}" style="width: 200px; height:300px;"></a>
                     <p class="head-name" style="height:40px;overflow: hidden;text-overflow:ellipsis;display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"><a href="/home/goods/{{$v->gid}}">{{$v->gname}}</a> </p>
                     <p><span class="price">￥ {{$v->price}}.00</span></p>
                     <p class="head-futi clearfix"><span class="fl">有货:{{$v->stock}}件</span> <a href="/home/stroe/{{$v->company}}" class="fr">{{$v->com}}</a></p>

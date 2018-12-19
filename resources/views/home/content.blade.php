@@ -1,4 +1,4 @@
-@extends('layout.homes')
+@extends('layout.mymsg')
 
 
 @section('title',$title)
@@ -9,7 +9,7 @@
     <meta name="Author" content="">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
     <meta name="renderer" content="webkit">
     <meta content="歪秀购物, 购物, 大家电, 手机" name="keywords">
     <meta content="歪秀购物，购物商城。" name="description">
@@ -37,7 +37,7 @@
              $("#pc-nav").hoverClass("current");
          });
      </script>
-<meta name="csrf-token" content="{{ csrf_token() }}">
+ <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
          $(function(){
              $(".yScrollListInList1 ul").css({width:$(".yScrollListInList1 ul li").length*(160+84)+"px"});
@@ -71,24 +71,24 @@
                 $(this).addClass("cur");
                 $("#big_img").attr("src",$(this).attr("simg"));
             });
-            
+
             $(".attrdiv a").click(function(){
                 $(".attrdiv a").removeClass("cur");
                 $(this).addClass("cur");
             });
-            
+
             $('.amount2').click(function(){
                 var num_input = $("#subnum");
                 var buy_num = (num_input.val()-1)>0?(num_input.val()-1):1;
                 num_input.val(buy_num);
             });
-        
+
             $('.amount1').click(function(){
                 var num_input = $("#subnum");
                 var buy_num = Number(num_input.val())+1;
                 num_input.val(buy_num);
             });
-            
+
              $("#H-table li").each(function(i){
                  $(this).click((function(k){
                      var _index = k;
@@ -157,35 +157,38 @@
         $(this).removeClass("selected"); //移除选中
         }
         );
-</script>
+    </script>
+    <!-- css -->
+    <style type="text/css">
+      #advert_right{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            right:0px;
+            z-index: 1000;
+        }
 
+
+        #advert_left{
+            width: 150px;
+            height: 400px;
+            position:fixed;/*声明固定定位*/
+            top:180px;
+            left:0px;
+            z-index: 1000;
+        }
+        #advert_left div,#advert_right div{
+             position: absolute;
+             bottom: 16px;
+             /*opacity: 0.1;*/
+             color:#000;
+             cursor:pointer;
+        }
+
+    </style>
 @endsection
 
-@section('sousuo')
-    <!-- 搜索框 start -->
-    <div class="head-form fl">
-
-        <form class="clearfix">
-            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off"  placeholder="洗衣机">
-            <button class="button" onClick="search('key');return false;">搜索</button>
-        </form>
-
-        <div class="words-text clearfix">
-            <a href="#" class="red">1元秒爆</a>
-            <a href="#">低至五折</a>
-            <a href="#">农用物资</a>
-            <a href="#">买一赠一</a>
-            <a href="#">佳能相机</a>
-            <a href="#">稻香村月饼</a>
-            <a href="#">服装城</a>
-        </div>
-    </div>
-    <!-- 搜索框 end -->
-    <!-- 购物车 strat -->
-    <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a> <i class="head-amount">99</i></div>
-    <div class="head-mountain"></div>
-    <!-- 购物车 end -->
-@endsection
 
 @section('nav')
     <ul class="yMenuIndex">
@@ -202,45 +205,41 @@
 @endsection
 
 @section('content')
+    <!-- 广告 -->
+    <div id="advert_right">
 
+        @foreach($advert as $k=>$v)
+        @if($v->status == 1)
+        @if($v->id == 1)
+        <div onclick="document.getElementById('advert_right').style.display='none';" >X</div>
+        <img src="{{$v->img}}" title="{{$v->name}}" style="width: 150px;
+            height: 380px;">
+        @endif
+        @endif
+        @endforeach
+    </div>
+    <div id="advert_left">
+        @foreach($advert as $k=>$v)
+        @if($v->status == 1)
+        @if($v->id == 2)
+        <div onclick="document.getElementById('advert_left').style.display='none';" >X</div>
+        <img src="{{$v->img}}" title="{{$v->name}}" style="width: 150px;
+            height: 380px;">
+        @endif
+        @endif
+        @endforeach
+    </div>
 <!-- 商城快讯 begin -->
 <section id="member">
     <div class="member-center clearfix">
-        <div class="member-left fl">
-            <div class="member-apart clearfix">
-                <div class="fl"><a href="#"><img src="theme/img/bg/mem.png"></a></div>
-                <div class="fl">
-                    <p>用户名：</p>
-                    <p><a href="#">亚里士多德</a></p>
-                    <p>搜悦号：</p>
-                    <p>389323080</p>
-                </div>
-            </div>
-            <div class="member-lists">
-                <dl>
-                    <dt>我的商城</dt>
-                    <dd><a href="#">我的订单</a></dd>
-                    <dd><a href="#">我的收藏</a></dd>
-                    <dd><a href="#">账户安全</a></dd>
-                    <dd><a href="#">我的评价</a></dd>
-                    <dd><a href="#">地址管理</a></dd>
-                </dl>
-                <dl>
-                    <dt>客户服务</dt>
-                    <dd><a href="#">退货申请</a></dd>
-                    <dd><a href="#">退货/退款记录</a></dd>
-                </dl>
-                <dl>
-                    <dt>我的消息</dt>
-                    <dd class="cur"><a href="#">商城快讯</a></dd>
-                    <dd><a href="#">帮助中心</a></dd>
-                </dl>
-            </div>
-        </div>
+
         <div class="member-right fr">
             <div style="text-align:center;">
                 <h1 style="font-weight:bold; font-size:35px; margin:15px auto; ">{{$flash[0]['fname']}}</h1>
-                
+                <br>
+                <h6>作者署名:{{$flash[0]['writer']}}</h6>
+                <br>
+                <h6>发布时间:{{$flash[0]['ftime']}}</h6>
                 <br>
                 <br>
                 <br>

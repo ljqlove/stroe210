@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/homes/theme/css/base.css">
     <link rel="stylesheet" type="text/css" href="/homes/theme/css/login.css">
     <script src="/homes/theme/js/jquery-3.1.1.min.js"></script>
+    <script src="/homes/js/gt.js"></script>
     <style>
         /*灰色遮罩层*/
         .fade{
@@ -42,6 +43,19 @@
             font-size: 22px;
             color: #ce002c;
             margin-top:80px;
+        }
+        #embed-captcha {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+        #notice {
+            color: red;
         }
     </style>
 </head>
@@ -101,11 +115,14 @@
                                 大小写锁定已打开
                             </span>
                         </div>
+                        <div id="embed-captcha"></div>
+                        <p id="wait" class="show">正在加载验证码......</p>
+                        <p id="notice" class="hide">请先完成验证</p>
                         <!-- 图片验证码开始 fore3-->
-                        <div id="o-authcode" class="item item-vcode item-fore3 hide ">
+                        <!-- <div id="o-authcode" class="item item-vcode item-fore3 hide ">
                             <input type="text" name="code" id="authcode" class="itxt itxt02" name="authcode" tabindex="3">
                             <img src="/home/captcha" alt="" onclick='this.src = this.src+="?1"'>
-                        </div>
+                        </div> -->
                         <!-- 自动登录开始fore4 -->
                         <div class="item item-fore4">
                             <div class="safe">
@@ -219,6 +236,45 @@
 </body>
 
 <script type="text/javascript">
+    var handlerEmbed = function (captchaObj) {
+        $("#embed-submit").click(function (e) {
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $("#notice")[0].className = "show";
+                setTimeout(function () {
+                    $("#notice")[0].className = "hide";
+                }, 2000);
+                e.preventDefault();
+            }
+        });
+        // 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
+        captchaObj.appendTo("#embed-captcha");
+        captchaObj.onReady(function () {
+            $("#wait")[0].className = "hide";
+        });
+        // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    };
+    $.ajax({
+        // 获取id，challenge，success（是否启用failback）
+        url: "/home/logcaptcha?t=" + (new Date()).getTime(), // 加随机数防止缓存
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            // 使用initGeetest接口
+            // 参数1：配置参数
+            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                new_captcha: data.new_captcha,
+                product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+                offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+                // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+            }, handlerEmbed);
+        }
+    });
+
     //alert($)
     $('#button').click(function(){
         $('.succ-pop').css('display','none');

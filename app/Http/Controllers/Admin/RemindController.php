@@ -17,6 +17,6 @@ class RemindController extends Controller
     {
     	return view('admin.remind.remind',['title'=>'用户权限提示界面']);
     }
-    
-    	
+
+
 }

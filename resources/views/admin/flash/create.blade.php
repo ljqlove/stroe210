@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="content-wrapper">
-          
+
           @if (count($errors) > 0)
           <div class="btn btn-gradient-primary mr-2" id="mr-2" style="width: 800px">
                   显示错误信息
@@ -38,20 +38,25 @@
                       <label for="exampleInputName1">快讯名称</label>
                       <input type="text" class="form-control" id="exampleInputName1" placeholder="fname" name="fname" >
                     </div>
-                    
+
+                     <div class="form-group">
+                      <label for="exampleInputName1">作者署名</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="writer" name="writer" >
+                    </div>
+
                     <div class="form-group">
                       <label for="exampleTextarea1">简介</label>
                       <script id="editor" name='content' type="text/plain" style="width:1145px;height:500px;"></script>
                     </div>
 
 
-                    
+
                     <button type="submit" class="btn btn-gradient-primary mr-2">提交</button>
                     {{csrf_field()}}
                     <!-- <button class="btn btn-light">重置</button> -->
                   </form>
                 </div>
-    
+
 </div>
 <script>
    var ue = UE.getEditor('editor');

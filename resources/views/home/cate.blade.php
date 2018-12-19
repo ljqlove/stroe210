@@ -58,9 +58,10 @@
 @section('sousuo')
     <!-- 搜索框 start -->
     <div class="head-form fl">
-        <form class="clearfix">
-            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off"  placeholder="洗衣机">
-            <button class="button" onClick="search('key');return false;">搜索</button>
+        <form class="clearfix" action="/home/sousuo" method="get">
+            {{csrf_field()}}
+            <input type="text" class="search-text" accesskey="" id="key" autocomplete="off" name="gname" placeholder="请输入要搜索的商品">
+            <button class="button">搜索</button>
         </form>
         <div class="words-text clearfix">
             <a href="#" class="red">1元秒爆</a>
@@ -73,8 +74,21 @@
         </div>
     </div>
     <!-- 搜索框 end -->
-    <!-- 购物车 strat -->
-    <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a> <i class="head-amount">99</i></div>
+        <!-- 购物车 strat -->
+    <div class="header-cart fr"><a href="/home/myCart"><img src="/homes/theme/icon/car.png"></a>
+        @if($userinfo = session('userinfo'))
+        <i class="head-amount" id="setl">{{\DB::table('cart')->where('uid',$userinfo['uid'])->count()}}</i>
+        @elseif($userinfo == 0)
+        <i class="head-amount">0</i>
+        @endif
+        <script>
+            $(function(){
+                setInterval(function(){
+                    $('#setl').toggle();
+                },1000)
+            })
+        </script>
+    </div>
     <div class="head-mountain"></div>
     <!-- 购物车 end -->
 @endsection

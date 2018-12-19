@@ -3,15 +3,15 @@
 @section('title',$title)
 
 @section('content')
-  
-                    
-        
+
+
+
 <div class="card-body">
                   <h4 class="card-title">浏览广告</h4>
                   <p class="card-description">
                     index advert
                   </p>
-                  
+
 
                   <table class="table table-striped">
                     <thead>
@@ -31,7 +31,7 @@
                         <th>
                           操作
                         </th>
-                        
+
                         <th>
                           应用界面
                         </th>
@@ -40,7 +40,7 @@
                           状态
                         </th>
 
-                        
+
                       </tr>
                     </thead>
 
@@ -67,24 +67,20 @@
                             <form action="" method='post' style='display:inline'>
                               {{csrf_field()}}
 
-                              
+
                               <!-- <button class='btn btn-danger'>删除</button> -->
-                              @if($v->status == 1)
-                              <a href="" class='btn btn-info'>禁用</a>
-                              @else
-                              <a href="#" class='btn btn-info'>启用</a>
-                              @endif
+
 
                             </form>
                           </td>
                       </tr>
-                    
+
                     @endforeach
 
                     </tbody>
                   </table>
                 </div>
-              
+
 
 @stop
 

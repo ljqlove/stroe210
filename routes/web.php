@@ -21,6 +21,7 @@ Route::any('/home/captcha','Auth\LoginController@captcha');
 Route::get('/home/login','Auth\LoginController@login');
 Route::get('/home/dologin','Auth\LoginController@dologin');
 Route::get('/home/logout','Auth\LoginController@logout');
+Route::get('/home/logcaptcha','Auth\LoginController@logcaptcha');
 
 // 忘记密码
 Route::get('/home/dxyz','Home\YzController@index');
